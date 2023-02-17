@@ -1,0 +1,26 @@
+# Time-stamp: <2023-02-17 13:19:30 angelv> 
+
+#+TITLE:   HTCondor IAC User's Manual
+#+AUTHOR:  Ángel de Vicente
+#+EMAIL:   angel.de.vicente@iac.es
+
+#+OPTIONS:   H:6 num:6 toc:4 author:t email:t title:t
+
+#+LATEX_CLASS_OPTIONS: [a4paper,10pt]
+#+LaTeX_HEADER: \usepackage[left=2cm, right=2cm, top=1.5cm, bottom=2cm]{geometry}
+
+# To be able to create boxes around text. From
+# https://emacs.stackexchange.com/questions/22092/how-to-place-a-box-around-a-piece-of-text-in-org-mode
+
+#+LATEX_HEADER_EXTRA:  \usepackage{mdframed}
+#+LATEX_HEADER_EXTRA: \BeforeBeginEnvironment{minted}{\begin{mdframed}}
+#+LATEX_HEADER_EXTRA: \AfterEndEnvironment{minted}{\end{mdframed}}
+
+#+latex: \small
+
+* Users' documentation for the IAC HTCondor Pool
+
+** Submitting jobs
+
+** Python bindings
+

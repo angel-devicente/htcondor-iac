@@ -1,0 +1,10 @@
+Universe   = vanilla
+Executable = simple
+Arguments  = 400 10
+Log        = simple.log
+Output     = simple.$(Process).out
+Error      = simple.$(Process).error
+nice_user  = True
+
+Queue 100
+
