@@ -1,0 +1,461 @@
+This is TeX, Version 3.14159 (Web2C 7.4.5) (format=latex 2003.12.5)  17 SEP 2004 12:06
+**manual.tex
+(./manual.tex
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, g
+reek, italian, portuges, spanish, nohyphenation, loaded.
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/base/article.cls
+Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/base/size12.clo
+File: size12.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/base/inputenc.sty
+Package: inputenc 2001/07/10 v0.99a Input encoding file 
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/base/latin1.def
+File: latin1.def 2001/07/10 v0.99a Input encoding file 
+))
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/generic/babel/babel.sty
+Package: babel 2001/03/01 v3.7h The Babel package
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/generic/babel/spanish.ldf
+Language: spanish.ldf 2003/09/12 v4.2b Spanish support from the babel system
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/generic/babel/babel.def
+File: babel.def 2001/03/01 v3.7h Babel common definitions
+\babel@savecnt=\count87
+\U@D=\dimen103
+)
+\es@quottoks=\toks14
+\es@quotdepth=\count88
+Package babel Info: Making . an active character on input line 493.
+Package babel Info: Making " an active character on input line 524.
+Package babel Info: Making < an active character on input line 625.
+Package babel Info: Making > an active character on input line 626.
+))
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 2001/07/07 v1.0n Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2001/08/31 v1.1 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: dvips.def on input line 80.
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen104
+\Gin@req@width=\dimen105
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/color.sty
+Package: color 1999/02/16 v1.0i Standard LaTeX Color (DPC)
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/config/color.cfg
+File: color.cfg 2001/08/31 v1.1 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: dvips.def on input line 125.
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/misc/url.sty
+\Urlmuskip=\muskip10
+Package: url 1999/03/28  ver 1.5x  Verb mode for urls, etc.
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/fancyhdr/fancyhdr.sty
+\headwidth=\dimen106
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/tools/verbatim.sty
+Package: verbatim 2001/03/12 v1.5p LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks16
+\verbatim@line=\toks17
+\verbatim@in@stream=\read1
+)
+(./html.sty
+Package: html 1999/07/19 v1.38 hypertext commands for latex2html (nd, hws, rrm)
+
+\c@lpart=\count89
+\c@lchapter=\count90
+\c@chapter=\count91
+\c@lsection=\count92
+\c@lsubsection=\count93
+\c@lsubsubsection=\count94
+\c@lparagraph=\count95
+\c@lsubparagraph=\count96
+\c@lsubsubparagraph=\count97
+\ptrfile=\write3
+) (./hyperref.sty
+Package: hyperref 2003/01/22 v6.73n Hypertext links for LaTeX
+\@linkdim=\dimen107
+\Hy@linkcounter=\count98
+\Hy@pagecounter=\count99
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2003/01/22 v6.73n Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/config/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive and teTeX
+)
+Package hyperref Info: Hyper figures OFF on input line 1792.
+Package hyperref Info: Link nesting OFF on input line 1797.
+Package hyperref Info: Hyper index ON on input line 1800.
+Package hyperref Info: Plain pages ON on input line 1805.
+Package hyperref Info: Backreferencing OFF on input line 1812.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 1916.
+LaTeX Info: Redefining \url on input line 2055.
+LaTeX Info: Redefining \hyperref on input line 2066.
+\Fld@menulength=\count100
+\Field@Width=\dimen108
+\Fld@charsize=\dimen109
+\Choice@toks=\toks18
+\Field@toks=\toks19
+Package hyperref Info: Hyper figures OFF on input line 2513.
+Package hyperref Info: Link nesting OFF on input line 2518.
+Package hyperref Info: Hyper index ON on input line 2521.
+Package hyperref Info: backreferencing OFF on input line 2528.
+Package hyperref Info: Link coloring OFF on input line 2533.
+\c@Item=\count101
+\c@Hfootnote=\count102
+)
+*hyperref using default driver hdvips*
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/hyperref/hdvips.def
+File: hdvips.def 2003/01/22 v6.73n Hyperref driver for dvips
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/hyperref/pdfmark.def
+File: pdfmark.def 2003/01/22 v6.73n Hyperref definitions for pdfmark specials
+\pdf@docset=\toks20
+\pdf@box=\box26
+\pdf@toks=\toks21
+\pdf@defaulttoks=\toks22
+\Fld@listcount=\count103
+\@outlinefile=\write4
+))
+(/home/angelv/texmf/tex/latex/base/fancyvrb.sty
+Package: fancyvrb 1998/07/17
+
+Style option: `fancyvrb' v2.6, with DG/SPQR fixes <1998/07/17> (tvz)
+\FV@CodeLineNo=\count104
+\FV@InFile=\read2
+\FV@TabBox=\box27
+\c@FancyVerbLine=\count105
+\FV@StepNumber=\count106
+\FV@OutFile=\write5
+
+No file fancyvrb.cfg.
+)
+No file manual.aux.
+\openout1 = `manual.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+Package hyperref Info: Link coloring OFF on input line 95.
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/hyperref/nameref.sty
+Package: nameref 2001/01/27 v2.19 Cross-referencing by name of section
+\c@section@level=\count107
+)
+LaTeX Info: Redefining \ref on input line 95.
+LaTeX Info: Redefining \pageref on input line 95.
+\openout4 = `manual.out'.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 102.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 102.
+
+[1
+
+]
+\tf@toc=\write6
+\openout6 = `manual.toc'.
+
+ [1]
+\openout2 = `users.aux'.
+
+ (./users.tex
+
+LaTeX Warning: Reference `sec::how_it_work' on page 2 undefined on input line 2
+6.
+
+
+LaTeX Warning: Reference `sec::submit_file' on page 2 undefined on input line 5
+1.
+
+[2
+
+]
+
+LaTeX Warning: Reference `sec::condor_q' on page 3 undefined on input line 53.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 62.
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
+
+
+LaTeX Warning: Reference `sec::universos' on page 3 undefined on input line 69.
+
+
+
+LaTeX Warning: Reference `sec::condor_rm' on page 3 undefined on input line 74.
+
+
+
+LaTeX Warning: Reference `sec::universos' on page 3 undefined on input line 82.
+
+
+[3] [4]
+
+LaTeX Warning: Reference `sec::universos' on page 5 undefined on input line 163
+.
+
+[5]
+Overfull \hbox (17.5502pt too wide) in paragraph at lines 193--193
+[]\OT1/cmtt/m/n/12 Requirements = Memory >= 64 && OpSys == "Linux" && Arch == "
+INTEL"[] 
+ []
+
+[6] [7]
+Overfull \hbox (29.9002pt too wide) in paragraph at lines 287--287
+[]\OT1/cmtt/m/n/12 -- Submitter: trevina.iac.es : <161.72.81.178:1085> : trevin
+a.iac.es[] 
+ []
+
+
+Overfull \hbox (5.2002pt too wide) in paragraph at lines 288--288
+[] \OT1/cmtt/m/n/12 ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE
+ CMD[] 
+ []
+
+
+Overfull \hbox (97.82524pt too wide) in paragraph at lines 289--289
+[]   \OT1/cmtt/m/n/12 1.0   adrians         7/13 12:37   0+00:00:00 I  0   0.0 
+ myprog Example.1.0[] 
+ []
+
+[8]
+Overfull \hbox (36.07521pt too wide) in paragraph at lines 345--345
+[]\OT1/cmtt/m/n/12 -- Submitter: trevina.iac.es : <161.72.81.178:39869> : trevi
+na.iac.es[] 
+ []
+
+
+Overfull \hbox (5.2002pt too wide) in paragraph at lines 346--346
+[] \OT1/cmtt/m/n/12 ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE
+ CMD[] 
+ []
+
+[9]
+Overfull \hbox (48.42522pt too wide) in paragraph at lines 351--351
+[]      \OT1/cmtt/m/n/12 0 match, but are serving users with a better priority 
+in the pool[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 352--352
+[]      \OT1/cmtt/m/n/12 0 match, but prefer another specific job despite its w
+orse user-priority[] 
+ []
+
+
+Overfull \hbox (5.2002pt too wide) in paragraph at lines 353--353
+[]      \OT1/cmtt/m/n/12 0 match, but will not currently preempt their existing
+ job[] 
+ []
+
+
+Overfull \hbox (29.9002pt too wide) in paragraph at lines 390--390
+[]\OT1/cmtt/m/n/12 -- Submitter: trevina.iac.es : <161.72.81.178:1085> : trevin
+a.iac.es[] 
+ []
+
+
+Overfull \hbox (5.2002pt too wide) in paragraph at lines 391--391
+[] \OT1/cmtt/m/n/12 ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE
+ CMD[] 
+ []
+
+
+Overfull \hbox (97.82524pt too wide) in paragraph at lines 392--392
+[]   \OT1/cmtt/m/n/12 2.0   adrians         7/13 12:46   0+00:00:01 R  0   0.0 
+ myprog Example.2.0[] 
+ []
+
+[10]
+Underfull \hbox (badness 4429) in paragraph at lines 405--410
+[]\OT1/cmr/m/n/12 Para m^^Sas in-for-ma-ci^^Son pue-de vi-si-tar la [][][][] o 
+la
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 418--418
+[]\OT1/cmtt/m/n/12 Name          OpSys       Arch   State      Activity   LoadA
+v Mem   ActvtyTime[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 420--420
+[]\OT1/cmtt/m/n/12 vm1@aciano.ia LINUX       INTEL  Claimed    Busy       1.030
+   501  0+16:56:02[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 421--421
+[]\OT1/cmtt/m/n/12 vm2@aciano.ia LINUX       INTEL  Claimed    Busy       0.990
+   501  0+00:59:48[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 422--422
+[]\OT1/cmtt/m/n/12 agracejo.iac. LINUX       INTEL  Claimed    Busy       1.030
+   500  0+21:00:39[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 423--423
+[]\OT1/cmtt/m/n/12 vm1@agrimonia LINUX       INTEL  Claimed    Busy       1.010
+  1826  0+00:09:36[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 424--424
+[]\OT1/cmtt/m/n/12 vm2@agrimonia LINUX       INTEL  Claimed    Busy       1.000
+  1826  0+00:09:32[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 425--425
+[]\OT1/cmtt/m/n/12 alfalfa.iac.e LINUX       INTEL  Owner      Idle       0.000
+   248  0+00:32:55[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 427--427
+[]\OT1/cmtt/m/n/12 tonina.iac.es SOLARIS29   SUN4u  Claimed    Busy       1.000
+   128  0+21:56:24[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 428--428
+[]\OT1/cmtt/m/n/12 toro.iac.es   SOLARIS29   SUN4u  Unclaimed  Idle       0.000
+   128  0+00:00:04[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 429--429
+[]\OT1/cmtt/m/n/12 tuno.iac.es   SOLARIS29   SUN4u  Owner      Idle       0.040
+   640  0+01:33:15[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 430--430
+[]\OT1/cmtt/m/n/12 vibora.iac.es SOLARIS29   SUN4u  Claimed    Busy       1.010
+   576  3+02:59:06[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 431--431
+[]\OT1/cmtt/m/n/12 viola.iac.es  SOLARIS29   SUN4u  Claimed    Busy       1.010
+   256  0+01:40:35[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 432--432
+[]\OT1/cmtt/m/n/12 zarza.iac.es  SOLARIS29   SUN4u  Claimed    Busy       0.660
+   256  0+00:01:06[] 
+ []
+
+
+Overfull \hbox (91.65024pt too wide) in paragraph at lines 433--433
+[]\OT1/cmtt/m/n/12 zorro.ll.iac. SOLARIS29   SUN4u  Claimed    Busy       1.040
+   384  1+03:38:25[] 
+ []
+
+
+Overfull \hbox (54.60022pt too wide) in paragraph at lines 435--435
+[]                     \OT1/cmtt/m/n/12 Machines Owner Claimed Unclaimed Matche
+d Preempting[] 
+ []
+
+
+Overfull \hbox (54.60022pt too wide) in paragraph at lines 437--437
+[]         \OT1/cmtt/m/n/12 INTEL/LINUX       75    33      41         1       
+0          0[] 
+ []
+
+
+Overfull \hbox (54.60022pt too wide) in paragraph at lines 438--438
+[]     \OT1/cmtt/m/n/12 SUN4u/SOLARIS29       87    21      64         2       
+0          0[] 
+ []
+
+
+Overfull \hbox (54.60022pt too wide) in paragraph at lines 440--440
+[]               \OT1/cmtt/m/n/12 Total      162    54     105         3       
+0          0[] 
+ []
+
+[11]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 459.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 459.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 459.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 461.
+) [12] (./manual.aux (./users.aux))
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 3617 strings out of 95829
+ 49733 string characters out of 1192188
+ 110100 words of memory out of 1000001
+ 6534 multiletter control sequences out of 10000+50000
+ 9851 words of font info for 35 fonts, out of 500000 for 1000
+ 16 hyphenation exceptions out of 1000
+ 28i,8n,43p,201b,381s stack positions out of 1500i,500n,5000p,200000b,5000s
+
+Output written on manual.dvi (13 pages, 44768 bytes).

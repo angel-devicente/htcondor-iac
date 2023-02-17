@@ -1,0 +1,1841 @@
+This is TeX, Version 3.14159 (Web2C 7.4.5) (format=latex 2003.12.5)  25 OCT 2004 10:47
+**course.tex
+(./course.tex
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, g
+reek, italian, portuges, spanish, nohyphenation, loaded.
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/base/article.cls
+Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/base/size10.clo
+File: size10.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 2001/07/07 v1.0n Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2001/08/31 v1.1 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: dvips.def on input line 80.
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/color.sty
+Package: color 1999/02/16 v1.0i Standard LaTeX Color (DPC)
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/config/color.cfg
+File: color.cfg 2001/08/31 v1.1 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: dvips.def on input line 125.
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf-local/tex/latex/html/url.sty
+Package: url 1999/03/02  ver 1.4  Verb mode for urls, email addresses, and file
+ names
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/fancyhdr/fancyhdr.sty
+\headwidth=\dimen105
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/tools/verbatim.sty
+Package: verbatim 2001/03/12 v1.5p LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks15
+\verbatim@line=\toks16
+\verbatim@in@stream=\read1
+)
+(./html.sty
+Package: html 1999/07/19 v1.38 hypertext commands for latex2html (nd, hws, rrm)
+
+\c@lpart=\count87
+\c@lchapter=\count88
+\c@chapter=\count89
+\c@lsection=\count90
+\c@lsubsection=\count91
+\c@lsubsubsection=\count92
+\c@lparagraph=\count93
+\c@lsubparagraph=\count94
+\c@lsubsubparagraph=\count95
+\ptrfile=\write3
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2003/01/22 v6.73n Hypertext links for LaTeX
+\@linkdim=\dimen106
+\Hy@linkcounter=\count96
+\Hy@pagecounter=\count97
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2003/01/22 v6.73n Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/config/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive and teTeX
+)
+Package hyperref Info: Hyper figures OFF on input line 1792.
+Package hyperref Info: Link nesting OFF on input line 1797.
+Package hyperref Info: Hyper index ON on input line 1800.
+Package hyperref Info: Plain pages ON on input line 1805.
+Package hyperref Info: Backreferencing OFF on input line 1812.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 1916.
+LaTeX Info: Redefining \url on input line 2055.
+LaTeX Info: Redefining \hyperref on input line 2066.
+\Fld@menulength=\count98
+\Field@Width=\dimen107
+\Fld@charsize=\dimen108
+\Choice@toks=\toks17
+\Field@toks=\toks18
+Package hyperref Info: Hyper figures OFF on input line 2513.
+Package hyperref Info: Link nesting OFF on input line 2518.
+Package hyperref Info: Hyper index ON on input line 2521.
+Package hyperref Info: backreferencing OFF on input line 2528.
+Package hyperref Info: Link coloring OFF on input line 2533.
+\c@Item=\count99
+\c@Hfootnote=\count100
+)
+*hyperref using default driver hdvips*
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/hyperref/hdvips.def
+File: hdvips.def 2003/01/22 v6.73n Hyperref driver for dvips
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/hyperref/pdfmark.def
+File: pdfmark.def 2003/01/22 v6.73n Hyperref definitions for pdfmark specials
+\pdf@docset=\toks19
+\pdf@box=\box26
+\pdf@toks=\toks20
+\pdf@defaulttoks=\toks21
+\Fld@listcount=\count101
+\@outlinefile=\write4
+))
+(/home/angelv/texmf/tex/latex/base/fancyvrb.sty
+Package: fancyvrb 1998/07/17
+
+Style option: `fancyvrb' v2.6, with DG/SPQR fixes <1998/07/17> (tvz)
+\FV@CodeLineNo=\count102
+\FV@InFile=\read2
+\FV@TabBox=\box27
+\c@FancyVerbLine=\count103
+\FV@StepNumber=\count104
+\FV@OutFile=\write5
+
+No file fancyvrb.cfg.
+) (./course.aux)
+\openout1 = `course.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+Package hyperref Info: Link coloring OFF on input line 90.
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/hyperref/nameref.sty
+Package: nameref 2001/01/27 v2.19 Cross-referencing by name of section
+\c@section@level=\count105
+)
+LaTeX Info: Redefining \ref on input line 90.
+LaTeX Info: Redefining \pageref on input line 90.
+
+(./course.out) (./course.out)
+\openout4 = `course.out'.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 93.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 93.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 93.
+ (./course.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 3.
+ [1
+
+])
+\tf@toc=\write6
+\openout6 = `course.toc'.
+
+ [2]
+Overfull \hbox (0.68408pt too wide) in paragraph at lines 108--110
+[]\OT1/cmr/m/n/10 ([][][][])
+ []
+
+[3]
+Overfull \hbox (12.22287pt too wide) in paragraph at lines 153--157
+[]\OT1/cmr/m/n/10 At present the Con-dorView in-ter-face is at [][][][],
+ []
+
+
+Overfull \hbox (1.77734pt too wide) in paragraph at lines 153--157
+\OT1/cmr/m/n/10 ac-ces-si-ble through the IAC Con-dor page at [][][][]. 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 200--200
+[]\OT1/cmtt/m/n/10 Name          OpSys       Arch   State      Activity   LoadA
+v Mem   ActvtyTime[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 202--202
+[]\OT1/cmtt/m/n/10 canistel.iac. LINUX       INTEL  Claimed    Suspended  0.800
+   500  0+00:00:04[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 203--203
+[]\OT1/cmtt/m/n/10 codorniz.iac. LINUX       INTEL  Owner      Idle       5.000
+   500  0+19:25:20[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 204--204
+[]\OT1/cmtt/m/n/10 correhuela.ia LINUX       INTEL  Claimed    Suspended  0.830
+  1005  0+00:00:04[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 205--205
+[]\OT1/cmtt/m/n/10 drosera.iac.e LINUX       INTEL  Claimed    Suspended  0.830
+   248  0+00:00:04[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 206--206
+[]\OT1/cmtt/m/n/10 paraguayo.iac LINUX       INTEL  Owner      Idle       0.000
+   500  0+00:50:04[] 
+ []
+
+[4]
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 207--207
+[]\OT1/cmtt/m/n/10 resines.ll.ia LINUX       INTEL  Owner      Idle       3.030
+  1005  0+04:13:10[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 208--208
+[]\OT1/cmtt/m/n/10 temple.ll.iac LINUX       INTEL  Owner      Idle       2.000
+   500  0+04:16:09[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 209--209
+[]\OT1/cmtt/m/n/10 abeto.iac.es  SOLARIS29   SUN4u  Claimed    Suspended  0.420
+   256  0+00:02:00[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 210--210
+[]\OT1/cmtt/m/n/10 aguila.iac.es SOLARIS29   SUN4u  Owner      Idle       0.050
+   640  0+01:18:55[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 211--211
+[]\OT1/cmtt/m/n/10 ajedrea.iac.e SOLARIS29   SUN4u  Claimed    Busy       1.000
+   512  0+19:00:42[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 212--212
+[]\OT1/cmtt/m/n/10 albatros.iac. SOLARIS29   SUN4u  Claimed    Suspended  0.090
+   640  0+00:00:04[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 213--213
+[]\OT1/cmtt/m/n/10 anchoa.ll.iac SOLARIS29   SUN4u  Claimed    Busy       1.000
+   256  0+19:13:47[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 214--214
+[]\OT1/cmtt/m/n/10 ansar.iac.es  SOLARIS29   SUN4u  Claimed    Busy       1.000
+   576  0+15:35:16[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 215--215
+[]\OT1/cmtt/m/n/10 asno.iac.es   SOLARIS29   SUN4u  Claimed    Busy       1.020
+   256  0+01:00:53[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 216--216
+[]\OT1/cmtt/m/n/10 avestruz.iac. SOLARIS29   SUN4u  Claimed    Busy       0.990
+   128  0+17:51:11[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 219--219
+[]                     \OT1/cmtt/m/n/10 Machines Owner Claimed Unclaimed Matche
+d Preempting[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 221--221
+[]         \OT1/cmtt/m/n/10 INTEL/LINUX        7     4       3         0       
+0          0[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 222--222
+[]     \OT1/cmtt/m/n/10 SUN4u/SOLARIS29       94    26      68         0       
+0          0[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 224--224
+[]               \OT1/cmtt/m/n/10 Total      101    30      71         0       
+0          0[] 
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 232.
+
+(/usr/pkg/teTeX/teTeX-2.0.2/share/texmf/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 232.
+
+Overfull \hbox (31.74696pt too wide) in paragraph at lines 241--241
+ []\OT1/cmtt/m/n/10 naranja(68)~/Condor-Course/dagman1> condor_status -l naranj
+a.iac.es[] 
+ []
+
+[5] [6]
+Overfull \hbox (99.99637pt too wide) in paragraph at lines 291--291
+ []\OT1/cmtt/m/n/10 StarterAbilityList = "HasFileTransfer,HasMPI,HasJICLocalCon
+fig,HasJICLocalStdin,[] 
+ []
+
+
+Overfull \hbox (21.24706pt too wide) in paragraph at lines 292--292
+ []                      \OT1/cmtt/m/n/10 HasJava,HasRemoteSyscalls,HasCheckpoi
+nting"[] 
+ []
+
+
+Overfull \hbox (99.99637pt too wide) in paragraph at lines 299--299
+ []\OT1/cmtt/m/n/10 Start = ((KeyboardIdle > 15 * 60) && (((LoadAvg - CondorLoa
+dAvg) <= 0.300000) ||[] 
+ []
+
+
+Overfull \hbox (115.74623pt too wide) in paragraph at lines 300--300
+ []                                       \OT1/cmtt/m/n/10 (State != "Unclaimed
+" && State != "Owner")))[] 
+ []
+
+[7] [8]
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 451--451
+[]\OT1/cmtt/m/n/10 -- Submitter: guinda.iac.es : <161.72.81.187:32795> : guinda
+.iac.es[] 
+ []
+
+[9]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 453--453
+[] \OT1/cmtt/m/n/10 172.0   angelv          9/22 16:41   0+00:00:01 R  0   0.0 
+ uname[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 459--459
+[]\OT1/cmtt/m/n/10 -- Submitter: guinda.iac.es : <161.72.81.187:32795> : guinda
+.iac.es[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 473--473
+[]\OT1/cmtt/m/n/10 000 (172.000.000) 09/22 16:41:08 Job submitted from host: <1
+61.72.81.187:32795>[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 475--475
+[]\OT1/cmtt/m/n/10 001 (172.000.000) 09/22 16:41:14 Job executing on host: <161
+.72.80.28:56778>[] 
+ []
+
+[10] [11] [12]
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 625--625
+[]\OT1/cmtt/m/n/10 drwxr-xr-x    2 angelv   games        4096 sep 22 16:50 Cond
+or-Course[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 626--626
+[]\OT1/cmtt/m/n/10 drwxr-xr-x    4 angelv   games        4096 dic 19  2003 Docu
+mentation[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 635--635
+[]\OT1/cmtt/m/n/10 [angelv@guinda ~/Condor-Course]$ ls /scratch/angelv/Condor-C
+ourse/[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 639--639
+[]\OT1/cmtt/m/n/10 [angelv@guinda ~/Condor-Course]$ cat /scratch/angelv/Condor-
+Course/example3.err[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 642--642
+[]\OT1/cmtt/m/n/10 [angelv@guinda ~/Condor-Course]$ cat /scratch/angelv/Condor-
+Course/example3.out[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 646--646
+[]\OT1/cmtt/m/n/10 000 (174.000.000) 09/22 16:50:59 Job submitted from host: <1
+61.72.81.187:32795>[] 
+ []
+
+[13]
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 649--649
+[]\OT1/cmtt/m/n/10 Error from starter on canistel.iac.es: Failed to open standa
+rd output file[] 
+ []
+
+
+Overfull \hbox (90.7462pt too wide) in paragraph at lines 650--650
+[]  \OT1/cmtt/m/n/10 '/scratch/angelv/Condor-Course/example3.out': No such file
+ or directory (errno 2)[] 
+ []
+
+
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 655--655
+[]\OT1/cmtt/m/n/10 Error from starter on canistel.iac.es: Failed to open standa
+rd output file[] 
+ []
+
+
+Overfull \hbox (90.7462pt too wide) in paragraph at lines 656--656
+[]  \OT1/cmtt/m/n/10 '/scratch/angelv/Condor-Course/example3.out': No such file
+ or directory (errno 2)[] 
+ []
+
+
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 661--661
+[]\OT1/cmtt/m/n/10 Error from starter on canistel.iac.es: Failed to open standa
+rd output file[] 
+ []
+
+
+Overfull \hbox (90.7462pt too wide) in paragraph at lines 662--662
+[]  \OT1/cmtt/m/n/10 '/scratch/angelv/Condor-Course/example3.out': No such file
+ or directory (errno 2)[] 
+ []
+
+[14]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 700--700
+[]\OT1/cmtt/m/n/10 [angelv@guinda ~/Condor-Course]$ ls /scratch/angelv/Condor-C
+ourse/[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 703--703
+[]\OT1/cmtt/m/n/10 [angelv@guinda ~/Condor-Course]$ cat /scratch/angelv/Condor-
+Course/example4.out[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 727--727
+[]\OT1/cmtt/m/n/10 Requirements = Memory >= 1000 && ((Arch == "INTEL" && OpSys 
+== "LINUX") || \[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 728--728
+[]                                  \OT1/cmtt/m/n/10 (Arch == "SUN4u" && OpSys 
+== "SOLARIS29"))[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 739--739
+[]\OT1/cmtt/m/n/10 ------------------------------------------------------------
+------[] 
+ []
+
+[15]
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 747--747
+[]\OT1/cmtt/m/n/10 echo This amazing program was run in `uname -n`, a `uname -m
+` on `date`[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 749--749
+[]\OT1/cmtt/m/n/10 ------------------------------------------------------------
+-------[] 
+ []
+
+
+Overfull \hbox (111.74602pt too wide) in paragraph at lines 755--755
+[]\OT1/cmtt/m/n/10 echo The argument you passed me is $argv[1], so I will be sl
+eeping $argv[1] seconds ...[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 757--757
+[]\OT1/cmtt/m/n/10 echo This amazing program was run in `uname -n`, a `uname -m
+` on `date`[] 
+ []
+
+
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 762--762
+[]\OT1/cmtt/m/n/10 [angelv@guinda ~/Condor-Course]$ condor_status -constraint '
+Memory >= 1000' \[] 
+ []
+
+[16]
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 812--812
+[]\OT1/cmtt/m/n/10 The argument you passed me is 0, so I will be sleeping 0 sec
+onds ...[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 813--813
+[]\OT1/cmtt/m/n/10 This amazing program was run in cobos, a i686 on Wed Sep 29 
+15:23:28 WEST 2004[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 814--814
+[]\OT1/cmtt/m/n/10 The argument you passed me is 10, so I will be sleeping 10 s
+econds ...[] 
+ []
+
+
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 815--815
+[]\OT1/cmtt/m/n/10 This amazing program was run in camelia, a i686 on Wed Sep 2
+9 15:23:59 WEST 2004[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 816--816
+[]\OT1/cmtt/m/n/10 The argument you passed me is 11, so I will be sleeping 11 s
+econds ...[] 
+ []
+
+
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 817--817
+[]\OT1/cmtt/m/n/10 This amazing program was run in camelia, a i686 on Wed Sep 2
+9 15:24:03 WEST 2004[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 818--818
+[]\OT1/cmtt/m/n/10 The argument you passed me is 12, so I will be sleeping 12 s
+econds ...[] 
+ []
+
+
+Overfull \hbox (80.24629pt too wide) in paragraph at lines 819--819
+[]\OT1/cmtt/m/n/10 This amazing program was run in codorniz, a i686 on Wed Sep 
+29 15:24:00 WEST 2004[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 820--820
+[]\OT1/cmtt/m/n/10 The argument you passed me is 13, so I will be sleeping 13 s
+econds ...[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 821--821
+[]\OT1/cmtt/m/n/10 This amazing program was run in odiseo, a i686 on Wed Sep 29
+ 15:24:06 WEST 2004[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 822--822
+[]\OT1/cmtt/m/n/10 The argument you passed me is 14, so I will be sleeping 14 s
+econds ...[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 823--823
+[]\OT1/cmtt/m/n/10 This amazing program was run in hinojo, a i686 on Wed Sep 29
+ 15:24:09 WEST 2004[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 824--824
+[]\OT1/cmtt/m/n/10 The argument you passed me is 15, so I will be sleeping 15 s
+econds ...[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 825--825
+[]\OT1/cmtt/m/n/10 This amazing program was run in cobos, a i686 on Wed Sep 29 
+15:24:13 WEST 2004[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 826--826
+[]\OT1/cmtt/m/n/10 The argument you passed me is 16, so I will be sleeping 16 s
+econds ...[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 827--827
+[]\OT1/cmtt/m/n/10 This amazing program was run in trueno, a i686 on Wed Sep 29
+ 15:24:15 WEST 2004[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 828--828
+[]\OT1/cmtt/m/n/10 The argument you passed me is 17, so I will be sleeping 17 s
+econds ...[] 
+ []
+
+
+Overfull \hbox (85.49625pt too wide) in paragraph at lines 829--829
+[]\OT1/cmtt/m/n/10 This amazing program was run in agrimonia, a i686 on Wed Sep
+ 29 15:24:19 WEST 2004[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 830--830
+[]\OT1/cmtt/m/n/10 The argument you passed me is 18, so I will be sleeping 18 s
+econds ...[] 
+ []
+
+
+Overfull \hbox (85.49625pt too wide) in paragraph at lines 831--831
+[]\OT1/cmtt/m/n/10 This amazing program was run in agrimonia, a i686 on Wed Sep
+ 29 15:24:21 WEST 2004[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 832--832
+[]\OT1/cmtt/m/n/10 The argument you passed me is 19, so I will be sleeping 19 s
+econds ...[] 
+ []
+
+
+Overfull \hbox (80.24629pt too wide) in paragraph at lines 833--833
+[]\OT1/cmtt/m/n/10 This amazing program was run in rambutan, a i686 on Wed Sep 
+29 15:24:44 WEST 2004[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 834--834
+[]\OT1/cmtt/m/n/10 The argument you passed me is 1, so I will be sleeping 1 sec
+onds ...[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 835--835
+[]\OT1/cmtt/m/n/10 This amazing program was run in trueno, a i686 on Wed Sep 29
+ 15:23:31 WEST 2004[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 836--836
+[]\OT1/cmtt/m/n/10 The argument you passed me is 2, so I will be sleeping 2 sec
+onds ...[] 
+ []
+
+
+Overfull \hbox (85.49625pt too wide) in paragraph at lines 837--837
+[]\OT1/cmtt/m/n/10 This amazing program was run in agrimonia, a i686 on Wed Sep
+ 29 15:23:34 WEST 2004[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 838--838
+[]\OT1/cmtt/m/n/10 The argument you passed me is 3, so I will be sleeping 3 sec
+onds ...[] 
+ []
+
+[17]
+Overfull \hbox (85.49625pt too wide) in paragraph at lines 839--839
+[]\OT1/cmtt/m/n/10 This amazing program was run in agrimonia, a i686 on Wed Sep
+ 29 15:23:36 WEST 2004[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 840--840
+[]\OT1/cmtt/m/n/10 The argument you passed me is 4, so I will be sleeping 4 sec
+onds ...[] 
+ []
+
+
+Overfull \hbox (80.24629pt too wide) in paragraph at lines 841--841
+[]\OT1/cmtt/m/n/10 This amazing program was run in rambutan, a i686 on Wed Sep 
+29 15:23:40 WEST 2004[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 842--842
+[]\OT1/cmtt/m/n/10 The argument you passed me is 5, so I will be sleeping 5 sec
+onds ...[] 
+ []
+
+
+Overfull \hbox (80.24629pt too wide) in paragraph at lines 843--843
+[]\OT1/cmtt/m/n/10 This amazing program was run in rambutan, a i686 on Wed Sep 
+29 15:23:42 WEST 2004[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 844--844
+[]\OT1/cmtt/m/n/10 The argument you passed me is 6, so I will be sleeping 6 sec
+onds ...[] 
+ []
+
+
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 845--845
+[]\OT1/cmtt/m/n/10 This amazing program was run in coco, a i686 on Wed Sep 29 1
+5:23:47 WEST 2004[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 847--847
+[]\OT1/cmtt/m/n/10 This amazing program was run in faya, a sun4u on Wed Sep 29 
+15:23:51 WEST 2004[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 848--848
+[]\OT1/cmtt/m/n/10 The argument you passed me is 8, so I will be sleeping 8 sec
+onds ...[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 849--849
+[]\OT1/cmtt/m/n/10 This amazing program was run in botero, a i686 on Wed Sep 29
+ 15:23:48 WEST 2004[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 850--850
+[]\OT1/cmtt/m/n/10 The argument you passed me is 9, so I will be sleeping 9 sec
+onds ...[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 851--851
+[]\OT1/cmtt/m/n/10 This amazing program was run in botero, a i686 on Wed Sep 29
+ 15:23:54 WEST 2004[] 
+ []
+
+[18]
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 925--925
+[]                           \OT1/cmtt/m/n/10 RunningJobs           IdleJobs   
+        HeldJobs[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 927--927
+[]       \OT1/cmtt/m/n/10 angelv@iac.es                 1                  0   
+               0[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 928--928
+[]      \OT1/cmtt/m/n/10 apadron@iac.es                 1                  0   
+              24[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 929--929
+[]     \OT1/cmtt/m/n/10 delgadom@iac.es                23                 28   
+               0[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 930--930
+[]       \OT1/cmtt/m/n/10 plopez@iac.es                81                 62   
+               0[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 932--932
+[]               \OT1/cmtt/m/n/10 Total               106                 90   
+              24[] 
+ []
+
+[19]
+Overfull \hbox (95.99615pt too wide) in paragraph at lines 979--979
+[]\OT1/cmtt/m/n/10 Cmd = "/home/plopez/tmp/run_41/../setiathome-3.03.sparcv9-su
+n-solaris2.7/setiathome"[] 
+ []
+
+[20]
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 1006--1006
+[]\OT1/cmtt/m/n/10 Name       Arch     OpSys        State      Activity   LoadA
+v Mem  ActvtyTime[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 1008--1008
+[]\OT1/cmtt/m/n/10 alfred.cs. INTEL    SOLARIS251   Claimed    Busy       0.980
+  64    0+07:10:02[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 1009--1009
+[]\OT1/cmtt/m/n/10 biron.cs.w INTEL    SOLARIS251   Claimed    Busy       1.000
+  128   0+01:10:00[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 1010--1010
+[]\OT1/cmtt/m/n/10 cambridge. INTEL    SOLARIS251   Claimed    Busy       0.988
+  64    0+00:15:00[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 1011--1011
+[]\OT1/cmtt/m/n/10 falcons.cs INTEL    SOLARIS251   Claimed    Busy       0.996
+  32    0+02:05:03[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 1012--1012
+[]\OT1/cmtt/m/n/10 happy.cs.w INTEL    SOLARIS251   Claimed    Busy       0.988
+  128   0+03:05:00[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 1013--1013
+[]\OT1/cmtt/m/n/10 istat03.st INTEL    SOLARIS251   Claimed    Busy       0.883
+  64    0+06:45:01[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 1014--1014
+[]\OT1/cmtt/m/n/10 istat04.st INTEL    SOLARIS251   Claimed    Busy       0.988
+  64    0+00:10:00[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 1015--1015
+[]\OT1/cmtt/m/n/10 istat09.st INTEL    SOLARIS251   Claimed    Busy       0.301
+  64    0+03:45:00[] 
+ []
+
+[21]
+File: condor_job_monitor.ps Graphic file (type eps)
+ <condor_job_monitor.ps> [22]
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 1082--1082
+[]\OT1/cmtt/m/n/10 -- Submitter: froth.cs.wisc.edu : <128.105.73.44:33847> : fr
+oth.cs.wisc.edu[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 1084--1084
+[] \OT1/cmtt/m/n/10 126.0   raman           4/11 15:06   0+00:00:00 I  0   0.3 
+ hello[] 
+ []
+
+
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 1092--1092
+[]\OT1/cmtt/m/n/10 -- Submitter: froth.cs.wisc.edu : <128.105.73.44:33847> : fr
+oth.cs.wisc.edu[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 1094--1094
+[] \OT1/cmtt/m/n/10 126.0   raman           4/11 15:06   0+00:00:00 I  -15 0.3 
+ hello[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 1122--1122
+[]\OT1/cmtt/m/n/10 -- Submitter: trevina.iac.es : <161.72.81.178:39869> : trevi
+na.iac.es[] 
+ []
+
+[23]
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 1128--1128
+[]      \OT1/cmtt/m/n/10 0 match, but are serving users with a better priority 
+in the pool[] 
+ []
+
+
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 1129--1129
+[]      \OT1/cmtt/m/n/10 0 match, but prefer another specific job despite its w
+orse user-priority[] 
+ []
+
+[24] [25]
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 1252.
+
+[26]
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 1305--1305
+[]\OT1/cmtt/m/n/10 naranja(97)~/SCRIPTS/CONDOR/> condor_compile cc -o looping_s
+td_solaris looping.c 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 1307--1307
+[]\OT1/cmtt/m/n/10 /opt/SUNWspro/SC5.0/lib/crti.o /usr/pkg/condor/condor-6.6.3/
+lib/condor_rt0.o[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 1308--1308
+[]\OT1/cmtt/m/n/10 /opt/SUNWspro/SC5.0/lib/values-xa.o -o looping_std_solaris l
+ooping.o -Y[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 1311--1311
+[]\OT1/cmtt/m/n/10 /usr/pkg/condor/condor-6.6.3/lib/libz.a -Bdynamic -lsocket -
+lnsl -lc[] 
+ []
+
+
+Overfull \hbox (85.49625pt too wide) in paragraph at lines 1316--1316
+[]\OT1/cmtt/m/n/10 naranja(102)~/SCRIPTS/CONDOR/> cp looping_std_solaris loopin
+g_std_solaris_stripped[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 1324--1324
+[]\OT1/cmtt/m/n/10 -rwxr-xr-x   1 angelv   other    12327189 Sep 29 17:53 loopi
+ng_std_linux[] 
+ []
+
+
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 1325--1325
+[]\OT1/cmtt/m/n/10 -rwxr-xr-x   1 angelv   other    1333784 Sep 29 17:56 loopin
+g_std_linux_stripped[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 1326--1326
+[]\OT1/cmtt/m/n/10 -rwxr-xr-x   1 angelv   other    5678624 Sep 29 17:54 loopin
+g_std_solaris[] 
+ []
+
+
+Overfull \hbox (85.49625pt too wide) in paragraph at lines 1327--1327
+[]\OT1/cmtt/m/n/10 -rwxr-xr-x   1 angelv   other     678676 Sep 29 17:55 loopin
+g_std_solaris_stripped[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 1328--1328
+[]\OT1/cmtt/m/n/10 -rw-r--r--   1 angelv   other        138 May 26 16:52 submit
+_looping_std[] 
+ []
+
+[27]
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 1332--1332
+[]\OT1/cmtt/m/n/10 Condor: Notice: Will checkpoint to ./looping_std_solaris_str
+ipped.ckpt[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 1339--1339
+[]\OT1/cmtt/m/n/10 ------------------------------------------------------------
+-------------[] 
+ []
+
+
+Overfull \hbox (80.24629pt too wide) in paragraph at lines 1341--1341
+[]\OT1/cmtt/m/n/10 naranja(107)~/SCRIPTS/CONDOR/> cat /scratch/angelv/Condor-Co
+urse/std_universe.log[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1343--1343
+[]\OT1/cmtt/m/n/10 000 (188.000.000) 09/29 18:24:30 Job submitted from host: <1
+61.72.81.187:51962>[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 1345--1345
+[]\OT1/cmtt/m/n/10 001 (188.000.000) 09/29 18:25:16 Job executing on host: <161
+.72.65.35:37169>[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 1356--1356
+[]\OT1/cmtt/m/n/10 001 (188.000.000) 09/29 18:31:21 Job executing on host: <161
+.72.65.35:37169>[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 1365--1365
+[]\OT1/cmtt/m/n/10 001 (188.000.000) 09/29 18:42:26 Job executing on host: <161
+.72.65.11:44853>[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 1374--1374
+[]\OT1/cmtt/m/n/10 001 (188.000.000) 09/29 20:13:26 Job executing on host: <161
+.72.69.18:45267>[] 
+ []
+
+[28]
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 1390--1390
+[]\OT1/cmtt/m/n/10 001 (188.000.000) 09/30 11:58:17 Job executing on host: <161
+.72.66.25:61440>[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1396--1396
+[]\OT1/cmtt/m/n/10 -- Submitter: guinda.iac.es : <161.72.81.187:51962> : guinda
+.iac.es[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1398--1398
+[] \OT1/cmtt/m/n/10 188.0   angelv          9/29 18:24   0+18:26:51 R  0   2.9 
+ looping_std_solari[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1404--1404
+[]\OT1/cmtt/m/n/10 -- Submitter: guinda.iac.es : <161.72.81.187:51962> : guinda
+.iac.es[] 
+ []
+
+
+Overfull \hbox (80.24629pt too wide) in paragraph at lines 1412--1412
+[]\OT1/cmtt/m/n/10 Cmd = "/home/angelv/Condor-Course/Standard_Universe/looping_
+std_solaris_stripped"[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 1415--1415
+[]               \OT1/cmtt/m/n/10 ((CkptArch == Arch) || (CkptArch =?= UNDEFINE
+D)) &&[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 1416--1416
+[]               \OT1/cmtt/m/n/10 ((CkptOpSys == OpSys) || (CkptOpSys =?= UNDEF
+INED)) &&[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 1417--1417
+[]               \OT1/cmtt/m/n/10 (Disk >= DiskUsage) && ((Memory * 1024) >= Im
+ageSize)[] 
+ []
+
+[29] [30] [31]
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 1524--1524
+[]\OT1/cmtt/m/n/10 ------------------------------------------------------------
+-----------[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 1525--1525
+[]\OT1/cmtt/m/n/10 File for submitting this DAG to Condor           : diamond.d
+ag.condor.sub[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 1526--1526
+[]\OT1/cmtt/m/n/10 Log of DAGMan debugging messages                 : diamond.d
+ag.dagman.out[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 1527--1527
+[]\OT1/cmtt/m/n/10 Log of Condor library debug messages             : diamond.d
+ag.lib.out[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 1528--1528
+[]\OT1/cmtt/m/n/10 Log of the life of condor_dagman itself          : diamond.d
+ag.dagman.log[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1530--1530
+[]\OT1/cmtt/m/n/10 Condor Log file for all Condor jobs of this DAG: dagman_exam
+ple.log[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 1534--1534
+[]\OT1/cmtt/m/n/10 ------------------------------------------------------------
+-----------[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 1541--1541
+[]\OT1/cmtt/m/n/10 -- Submitter: naranja.iac.es : <161.72.64.97:49674> : naranj
+a.iac.es[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1543--1543
+[]\OT1/cmtt/m/n/10 3548.0   angelv          9/28 09:55   0+00:00:11 R  0   4.0 
+ condor_dagman -f -[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 1544--1544
+[]\OT1/cmtt/m/n/10 3549.0    |-A            9/28 09:55   0+00:00:00 I  0   0.0 
+ basic.sh[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 1554--1554
+[]\OT1/cmtt/m/n/10 -- Submitter: naranja.iac.es : <161.72.64.97:49674> : naranj
+a.iac.es[] 
+ []
+
+[32] [33] [34]
+Overfull \hbox (27.53418pt too wide) in paragraph at lines 1695--1697
+\OT1/cmr/m/n/10 info at http://www.cs.wisc.edu/condor/manual/v6.6/2[]8Java[]App
+lications.html 
+ []
+
+
+Overfull \hbox (4.35359pt too wide) in paragraph at lines 1700--1701
+[]\OT1/cmr/m/n/10 http://goya/inves/SINFIN/Condor/v6.6/2[]11DAGMan[]Application
+s.html 
+ []
+
+
+Overfull \hbox (0.86742pt too wide) in paragraph at lines 1704--1706
+[]\OT1/cmr/m/n/10 http://www.cs.wisc.edu/condor/manual/v6.6/4[]4Condor[]Perl.ht
+ml. With
+ []
+
+
+Overfull \hbox (7.22281pt too wide) in paragraph at lines 1704--1706
+\OT1/cmr/m/n/10 it you can cre-ate very ver-sa-tile de-pen-den-cies, in-clud-in
+g con-di-tional branches,
+ []
+
+[35]
+Overfull \hbox (99.99637pt too wide) in paragraph at lines 1725--1725
+ [] \OT1/cmtt/m/n/10 -format "The machine %s " Machine -format "has Java Versio
+n: %s \n" JavaVersion[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 1774--1774
+[]\OT1/cmtt/m/n/10 Requirements = Memory >= 1000 && ((Arch == "INTEL" && OpSys 
+== "LINUX") || \[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 1775--1775
+[]                                  \OT1/cmtt/m/n/10 (Arch == "SUN4u" && OpSys 
+== "SOLARIS29"))[] 
+ []
+
+[36]
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 1791--1791
+[]                            \OT1/cmtt/m/n/10 'RemoveReason=!=UNDEFINED && Use
+r=="adrians@iac.es"'[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1793--1793
+[] \OT1/cmtt/m/n/10 ID      OWNER            SUBMITTED     RUN_TIME ST   COMPLE
+TED CMD[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1794--1794
+[] \OT1/cmtt/m/n/10 143.0   adrians         7/27 11:51   0+00:00:23 X   ???    
+    /home/adrians/c[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1795--1795
+[] \OT1/cmtt/m/n/10 144.0   adrians         7/27 11:52   0+00:00:52 X   ???    
+    /home/adrians/c[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1796--1796
+[] \OT1/cmtt/m/n/10 144.4   adrians         7/27 11:52   0+00:00:51 X   ???    
+    /home/adrians/c[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1797--1797
+[] \OT1/cmtt/m/n/10 144.5   adrians         7/27 11:52   0+00:00:49 X   ???    
+    /home/adrians/c[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1798--1798
+[] \OT1/cmtt/m/n/10 144.8   adrians         7/27 11:52   0+00:00:57 X   ???    
+    /home/adrians/c[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1799--1799
+[] \OT1/cmtt/m/n/10 144.9   adrians         7/27 11:52   0+00:00:55 X   ???    
+    /home/adrians/c[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1800--1800
+[] \OT1/cmtt/m/n/10 144.1   adrians         7/27 11:52   0+00:01:03 X   ???    
+    /home/adrians/c[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1801--1801
+[] \OT1/cmtt/m/n/10 144.2   adrians         7/27 11:52   0+00:01:01 X   ???    
+    /home/adrians/c[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1802--1802
+[] \OT1/cmtt/m/n/10 144.3   adrians         7/27 11:52   0+00:00:59 X   ???    
+    /home/adrians/c[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1803--1803
+[] \OT1/cmtt/m/n/10 144.6   adrians         7/27 11:52   0+00:00:50 X   ???    
+    /home/adrians/c[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1804--1804
+[] \OT1/cmtt/m/n/10 144.7   adrians         7/27 11:52   0+00:00:48 X   ???    
+    /home/adrians/c[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1805--1805
+[] \OT1/cmtt/m/n/10 146.0   adrians         7/27 12:05   0+00:00:12 X   ???    
+    /tmp/adrians/my[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1806--1806
+[] \OT1/cmtt/m/n/10 146.1   adrians         7/27 12:05   0+00:00:13 X   ???    
+    /tmp/adrians/my[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1807--1807
+[] \OT1/cmtt/m/n/10 146.3   adrians         7/27 12:05   0+00:00:10 X   ???    
+    /tmp/adrians/my[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1808--1808
+[] \OT1/cmtt/m/n/10 146.4   adrians         7/27 12:05   0+00:00:10 X   ???    
+    /tmp/adrians/my[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1809--1809
+[] \OT1/cmtt/m/n/10 146.2   adrians         7/27 12:05   0+00:00:36 X   ???    
+    /tmp/adrians/my[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1810--1810
+[] \OT1/cmtt/m/n/10 147.0   adrians         7/27 12:40   0+06:56:21 X   ???    
+    /tmp/adrians/my[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1811--1811
+[] \OT1/cmtt/m/n/10 147.1   adrians         7/27 12:40   0+04:26:55 X   ???    
+    /tmp/adrians/my[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1812--1812
+[] \OT1/cmtt/m/n/10 147.2   adrians         7/27 12:40   0+05:14:00 X   ???    
+    /tmp/adrians/my[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1813--1813
+[] \OT1/cmtt/m/n/10 147.3   adrians         7/27 12:40   0+04:17:06 X   ???    
+    /tmp/adrians/my[] 
+ []
+
+
+Overfull \hbox (69.74638pt too wide) in paragraph at lines 1814--1814
+[] \OT1/cmtt/m/n/10 147.4   adrians         7/27 12:40   0+03:51:35 X   ???    
+    /tmp/adrians/my[] 
+ []
+
+[37] [38] [39]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 1929--1929
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         275 sep 30 14:17 A.
+condor[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 1933--1933
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         275 sep 30 14:17 B.
+condor[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 1937--1937
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games          68 sep 30 14:20 B.
+output[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 1939--1939
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         275 sep 30 14:17 C.
+condor[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 1943--1943
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games          68 sep 30 14:20 C.
+output[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 1945--1945
+[]  \OT1/cmtt/m/n/10 -rw-------    1 angelv   games        2486 sep 30 14:21 da
+gman_example.log[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 1946--1946
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         275 sep 30 14:17 D.
+condor[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 1948--1948
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         135 sep 28 09:46 di
+amond.dag[] 
+ []
+
+
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 1949--1949
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         508 sep 30 14:17 di
+amond.dag.condor.sub[] 
+ []
+
+
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 1950--1950
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         606 sep 30 14:21 di
+amond.dag.dagman.log[] 
+ []
+
+
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 1951--1951
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games        5516 sep 30 14:21 di
+amond.dag.dagman.out[] 
+ []
+
+
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 1952--1952
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games          29 sep 30 14:21 di
+amond.dag.lib.out[] 
+ []
+
+
+Overfull \hbox (27.89514pt too wide) in paragraph at lines 1957--1960
+[]\OT1/cmr/m/n/10 You can get the de-tails of ev-ery-thing that hap-pened in th
+e files dag-man[]example[]log
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1962--1962
+[]\OT1/cmtt/m/n/10 This is the output of Job A for Job B after being massaged b
+y Job B 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 1963--1963
+[]\OT1/cmtt/m/n/10 This is the output of Job A for Job C after being massaged b
+y Job C[] 
+ []
+
+[40]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 2014--2014
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         275 sep 30 14:17 A.
+condor[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 2018--2018
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         275 sep 30 14:17 B.
+condor[] 
+ []
+
+[41]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 2022--2022
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         275 sep 30 14:17 C.
+condor[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 2026--2026
+[]  \OT1/cmtt/m/n/10 -rw-------    1 angelv   games        2794 sep 30 15:51 da
+gman_example.log[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 2027--2027
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         275 sep 30 14:17 D.
+condor[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 2029--2029
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         216 sep 30 15:29 di
+amond.dag[] 
+ []
+
+
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 2030--2030
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         508 sep 30 15:48 di
+amond.dag.condor.sub[] 
+ []
+
+
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 2031--2031
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games         606 sep 30 15:52 di
+amond.dag.dagman.log[] 
+ []
+
+
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 2032--2032
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games        6882 sep 30 15:52 di
+amond.dag.dagman.out[] 
+ []
+
+
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 2033--2033
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games          29 sep 30 15:52 di
+amond.dag.lib.out[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 2034--2034
+[]  \OT1/cmtt/m/n/10 -rw-r--r--    1 angelv   games          94 sep 30 15:51 D.
+out.gz[] 
+ []
+
+[42]
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 2081--2081
+[]\OT1/cmtt/m/n/10 9/30 16:13:19  Done     Pre   Queued    Post   Ready   Un-Re
+ady   Failed[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 2082--2082
+[]\OT1/cmtt/m/n/10 9/30 16:13:19   ===     ===      ===     ===     ===        
+===      ===[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 2083--2083
+[]\OT1/cmtt/m/n/10 9/30 16:13:19     1       1        0       0       1        
+  1        0[] 
+ []
+
+
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 2086--2086
+[]\OT1/cmtt/m/n/10 9/30 16:13:25 submitting: condor_submit  -a 'dag_node_name =
+ B' -a '+DAGManJobID[] 
+ []
+
+
+Overfull \hbox (95.99615pt too wide) in paragraph at lines 2087--2087
+[]         \OT1/cmtt/m/n/10 = 224.0' -a 'submit_event_notes = DAG Node: $(dag_n
+ode_name)' B.condor 2>&1[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 2092--2092
+[]\OT1/cmtt/m/n/10 9/30 16:13:27  Done     Pre   Queued    Post   Ready   Un-Re
+ady   Failed[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 2093--2093
+[]\OT1/cmtt/m/n/10 9/30 16:13:27   ===     ===      ===     ===     ===        
+===      ===[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 2094--2094
+[]\OT1/cmtt/m/n/10 9/30 16:13:27     1       0        1       0       0        
+  1        1[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 2096--2096
+[]\OT1/cmtt/m/n/10 9/30 16:14:12 Event: ULOG_JOB_TERMINATED for Condor Job B (2
+26.0.0)[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 2100--2100
+[]\OT1/cmtt/m/n/10 9/30 16:14:12  Done     Pre   Queued    Post   Ready   Un-Re
+ady   Failed[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 2101--2101
+[]\OT1/cmtt/m/n/10 9/30 16:14:12   ===     ===      ===     ===     ===        
+===      ===[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 2102--2102
+[]\OT1/cmtt/m/n/10 9/30 16:14:12     1       0        0       1       0        
+  1        1[] 
+ []
+
+
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 2103--2103
+[]\OT1/cmtt/m/n/10 9/30 16:14:17 Event: ULOG_POST_SCRIPT_TERMINATED for Condor 
+Job B (226.0.0)[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 2106--2106
+[]\OT1/cmtt/m/n/10 9/30 16:14:17  Done     Pre   Queued    Post   Ready   Un-Re
+ady   Failed[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 2107--2107
+[]\OT1/cmtt/m/n/10 9/30 16:14:17   ===     ===      ===     ===     ===        
+===      ===[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 2108--2108
+[]\OT1/cmtt/m/n/10 9/30 16:14:17     2       0        0       0       0        
+  1        1[] 
+ []
+
+[43]
+Overfull \hbox (95.99615pt too wide) in paragraph at lines 2125--2125
+[]\OT1/cmtt/m/n/10 9/30 16:14:17 **** condor_scheduniv_exec.224.0 (condor_DAGMA
+N) EXITING WITH STATUS 1[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 2166--2166
+[]\OT1/cmtt/m/n/10 [angelv@guinda dagman_advanced_2]$ condor_submit_dag diamond
+.dag.rescue 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 2168--2168
+[]\OT1/cmtt/m/n/10 ------------------------------------------------------------
+-----------[] 
+ []
+
+
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 2169--2169
+[]\OT1/cmtt/m/n/10 File for submitting this DAG to Condor           : diamond.d
+ag.rescue.condor.sub[] 
+ []
+
+
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 2170--2170
+[]\OT1/cmtt/m/n/10 Log of DAGMan debugging messages                 : diamond.d
+ag.rescue.dagman.out[] 
+ []
+
+
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 2171--2171
+[]\OT1/cmtt/m/n/10 Log of Condor library debug messages             : diamond.d
+ag.rescue.lib.out[] 
+ []
+
+
+Overfull \hbox (74.99634pt too wide) in paragraph at lines 2172--2172
+[]\OT1/cmtt/m/n/10 Log of the life of condor_dagman itself          : diamond.d
+ag.rescue.dagman.log[] 
+ []
+
+[44]
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 2174--2174
+[]\OT1/cmtt/m/n/10 Condor Log file for all Condor jobs of this DAG: diamond.dag
+.rescue.dummy_log[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 2178--2178
+[]\OT1/cmtt/m/n/10 ------------------------------------------------------------
+-----------[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 2180--2180
+[]\OT1/cmtt/m/n/10 [angelv@guinda dagman_advanced_2]$ cat diamond.dag.rescue.da
+gman.out[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 2182--2182
+[]\OT1/cmtt/m/n/10 10/25 10:34:32 *********************************************
+*********[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2183--2183
+[]\OT1/cmtt/m/n/10 10/25 10:34:32 ** condor_scheduniv_exec.401.0 (CONDOR_DAGMAN
+) STARTING UP[] 
+ []
+
+
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 2184--2184
+[]\OT1/cmtt/m/n/10 10/25 10:34:32 ** /home/condor/local.guinda/spool/cluster401
+.ickpt.subproc0[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 2188--2188
+[]\OT1/cmtt/m/n/10 10/25 10:34:32 *********************************************
+*********[] 
+ []
+
+
+Overfull \hbox (311.24428pt too wide) in paragraph at lines 2190--2190
+[]\OT1/cmtt/m/n/10 10/25 10:34:32 Using local config files: /home/condor/condor
+_config.INTEL.LINUX /home/condor/local.guinda/condor_config.local[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 2191--2191
+[]\OT1/cmtt/m/n/10 10/25 10:34:32 DaemonCore: Command Socket at <161.72.81.187:
+30023>[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 2203--2203
+[]\OT1/cmtt/m/n/10 10/25 10:34:32 DAG Lockfile will be written to diamond.dag.r
+escue.lock[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 2205--2205
+[]\OT1/cmtt/m/n/10 10/25 10:34:32 Rescue DAG will be written to diamond.dag.res
+cue.rescue[] 
+ []
+
+
+Overfull \hbox (127.49588pt too wide) in paragraph at lines 2207--2207
+[]\OT1/cmtt/m/n/10 10/25 10:34:32   /home/angelv/Condor-Course/Exercises/dagman
+_advanced_2/dagman_example.log[] 
+ []
+
+
+Overfull \hbox (253.49478pt too wide) in paragraph at lines 2214--2214
+[]\OT1/cmtt/m/n/10 10/25 10:34:32 Deleting older version of /home/angelv/Condor
+-Course/Exercises/dagman_advanced_2/dagman_example.log[] 
+ []
+
+[45]
+Overfull \hbox (479.24281pt too wide) in paragraph at lines 2219--2219
+[]\OT1/cmtt/m/n/10 10/25 10:34:34 submitting: condor_submit  -a 'dag_node_name 
+= C' -a '+DAGManJobID = 401.0' -a 'submit_event_notes = DAG Node: $(dag_node_na
+me)' C.condor 2>&1[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2224--2224
+[]\OT1/cmtt/m/n/10 10/25 10:34:35  Done     Pre   Queued    Post   Ready   Un-R
+eady   Failed[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2225--2225
+[]\OT1/cmtt/m/n/10 10/25 10:34:35   ===     ===      ===     ===     ===       
+ ===      ===[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2226--2226
+[]\OT1/cmtt/m/n/10 10/25 10:34:35     2       0        1       0       0       
+   1        0[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 2228--2228
+[]\OT1/cmtt/m/n/10 10/25 10:37:40 Event: ULOG_JOB_TERMINATED for Condor Job C (
+402.0.0)[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2232--2232
+[]\OT1/cmtt/m/n/10 10/25 10:37:40  Done     Pre   Queued    Post   Ready   Un-R
+eady   Failed[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2233--2233
+[]\OT1/cmtt/m/n/10 10/25 10:37:40   ===     ===      ===     ===     ===       
+ ===      ===[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2234--2234
+[]\OT1/cmtt/m/n/10 10/25 10:37:40     2       0        0       1       0       
+   1        0[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 2235--2235
+[]\OT1/cmtt/m/n/10 10/25 10:37:45 Event: ULOG_POST_SCRIPT_TERMINATED for Condor
+ Job C (402.0.0)[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2238--2238
+[]\OT1/cmtt/m/n/10 10/25 10:37:45  Done     Pre   Queued    Post   Ready   Un-R
+eady   Failed[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2239--2239
+[]\OT1/cmtt/m/n/10 10/25 10:37:45   ===     ===      ===     ===     ===       
+ ===      ===[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2240--2240
+[]\OT1/cmtt/m/n/10 10/25 10:37:45     3       0        0       0       1       
+   0        0[] 
+ []
+
+
+Overfull \hbox (479.24281pt too wide) in paragraph at lines 2242--2242
+[]\OT1/cmtt/m/n/10 10/25 10:37:51 submitting: condor_submit  -a 'dag_node_name 
+= D' -a '+DAGManJobID = 401.0' -a 'submit_event_notes = DAG Node: $(dag_node_na
+me)' D.condor 2>&1[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2247--2247
+[]\OT1/cmtt/m/n/10 10/25 10:37:52  Done     Pre   Queued    Post   Ready   Un-R
+eady   Failed[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2248--2248
+[]\OT1/cmtt/m/n/10 10/25 10:37:52   ===     ===      ===     ===     ===       
+ ===      ===[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2249--2249
+[]\OT1/cmtt/m/n/10 10/25 10:37:52     3       0        1       0       0       
+   0        0[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 2251--2251
+[]\OT1/cmtt/m/n/10 10/25 10:40:37 Event: ULOG_JOB_TERMINATED for Condor Job D (
+404.0.0)[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2255--2255
+[]\OT1/cmtt/m/n/10 10/25 10:40:37  Done     Pre   Queued    Post   Ready   Un-R
+eady   Failed[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2256--2256
+[]\OT1/cmtt/m/n/10 10/25 10:40:37   ===     ===      ===     ===     ===       
+ ===      ===[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2257--2257
+[]\OT1/cmtt/m/n/10 10/25 10:40:37     3       0        0       1       0       
+   0        0[] 
+ []
+
+
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 2258--2258
+[]\OT1/cmtt/m/n/10 10/25 10:40:42 Event: ULOG_POST_SCRIPT_TERMINATED for Condor
+ Job D (404.0.0)[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2261--2261
+[]\OT1/cmtt/m/n/10 10/25 10:40:42  Done     Pre   Queued    Post   Ready   Un-R
+eady   Failed[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2262--2262
+[]\OT1/cmtt/m/n/10 10/25 10:40:42   ===     ===      ===     ===     ===       
+ ===      ===[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 2263--2263
+[]\OT1/cmtt/m/n/10 10/25 10:40:42     4       0        0       0       0       
+   0        0[] 
+ []
+
+[46]
+Overfull \hbox (101.24611pt too wide) in paragraph at lines 2265--2265
+[]\OT1/cmtt/m/n/10 10/25 10:40:42 **** condor_scheduniv_exec.401.0 (condor_DAGM
+AN) EXITING WITH STATUS 0[] 
+ []
+
+[47] (./course.aux) ) 
+Here is how much of TeX's memory you used:
+ 3146 strings out of 95829
+ 44120 string characters out of 1192188
+ 104365 words of memory out of 1000001
+ 6077 multiletter control sequences out of 10000+50000
+ 8409 words of font info for 30 fonts, out of 500000 for 1000
+ 16 hyphenation exceptions out of 1000
+ 26i,7n,43p,201b,442s stack positions out of 1500i,500n,5000p,200000b,5000s
+
+Output written on course.dvi (47 pages, 166304 bytes).

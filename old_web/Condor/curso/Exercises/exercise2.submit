@@ -1,0 +1,20 @@
+########################################################
+##
+## Exercise 2
+##
+## A realistic submission file
+##
+########################################################
+
+executable = /usr/local/bin/R
+universe = vanilla
+Requirements = Memory >= 1000 && ((Arch == "INTEL" && OpSys == "LINUX") || (Arch == "SUN4u" && OpSys == "SOLARIS29"))
+Rank = Memory
+
+Initialdir = /net/guinda/scratch/angelv/Condor-Course/
+arguments = --vanilla
+input = test$(Process).R
+output = exercise2.$(Process).out
+error =  exercise2.$(Process).err
+log =    exercise2.log
+queue 2
