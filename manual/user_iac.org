@@ -1,4 +1,4 @@
-# Time-stamp: <2023-02-26 18:51:11 angelv> 
+# Time-stamp: <2023-02-26 19:38:06 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -77,26 +77,28 @@ all the work for you: it will copy the input files to the remote machines,
 execute your program there with different inputs and bring back the results to
 your machine when they are complete.
 
-** How ''powerful'' is HTCondor?
+** How *powerful* is HTCondor?
 
-HTCondor calls "'''''slot'''''" the unit that executes a job, typically a CPU or
-core if the CPU has several of them. Right now we have around 900 slots
-(Feb 2017) that might execute applications submitted via HTCondor. It means that
-everyday more than 21000 hours could be available to run HTCondor jobs, more
-than 2 years of computation in just 24 hours! OK, this is the theoretical limit
-if no one were using their computers and all slots were idle... ;) The number of
-idle slots is always changing, but based on our experience a more realistic
-number of idle slots could be around 400 slots in office hours and 650 at nights
-and weekends, so still we have more than one year of HTCondor computation time
-per day.  
+HTCondor calls a /slot/ the unit that executes a job, typically a CPU or a core
+if the CPU has several of them. Right now we have over 1000 slots that might
+execute applications submitted via HTCondor. It means that everyday more than
+24000 hours could be available to run HTCondor jobs, close to 3 years of
+computation in a single day! Obviously, this is the theoretical maximum if no
+one were using their computers and all slots were idle, but the number of actual
+available slots could be around 400 during office hours and around 700 at nights
+and weekends.
 
-You can see the real-time HTCondor statistics here: [[http://nectarino][nectarino]] (''Pool
-Resource Stats'' show the number of slots being used by their owners, by
-HTCondor and the idle ones; while ''Pool User Stats'' show the number of
-HTCondor jobs and consumed hours per user). If you want more detailed info about
-which and when jobs have been executing on specific machines, check stats at
-[[http://carlota:81/condor_stats]]. Also you can visit the
-[[http://venus/SIE/forum/viewtopic.php?f=8&t=38][Hall of Fame]] of HTCondor. 
+You can see real-time HTCondor@IAC statistics (global and per user) [[http://pasa/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false][here]]. Figure
+[[weekly_usage]] is an example showing the global usage where /Owner/ represents
+/slots/ that are being used outside of HTCondor. The remaining /slots/ are
+available to HTCondor, but if there are no eligible jobs to run, those slots
+will be in /CPUsNotInUse/ state. Those /slots/ that are actually being used by
+HTCondor are those in the /CPUsInUse/ state.
+
+#+name: weekly_usage
+#+caption: Weekly global usage
+[[file:images/introduction/weekly_usage.png]]
+
 
 ** Which machines are running HTCondor?
 
