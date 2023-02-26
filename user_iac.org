@@ -1,10 +1,15 @@
-# Time-stamp: <2023-02-26 07:24:47 angelv> 
+# Time-stamp: <2023-02-26 07:56:10 angelv> 
 
 #+TITLE:   HTCondor IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
 #+EMAIL:   angel.de.vicente@iac.es
 
+# For ReadtheDoc clone
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+
+# From https://emacs.stackexchange.com/questions/14320/org-mode-links-open-in-new-tab/46383#46383
+#+HTML_HEAD: <base target="_blank">
+
 #+OPTIONS:   H:6 num:6 toc:4 author:t email:t title:t
 
 #+LATEX_CLASS_OPTIONS: [a4paper,10pt]
@@ -19,9 +24,7 @@
 
 #+latex: \small
 
-* Users' documentation for the IAC HTCondor Pool
-  
-** Introduction   
+* Introduction   
 
 #+begin_mdframed
 If you have no experience with HTCondor, we recommend that you contact us before
@@ -36,7 +39,7 @@ with about 100 new Linux desktop PCs financed by the Ministry of Economy and
 Competitiveness through FEDER funds, code IACA13-3E-2493. 
 #+end_mdframed
 
-*** What is HTCondor? 
+** What is HTCondor? 
 
 At the IAC we have several [[http://research.iac.es/sieinvens/SINFIN/Main/supercomputing.php][Supercomputing]] resources that allow you to obtain
 your computational results in much less time and/or work with much more complex
@@ -48,7 +51,7 @@ number of yours and others' computations at a time in different machines when
 they are not being used, achieving a better utilization of our resources. A more
 detailed overview of HTCondor is available at the official [[http://research.cs.wisc.edu/htcondor/overview/][documentation]].
 
-*** How can HTCondor help us?
+** How can HTCondor help us?
 
 HTCondor is very useful when you have an application that has to run a large
 number of times over different input data. For instance, suppose you have a
@@ -70,7 +73,7 @@ etc.), you will be able to restart the execution from any of the checkpoints,
 saving a lot of time. Please, read this introduction and the other sections to
 discover how HTCondor can help you.
 
-*** How ''powerful'' is HTCondor?
+** How ''powerful'' is HTCondor?
 
 HTCondor calls "'''''slot'''''" the unit that executes a job, typically a CPU or
 core if the CPU has several of them. Right now we have around 900 slots
@@ -91,7 +94,7 @@ which and when jobs have been executing on specific machines, check stats at
 [[http://carlota:81/condor_stats]]. Also you can visit the
 [[http://venus/SIE/forum/viewtopic.php?f=8&t=38][Hall of Fame]] of HTCondor. 
 
-*** Which machines are running HTCondor?
+** Which machines are running HTCondor?
 
 HTCondor is already installed in most of the Desktop PCs running Linux that we
 have at IAC Headquarters in La Laguna, with a total number of more than 230
@@ -120,7 +123,7 @@ other ones. ''Please, visit FAQs page for more information and
 examples.''
 
 
-*** Who can use HTCondor? How does it work?  Do I need to change my application?
+** Who can use HTCondor? How does it work?  Do I need to change my application?
 
 If you have a computer account at the IAC and you can log in on a Linux PC
 Desktop connected to the internal network, then you should be able to use
@@ -154,7 +157,7 @@ done, sending notifications via email when they are finished or if any errors
 show up.
 
 
-*** I am using HTCondor, should I add an acknowledgement text in my publications?
+** I am using HTCondor, should I add an acknowledgement text in my publications?
 
 Yes, you should mention it in the acknowledgments of your papers or any other
 publications where you have used HTCondor. Although there is no standard format,
@@ -177,7 +180,7 @@ High-Performance Computing facilities to the results of this research. TeideHPC
 facilities are provided by the Instituto Tecnológico y de Energías Renovables
 (ITER, SA). URL: http://teidehpc.iter.es/"''
 
-*** I need more information or have some problems, who can help me...?
+** I need more information or have some problems, who can help me...?
 
 If you need further information, please check the other pages about HTCondor at
 the SIEpedia: Useful Commands, Submit Files (description and examples), Submit
@@ -197,7 +200,7 @@ on February, 25th 2014 - [[https://docs.google.com/presentation/d/1PqCih4yL6D3FO
 you and your colleges need it: if the group is large enough -10 or 12 people-,
 just contact us!).
 
-** Useful Commands
+* Useful Commands
 
 HTCondor has several dozens of commands, but in this section we will present
 just the most common ones (if you want to check the complete list, try the
@@ -207,7 +210,7 @@ Manual]]. The main command will be shown together with some useful options that
 may help work with HTCondor:
 
 
-*** Checking pool status
+** Checking pool status
 
 + =condor_status=: list slots in HTCondor pool and their status: =Owner= (used
   by owner), =Claimed= (used by HTCondor), =Unclaimed= (available to be used
@@ -237,7 +240,7 @@ may help work with HTCondor:
     constraint. I.e: =condor_status -constraint 'Memory > 1536'= will only show
     slots with more than 1.5GB of RAM per slot.
 
-*** Submitting jobs
+** Submitting jobs
 
 + =condor_submit <submit_file>=: Submit jobs to the HTCondor queue according to
   the information specified in =submit_file=. Visit the *submit file page* to
@@ -282,7 +285,7 @@ your priority will be lower in following submissions.
 
 
 
-*** Checking and managing submitted jobs
+** Checking and managing submitted jobs
 
 #+begin_mdframed
 *Note:* Each machine manages its own HTCondor queue, so it has information only
@@ -395,7 +398,7 @@ transferring input; and *>*: transferring output]. Useful options:
   this command is available in CondorFAQs#ssh.
 
 
-*** Getting info from logs
+** Getting info from logs
 
 + =*condor_userlog* <file.log>=: Show and summarize job statistics from the job
   log files (those created when using =log= command in the submit file) 
@@ -417,7 +420,7 @@ transferring input; and *>*: transferring output]. Useful options:
 + There is also an online tool to analyze your log files and get more
   information: =HTCondor Log Analyzer= (http://condorlog.cse.nd.edu/).
 
-*** Other commands
+** Other commands
 
 + =condor_userprio=: Show active HTCondor users' priority. Lower values means
   higher priority where 0.5 is the highest. Use =condor_userprio -allusers= to
@@ -443,9 +446,9 @@ transferring input; and *>*: transferring output]. Useful options:
   about HTCondor: http://carlota:81/condor_stats/ and http://nectarino/.
 
 
-** Submit files (desc. & examples)
+* Submit files (desc. & examples)
 
-*** Introduction
+** Introduction
 
 To execute your application with HTCondor, you have to specify some parameters
 like the name of your executable, its arguments, inputs and outputs,
@@ -499,14 +502,14 @@ contact us if you have any doubt or issue. Topics:
 #+end_mdframed
 
 
-*** Creating a Submit File
+** Creating a Submit File
 
 As many other languages, HTCondor submit files allow the use of comments,
 variable, macros, commands, etc. Here we will describe the most common ones, you
 can check the [[https://research.cs.wisc.edu/htcondor/manual][official documentation]] for a complete and detailed
 information about submit files and submitting process.
 
-**** Comments
+*** Comments
 
 HTCondor uses symbol =*#*= for comments. Everything found after that symbol will
 be ignored. Please, do not mix commands and comments in the same line, since it
@@ -519,7 +522,7 @@ A = 4  # This may produce errors when expanding =A=, do not use comments and
        #  anything else in the same line!
 #+end_example
 
-**** Variables and macros
+*** Variables and macros
 
 There are many predefined variables and macros in HTCondor that you can use, and
 you can define your own ones.
@@ -550,7 +553,7 @@ you can define your own ones.
   own macros, check if HTCondor has already a *pre-defined Function Macro* with
   the same purpose.
 
-**** Submit commands
+*** Submit commands
 
 You will need to add several HTCondor submit commands in your script file in
 order to specify which executable you want to run and where it is located, its
@@ -731,13 +734,13 @@ the most common ones (commands are case-insensitive):
 
 
 
-*** Templates and examples
+** Templates and examples
 
 Here you can find basic templates of submit files, you can use them as starting
 point and then do the customizations needed for your executions. Check the
 examples in following sections for details and explanations.
 
-**** Common Template
+*** Common Template
 
 #+begin_example
 ######################################################
@@ -799,7 +802,7 @@ when_to_transfer_output = ON_EXIT
       totally sure you can omit them.
 
 
-**** Examples when working with input/output files and arguments
+*** Examples when working with input/output files and arguments
 
 Most times you will want to run applications that deal with input and/or output
 files. Commonly, the input files will be located on your local machine, but
@@ -816,7 +819,7 @@ contains the base name of the files that HTCondor will generate to save the
 included using command =include= (we assume that the common template filename is
 =condor_common.tmpl=).
 
-***** *Example A* (arbitrary filenames)
+**** *Example A* (arbitrary filenames)
 
 Process all input files with extension =.in= in a given directory with next
 program: =./myprogram -i inputFile -o outputFile=
@@ -865,7 +868,7 @@ queue *mydata* matching files /path/to/inputs/*.in
   output file.
 
 
-***** *Example B* (based on ProcessID, old system before HTCondor v8.4.0)
+**** *Example B* (based on ProcessID, old system before HTCondor v8.4.0)
 
 Process 50 input files with consecutive names (from data0.in to data49.out)
 using the same program as previous example
@@ -912,7 +915,7 @@ queue $(N)
   many jobs we want (we have used the variable =N=). 
 
 
-***** *Example C* (lists of files and arguments written in submit file)
+**** *Example C* (lists of files and arguments written in submit file)
 
 Process all arbitrary files and arguments of a given list. Executable is
  =myprogram= and it needs an input file with extension =.dat= and some
@@ -956,6 +959,7 @@ may be easily done in an external file using scripts. Then you can directly
 specify the file. For instance, suppose you have all items in a file named
 =data.lst=, then you can use next =queue= command: 
 =queue transfer_input_files,arguments from /path/to/data.lst=
+
 
 *  CONTINUE HERE!!                                                 :noexport:
 
