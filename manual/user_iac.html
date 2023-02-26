@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-02-26 Sun 22:02 -->
+<!-- 2023-02-26 Sun 23:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTCondor@IAC User's Manual</title>
@@ -69,49 +69,49 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgaabf0a4">1. Introduction</a>
+<li><a href="#org98666ee">1. Introduction</a>
 <ul>
-<li><a href="#org4400d29">1.1. What is HTCondor?</a></li>
-<li><a href="#org4f69b69">1.2. How can HTCondor help me?</a></li>
-<li><a href="#org58a9e32">1.3. How <b>powerful</b> is HTCondor?</a></li>
-<li><a href="#org0cfa609">1.4. Which machines are part of HTCondor?</a></li>
-<li><a href="#org5cb6085">1.5. How can I use HTCondor?</a></li>
-<li><a href="#org9f07b44">1.6. Where will my application run?</a></li>
-<li><a href="#orgabb063c">1.7. Acknowledging HTCondor in publications</a></li>
-<li><a href="#org4a39a9b">1.8. Further information, support</a></li>
+<li><a href="#org8bf61b3">1.1. What is HTCondor?</a></li>
+<li><a href="#orgfa4a5a3">1.2. How can HTCondor help me?</a></li>
+<li><a href="#org37cfec5">1.3. How <b>powerful</b> is HTCondor?</a></li>
+<li><a href="#orgdf12944">1.4. Which machines are part of HTCondor?</a></li>
+<li><a href="#org591d1ea">1.5. How can I use HTCondor?</a></li>
+<li><a href="#org5b9be45">1.6. Where will my application run?</a></li>
+<li><a href="#org2e77735">1.7. Acknowledging HTCondor in publications</a></li>
+<li><a href="#orgf7c9e98">1.8. Further information, support</a></li>
 </ul>
 </li>
-<li><a href="#org770e4d1">2. Useful Commands (TBD)</a>
+<li><a href="#orgcaa56c2">2. Main HTCondor commands</a>
 <ul>
-<li><a href="#org151e308">2.1. Checking pool status</a></li>
-<li><a href="#org1578b9c">2.2. Submitting jobs</a></li>
-<li><a href="#org09e6cc2">2.3. Checking and managing submitted jobs</a></li>
-<li><a href="#org74a970f">2.4. Getting info from logs</a></li>
-<li><a href="#org35b9249">2.5. Other commands</a></li>
+<li><a href="#org7858b3c">2.1. Checking pool status</a></li>
+<li><a href="#org55d464f">2.2. Submitting jobs</a></li>
+<li><a href="#orga2370c8">2.3. Checking and managing submitted jobs</a></li>
+<li><a href="#org7441334">2.4. Getting info from logs</a></li>
+<li><a href="#orgbccdd65">2.5. Other commands</a></li>
 </ul>
 </li>
-<li><a href="#orgcbe9149">3. Submit files (TBD)</a>
+<li><a href="#orgae017a3">3. Submit files (TBD)</a>
 <ul>
-<li><a href="#org71bd529">3.1. Introduction</a></li>
-<li><a href="#org84992af">3.2. Creating a Submit File</a>
+<li><a href="#org1d51386">3.1. Introduction</a></li>
+<li><a href="#orgf3f95f8">3.2. Creating a Submit File</a>
 <ul>
-<li><a href="#orge6b2b0f">3.2.1. Comments</a></li>
-<li><a href="#org5e925b0">3.2.2. Variables and macros</a></li>
-<li><a href="#org6b2180c">3.2.3. Submit commands</a></li>
+<li><a href="#org6d57350">3.2.1. Comments</a></li>
+<li><a href="#orgc12ba43">3.2.2. Variables and macros</a></li>
+<li><a href="#org66cfeff">3.2.3. Submit commands</a></li>
 </ul>
 </li>
-<li><a href="#orgf94b80b">3.3. Templates and examples</a>
+<li><a href="#orgb218d73">3.3. Templates and examples</a>
 <ul>
-<li><a href="#orge6472c6">3.3.1. Common Template</a></li>
-<li><a href="#orgd3d3b5b">3.3.2. Examples when working with input/output files and arguments</a>
+<li><a href="#orga2bf2e2">3.3.1. Common Template</a></li>
+<li><a href="#orgf58eb5b">3.3.2. Examples when working with input/output files and arguments</a>
 <ul>
-<li><a href="#org3fd898f">3.3.2.1. <b>Example A</b> (arbitrary filenames)</a></li>
-<li><a href="#org9ee49a5">3.3.2.2. <b>Example B</b> (based on ProcessID, old system before HTCondor v8.4.0)</a></li>
-<li><a href="#orga5f653b">3.3.2.3. <b>Example C</b> (lists of files and arguments written in submit file)</a></li>
-<li><a href="#org82ae5b9">3.3.2.4. Example D (lists of files and arguments in external file)</a></li>
-<li><a href="#org636a2ed">3.3.2.5. Example E (<code>stdin</code>, <code>initialdir</code> external scripts and lists)</a></li>
-<li><a href="#org3c0b100">3.3.2.6. Example F (loops)</a></li>
-<li><a href="#org670370b">3.3.2.7. Example G</a></li>
+<li><a href="#org9c8f778">3.3.2.1. <b>Example A</b> (arbitrary filenames)</a></li>
+<li><a href="#orgb5a73e5">3.3.2.2. <b>Example B</b> (based on ProcessID, old system before HTCondor v8.4.0)</a></li>
+<li><a href="#org7628438">3.3.2.3. <b>Example C</b> (lists of files and arguments written in submit file)</a></li>
+<li><a href="#org3e86b09">3.3.2.4. Example D (lists of files and arguments in external file)</a></li>
+<li><a href="#org49f8a2c">3.3.2.5. Example E (<code>stdin</code>, <code>initialdir</code> external scripts and lists)</a></li>
+<li><a href="#org9cecac2">3.3.2.6. Example F (loops)</a></li>
+<li><a href="#org976ca67">3.3.2.7. Example G</a></li>
 </ul>
 </li>
 </ul>
@@ -146,12 +146,12 @@ Competitiveness through FEDER funds, code IACA13-3E-2493.
 
 </div>
 
-<div id="outline-container-orgaabf0a4" class="outline-2">
-<h2 id="orgaabf0a4"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org98666ee" class="outline-2">
+<h2 id="org98666ee"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org4400d29" class="outline-3">
-<h3 id="org4400d29"><span class="section-number-3">1.1</span> What is HTCondor?</h3>
+<div id="outline-container-org8bf61b3" class="outline-3">
+<h3 id="org8bf61b3"><span class="section-number-3">1.1</span> What is HTCondor?</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 At the IAC we have several <a href="http://research.iac.es/sieinvens/SINFIN/Main/supercomputing.php">Supercomputing</a> resources that allow you to obtain
@@ -167,8 +167,8 @@ detailed overview of HTCondor is available at the <a href="https://htcondor.read
 </div>
 </div>
 
-<div id="outline-container-org4f69b69" class="outline-3">
-<h3 id="org4f69b69"><span class="section-number-3">1.2</span> How can HTCondor help me?</h3>
+<div id="outline-container-orgfa4a5a3" class="outline-3">
+<h3 id="orgfa4a5a3"><span class="section-number-3">1.2</span> How can HTCondor help me?</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 HTCondor is very useful when you have an application that has to run a large
@@ -186,8 +186,8 @@ your machine when they are complete.
 </div>
 </div>
 
-<div id="outline-container-org58a9e32" class="outline-3">
-<h3 id="org58a9e32"><span class="section-number-3">1.3</span> How <b>powerful</b> is HTCondor?</h3>
+<div id="outline-container-org37cfec5" class="outline-3">
+<h3 id="org37cfec5"><span class="section-number-3">1.3</span> How <b>powerful</b> is HTCondor?</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 HTCondor calls a <i>slot</i> the unit that executes a job, typically a CPU or a core
@@ -202,7 +202,7 @@ and weekends.
 
 <p>
 You can see real-time HTCondor@IAC statistics (global and per user) <a href="http://pasa/ganglia/?r=week&amp;cs=&amp;ce=&amp;m=load_one&amp;tab=v&amp;vn=pool_usage&amp;hide-hf=false">here</a>. Figure
-<a href="#org468b961">1</a> is an example showing the global usage where <i>Owner</i> represents
+<a href="#org37a8baf">1</a> is an example showing the global usage where <i>Owner</i> represents
 <i>slots</i> that are being used outside of HTCondor. The remaining <i>slots</i> are
 available to HTCondor, but if there are no eligible jobs to run, those slots
 will be in <i>CPUsNotInUse</i> state. Those <i>slots</i> that are actually being used by
@@ -210,7 +210,7 @@ HTCondor are those in the <i>CPUsInUse</i> state.
 </p>
 
 
-<div id="org468b961" class="figure">
+<div id="org37a8baf" class="figure">
 <p><img src="images/introduction/weekly_usage.png" alt="weekly_usage.png" />
 </p>
 <p><span class="figure-number">Figure 1: </span>Weekly global usage</p>
@@ -218,8 +218,8 @@ HTCondor are those in the <i>CPUsInUse</i> state.
 </div>
 </div>
 
-<div id="outline-container-org0cfa609" class="outline-3">
-<h3 id="org0cfa609"><span class="section-number-3">1.4</span> Which machines are part of HTCondor?</h3>
+<div id="outline-container-orgdf12944" class="outline-3">
+<h3 id="orgdf12944"><span class="section-number-3">1.4</span> Which machines are part of HTCondor?</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 HTCondor is installed in a number of <i>burros</i> (High Performance Linux PCs) and
@@ -242,19 +242,19 @@ run almost every application in any machine.
 
 <p>
 Detailed information about each machine can be obtained with the command
-<code>condor_status</code> (see Section <a href="#org151e308">2.1</a>). 
+<code>condor_status</code> (see Section <a href="#org7858b3c">2.1</a>). 
 </p>
 
 <p>
 HTCondor provides a simple mechanism by which you can specify a set of
 requirements for the machines where you want your application to run, for
-example: memory per slot, OS version, etc. (see Section <a href="#orgcbe9149">3</a>).
+example: memory per slot, OS version, etc. (see Section <a href="#orgae017a3">3</a>).
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5cb6085" class="outline-3">
-<h3 id="org5cb6085"><span class="section-number-3">1.5</span> How can I use HTCondor?</h3>
+<div id="outline-container-org591d1ea" class="outline-3">
+<h3 id="org591d1ea"><span class="section-number-3">1.5</span> How can I use HTCondor?</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 If you have an account in the IAC network, then you can use HTCondor. 
@@ -264,7 +264,7 @@ If you have an account in the IAC network, then you can use HTCondor.
 HTCondor is a batch-processing system (i.e. non-interactive), so you submit jobs
 to the HTCondor queue with the <code>condor_submit</code> command, and providing a text
 submission file, where you specify the executable file, its arguments, inputs
-and outputs, etc. (see Section <a href="#org1578b9c">2.2</a>).
+and outputs, etc. (see Section <a href="#org55d464f">2.2</a>).
 </p>
 
 <p>
@@ -276,8 +276,8 @@ needed in order to specify arguments and the locations of inputs or outputs.
 </div>
 </div>
 
-<div id="outline-container-org9f07b44" class="outline-3">
-<h3 id="org9f07b44"><span class="section-number-3">1.6</span> Where will my application run?</h3>
+<div id="outline-container-org5b9be45" class="outline-3">
+<h3 id="org5b9be45"><span class="section-number-3">1.6</span> Where will my application run?</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 When you submit jobs to the HTCondor queue, HTCondor uses its allocation
@@ -304,8 +304,8 @@ notifications via email when they are finished or if any errors show up.
 </div>
 </div>
 
-<div id="outline-container-orgabb063c" class="outline-3">
-<h3 id="orgabb063c"><span class="section-number-3">1.7</span> Acknowledging HTCondor in publications</h3>
+<div id="outline-container-org2e77735" class="outline-3">
+<h3 id="org2e77735"><span class="section-number-3">1.7</span> Acknowledging HTCondor in publications</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 It is important that you acknowledge HTCondor in any publication of your work
@@ -324,8 +324,8 @@ Economy and Competitiveness with FEDER funds, code IACA13-3E-2493.
 </div>
 </div>
 
-<div id="outline-container-org4a39a9b" class="outline-3">
-<h3 id="org4a39a9b"><span class="section-number-3">1.8</span> Further information, support</h3>
+<div id="outline-container-orgf7c9e98" class="outline-3">
+<h3 id="orgf7c9e98"><span class="section-number-3">1.8</span> Further information, support</h3>
 <div class="outline-text-3" id="text-1-8">
 <p>
 This manual is only a brief introduction to all HTCondor has to offer. For
@@ -347,50 +347,51 @@ low traffic mailing list (send us an e-mail if you want to be subscribed to it).
 </div>
 </div>
 
-<div id="outline-container-org770e4d1" class="outline-2">
-<h2 id="org770e4d1"><span class="section-number-2">2</span> Useful Commands (TBD)</h2>
+
+<div id="outline-container-orgcaa56c2" class="outline-2">
+<h2 id="orgcaa56c2"><span class="section-number-2">2</span> Main HTCondor commands</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-HTCondor has several dozens of commands, but in this section we will present
-just the most common ones (if you want to check the complete list, try the
-<a href="http://research.cs.wisc.edu/htcondor/manual/v8.6/11_Command_Reference.html">Command Reference page</a>). Also remember that you can get further information
-running @@man condor_&lt;cmd&gt;@@ in your shell or visiting the <a href="http://research.cs.wisc.edu/htcondor/manual/v8.6/2_Users_Manual.html">official Users'
-Manual</a>. The main command will be shown together with some useful options that
-may help work with HTCondor:
+HTCondor has ~100 commands (see the <a href="https://htcondor.readthedocs.io/en/v10_0/man-pages/index.html">Command Reference Manual)</a>, but you will only
+need a few of them for most of you work with HTCondor. In this section we
+introduce the most common ones, grouped according to the four common tasks:
+Checking pool status (<a href="#org7858b3c">2.1</a>), Submitting jobs (<a href="#org55d464f">2.2</a>), Checking and managing submitted jobs (<a href="#orga2370c8">2.3</a>) and Getting info from logs (<a href="#org7441334">2.4</a>). For each command we
+also give a list of some of their most useful options (but note that you can
+also get full details about each command by executing <code>man condor_&lt;cmd&gt;</code> in your
+shell).
 </p>
 </div>
 
-
-<div id="outline-container-org151e308" class="outline-3">
-<h3 id="org151e308"><span class="section-number-3">2.1</span> Checking pool status</h3>
+<div id="outline-container-org7858b3c" class="outline-3">
+<h3 id="org7858b3c"><span class="section-number-3">2.1</span> Checking pool status</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
-<li><code>condor_status</code>: list slots in HTCondor pool and their status: <code>Owner</code> (used
+<li><code>condor_status</code> list slots in the HTCondor pool and their status: <code>Owner</code> (used
 by owner), <code>Claimed</code> (used by HTCondor), <code>Unclaimed</code> (available to be used
-by HTCondor), etc. Useful options:
+by HTCondor), etc. 
 <ul class="org-ul">
-<li><code>-avail</code>: List those slots that are not busy and could run HTCondor jobs at
+<li><code>-avail</code> List those slots that are not busy and could run HTCondor jobs at
 this moment</li>
-<li><code>-submitters</code>: Show information about the current general status, like
+<li><code>-submitters</code> Show information about the current general status, like
 number of running, idle and held jobs (and submitters)</li>
-<li><code>-run</code>: List slots that are currently running jobs and show related
+<li><code>-run</code> List slots that are currently running jobs and show related
 information (owner of each job, machine where it was submitted from, etc.)</li>
-<li><code>-compact</code>: Compact list, with one line per machine instead of per slot</li>
-<li><code>-state -total</code>: List a summary according to the state of each slot</li>
-<li><code>-master</code>: List machines, but just their names (status and slots are not
+<li><code>-compact</code> Compact list, with one line per machine instead of per slot</li>
+<li><code>-state -total</code> List a summary according to the state of each slot</li>
+<li><code>-master</code> List machines, but just their names (status and slots are not
 shown)</li>
-<li><code>-server</code>: List attributes of slots, such as memory, disk, load, flops, etc.</li>
-<li><code>-sort Memory</code>: Sort slots by Memory, you can try also with other attributes</li>
-<li><code>-af &lt;attr1&gt; &lt;attr2&gt; &lt;...&gt;</code>: List specific attributes of slots, using
+<li><code>-server</code> List attributes of slots, such as memory, disk, load, flops, etc.</li>
+<li><code>-sort Memory</code> Sort slots by Memory, you can try also with other attributes</li>
+<li><code>-af &lt;attr1&gt; &lt;attr2&gt; &lt;...&gt;</code> List specific attributes of slots, using
 autoformat (new version, very powerful)</li>
-<li><code>-format &lt;fmt&gt; &lt;attr&gt;</code>: List attributes using the specified format (old
+<li><code>-format &lt;fmt&gt; &lt;attr&gt;</code> List attributes using the specified format (old
 version). For instance, next command will show the name of each slot and the
 disk space: <code>condor_status -format "%s\t " Name -format "%d KB\n" Disk</code></li>
-<li><code>&lt;machine&gt;</code>: Show the status of a specific machine</li>
-<li><code>&lt;machine&gt; -long</code>: Show the complete "ClassAd" of a machine (its
+<li><code>&lt;machine&gt;</code> Show the status of a specific machine</li>
+<li><code>&lt;machine&gt; -long</code> Show the complete "ClassAd" of a machine (its
 specifications). We can use these specifications to add restrictions in the
 submit file so we can control which machines we want to use.</li>
-<li><code>-constraint &lt;constraint&gt;</code>: Only Show slots that satisfy the
+<li><code>-constraint &lt;constraint&gt;</code> Only Show slots that satisfy the
 constraint. I.e: <code>condor_status -constraint 'Memory &gt; 1536'</code> will only show
 slots with more than 1.5GB of RAM per slot.</li>
 </ul></li>
@@ -398,8 +399,8 @@ slots with more than 1.5GB of RAM per slot.</li>
 </div>
 </div>
 
-<div id="outline-container-org1578b9c" class="outline-3">
-<h3 id="org1578b9c"><span class="section-number-3">2.2</span> Submitting jobs</h3>
+<div id="outline-container-org55d464f" class="outline-3">
+<h3 id="org55d464f"><span class="section-number-3">2.2</span> Submitting jobs</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li><p>
@@ -466,9 +467,8 @@ your priority will be lower in following submissions.
 </div>
 
 
-
-<div id="outline-container-org09e6cc2" class="outline-3">
-<h3 id="org09e6cc2"><span class="section-number-3">2.3</span> Checking and managing submitted jobs</h3>
+<div id="outline-container-orga2370c8" class="outline-3">
+<h3 id="orga2370c8"><span class="section-number-3">2.3</span> Checking and managing submitted jobs</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="mdframed">
 <p>
@@ -605,9 +605,8 @@ this command is available in CondorFAQs#ssh.</li>
 </div>
 </div>
 
-
-<div id="outline-container-org74a970f" class="outline-3">
-<h3 id="org74a970f"><span class="section-number-3">2.4</span> Getting info from logs</h3>
+<div id="outline-container-org7441334" class="outline-3">
+<h3 id="org7441334"><span class="section-number-3">2.4</span> Getting info from logs</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li><code>*condor_userlog* &lt;file.log&gt;</code>: Show and summarize job statistics from the job
@@ -635,8 +634,8 @@ information: <code>HTCondor Log Analyzer</code> (<a href="http://condorlog.cse.n
 </div>
 </div>
 
-<div id="outline-container-org35b9249" class="outline-3">
-<h3 id="org35b9249"><span class="section-number-3">2.5</span> Other commands</h3>
+<div id="outline-container-orgbccdd65" class="outline-3">
+<h3 id="orgbccdd65"><span class="section-number-3">2.5</span> Other commands</h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li><code>condor_userprio</code>: Show active HTCondor users' priority. Lower values means
@@ -660,12 +659,12 @@ about HTCondor: <a href="http://carlota:81/condor_stats/">http://carlota:81/cond
 </div>
 
 
-<div id="outline-container-orgcbe9149" class="outline-2">
-<h2 id="orgcbe9149"><span class="section-number-2">3</span> Submit files (TBD)</h2>
+<div id="outline-container-orgae017a3" class="outline-2">
+<h2 id="orgae017a3"><span class="section-number-2">3</span> Submit files (TBD)</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org71bd529" class="outline-3">
-<h3 id="org71bd529"><span class="section-number-3">3.1</span> Introduction</h3>
+<div id="outline-container-org1d51386" class="outline-3">
+<h3 id="org1d51386"><span class="section-number-3">3.1</span> Introduction</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 To execute your application with HTCondor, you have to specify some parameters
@@ -734,8 +733,8 @@ submit files: comments, variables, commands, etc.)</li>
 </div>
 
 
-<div id="outline-container-org84992af" class="outline-3">
-<h3 id="org84992af"><span class="section-number-3">3.2</span> Creating a Submit File</h3>
+<div id="outline-container-orgf3f95f8" class="outline-3">
+<h3 id="orgf3f95f8"><span class="section-number-3">3.2</span> Creating a Submit File</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 As many other languages, HTCondor submit files allow the use of comments,
@@ -745,8 +744,8 @@ information about submit files and submitting process.
 </p>
 </div>
 
-<div id="outline-container-orge6b2b0f" class="outline-4">
-<h4 id="orge6b2b0f"><span class="section-number-4">3.2.1</span> Comments</h4>
+<div id="outline-container-org6d57350" class="outline-4">
+<h4 id="org6d57350"><span class="section-number-4">3.2.1</span> Comments</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 HTCondor uses symbol <code>*#*</code> for comments. Everything found after that symbol will
@@ -763,8 +762,8 @@ A = 4  # This may produce errors when expanding =A=, do not use comments and
 </div>
 </div>
 
-<div id="outline-container-org5e925b0" class="outline-4">
-<h4 id="org5e925b0"><span class="section-number-4">3.2.2</span> Variables and macros</h4>
+<div id="outline-container-orgc12ba43" class="outline-4">
+<h4 id="orgc12ba43"><span class="section-number-4">3.2.2</span> Variables and macros</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 There are many predefined variables and macros in HTCondor that you can use, and
@@ -801,8 +800,8 @@ the same purpose.</li>
 </div>
 </div>
 
-<div id="outline-container-org6b2180c" class="outline-4">
-<h4 id="org6b2180c"><span class="section-number-4">3.2.3</span> Submit commands</h4>
+<div id="outline-container-org66cfeff" class="outline-4">
+<h4 id="org66cfeff"><span class="section-number-4">3.2.3</span> Submit commands</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 You will need to add several HTCondor submit commands in your script file in
@@ -1004,8 +1003,8 @@ certain time <b>CondorHowTo#howto<sub>runintime</sub></b></li>
 
 
 
-<div id="outline-container-orgf94b80b" class="outline-3">
-<h3 id="orgf94b80b"><span class="section-number-3">3.3</span> Templates and examples</h3>
+<div id="outline-container-orgb218d73" class="outline-3">
+<h3 id="orgb218d73"><span class="section-number-3">3.3</span> Templates and examples</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Here you can find basic templates of submit files, you can use them as starting
@@ -1014,8 +1013,8 @@ examples in following sections for details and explanations.
 </p>
 </div>
 
-<div id="outline-container-orge6472c6" class="outline-4">
-<h4 id="orge6472c6"><span class="section-number-4">3.3.1</span> Common Template</h4>
+<div id="outline-container-orga2bf2e2" class="outline-4">
+<h4 id="orga2bf2e2"><span class="section-number-4">3.3.1</span> Common Template</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <pre class="example">
 ######################################################
@@ -1093,8 +1092,8 @@ totally sure you can omit them.</li>
 </div>
 
 
-<div id="outline-container-orgd3d3b5b" class="outline-4">
-<h4 id="orgd3d3b5b"><span class="section-number-4">3.3.2</span> Examples when working with input/output files and arguments</h4>
+<div id="outline-container-orgf58eb5b" class="outline-4">
+<h4 id="orgf58eb5b"><span class="section-number-4">3.3.2</span> Examples when working with input/output files and arguments</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <p>
 Most times you will want to run applications that deal with input and/or output
@@ -1116,8 +1115,8 @@ included using command <code>include</code> (we assume that the common template 
 </p>
 </div>
 
-<div id="outline-container-org3fd898f" class="outline-5">
-<h5 id="org3fd898f"><span class="section-number-5">3.3.2.1</span> <b>Example A</b> (arbitrary filenames)</h5>
+<div id="outline-container-org9c8f778" class="outline-5">
+<h5 id="org9c8f778"><span class="section-number-5">3.3.2.1</span> <b>Example A</b> (arbitrary filenames)</h5>
 <div class="outline-text-5" id="text-3-3-2-1">
 <p>
 Process all input files with extension <code>.in</code> in a given directory with next
@@ -1178,8 +1177,8 @@ output file.
 </div>
 
 
-<div id="outline-container-org9ee49a5" class="outline-5">
-<h5 id="org9ee49a5"><span class="section-number-5">3.3.2.2</span> <b>Example B</b> (based on ProcessID, old system before HTCondor v8.4.0)</h5>
+<div id="outline-container-orgb5a73e5" class="outline-5">
+<h5 id="orgb5a73e5"><span class="section-number-5">3.3.2.2</span> <b>Example B</b> (based on ProcessID, old system before HTCondor v8.4.0)</h5>
 <div class="outline-text-5" id="text-3-3-2-2">
 <p>
 Process 50 input files with consecutive names (from data0.in to data49.out)
@@ -1240,8 +1239,8 @@ many jobs we want (we have used the variable <code>N</code>).
 </div>
 
 
-<div id="outline-container-orga5f653b" class="outline-5">
-<h5 id="orga5f653b"><span class="section-number-5">3.3.2.3</span> <b>Example C</b> (lists of files and arguments written in submit file)</h5>
+<div id="outline-container-org7628438" class="outline-5">
+<h5 id="org7628438"><span class="section-number-5">3.3.2.3</span> <b>Example C</b> (lists of files and arguments written in submit file)</h5>
 <div class="outline-text-5" id="text-3-3-2-3">
 <p>
 Process all arbitrary files and arguments of a given list. Executable is
@@ -1303,8 +1302,8 @@ specify the file. For instance, suppose you have all items in a file named
 </div>
 
 
-<div id="outline-container-org82ae5b9" class="outline-5">
-<h5 id="org82ae5b9"><span class="section-number-5">3.3.2.4</span> Example D (lists of files and arguments in external file)</h5>
+<div id="outline-container-org3e86b09" class="outline-5">
+<h5 id="org3e86b09"><span class="section-number-5">3.3.2.4</span> Example D (lists of files and arguments in external file)</h5>
 <div class="outline-text-5" id="text-3-3-2-4">
 <p>
 Process arbitrary files and arguments stored in file <code>data.lst</code> (process only
@@ -1371,8 +1370,8 @@ output files will be <code>output28.out</code>, <code>output33.out</code>, <code
 </div>
 </div>
 
-<div id="outline-container-org636a2ed" class="outline-5">
-<h5 id="org636a2ed"><span class="section-number-5">3.3.2.5</span> Example E (<code>stdin</code>, <code>initialdir</code> external scripts and lists)</h5>
+<div id="outline-container-org49f8a2c" class="outline-5">
+<h5 id="org49f8a2c"><span class="section-number-5">3.3.2.5</span> Example E (<code>stdin</code>, <code>initialdir</code> external scripts and lists)</h5>
 <div class="outline-text-5" id="text-3-3-2-5">
 <p>
 Our program <code>myprogram</code> works with <code>stdin</code> (keyboard is used to specify input
@@ -1456,8 +1455,8 @@ echo "transfer_input_files = `ls -w 400 -m /path/to/tables/*.tbl`"
 </div>
 </div>
 
-<div id="outline-container-org3c0b100" class="outline-5">
-<h5 id="org3c0b100"><span class="section-number-5">3.3.2.6</span> Example F (loops)</h5>
+<div id="outline-container-org9cecac2" class="outline-5">
+<h5 id="org9cecac2"><span class="section-number-5">3.3.2.6</span> Example F (loops)</h5>
 <div class="outline-text-5" id="text-3-3-2-6">
 <p>
 Execute each iteration of a 3-level nested loop using: <code>myprogram -dim1 i -dim2
@@ -1522,8 +1521,8 @@ J = ($(Process) % $(MAX_J))
 </div>
 </div>
 
-<div id="outline-container-org670370b" class="outline-5">
-<h5 id="org670370b"><span class="section-number-5">3.3.2.7</span> Example G</h5>
+<div id="outline-container-org976ca67" class="outline-5">
+<h5 id="org976ca67"><span class="section-number-5">3.3.2.7</span> Example G</h5>
 <div class="outline-text-5" id="text-3-3-2-7">
 <p>
 This example shows the use of several useful commands for specific
@@ -1639,7 +1638,7 @@ adapt your jobs in order to avoid network congestion.
 <div id="postamble" class="status">
 <p class="author">Author: Ángel de Vicente</p>
 <p class="email">Email: <a href="mailto:angel.de.vicente@iac.es">angel.de.vicente@iac.es</a></p>
-<p class="date">Created: 2023-02-26 Sun 22:02</p>
+<p class="date">Created: 2023-02-26 Sun 23:37</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

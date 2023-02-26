@@ -1,4 +1,4 @@
-# Time-stamp: <2023-02-26 22:02:49 angelv> 
+# Time-stamp: <2023-02-26 23:35:30 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -182,43 +182,46 @@ get the most out of HTCondor.
 If you want to stay informed about HTCondor@IAC updates, tips, etc. there is a
 low traffic mailing list (send us an e-mail if you want to be subscribed to it).
 
-* Useful Commands (TBD)
 
-HTCondor has several dozens of commands, but in this section we will present
-just the most common ones (if you want to check the complete list, try the
-[[http://research.cs.wisc.edu/htcondor/manual/v8.6/11_Command_Reference.html][Command Reference page]]). Also remember that you can get further information
-running @@man condor_<cmd>@@ in your shell or visiting the [[http://research.cs.wisc.edu/htcondor/manual/v8.6/2_Users_Manual.html][official Users'
-Manual]]. The main command will be shown together with some useful options that
-may help work with HTCondor:
+* Main HTCondor commands
 
+HTCondor has ~100 commands (see the [[https://htcondor.readthedocs.io/en/v10_0/man-pages/index.html][Command Reference Manual)]], but you will only
+need a few of them for most of you work with HTCondor. In this section we
+introduce the most common ones, grouped according to the four common tasks:
+Checking pool status ([[*Checking pool status]]), Submitting jobs ([[*Submitting
+jobs]]), Checking and managing submitted jobs ([[*Checking and managing submitted
+jobs]]) and Getting info from logs ([[Getting info from logs]]). For each command we
+also give a list of some of their most useful options (but note that you can
+also get full details about each command by executing =man condor_<cmd>= in your
+shell).
 
 ** Checking pool status
 
-+ =condor_status=: list slots in HTCondor pool and their status: =Owner= (used
++ =condor_status= list slots in the HTCondor pool and their status: =Owner= (used
   by owner), =Claimed= (used by HTCondor), =Unclaimed= (available to be used
-  by HTCondor), etc. Useful options:
-  + =-avail=: List those slots that are not busy and could run HTCondor jobs at
+  by HTCondor), etc. 
+  + =-avail= List those slots that are not busy and could run HTCondor jobs at
     this moment
-  + =-submitters=: Show information about the current general status, like
+  + =-submitters= Show information about the current general status, like
     number of running, idle and held jobs (and submitters)
-  + =-run=: List slots that are currently running jobs and show related
+  + =-run= List slots that are currently running jobs and show related
     information (owner of each job, machine where it was submitted from, etc.)
-  + =-compact=: Compact list, with one line per machine instead of per slot
-  + =-state -total=: List a summary according to the state of each slot
-  + =-master=: List machines, but just their names (status and slots are not
+  + =-compact= Compact list, with one line per machine instead of per slot
+  + =-state -total= List a summary according to the state of each slot
+  + =-master= List machines, but just their names (status and slots are not
     shown)
-  + =-server=: List attributes of slots, such as memory, disk, load, flops, etc.
-  + =-sort Memory=: Sort slots by Memory, you can try also with other attributes
-  + =-af <attr1> <attr2> <...>=: List specific attributes of slots, using
+  + =-server= List attributes of slots, such as memory, disk, load, flops, etc.
+  + =-sort Memory= Sort slots by Memory, you can try also with other attributes
+  + =-af <attr1> <attr2> <...>= List specific attributes of slots, using
     autoformat (new version, very powerful)
-  + =-format <fmt> <attr>=: List attributes using the specified format (old
+  + =-format <fmt> <attr>= List attributes using the specified format (old
     version). For instance, next command will show the name of each slot and the
     disk space: =condor_status -format "%s\t " Name -format "%d KB\n" Disk=
-  + =<machine>=: Show the status of a specific machine
-  + =<machine> -long=: Show the complete "ClassAd" of a machine (its
+  + =<machine>= Show the status of a specific machine
+  + =<machine> -long= Show the complete "ClassAd" of a machine (its
     specifications). We can use these specifications to add restrictions in the
     submit file so we can control which machines we want to use.
-  + =-constraint <constraint>=: Only Show slots that satisfy the
+  + =-constraint <constraint>= Only Show slots that satisfy the
     constraint. I.e: =condor_status -constraint 'Memory > 1536'= will only show
     slots with more than 1.5GB of RAM per slot.
 
@@ -264,7 +267,6 @@ went fine before submitting the real jobs. Bear in mind that submitting untested
 files and/or jobs may cause a waste of time and resources if they fail, and also
 your priority will be lower in following submissions. 
 #+end_mdframed
-
 
 
 ** Checking and managing submitted jobs
@@ -378,7 +380,6 @@ transferring input; and *>*: transferring output]. Useful options:
   remote machine. You can use this command to check whether the execution is
   going fine, download/upload inputs or outputs, etc. More information about
   this command is available in CondorFAQs#ssh.
-
 
 ** Getting info from logs
 
