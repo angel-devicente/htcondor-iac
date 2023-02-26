@@ -1,4 +1,4 @@
-# Time-stamp: <2023-02-26 19:38:06 angelv> 
+# Time-stamp: <2023-02-26 21:09:31 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -63,7 +63,7 @@ number of yours and others' computations at a time in different machines when
 they are not being used, achieving a better utilization of our resources. A more
 detailed overview of HTCondor is available at the [[https://htcondor.readthedocs.io/en/v10_0/overview/index.html][official documentation]].
 
-** How can HTCondor help you?
+** How HTCondor can help you
 
 HTCondor is very useful when you have an application that has to run a large
 number of times over different input data. For instance, suppose you have a
@@ -99,37 +99,29 @@ HTCondor are those in the /CPUsInUse/ state.
 #+caption: Weekly global usage
 [[file:images/introduction/weekly_usage.png]]
 
+** Which machines are part of HTCondor?
 
-** Which machines are running HTCondor?
+HTCondor is installed in a number of /burros/ (High Performance Linux PCs) and
+desktop PCs at the IAC Headquarters in La Laguna. 
 
-HTCondor is already installed in most of the Desktop PCs running Linux that we
-have at IAC Headquarters in La Laguna, with a total number of more than 230
-machines.
+Regarding their hardware specifications, they are rather heterogeneous and their
+availability and specifications change from time to time. You can check which
+machines make up the HTCondor@IAC pool at any given time in the [[http://pasa/ganglia/?r=week&cs=&ce=&c=IAC+HTCondor&h=&tab=m&vn=&hide-hf=false&m=cpu_num&sh=1&z=small&hc=4&host_regex=&max_graphs=0&s=by+name][HTCondor Ganglia
+webpage]]. 
 
-If you are concerned about hardware specifications, you may know that those
-machines are rather heterogeneous and its availability and specifications change
-from time to time. At the present status (Sept, 2014), most CPUs are Intel (and
-also some AMD) from 2.40 to 3.20 GHz. Each CPU has typically 2, 4 or 8 cores,
-although there are also more powerful machines with up to 32 cores per CPU. As
-for memory, the most common is 2GB per slot, while some of them have from 3 to
-8GB per slot and a few just 1GB per slot.
+Regarding their software specifications, at present all machines are running
+Ubuntu 18.04 and the installed software should be also more or less the same in
+every machine (see the [[http://research.iac.es/sieinvens/SINFIN/Main/software_sinfin.php][software supported by the SIE]]), which makes it easy to
+run almost every application in any machine.
 
-On the other hand, software specifications are quite homogeneous and all
-machines are running the same OS: Fedora Linux. Almost all machines run Fedora21
-(as of June 2017, there are still a few machines running older versions, and a
-handful with Fedora 25). Installed software should be also more or less the same
-in every machine (see the [[http://research.iac.es/sieinvens/SINFIN/Main/software_sinfin.php][software supported by the SIE)]], which makes
-it easy to run almost every application in any machine (although the available
-software could be different in some machines that belong to the Instrumentation
-area).
+Detailed information about each machine can be obtained with the command
+=condor_status= (see Section [[*Checking pool status]]). 
 
-If your application has special requirements about memory per slot, OS version,
-etc., you can rank and/or limit these parameters and also a quite large set of
-other ones. ''Please, visit FAQs page for more information and
-examples.''
+HTCondor provides a simple mechanism by which you can specify a set of
+requirements for the machines where you want your application to run, for
+example: memory per slot, OS version, etc. (see Section [[*Submit files]]).
 
-
-** Who can use HTCondor? How does it work?  Do I need to change my application?
+** Who can use HTCondor? How does it work? Do I need to change my application?
 
 If you have a computer account at the IAC and you can log in on a Linux PC
 Desktop connected to the internal network, then you should be able to use
@@ -161,7 +153,6 @@ working, HTCondor will interrupt all jobs and send them to other available slots
 in any other idle machine. HTCondor will repeat this process till all jobs are
 done, sending notifications via email when they are finished or if any errors
 show up.
-
 
 ** I am using HTCondor, should I add an acknowledgement text in my publications?
 
@@ -205,6 +196,7 @@ etc. We also organize workshops about HTCondor for IAC's users (the last one was
 on February, 25th 2014 - [[https://docs.google.com/presentation/d/1PqCih4yL6D3FOFo0W336RjLCKrSICZbYuPX1F1CZqtQ/present#slide=id.p][slides]], and we can organize a new workshop on demand if
 you and your colleges need it: if the group is large enough -10 or 12 people-,
 just contact us!).
+
 
 * Useful Commands
 
@@ -445,7 +437,7 @@ transferring input; and *>*: transferring output]. Useful options:
   about HTCondor: http://carlota:81/condor_stats/ and http://nectarino/.
 
 
-* Submit files (desc. & examples)
+* Submit files 
 
 ** Introduction
 
