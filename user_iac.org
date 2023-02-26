@@ -1,6 +1,6 @@
-# Time-stamp: <2023-02-26 18:05:00 angelv> 
+# Time-stamp: <2023-02-26 18:51:11 angelv> 
 
-#+TITLE:   HTCondor IAC User's Manual
+#+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
 #+EMAIL:   angel.de.vicente@iac.es
 
@@ -25,20 +25,31 @@
 
 #+latex: \small
 
-* Introduction   
+# Notes and frames
+#  Note (as tip, warning, etc.) work for the HTML backend, but it is ignored by
+#   PDF
+#  mdframed works for the PDF backend, but it is ignored by HTML
+#  putting both we get a frame in both backends
+
 
 #+begin_mdframed
+#+begin_warning
 If you have no experience with HTCondor, we recommend that you contact us before
 running any job so we can give you a quick introduction (bear in mind that you
 will be using other users' computers and there are some basic guidelines that
 you must follow to avoid disturbing them).
+#+end_warning
 #+end_mdframed
 
 #+begin_mdframed
+#+begin_note
 The HTCondor infrastructure at the IAC has been recently expanded and improved,
 with about 100 new Linux desktop PCs financed by the Ministry of Economy and
 Competitiveness through FEDER funds, code IACA13-3E-2493. 
+#+end_note
 #+end_mdframed
+
+* Introduction   
 
 ** What is HTCondor? 
 
@@ -50,9 +61,9 @@ perform computations while their owners are away. So, in a nutshell, HTCondor is
 an application that is installed in our PCs to make it possible to run a large
 number of yours and others' computations at a time in different machines when
 they are not being used, achieving a better utilization of our resources. A more
-detailed overview of HTCondor is available at the official [[http://research.cs.wisc.edu/htcondor/overview/][documentation]].
+detailed overview of HTCondor is available at the [[https://htcondor.readthedocs.io/en/v10_0/overview/index.html][official documentation]].
 
-** How can HTCondor help us?
+** How can HTCondor help you?
 
 HTCondor is very useful when you have an application that has to run a large
 number of times over different input data. For instance, suppose you have a
@@ -65,14 +76,6 @@ hour, or maybe two or four, but for sure less than 10 days. And HTCondor will do
 all the work for you: it will copy the input files to the remote machines,
 execute your program there with different inputs and bring back the results to
 your machine when they are complete.
-
-HTCondor has also other powerful features. For instance, you can also use it to
-[[http://research.iac.es/sieinvens/siepedia/pmwiki.php?n=HOWTOs.CondorFAQs#run_ckpt][create specific or periodic checkpoints]] of your @@C@@, @@C++@@ or @@fortran@@
-programs. Then you can normally run your application (without using HTCondor)
-and if something happens (your program crashes, PC is unexpectedly halted,
-etc.), you will be able to restart the execution from any of the checkpoints,
-saving a lot of time. Please, read this introduction and the other sections to
-discover how HTCondor can help you.
 
 ** How ''powerful'' is HTCondor?
 
@@ -431,13 +434,6 @@ transferring input; and *>*: transferring output]. Useful options:
   the queue. This may be useful when you need to change some of the parameters
   specified in the submit file without re-submitting jobs (see
   HOWTOs.CondorFAQs#ch_submit). 
-+ =condor_compile=: Relink a program with HTCondor libraries so it can be used
-  in the =standard= universe where checkpoints are enable (check
-  CondorFAQs#checkpoints for more info). Relinked programs can be also executed 
-  as an standalone checkpointing executable, what means that you can run it
-  directly in your shell (no HTCondor submission is needed) and create specific
-  or periodic checkpoints that allow you to recover the execution in case of
-  problems. See CondorFAQs#run_ckpt for more information and examples.
 + =condor_submit_dag <dag_file>=: Submit a DAG file, used to describe jobs
   with dependencies. Visit the CondorHowTo#howto_dagman section for more info
   and examples. 
@@ -1614,7 +1610,7 @@ https://htcondor-wiki.cs.wisc.edu/index.cgi/wiki?p=HowToAdminRecipes]]. If you
 need further support, just contact us.
 
 
-* Submit files (HowTo)
+* Submit files (HowTo)                                             :noexport:
 
 HTCondor has a huge set of commands that should cover most possible
 scenarios. It is impossible to describe here all of them, but you can read the
@@ -2299,7 +2295,7 @@ Ading those commands in your submit file will create output and error files with
 names similar to =$.slot3@xilofon.ll.iac.es.$=.
 
 
-* FAQs
+* FAQs                                                             :noexport:
 
 ** General Information
 
@@ -3352,8 +3348,8 @@ get only the CPU time (but if the job is currently running, time accumulated
 during the current run is not shown).
 
 If your jobs finish in a reasonable amount of time, everything is fine. If they
-never finish or need an excessive amount of time to complete, please, read *this
-FAQ -> #checkpoints*.
+never finish or need an excessive amount of time to complete, you will have to
+modify the application to create checkpoints.
 
 *** I have submitted jobs that need some hours to finish. They have been running for days and just few have finished... what is happening? 
 
@@ -3378,15 +3374,6 @@ again to the queue with ''Idle'' status, so those jobs will start from the
 beginning. If your jobs need some hours to finish, probably some of them will be
 killed before their completion and restarted in other machines, that could
 happen even several times.
-
-To avoid that, you can use =standard= universe, since in that universe
-checkpoints are created so killed jobs can continue in other machines starting
-from the last checkpoint. But =standard= universe is a little bit more complex,
-you have to compile your application using =condor_compile= together with your
-normal compiler, and not all of them are supported... Please, check the
-*official documentation ->
-http://research.cs.wisc.edu/htcondor/manual/v8.6/condor_compile.html* and/or
-contact us if you need this feature.
 
 However, most times we can solve this problem simply changing the arguments of
 our jobs. For instance, suppose you have to process 10,000 inputs and each input
@@ -3620,97 +3607,6 @@ again), adding a reason and/or subcode if you want to do that. Please, visit
 *Condor submit file section -> CondorHowTo#howto_failing* to get detailed info
 and examples about this feature.
 
-*** I want to do checkpoints of my ''normal'' programs (without using Condor) so I can restart them, is that possible? 
-
-Yes, if your program is written in =C=, =C++= or =fortran= (and you
-compile/link it using =cc=, =c89=, =CC=, =f77=, =gfortran=, =gcc=, =g++=, =g77=
-or =ld=) it is likely that you can do checkpointing without using Condor to run
-it. This is a powerful feature, it means that you can do specific or periodic
-checkpoints of your program when it is running and, if something happens, you
-can restart your program from any of those checkpoints.
-
-We will present a full example, suppose we have a =C= program with name
-=myprogram.c=, then, follow next steps:
-
-+ First, you have to compile it using =condor_compile= command {+and+} your
-  normal compiler, this is the only procedure where Condor is involved. Compile
-  it as you normal do, just add =condor_compile= command {+before+} your
-  compilation line.
-
-    =condor_compile gcc= myprogram.c -o myprogram
-
-+ ''Optional'': Now you will have an executable called =myprogram=. These
-  executable files created by =condor_compile= are usually quite big since some
-  extra information is added (like debugging info, symbol tables, etc). This
-  extra information is not needed when running your program, so if you want a
-  smaller executable file you can remove it using linux =strip= command, it may
-  also increase its performance:
-
-    =strip= myprogram
-
-+ Our program is ready to be executed. We will {+not+} use =condor_submit=, we
-  will run it directly in our shell as any other program: this is called
-  ''Standalone Checkpointing Mechanism''. Since Fedora has a feature called
-  *''address space randomization'' ->
-  http://research.cs.wisc.edu/htcondor/manual/v8.6/7_1Linux.html#SECTION00811000000000000000*
-  which is not compatible with the checkpointing mechanism, we have to use linux
-  =setarch= command to disable it:
-
-    =setarch= x86_64 -R ./myprogram   
-
-  The application will then run and we may receive ''Notice'' lines, that is
-  normal. In this case, checkpoint files will be created in =./myprogram.ckpt= 
-
-    Condor: Notice: Will checkpoint to ./myprogram.ckpt
-    Condor: Notice: Remote system calls disabled.
-
-+ To deal with checkpoints, we need to know the Proccess ID (=PID=) of your
-  running program. We can get it using linux =ps= command (PID should appear in
-  the second column, after the username):
-
-    =ps aux= | =grep= myprogram    ''#Suppose that the PID is 12233''
-
-+ Once we have the =PID=, we can force that your application writes a checkpoint
-  sending it a =SIGUSR2= signal at any time:
-
-    =kill -USR2= 12233
-
-  After sending that signal, the checkpoint should have been created and the
-  application may be still running, check that a file called =myprogram.ckpt=
-  exists in the same directory. If you want to do periodic checkpoints, you can
-  write a simple shell script or use =cron= to regularly send =SIGUSR2= signals
-  to your program. Bear in mind that all checkpoint files are created with the
-  same name, so if you want to keep all checkpoints, you should rename them
-  before creating a new one. 
-
-+ We can also force your application to write the checkpoint and stop the
-  execution immediately afterwards. To do that, use =SIGTSTP= signal instead, or
-  press =Ctrl+Z=:
-
-    =kill -TSTP= 12233
- 
-  Now you can check that the checkpoint was created and your program is not
-  running.
-
-+ To restart the execution using an specific checkpoint, run your program again
-  and add =-_condor_restart= option and the name of the checkpoint:
-  
-   =setarch= x86_64 -R ./myprogram =-_condor_restart= myprogram.ckpt
-
-  Your application should be now running from the same point where the checkpoint was created.
-
-*Notes:* 
-
-+ If you have problems creating the checkpoints or running/restarting your
-  application, add =-L= and/or =-B= options to =setarch=.
-+ Bear in mind that programs should meet *some limitations ->
-  http://research.cs.wisc.edu/htcondor/manual/v8.6/2_4Running_Job.html*.
-+ If your application is written in the =C= language and you want a deeper
-  control of the checkpoint feature, you can add some functions provided by the
-  *''Condor Checkpoint Library'' ->
-  http://research.cs.wisc.edu/htcondor/manual/v8.6/4_2HTCondor_s_Checkpoint.html#SECTION00524000000000000000*
-  to your program.
-
 *** I have a fault tolerant application, can I save the state and restore it when executing with Condor?
 
 Yes, Condor allows you to use your fault tolerant programs. You only need
@@ -3754,7 +3650,7 @@ Condor#contact* our contact data).
 
 
 
-* HTCondor and IDL
+* HTCondor and IDL                                                 :noexport:
 
 A recurring question to us has been whether IDL jobs can be run with
 HTCondor. The *use of IDL with HTCondor is limited by the number of available
@@ -4725,3 +4621,6 @@ los administradores de Condor en la dirección de correo condor@iac.es.
 
 ** Python bindings                                                 :noexport:
 
+* TODO TO DOs [0/1]                                                :noexport:
+
+  + [ ] Pre-introduction: date of FEDER funds?
