@@ -1,0 +1,1339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-02-26 Sun 07:25 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HTCondor IAC User's Manual</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Ángel de Vicente" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">HTCondor IAC User's Manual</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org6d4ee16">1. Users' documentation for the IAC HTCondor Pool</a>
+<ul>
+<li><a href="#org7102b3b">1.1. Introduction</a>
+<ul>
+<li><a href="#org71c6f35">1.1.1. What is HTCondor?</a></li>
+<li><a href="#org0f1d129">1.1.2. How can HTCondor help us?</a></li>
+<li><a href="#orge6586fa">1.1.3. How ''powerful'' is HTCondor?</a></li>
+<li><a href="#org15ab43f">1.1.4. Which machines are running HTCondor?</a></li>
+<li><a href="#orgd62b72c">1.1.5. Who can use HTCondor? How does it work?  Do I need to change my application?</a></li>
+<li><a href="#orgaba9c3a">1.1.6. I am using HTCondor, should I add an acknowledgement text in my publications?</a></li>
+<li><a href="#org528c931">1.1.7. I need more information or have some problems, who can help me&#x2026;?</a></li>
+</ul>
+</li>
+<li><a href="#org5d393fd">1.2. Useful Commands</a>
+<ul>
+<li><a href="#org5f4107e">1.2.1. Checking pool status</a></li>
+<li><a href="#org060f3e0">1.2.2. Submitting jobs</a></li>
+<li><a href="#orgb3c93f6">1.2.3. Checking and managing submitted jobs</a></li>
+<li><a href="#orgefe2ee0">1.2.4. Getting info from logs</a></li>
+<li><a href="#org4bf928c">1.2.5. Other commands</a></li>
+</ul>
+</li>
+<li><a href="#orge112b7a">1.3. Submit files (desc. &amp; examples)</a>
+<ul>
+<li><a href="#org1c02979">1.3.1. Introduction</a></li>
+<li><a href="#orgca647e1">1.3.2. Creating a Submit File</a>
+<ul>
+<li><a href="#org4a7e2c2">1.3.2.1. Comments</a></li>
+<li><a href="#org13556f3">1.3.2.2. Variables and macros</a></li>
+<li><a href="#org65721cc">1.3.2.3. Submit commands</a></li>
+</ul>
+</li>
+<li><a href="#orgba87dc3">1.3.3. Templates and examples</a>
+<ul>
+<li><a href="#org8f693d4">1.3.3.1. Common Template</a></li>
+<li><a href="#org7417f11">1.3.3.2. Examples when working with input/output files and arguments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6d4ee16" class="outline-2">
+<h2 id="org6d4ee16"><span class="section-number-2">1</span> Users' documentation for the IAC HTCondor Pool</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org7102b3b" class="outline-3">
+<h3 id="org7102b3b"><span class="section-number-3">1.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="mdframed">
+<p>
+If you have no experience with HTCondor, we recommend that you contact us before
+running any job so we can give you a quick introduction (bear in mind that you
+will be using other users' computers and there are some basic guidelines that
+you must follow to avoid disturbing them).
+</p>
+
+</div>
+
+<div class="mdframed">
+<p>
+The HTCondor infrastructure at the IAC has been recently expanded and improved,
+with about 100 new Linux desktop PCs financed by the Ministry of Economy and
+Competitiveness through FEDER funds, code IACA13-3E-2493. 
+</p>
+
+</div>
+</div>
+
+<div id="outline-container-org71c6f35" class="outline-4">
+<h4 id="org71c6f35"><span class="section-number-4">1.1.1</span> What is HTCondor?</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+At the IAC we have several <a href="http://research.iac.es/sieinvens/SINFIN/Main/supercomputing.php">Supercomputing</a> resources that allow you to obtain
+your computational results in much less time and/or work with much more complex
+problems. One of them is <a href="http://research.cs.wisc.edu/htcondor/">HTCondor</a>, a High Throughput Computing (<a href="http://en.wikipedia.org/wiki/High-throughput_computing">HTC</a>) system. The
+underlying idea is quite simple (and powerful): let's use idle machines to
+perform computations while their owners are away. So, in a nutshell, HTCondor is
+an application that is installed in our PCs to make it possible to run a large
+number of yours and others' computations at a time in different machines when
+they are not being used, achieving a better utilization of our resources. A more
+detailed overview of HTCondor is available at the official <a href="http://research.cs.wisc.edu/htcondor/overview/">documentation</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0f1d129" class="outline-4">
+<h4 id="org0f1d129"><span class="section-number-4">1.1.2</span> How can HTCondor help us?</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+HTCondor is very useful when you have an application that has to run a large
+number of times over different input data. For instance, suppose you have a
+program that carry out some calculations taking an image file as input. Let's
+say that the processing time is about one hour per image and you want to process
+250 images. Then you can use your own machine and process all images one by one,
+and wait more than 10 days to get all results, or you can use HTCondor to
+process each image in different computers and hopefully get all results in one
+hour, or maybe two or four, but for sure less than 10 days. And HTCondor will do
+all the work for you: it will copy the input files to the remote machines,
+execute your program there with different inputs and bring back the results to
+your machine when they are complete.
+</p>
+
+<p>
+HTCondor has also other powerful features. For instance, you can also use it to
+<a href="http://research.iac.es/sieinvens/siepedia/pmwiki.php?n=HOWTOs.CondorFAQs#run_ckpt">create specific or periodic checkpoints</a> of your @@C@@, @@C++@@ or @@fortran@@
+programs. Then you can normally run your application (without using HTCondor)
+and if something happens (your program crashes, PC is unexpectedly halted,
+etc.), you will be able to restart the execution from any of the checkpoints,
+saving a lot of time. Please, read this introduction and the other sections to
+discover how HTCondor can help you.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge6586fa" class="outline-4">
+<h4 id="orge6586fa"><span class="section-number-4">1.1.3</span> How ''powerful'' is HTCondor?</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+HTCondor calls "'''''slot'''''" the unit that executes a job, typically a CPU or
+core if the CPU has several of them. Right now we have around 900 slots
+(Feb 2017) that might execute applications submitted via HTCondor. It means that
+everyday more than 21000 hours could be available to run HTCondor jobs, more
+than 2 years of computation in just 24 hours! OK, this is the theoretical limit
+if no one were using their computers and all slots were idle&#x2026; ;) The number of
+idle slots is always changing, but based on our experience a more realistic
+number of idle slots could be around 400 slots in office hours and 650 at nights
+and weekends, so still we have more than one year of HTCondor computation time
+per day.  
+</p>
+
+<p>
+You can see the real-time HTCondor statistics here: <a href="http://nectarino">nectarino</a> (''Pool
+Resource Stats'' show the number of slots being used by their owners, by
+HTCondor and the idle ones; while ''Pool User Stats'' show the number of
+HTCondor jobs and consumed hours per user). If you want more detailed info about
+which and when jobs have been executing on specific machines, check stats at
+<a href="http://carlota:81/condor_stats">http://carlota:81/condor_stats</a>. Also you can visit the
+<a href="http://venus/SIE/forum/viewtopic.php?f=8&amp;t=38">Hall of Fame</a> of HTCondor. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org15ab43f" class="outline-4">
+<h4 id="org15ab43f"><span class="section-number-4">1.1.4</span> Which machines are running HTCondor?</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+HTCondor is already installed in most of the Desktop PCs running Linux that we
+have at IAC Headquarters in La Laguna, with a total number of more than 230
+machines.
+</p>
+
+<p>
+If you are concerned about hardware specifications, you may know that those
+machines are rather heterogeneous and its availability and specifications change
+from time to time. At the present status (Sept, 2014), most CPUs are Intel (and
+also some AMD) from 2.40 to 3.20 GHz. Each CPU has typically 2, 4 or 8 cores,
+although there are also more powerful machines with up to 32 cores per CPU. As
+for memory, the most common is 2GB per slot, while some of them have from 3 to
+8GB per slot and a few just 1GB per slot.
+</p>
+
+<p>
+On the other hand, software specifications are quite homogeneous and all
+machines are running the same OS: Fedora Linux. Almost all machines run Fedora21
+(as of June 2017, there are still a few machines running older versions, and a
+handful with Fedora 25). Installed software should be also more or less the same
+in every machine (see the <a href="http://research.iac.es/sieinvens/SINFIN/Main/software_sinfin.php">software supported by the SIE)</a>, which makes
+it easy to run almost every application in any machine (although the available
+software could be different in some machines that belong to the Instrumentation
+area).
+</p>
+
+<p>
+If your application has special requirements about memory per slot, OS version,
+etc., you can rank and/or limit these parameters and also a quite large set of
+other ones. ''Please, visit FAQs page for more information and
+examples.''
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgd62b72c" class="outline-4">
+<h4 id="orgd62b72c"><span class="section-number-4">1.1.5</span> Who can use HTCondor? How does it work?  Do I need to change my application?</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<p>
+If you have a computer account at the IAC and you can log in on a Linux PC
+Desktop connected to the internal network, then you should be able to use
+HTCondor with no problems (try @@condor<sub>version</sub>@@ command to check whether
+HTCondor is installed. Please contact us if it is not or you experience any
+issue).
+</p>
+
+<p>
+HTCondor is a batch-processing system, so you only need to submit your jobs to
+the HTCondor queue and it will do all the work. The submission is done using a
+HTCondor script where you specify your executable, its arguments, inputs and
+outputs, etc. (visit HTCondor submit files page to see some
+examples and recommendations). You do not need to prepare or compile your
+programs in any special way to run them, and almost all programming languages
+that are commonly used at IAC should be suitable to be run with HTCondor (shell
+scripts, Python, Perl, C, Fortran, IDL, etc.). Sometimes a few minor
+modifications may be needed in order to specify arguments and the locations of
+inputs or outputs, so that HTCondor can find them, but that should be all.
+</p>
+
+<p>
+Once the submitted jobs are in HTCondor queue, it uses its allocation algorithm
+to send and execute your jobs on those idle slots that satisfy your
+requirements. Idle slots are those located in machines where there has been no
+keyboard/mouse activity for a long while and the computer load is low enough to
+ensure that there is no interference with the owner's processes. While HTCondor
+is running its jobs, it also keeps checking that the owner is not using the
+machine. If HTCondor detects any activity in the computer (for instance, a key
+is pressed), then it will suspend all its jobs and wait a little while to see
+whether the machine gets idle again so as to resume the jobs. If the owner keeps
+working, HTCondor will interrupt all jobs and send them to other available slots
+in any other idle machine. HTCondor will repeat this process till all jobs are
+done, sending notifications via email when they are finished or if any errors
+show up.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgaba9c3a" class="outline-4">
+<h4 id="orgaba9c3a"><span class="section-number-4">1.1.6</span> I am using HTCondor, should I add an acknowledgement text in my publications?</h4>
+<div class="outline-text-4" id="text-1-1-6">
+<p>
+Yes, you should mention it in the acknowledgments of your papers or any other
+publications where you have used HTCondor. Although there is no standard format,
+we suggest the following:
+</p>
+
+<p>
+&gt;&gt;frame&lt;&lt; ''"This paper made use of the IAC Supercomputing facility HTCondor
+(<a href="http://research.cs.wisc.edu/htcondor/">http://research.cs.wisc.edu/htcondor/</a>), partly financed by the Ministry of
+Economy and Competitiveness with FEDER funds, code IACA13-3E-2493."''  &gt;&gt;&lt;&lt;
+</p>
+
+<p>
+If you have used any other IAC Supercomputing facilities (LaPalma, TeideHPC,
+etc.), please, add them in the acknowledgments too:
+</p>
+
+<p>
+'''LaPalma''': ''"The author thankfully acknowledges the technical expertise and
+assistance provided by the Spanish Supercomputing Network (Red Española de
+Supercomputación), as well as the computer resources used: the LaPalma
+Supercomputer, located at the Instituto de Astrofísica de Canarias."''
+</p>
+
+<p>
+'''TeideHPC''': ''"The author(s) wish to acknowledge the contribution of Teide
+High-Performance Computing facilities to the results of this research. TeideHPC
+facilities are provided by the Instituto Tecnológico y de Energías Renovables
+(ITER, SA). URL: <a href="http://teidehpc.iter.es/">http://teidehpc.iter.es/</a>"''
+</p>
+</div>
+</div>
+
+<div id="outline-container-org528c931" class="outline-4">
+<h4 id="org528c931"><span class="section-number-4">1.1.7</span> I need more information or have some problems, who can help me&#x2026;?</h4>
+<div class="outline-text-4" id="text-1-1-7">
+<p>
+If you need further information, please check the other pages about HTCondor at
+the SIEpedia: Useful Commands, Submit Files (description and examples), Submit
+Files (HowTo), FAQs, etc. HTCondor at SIEpedia is continuously updated, but we
+also have more documentation about older versions of HTCondor at the <a href="http://research.iac.es/sieinvens/SINFIN/Condor/index.php">the
+HTCondor section at IAC</a> (most of that information is still valid, but some may
+be obsolete, including broken links). For detailed and complete information,
+check the <a href="http://research.cs.wisc.edu/htcondor/manual/v8.6/">official documentation about HTCondor</a>.
+</p>
+
+<p>
+If you need help or you are having any kind of issues related to HTCondor,
+'''the SIE gives direct support''' to IAC's users who want to use HTCondor: we
+will not code your whole application, but we help and advise you about how to
+get the most out of HTCondor: use its commands, create submit files, modify your
+application to run it with HTCondor (in case it is needed), fix common mistakes,
+etc. We also organize workshops about HTCondor for IAC's users (the last one was
+on February, 25th 2014 - <a href="https://docs.google.com/presentation/d/1PqCih4yL6D3FOFo0W336RjLCKrSICZbYuPX1F1CZqtQ/present#slide=id.p">slides</a>, and we can organize a new workshop on demand if
+you and your colleges need it: if the group is large enough -10 or 12 people-,
+just contact us!).
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5d393fd" class="outline-3">
+<h3 id="org5d393fd"><span class="section-number-3">1.2</span> Useful Commands</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+HTCondor has several dozens of commands, but in this section we will present
+just the most common ones (if you want to check the complete list, try the
+<a href="http://research.cs.wisc.edu/htcondor/manual/v8.6/11_Command_Reference.html">Command Reference page</a>). Also remember that you can get further information
+running @@man condor_&lt;cmd&gt;@@ in your shell or visiting the <a href="http://research.cs.wisc.edu/htcondor/manual/v8.6/2_Users_Manual.html">official Users'
+Manual</a>. The main command will be shown together with some useful options that
+may help work with HTCondor:
+</p>
+</div>
+
+
+<div id="outline-container-org5f4107e" class="outline-4">
+<h4 id="org5f4107e"><span class="section-number-4">1.2.1</span> Checking pool status</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<ul class="org-ul">
+<li><code>condor_status</code>: list slots in HTCondor pool and their status: <code>Owner</code> (used
+by owner), <code>Claimed</code> (used by HTCondor), <code>Unclaimed</code> (available to be used
+by HTCondor), etc. Useful options:
+<ul class="org-ul">
+<li><code>-avail</code>: List those slots that are not busy and could run HTCondor jobs at
+this moment</li>
+<li><code>-submitters</code>: Show information about the current general status, like
+number of running, idle and held jobs (and submitters)</li>
+<li><code>-run</code>: List slots that are currently running jobs and show related
+information (owner of each job, machine where it was submitted from, etc.)</li>
+<li><code>-compact</code>: Compact list, with one line per machine instead of per slot</li>
+<li><code>-state -total</code>: List a summary according to the state of each slot</li>
+<li><code>-master</code>: List machines, but just their names (status and slots are not
+shown)</li>
+<li><code>-server</code>: List attributes of slots, such as memory, disk, load, flops, etc.</li>
+<li><code>-sort Memory</code>: Sort slots by Memory, you can try also with other attributes</li>
+<li><code>-af &lt;attr1&gt; &lt;attr2&gt; &lt;...&gt;</code>: List specific attributes of slots, using
+autoformat (new version, very powerful)</li>
+<li><code>-format &lt;fmt&gt; &lt;attr&gt;</code>: List attributes using the specified format (old
+version). For instance, next command will show the name of each slot and the
+disk space: <code>condor_status -format "%s\t " Name -format "%d KB\n" Disk</code></li>
+<li><code>&lt;machine&gt;</code>: Show the status of a specific machine</li>
+<li><code>&lt;machine&gt; -long</code>: Show the complete "ClassAd" of a machine (its
+specifications). We can use these specifications to add restrictions in the
+submit file so we can control which machines we want to use.</li>
+<li><code>-constraint &lt;constraint&gt;</code>: Only Show slots that satisfy the
+constraint. I.e: <code>condor_status -constraint 'Memory &gt; 1536'</code> will only show
+slots with more than 1.5GB of RAM per slot.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org060f3e0" class="outline-4">
+<h4 id="org060f3e0"><span class="section-number-4">1.2.2</span> Submitting jobs</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<ul class="org-ul">
+<li><p>
+<code>condor_submit &lt;submit_file&gt;</code>: Submit jobs to the HTCondor queue according to
+the information specified in <code>submit_file</code>. Visit the <b>submit file page</b> to
+see some examples of these files. There are also some FAQs related to the
+submit file. Useful options:
+</p>
+
+<ul class="org-ul">
+<li>=-dry-run &lt;dest<sub>file</sub>&gt; =: this option parses the submit file and saves all the</li>
+</ul>
+<p>
+related info (name and locations of input and output files after expanding all
+variables, value of requirements, etc.) to <code>&lt;dest_file&gt;</code>, but jobs are '''not'''
+submitted. Using this option is highly recommended when debugging or before the
+actual submission if you have made some modifications in your submit file and
+you are not sure whether they will work.
+</p>
+
+<ul class="org-ul">
+<li><code>'var=value'</code>: add or modify variable(s) at submission time, without changing</li>
+</ul>
+<p>
+the submit file. For instance, if you are using <code>queue $(N)</code> in your submit
+file, then <code>condor_submit &lt;submit_file&gt; 'N = 10'</code> will submit 10 jobs. You can
+specify several pairs of <code>var=value</code>.
+</p>
+
+<ul class="org-ul">
+<li><code>-append &lt;command&gt;</code>: add submit commands at submission time, without changing</li>
+</ul>
+<p>
+the submit file. You can add more than one command using several times
+<code>-append</code>.
+</p></li>
+</ul>
+
+<p>
+When submitted, each job is identified by a pair of numbers '''X.Y''', like
+345.32. The first number (X) is the '''cluster id''': every submission gets a
+different cluster id, that is shared by all jobs belonging to the same
+submission. The second number (Y) is the '''process id''': if you submitted N
+jobs, then this id will go from 0 for the first job to N-1 for the last one. For
+instance, if you submit a file specifying 4 jobs and HTCondor assign id 523 to
+that cluster, then the ids of your jobs will be 523.0, 523.1, 523.2 and 523.3
+(you can get these ids and more info using <code>condor_q</code> command).
+</p>
+
+<div class="mdframed">
+<p>
+<b>Caution!</b>: Before submitting your jobs, always do some simple tests in
+order to make sure that both your submit file and program work in a proper way:
+if you are going to submit hundreds of jobs and each job takes several hours to
+finish, before doing that try with just a few jobs and change the input data in
+order to let them finish in minutes. Then check the results to see if everything
+went fine before submitting the real jobs. Bear in mind that submitting untested
+files and/or jobs may cause a waste of time and resources if they fail, and also
+your priority will be lower in following submissions. 
+</p>
+
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgb3c93f6" class="outline-4">
+<h4 id="orgb3c93f6"><span class="section-number-4">1.2.3</span> Checking and managing submitted jobs</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<div class="mdframed">
+<p>
+<b>Note:</b> Each machine manages its own HTCondor queue, so it has information only
+about those jobs that were submitted on it (and no information about any other
+jobs you may have submitted on other machines). Most of the commands explained
+in this section get information asking only the local queue, which means that
+you will only see those jobs that you have submitted on that specific
+machine. If you submit jobs from different machines, and later you want to
+check, hold, release, remove, etc. those jobs, you may need to connect to each
+one of those machines where you have submitted jobs from, or, when possible, use
+the commands with extra options to communicate with other machines.
+</p>
+
+</div>
+
+
+<ul class="org-ul">
+<li><code>condor_q</code>: Show my jobs that have been submitted in this machine. By default</li>
+</ul>
+<p>
+you will see the ID of the job(<code>clusterID.processID</code>), the owner, submitting
+time, run time, status, priority, size and command. [*STATUS*: <b>I</b>:idle (waiting
+for a machine to execute on); <b>R</b>: running; <b>H</b>: on hold (there was an error,
+waiting for user's action); <b>S</b>: suspended; <b>C</b>: completed; <b>X</b>: removed; <b>&lt;</b>:
+transferring input; and <b>&gt;</b>: transferring output]. Useful options:
+</p>
+<ul class="org-ul">
+<li><code>-global</code>: Show my jobs submitted in any machine, not only the current one</li>
+<li><code>-nobatch</code>: Starting in version HTCondor 8.6.0 installed in January 2017,
+data is displayed in a compact mode (one line per cluster). With this option
+output will be displayed in the old format (one line per process)</li>
+<li><code>-wide</code>: Do not truncate long lines. You can also use <code>-wide:&lt;n&gt;</code> to
+truncate lines to fit <code>n</code> columns</li>
+<li><code>-analyze &lt;job_id&gt;</code>: Analyse a specific job and show the reason why it is in
+its current state (useful for those jobs in Idle status: Condor will show us
+how many slots match our restrictions and may give us suggestion)</li>
+<li><code>-better-analyze &lt;job_id&gt;</code>: Analyse a specific job and show the reason why
+it is in its current state, giving extended info</li>
+<li><code>-long &lt;job_id&gt;</code>: Show all information related to that job</li>
+<li><code>-run</code>: Show your running jobs and related info, like how much time they
+have been running, in which machine, etc.</li>
+<li><code>-currentrun</code>: Show the consumed time on the current run, the cumulative
+time from last executions will not be used (you can combine also with <code>-run</code>
+flag to see only the running processes at the moment)</li>
+<li><code>-hold</code>: Show only jobs in the "on hold" state and the reason for that. Held
+jobs are those that got an error so they could not finish. An action from
+the user is expected to solve the problem, and then he should use the
+<code>condor_release</code> command in order to check the job again</li>
+<li><code>-af &lt;attr1&gt; &lt;attr2&gt; &lt;...&gt;</code>: List specific attributes of jobs, using
+autoformat</li>
+<li>[-{-<code>''-global -submitter &lt;user&gt;</code>-}: Show all jobs from user <code>&lt;user&gt;</code> in all
+machines. <b>Note</b>: starting in HTCondor version 8.6.0 installed at IAC in
+January 2017, HTCondor will NOT show other users' jobs'' by default, but you
+can use some flags like <code>-allusers</code> to change this behaviour -]</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><code>*condor_tail* &lt;job_id&gt;</code>: Display on screen the last lines of the <code>stdout</code>
+(screen) of a running job on a remote machine. You can use this command to
+check whether your job is working fine, you can also visualize errors
+(<code>stderr</code>) or output files created by your program (see also
+CondorFAQs#ssh). Useful options:
+<ul class="org-ul">
+<li><code>-f</code>: Do not stop displaying the content, it will be displayed until
+interrupted with <code>Ctrl+C</code></li>
+<li><code>-no-stdout -stderr</code>: Show the content of <code>stderr</code> instead of <code>stdout</code></li>
+<li><code>-no-stdout &lt;output_file&gt;</code>: Show the content of an output file (<code>output_file</code>
+has to be listed in the <code>transfer_output_files</code> command in the submit file).</li>
+</ul></li>
+
+<li><p>
+<code>*condor_release* &lt;job_id&gt;</code>: Release a specific held job in the queue. Useful options:
+</p>
+<ul class="org-ul">
+<li><code>&lt;cluster_id&gt;</code>: Instead of giving a <code>&lt;job_id&gt;</code>, you can specify just the
+<code>&lt;cluster_id&gt;</code> in order to release all held jobs of a specific submission</li>
+<li><code>-constraint &lt;constraint&gt;</code>: Release all my held jobs that satisfy the
+constraint</li>
+<li><code>-all</code>: Release all my held jobs</li>
+<li><b>Note:</b> Jobs with ''on hold'' state are those that HTCondor was not able</li>
+</ul>
+<p>
+to properly execute, usually due to problems with executable, paths, etc. If
+you can solve the problems changing the input files and/or the executable,
+then you can use <code>condor_release</code> command to run again your program since it
+will send again all files to the remote machines. If you need to change the
+submit file to solve the problems, then <code>condor_release</code> will NOT work because
+it will not evaluate again the submit file. In that case you can use
+<code>condor_qedit</code> (see the HOWTOs.CondorFAQs#ch<sub>submit</sub>) or cancel all
+held jobs and re-submit them again-]
+</p></li>
+
+<li><code>*condor_hold* &lt;job_id&gt;</code>: Put jobs into the hold state. It could be useful
+when you detect that there are some problems with your input data (see
+CondorFAQs#bad<sub>inputs</sub> for more info), you are running out of disk space for
+outputs, etc. With this command you can delay the execution of your jobs
+holding them, and, after solving the problems, assign them the idle status
+using <code>condor_release</code>, so they will be executed again. Useful options:
+<ul class="org-ul">
+<li><code>&lt;cluster_id&gt;</code>: Instead of giving a <code>&lt;job_id&gt;</code>, you can specify just the
+<code>&lt;cluster_id&gt;</code> in order to hold all jobs of a specific submission</li>
+<li><code>-constraint &lt;constraint&gt;</code>: Hold all jobs that satisfy the constraint</li>
+<li><code>-all</code>: Hold all my jobs from the queue</li>
+</ul></li>
+
+<li><code>*condor_rm* &lt;job_id&gt;</code>: Remove a specific job from the queue (it will be
+removed even if it is running). Jobs are only removed from the current
+machine, so if you submitted jobs from different machines, you need to remove
+your jobs from each of them. Useful options:
+<ul class="org-ul">
+<li><code>&lt;cluster_id&gt;</code>: Instead of giving a <code>&lt;job_id&gt;</code>, you can specify just the
+<code>&lt;cluster_id&gt;</code> in order to remove all jobs of a specific submission</li>
+<li><code>-constraint &lt;constraint&gt;</code>: Remove all jobs that satisfy the constraint</li>
+<li><code>-all</code>: Remove all my jobs from the queue</li>
+<li><code>-forcex &lt;job_id&gt;</code>: It could happen that after removing jobs, they don't
+disappear from the queue as expected, but they just change status to
+<b>X</b>. That's normal since HTCondor may need to do some extra operations. If
+jobs stay with 'X' status a very long time, you can force their elimination
+adding <code>-forcex</code> option. For instance: <code>condor_rm -forcex -all</code>.</li>
+</ul></li>
+
+<li><code>*condor_prio*</code>: Set the priority of my jobs. A user can only change the
+priority of her own jobs, to specify which ones she would like to run first
+(the higher the number, the bigger the priority). Priority could be absolute
+or relative, use <code>man condor_prio</code> for further information</li>
+
+<li><code>*condor_ssh_to_job &lt;job_id&gt;*</code>: Create an ssh session to a running job in a
+remote machine. You can use this command to check whether the execution is
+going fine, download/upload inputs or outputs, etc. More information about
+this command is available in CondorFAQs#ssh.</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgefe2ee0" class="outline-4">
+<h4 id="orgefe2ee0"><span class="section-number-4">1.2.4</span> Getting info from logs</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<ul class="org-ul">
+<li><code>*condor_userlog* &lt;file.log&gt;</code>: Show and summarize job statistics from the job
+log files (those created when using <code>log</code> command in the submit file)</li>
+
+<li><code>*condor_history*</code>: Show all completed jobs to date (it has to be run in the
+{<del>same machine</del>} where the submission was done). Useful options:
+<ul class="org-ul">
+<li><code>-userlog &lt;file.log&gt;</code>: list basic information registered in the log files (use
+<code>condor_logview &lt;file.log&gt;</code> to see information in graphic mode)</li>
+<li><code>-long XXX.YYY -af LastRemoteHost</code>: show machine where job XXX.YYY was
+executed</li>
+<li><code>-constraint &lt;constraint&gt;</code>: Only show jobs that satisfy the constraint. I.e:
+<code>condor_history -constraint 'RemoveReason</code>!=UNDEFINED'=: show your jobs that
+were removed before completion</li>
+</ul></li>
+
+<li><code>condor_logview &lt;file.log&gt;</code>: This is not an original HTCondor command, we have
+created this link to the script that allows you to display graphical
+information contained in the log of your executions.</li>
+
+<li>There is also an online tool to analyze your log files and get more
+information: <code>HTCondor Log Analyzer</code> (<a href="http://condorlog.cse.nd.edu/">http://condorlog.cse.nd.edu/</a>).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4bf928c" class="outline-4">
+<h4 id="org4bf928c"><span class="section-number-4">1.2.5</span> Other commands</h4>
+<div class="outline-text-4" id="text-1-2-5">
+<ul class="org-ul">
+<li><code>condor_userprio</code>: Show active HTCondor users' priority. Lower values means
+higher priority where 0.5 is the highest. Use <code>condor_userprio -allusers</code> to
+see all users' priority, you can also add flags <code>-priority</code> and/or <code>-usage</code> to
+get detailed information</li>
+<li><code>condor_qedit</code>: use this command to modify the attributes of a job placed on
+the queue. This may be useful when you need to change some of the parameters
+specified in the submit file without re-submitting jobs (see
+HOWTOs.CondorFAQs#ch<sub>submit</sub>).</li>
+<li><code>condor_compile</code>: Relink a program with HTCondor libraries so it can be used
+in the <code>standard</code> universe where checkpoints are enable (check
+CondorFAQs#checkpoints for more info). Relinked programs can be also executed 
+as an standalone checkpointing executable, what means that you can run it
+directly in your shell (no HTCondor submission is needed) and create specific
+or periodic checkpoints that allow you to recover the execution in case of
+problems. See CondorFAQs#run<sub>ckpt</sub> for more information and examples.</li>
+<li><code>condor_submit_dag &lt;dag_file&gt;</code>: Submit a DAG file, used to describe jobs
+with dependencies. Visit the CondorHowTo#howto<sub>dagman</sub> section for more info
+and examples.</li>
+<li><code>condor_version</code>: Print the version of HTCondor.</li>
+<li>If you want some general information about HTCondor queue, the pool of
+machines, where jobs have been executed on, etc., you can try our online stats
+about HTCondor: <a href="http://carlota:81/condor_stats/">http://carlota:81/condor_stats/</a> and <a href="http://nectarino/">http://nectarino/</a>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orge112b7a" class="outline-3">
+<h3 id="orge112b7a"><span class="section-number-3">1.3</span> Submit files (desc. &amp; examples)</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org1c02979" class="outline-4">
+<h4 id="org1c02979"><span class="section-number-4">1.3.1</span> Introduction</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+To execute your application with HTCondor, you have to specify some parameters
+like the name of your executable, its arguments, inputs and outputs,
+requirements, etc. This information is written in a plain text using <b>submit
+commands</b> in a file called ''HTCondor Submit Description File'' or simply
+<b>submit file</b>. Once that file is filled with all needed info, you have to submit
+it to HTCondor using <code>*condor_submit*</code> in your terminal, and then it will be
+processed and your jobs will be added to the queue in order to be executed.
+</p>
+
+<p>
+<b>Submit files have considerably changed after the release of versions 8.4.X</b>
+(first version 8.4.0 released in Sept 2015, since Feb 2017 we are using versions
+8.6.X). Some operations were not possible or highly painful in previous versions
+(like dealing with an undetermined number of files with arbitrary names,
+declaring variables and macros and performing operations with them, including
+submission commands from other files, adding conditional statements, etc.). To
+solve that, many researchers developed external scripts (perl, python, bash,
+etc.) to dynamically create description files and submit them, what in most
+cases resulted in complex submissions and less efficient executions, not to
+mention that usually it was needed a hard work to adapt those scripts when the
+application, arguments and/or IO files changed.
+</p>
+
+<p>
+With the addition of <a href="http://research.cs.wisc.edu/htcondor/manual/v8.6/2_5Submitting_Job.html#SECTION00352000000000000000">new, powerful and flexible commands</a> most of those problems
+have been solved, so there should be no need of using external scripts and *we
+highly recommend you always use a HTCondor submit description file instead of
+developing scripts in other languages*. If you did that in the past, please,
+consider migrating your old scripts, we will give you support if you find any
+problems.
+</p>
+
+<p>
+In this section you will find templates and examples of HTCondor Submit
+Description Files. Use them as reference to create your own submit files and
+contact us if you have any doubt or issue. Topics:
+</p>
+
+<ul class="org-ul">
+<li>Creating a submit file (description and structure of
+submit files: comments, variables, commands, etc.)</li>
+<li>Templates and examples of submit files</li>
+<li>OLD examples</li>
+<li>Some more useful commands and info</li>
+</ul>
+
+
+<div class="mdframed">
+<p>
+<b>Caution!: Before submitting your real jobs, perform always some simple tests</b>
+ in order to make sure that both your submit file and program will work in a
+ proper way: if you are going to submit hundreds of jobs and each job takes
+ several hours to finish, before doing that try with just a few jobs and change
+ the input data in order to let them finish in minutes. Then check the results
+ to see if everything went fine before submitting the real jobs. Also we
+ recommend you use <code>condor_submit *-dry-run*</code> to debug your jobs and make sure
+ they will work as expected, see <b>useful commands</b> page). Bear in mind that
+ submitting untested files and/or jobs may cause a waste of time and resources
+ if they fail, and also your priority will be lower in following submissions.
+</p>
+
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgca647e1" class="outline-4">
+<h4 id="orgca647e1"><span class="section-number-4">1.3.2</span> Creating a Submit File</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+As many other languages, HTCondor submit files allow the use of comments,
+variable, macros, commands, etc. Here we will describe the most common ones, you
+can check the <a href="https://research.cs.wisc.edu/htcondor/manual">official documentation</a> for a complete and detailed
+information about submit files and submitting process.
+</p>
+</div>
+
+<div id="outline-container-org4a7e2c2" class="outline-5">
+<h5 id="org4a7e2c2"><span class="section-number-5">1.3.2.1</span> Comments</h5>
+<div class="outline-text-5" id="text-1-3-2-1">
+<p>
+HTCondor uses symbol <code>*#*</code> for comments. Everything found after that symbol will
+be ignored. Please, do not mix commands and comments in the same line, since it
+may produce errors. We recommend you always write commands and comments in
+different lines.
+</p>
+
+<pre class="example">
+# This is a valid comment
+A = 4  # This may produce errors when expanding =A=, do not use comments and 
+       #  anything else in the same line!
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org13556f3" class="outline-5">
+<h5 id="org13556f3"><span class="section-number-5">1.3.2.2</span> Variables and macros</h5>
+<div class="outline-text-5" id="text-1-3-2-2">
+<p>
+There are many predefined variables and macros in HTCondor that you can use, and
+you can define your own ones.
+</p>
+
+<ul class="org-ul">
+<li>To <b>define a variable</b>, just chose a valid name (names are case-insensitive)
+and assign a value to it, like <code>N = 4</code>, <code>Name = "example"</code></li>
+<li>To <b>get the value</b> of a variable, use next syntax: <code>$(varName)</code>, both <code>$</code>
+symbol and parentheses <code>()</code> are mandatory.</li>
+<li>You can do <b>basic operations</b> with variables, like <code>B = $(A) + 1</code>, etc. (since
+version 8.4.0 is not needed to use the old and complex syntax [@$$[(&#x2026;)]@]
+for the operations). To get the expression evaluated, you may need to use
+function macros like <code>$INT(B)</code>, <code>$REAL(B)</code>, etc.</li>
+<li>There are several special <b>automatic variables</b> defined by HTCondor that will
+help you when creating your submit file. The most useful one is <code>*$(Process)*</code>
+or <code>$(ProcId)</code>, that will contain the Process ID of each job (if you submit
+<code>N</code> jobs, the value of <code>$(Process)</code> will be <code>0</code> for the first job and <code>N-1</code> in
+the last job). This variable is like an <b>iteration counter</b> and you can use it
+to specify different inputs, outputs, arguments, &#x2026; for each job. There are
+some <b>automatic variables</b>, 
+like <code>$(Cluster)</code> or <code>$(ClusterId)</code> that stores the ID of each submission,
+<code>$(Item)</code>, <code>$(ItemIndex)</code>, <code>$(Step)</code>, <code>$(Row)</code>, etc. (see <b>Example1</b> for
+further information).</li>
+<li>There are several <b>pre-defined Function Macros</b>. Their syntax is
+<code>*$FunctName(varName)*</code> and they can perform some operations on variable
+<code>varName</code> like evaluating expressions and type conversions, selecting a value
+from a list according an index, getting random numbers, string operations,
+filenames processing, setting environment variables, etc. Before creating your
+own macros, check if HTCondor has already a <b>pre-defined Function Macro</b> with
+the same purpose.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org65721cc" class="outline-5">
+<h5 id="org65721cc"><span class="section-number-5">1.3.2.3</span> Submit commands</h5>
+<div class="outline-text-5" id="text-1-3-2-3">
+<p>
+You will need to add several HTCondor submit commands in your script file in
+order to specify which executable you want to run and where it is located, its
+arguments if any, input files, which result files will be generated, etc. There
+is a wide set of HTCondor with almost 200 different <b>submit description file
+commands</b> to cover many different scenarios. But in most situations you will
+only need to specify a few of them (usually about 10-15). Here we will present
+the most common ones (commands are case-insensitive):
+</p>
+
+<ul class="org-ul">
+<li><b>Mandatory commands:</b>
+<ul class="org-ul">
+<li><code>*executable*</code>: specify where your executable is located (you can use an
+absolute path, a relative one to the directory where you do the submission
+or to another directory specified with <code>initialdir</code>). You should specify
+<b>only the executable</b> and not other things like arguments, etc., there are
+specific commands for that. HTCondor will automatically copy the executable
+file from your machine to any machine where your job will be executed, so
+you do not need to worry about that.</li>
+<li><code>*queue*</code>: this command will send your job(s) to the queue, so it should be
+the last command in your submit file. In previous versions of HTCondor it
+was quite limited, only allowing the number of jobs as argument. But since
+version 8.4.0, this command is very powerful and flexible, and you can use
+it to specify variables, iterations over other commands, files to be
+processed, list of arguments, etc. <b>see complete syntax and examples</b>.</li>
+</ul></li>
+
+<li><b>Highly recommended commands:</b>
+<ul class="org-ul">
+<li><code>*output*</code>: it will copy the standard output printed on the screen
+(<code>stdout</code>) of the remote machines when executing your program to the local
+file you specify here. Since all the jobs will use the same name, the
+filename should include some variable parts that change depending on the job
+to avoid overwritten the same file, like <code>$(Process)</code> (and also <code>$(Cluster)</code>
+if you do not want that different submissions ruin your output files). Even
+if your program does not print any useful results on screen, it is very
+recommended you save the screen output to check if there were errors, debug
+them if any, etc.</li>
+<li><code>*error*</code>: the same as previous command, but for standard error output
+(<code>stderr</code>).</li>
+<li><code>*log*</code>: it will save a log of your submission that later can be analysed
+with HTCondor tools. This is very useful when there is any problem with your
+job(s) to find the problem and fix it.  The log should be the same for all
+jobs submitted in the same cluster, so you should <b>not</b> use <code>$(Process)</code> in
+the filename (but including <code>$(Cluster)</code> is recommended).</li>
+<li><code>universe</code>: there are several <b>runtime environments</b> in HTCondor called
+''universes'', we will mostly use the one named <code>vanilla</code> since it is the
+easiest one. This is the universe by default, so if you miss this command,
+your jobs will also go to <code>vanilla</code> universe.</li>
+</ul></li>
+
+<li><b>Useful commands when working with inputs and outputs (arguments, files,
+keyboard, etc.)</b>:
+<ul class="org-ul">
+<li><code>*arguments*</code>: it is used to specify options and flags for your executable
+file, like when using it in command line.</li>
+<li><code>*should_transfer_files*</code>: assign <code>YES</code> to it in order to activate HTCondor
+file transfer system (needed when working with files).</li>
+<li><code>*when_to_transfer_output*</code>: it will usually have a value of <code>ON_EXIT</code> to
+only copy output files when your job is finished, avoiding the copy of
+temporary or incomplete files if your job fails or it is moved to another
+machine.</li>
+<li><code>*transfer_input_files*</code>: it is used to specify where the needed input files
+are located. We can use a comma-separated list of files (with absolute or
+relative paths, as mentioned in <code>executable</code> command). Local path will be
+ignored, and HTCondor will copy all files to the root directory of a virtual
+location on the remote machine (your executable will be also copy to the
+same place, so input files will be in the same directory). If you specify a
+directory in this command, you can choose if you want to copy only the
+content of the directory (add a slash "<code>*/*</code>" at the end, for instance
+<code>myInputDir*/*</code>) or the directory itself and its content (do not add a
+slash).</li>
+<li><code>*transfer_output_files*</code>: a comma-separated list of result files to be
+copied back to our machine. If this command is omitted, HTCondor will
+automatically copy all files that have been created or modified on the
+remote machine. Sometimes omitting this command is useful, but other times
+our program creates many temporary or useless files and we only want to get
+the ones we specify with this command.</li>
+<li>More commands for input/output files:
+<ul class="org-ul">
+<li><code>transfer_output_remaps</code>: it changes the name of the output files when
+copying them to your machine. That is useful when your executable
+generates result file(s) with the same name, so changing the filename to
+include a variable part (like <code>$(Process)</code> and maybe also <code>$(Cluster)</code>)
+will avoid overwritten them.</li>
+<li><code>initialdir</code>: this command is used to specify the base directory for input
+and output files, instead of the directory where the submission was
+performed from. If this command include a variable part (like
+<code>$(Process)</code>), you can use this command to specify a different base
+directory for each job.</li>
+<li><code>input</code>: if your program needs some data from keyboard, you can specify a
+file or a comma-separated list of files containing it (each end of line in
+the file will have the same behaviour as pressing <code>Intro</code> key in the
+keyboard, like when using <code>stdin</code> redirection in command line with
+<code>*&lt;*</code>). As other similar commands, you can use absolute or relative paths.</li>
+<li><code>transfer_executable</code>: by default its value is <code>True</code>, but if it is set to
+<code>False</code>, HTCondor will not copy the executable file to the remote
+machine(s). This is useful when the executable is a system command or a
+program that is installed in all machines, so it is not needed to copy it.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+<ul class="org-ul">
+<li><b>Other useful commands:</b>
+<ul class="org-ul">
+<li><code>request_memory</code>, <code>request_disk</code>: if your program needs a certain amount of
+total RAM memory or free disk space, you can use these commands to force
+that your jobs will be only executed on machines with at least the requested
+memory/free disk space <b>HowTo</b></li>
+<li><code>requirements</code>: this is a very useful command if your program has any
+special needs. With it you can specify that your job can be only executed on
+some machines (or some machines cannot run your program) according to a wide
+set of parameters (machine name, operative system and version and a large
+etc.) <b>HowTo</b></li>
+<li><code>rank</code>: you can specify some values or combination of them (total memory,
+free disk space, MIPS, etc.) and HTCondor will choose the best machines for
+your jobs according to your specifications, where the higher the value, the
+better (this command is used to specify preferences, not requirements)
+<b>HowTo</b></li>
+<li><code>getenv</code>: if it is set to <code>True</code>, all your environment variables will be
+copied at submission time and they will be available when your program is
+executed on remote machines (if you do not use this command or it is set to
+<code>False</code>, then your jobs will have no environment variables). This is useful
+when running some programs that need a special environment, like python,
+etc. <b>HowTo</b></li>
+<li><code>nice_user</code>: if it is set to <code>True</code>, your jobs will be executed with a fake
+user with very low priority, what could be very useful when the queue is
+(almost) empty, so you can run your jobs without wasting your real user
+priority (you can activate and deactivate this feature when your jobs are
+being executed, so you can begin running your jobs as nice user if the queue
+is empty and change to normal user when the queue has many other jobs, or
+vice versa) <b>HowTo</b></li>
+<li><code>concurrency_limits</code>: you can limit the maximum number of your jobs that
+could be executed at the same time. You should use this command if your
+program needs licences and there are a few of them (like <code>IDL</code>, see also
+<b>CondorAndidlvirtualmachine</b>) or if for any reason you cannot use the
+HTCondor file transfer system and all your jobs access to the same shared
+resource (<code>/scratch</code>, <code>/net/nas</code>, etc.), in order to avoid that too many
+concurrent access can stress the network <b>CondorHowTo#howto<sub>limit</sub></b></li>
+<li><code>include</code>: since HTCondor v8.4.0, it is possible to <b>include externally
+defined submit commands</b> using syntax: <code>*include :* ''&lt;myfile&gt;''</code>. You can
+even include the output of external scripts that will be executed at
+submission time, adding a pipe symbol after the file: <code>*include :*
+    ''&lt;myscript.sh&gt;'' *|*</code></li>
+<li>More useful commands:
+<ul class="org-ul">
+<li><code>environment</code>: this command will allow you to set/unset/change any
+environment variable(s) <b>CondorHowTo#howto<sub>env</sub></b></li>
+<li><code>priority</code>: if some of your jobs/clusters are more important than others
+and you want to execute them first, you can use <code>priority</code> command to
+assign them a priority (the higher the value, the higher priority). This
+command only have an effect on your own jobs, and it is not related to
+users priority <b>CondorHowTo#howto<sub>priority</sub></b>.</li>
+<li><code>job_machine_attrs</code>, <code>job_machine_attrs_history_length</code>: use these
+commands to reduce the effects of ''black holes'' in HTCondor, what causes
+that many of your jobs could fail in a short time
+<b>CondorHowTo#howto<sub>failing</sub></b></li>
+<li><code>noop_job</code>: you specify a condition and those jobs that evaluate it to
+true will not be executed. This is useful when some of your jobs failed
+and you want to repeat only the failing jobs, not all of them
+<b>CondorHowTo#howto<sub>failing</sub></b></li>
+<li><code>+PreCmd</code>, <code>+PreArguments</code>, <code>+PostCmd</code>, <code>+PostArguments</code>: These commands
+allow you to run some scripts before and/or after your executable. That is
+useful to prepare, convert, decompress, etc. your inputs and outputs if
+needed, or debug your executions <b>CondorHowTo#howto<sub>prepostcmd</sub></b></li>
+<li><code>notify_user</code>, <code>notification</code>: use these commands if you want to receive a
+notification (an email) when your jobs begin, fail and/or finish
+<b>CondorHowTo#howto_<sub>notify</sub></b></li>
+<li><code>if</code> &#x2026; <code>elif</code> &#x2026; <code>else</code> &#x2026;  <code>endif</code>: since HTCondor version 8.4.0, a
+<b>limited conditional semantic</b> is available. You can use it to specify
+different commands or options depending on the defined/undefined
+variables, HTCondor version, etc.</li>
+<li><code>on_exit_hold</code>, <code>on_exit_remove</code>, <code>periodic_hold</code>, <code>periodic_remove</code>,
+<code>periodic_release</code>, etc.: you can modify the default behaviour of your
+jobs and the associated status. These commands can be used in a wide set
+of circumstances. For instance, you can force that jobs that are running
+for more than X minutes or hours will be deleted or get a ''on hold''
+status (with this you can prevent that failing jobs will be running
+forever, since they will be stopped or deleted if they run for a much
+longer while than expected) or the opposite, hold those jobs that finish
+in an abnormal short time to check later what happened. Or you can also
+periodically release your held jobs, to run them on other machines if for
+any reason your jobs work fine on some machines, but fail on others
+<b>CondorHowTo#howto<sub>failing</sub></b></li>
+<li><code>deferrall_time</code>, <code>deferral_window</code>, <code>deferral_prep_time</code>: you can force
+your jobs begin at a given date and time. That is useful when the input
+data is not ready when submitting and your jobs have to wait till a
+certain time <b>CondorHowTo#howto<sub>runintime</sub></b></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgba87dc3" class="outline-4">
+<h4 id="orgba87dc3"><span class="section-number-4">1.3.3</span> Templates and examples</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<p>
+Here you can find basic templates of submit files, you can use them as starting
+point and then do the customizations needed for your executions. Check the
+examples in following sections for details and explanations.
+</p>
+</div>
+
+<div id="outline-container-org8f693d4" class="outline-5">
+<h5 id="org8f693d4"><span class="section-number-5">1.3.3.1</span> Common Template</h5>
+<div class="outline-text-5" id="text-1-3-3-1">
+<pre class="example">
+######################################################
+# HTCondor Submit Description File. COMMON TEMPLATE   
+# Next commands should be added to all your submit files   
+######################################################
+if !defined FNAME
+  FNAME = condor_exec
+endif
+ID      = $(Cluster).$(Process)
+
+output  = $(FNAME).$(ID).out
+error   = $(FNAME).$(ID).err
+log     = $(FNAME).$(Cluster).log
+
+universe                = vanilla
+should_transfer_files   = YES
+when_to_transfer_output = ON_EXIT
+</pre>
+
+<ul class="org-ul">
+<li><p>
+<b>Explanation:</b>
+</p>
+
+<p>
+Let's analyse the common template: 
+</p>
+<ul class="org-ul">
+<li>First block:
+<ul class="org-ul">
+<li>Here we will define some variables that will be used later. The first of
+them is <code>FNAME</code> and first we ask with the <code>if defined</code> condition whether
+that variable is not already defined (if so, we will use the previous
+value). This variable will contain the base name for the files where
+HTCondor will save the information displayed on the screen (<code>stdout</code> and
+<code>stderr</code>) and the log file. It is interesting to give a common name to
+those files generated by HTCondor so later we can identify and manage them
+together. Since all jobs will use the name specified there, we have to
+include a variable part that has to be different in each job, in order to
+avoid overwriting the files. We recommend you use a combination of
+<code>$(Process)</code> (it contains the process ID that is different for each job)
+and <code>$(Cluster)</code> (it contains the cluster ID that is different for each
+submission), as we have done when defining <code>$(ID)</code>. In this way, different
+jobs and different submission will use different filenames and none of
+them will be overwritten.</li>
+</ul></li>
+<li>Second block:
+<ul class="org-ul">
+<li>With <code>output</code> command we force HTCondor to write in the specified file all
+the screen output (<code>stdout</code>) generated by each job. We have used the
+variables <code>$(FNAME)</code> and <code>$(ID)</code> defined above.</li>
+<li>With <code>error</code> command we manage <code>stderr</code> in the same way we did with
+<code>output</code>.</li>
+<li>Then we have also specified a HTCondor log file with <code>log</code> command. You
+should not use <code>$(Process)</code> in the filename of the log since all jobs
+should share the same log.</li>
+</ul></li>
+<li>Third block:
+<ul class="org-ul">
+<li><code>universe</code>: there are <b>runtime environments</b>
+in HTCondor called ''universes'', we will mostly use the one named
+<code>vanilla</code> since it is the easiest one. This is the universe by default, so
+if you miss this command, your jobs will go also to <code>vanilla</code> universe.</li>
+<li><code>should_transfer_files=YES</code> and <code>when_to_transfer_output=ON_EXIT</code> commands
+are used to specify that input files have to be copied to the remote
+machines and output files must be copied back to your machine only when
+our program is finished. Although these commands are only needed when
+working with files, we recommend you always use them unless you are
+totally sure you can omit them.</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org7417f11" class="outline-5">
+<h5 id="org7417f11"><span class="section-number-5">1.3.3.2</span> Examples when working with input/output files and arguments</h5>
+<div class="outline-text-5" id="text-1-3-3-2">
+<p>
+Most times you will want to run applications that deal with input and/or output
+files. Commonly, the input files will be located on your local machine, but
+since your application will be executed on other machine(s), it will be needed
+to copy your input files there, and then copy the result files back to your
+computer once your program is done. HTCondor have some commands to automatically
+do both operations in an easy way, so you do not need to worry about the file
+transfers: you just need to specify where your files are and HTCondor will copy
+them.
+</p>
+
+<p>
+<b>Note:</b> All these examples will begin defining a specific variable <code>FNAME</code> that
+contains the base name of the files that HTCondor will generate to save the
+<code>stdout</code>, <code>stderr</code> and log. Next, the common template explained above with be
+included using command <code>include</code> (we assume that the common template filename is
+<code>condor_common.tmpl</code>).
+</p>
+</div>
+
+<div id="outline-container-org9b00ff4" class="outline-6">
+<h6 id="org9b00ff4"><span class="section-number-6">1.3.3.2.1</span> <b>Example A</b> (arbitrary filenames)</h6>
+<div class="outline-text-6" id="text-1-3-3-2-1">
+<p>
+Process all input files with extension <code>.in</code> in a given directory with next
+program: <code>./myprogram -i inputFile -o outputFile</code>
+</p>
+
+<pre class="example">
+# Including Common Template
+FNAME = exampleA
+include : /path/to/condor_common.tmpl
+
+transfer_input_files    = $(mydata)
+transfer_output_files   = $Fn(mydata).out
+
+executable    = myprogram
+arguments     = "-i $Fnx(mydata) -o $Fn(mydata).out"
+
+queue *mydata* matching files /path/to/inputs/*.in
+</pre>
+
+<ul class="org-ul">
+<li><p>
+<b>Explanation:</b> 
+We use <code>transfer_input_files</code> to specify where the needed input files are
+located. We can use a comma-separated list of files, but since we do not know
+the name of the files, we will use the variable <code>mydata</code> to specify them. That
+variable is defined in the last line, with the <code>queue</code> command: there, we choose
+to process all files in <code>/path/to/inputs</code> with extension <code>.in</code>. When submitting,
+HTCondor will check that directory and it will automatically create a job for
+each <code>.in</code> file found there, assigning the complete filename to <code>mydata</code> (in
+this way, each job will work with a different file). We have used the <code>matching
+  files</code> to specify that we only want files matching the condition, but we can
+also select only directories (<code>matching dirs</code>) or both of them (just
+<code>matching</code>).
+</p>
+
+<p>
+With <code>transfer_output_files</code> we set the name of the output files, that is the
+same as the input file with <code>.out</code> extension. To remove the old extension we use
+the <code>$Fn</code> macro, that is one of the <b>new Function Macros</b>
+available since version 8.4.0, used to operate the filename and extract the
+path, name without extension, extension, etc.
+</p>
+
+<p>
+Then we use <code>executable</code> to specify the name of the executable (it can be a
+system command, your own application, a script, etc). We can use a absolute path
+or a relative one to the directory where we will perform the submission. This
+executable will be copied to all remote machines automatically. Finally,
+<code>arguments</code> is used to specify the options for the program. We have to employ
+again <code>Fpdnxq</code> macros, first <code>Fnx</code> to remove the original path (file we be
+copied to the root of a virtual location where HTCondor will run the executable
+on the remote machine) and then <code>Fn</code> to remove path and change extension of the
+output file.
+</p></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org582942f" class="outline-6">
+<h6 id="org582942f"><span class="section-number-6">1.3.3.2.2</span> <b>Example B</b> (based on ProcessID, old system before HTCondor v8.4.0)</h6>
+<div class="outline-text-6" id="text-1-3-3-2-2">
+<p>
+Process 50 input files with consecutive names (from data0.in to data49.out)
+using the same program as previous example
+</p>
+
+<pre class="example">
+# Including Common Template
+FNAME = example2
+include : /path/to/condor_common.tmpl
+
+transfer_input_files    = /path/to/inputs/data$(Process).in
+transfer_output_files   = data$(Process).out
+
+N             = 50
+executable    = myprogram
+arguments     = "-i data$(Process).in -o data$(Process).out"
+
+queue $(N)
+</pre>
+
+<ul class="org-ul">
+<li><p>
+<b>Explanation:</b>
+<code>transfer_input_files</code> command allows a comma-separated list of files or
+directories that will be copied to the remote machine. Local path will be
+ignored, and HTCondor will copy all files to the root directory of a virtual
+location on the remote machine (your executable will be also copy to the same
+place, so input files will be in the same directory). If you specify a directory
+in this command, you can choose if you want to copy only the content of the
+directory (add a slash "<code>*/*</code>" at the end, for instance <code>myInputDir*/*</code>) or the
+directory itself and its content (do not add a slash). In this case, each job
+will process a different input file, and since they have a consecutive name
+beginning from <code>0</code>, we will use HTCondor macro <code>$(Process)</code> to build the proper
+name, since the process ID will be <code>0</code> from the first job to <code>N-1</code> for the last
+job.
+</p>
+
+<p>
+With <code>transfer_output_files</code> we specify a comma-separated list of result files
+to be copied back to our machine. In this case, we specify just one file, with
+the same name as the input file, but with <code>.out</code> extension.
+</p>
+
+<p>
+Then we define the variable <code>N</code> to specify the number of jobs to be
+executed. Our program is set using <code>executable</code> command and with <code>arguments</code>
+command we specify all the needed options (here the name of the input and output
+file with the corresponding flags).
+</p>
+
+<p>
+At the end, we send all jobs to the queue with <code>queue</code> command, specifying how
+many jobs we want (we have used the variable <code>N</code>). 
+</p></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org9268ef4" class="outline-6">
+<h6 id="org9268ef4"><span class="section-number-6">1.3.3.2.3</span> <b>Example C</b> (lists of files and arguments written in submit file)</h6>
+<div class="outline-text-6" id="text-1-3-3-2-3">
+<p>
+Process all arbitrary files and arguments of a given list. Executable is
+ <code>myprogram</code> and it needs an input file with extension <code>.dat</code> and some
+ arguments. Results will be printed on screen (<code>stdout</code>). 
+</p>
+
+<pre class="example">
+# Including Common Template
+FNAME = exampleC
+include : /path/to/condor_common.tmpl
+
+executable    = myprogram
+
+queue transfer_input_files,arguments *from* (
+  xray434.dat, -d 345 -p f034
+  sunf37.dat,  -d 2   -p f302
+  light67.dat, -d 62  -p f473
+) 
+</pre>
+
+<ul class="org-ul">
+<li><b>Explanation:</b></li>
+</ul>
+
+<p>
+We will use the flexibility of <code>queue</code> command to assign values of a list to
+several commands. We must specify which files must be transferred and which
+arguments are needed by each file. We specify then <code>transfer_input_files</code> and
+<code>arguments</code> commands using the <code>from</code> option, and then we add a list of pairs
+''file,argument''.
+</p>
+
+<p>
+At submission time, HTCondor will iterate over the list and expand the
+assignations. For instance, our jobs will have next values:
+</p>
+
+<ul class="org-ul">
+<li><code>transfer_input_files = xray434.dat, arguments = -d 345 -p f034-</code></li>
+<li><code>transfer_input_files = sunf37.dat, arguments = -d 2   -p f302-</code></li>
+<li><code>transfer_input_files = light67.dat, arguments = -d 62  -p f473-</code></li>
+</ul>
+
+<p>
+When using this format you can specify as many commands separated by commas as
+needed between <code>queue</code> and <code>from</code>, but check that each line in the list has the
+right number of elements also separated by commas.
+</p>
+
+<p>
+Writing the list of items in the submit file can be a little bit tedious, but it
+may be easily done in an external file using scripts. Then you can directly
+specify the file. For instance, suppose you have all items in a file named
+<code>data.lst</code>, then you can use next <code>queue</code> command: 
+<code>queue transfer_input_files,arguments from /path/to/data.lst</code>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Ángel de Vicente</p>
+<p class="email">Email: <a href="mailto:angel.de.vicente@iac.es">angel.de.vicente@iac.es</a></p>
+<p class="date">Created: 2023-02-26 Sun 07:25</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
