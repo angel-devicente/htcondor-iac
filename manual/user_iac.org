@@ -1,4 +1,4 @@
-# Time-stamp: <2023-02-26 21:09:31 angelv> 
+# Time-stamp: <2023-02-26 22:02:49 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -63,7 +63,7 @@ number of yours and others' computations at a time in different machines when
 they are not being used, achieving a better utilization of our resources. A more
 detailed overview of HTCondor is available at the [[https://htcondor.readthedocs.io/en/v10_0/overview/index.html][official documentation]].
 
-** How HTCondor can help you
+** How can HTCondor help me?
 
 HTCondor is very useful when you have an application that has to run a large
 number of times over different input data. For instance, suppose you have a
@@ -119,86 +119,70 @@ Detailed information about each machine can be obtained with the command
 
 HTCondor provides a simple mechanism by which you can specify a set of
 requirements for the machines where you want your application to run, for
-example: memory per slot, OS version, etc. (see Section [[*Submit files]]).
+example: memory per slot, OS version, etc. (see Section [[*Submit files (TBD)]]).
 
-** Who can use HTCondor? How does it work? Do I need to change my application?
+** How can I use HTCondor? 
 
-If you have a computer account at the IAC and you can log in on a Linux PC
-Desktop connected to the internal network, then you should be able to use
-HTCondor with no problems (try @@condor_version@@ command to check whether
-HTCondor is installed. Please contact us if it is not or you experience any
-issue).
+If you have an account in the IAC network, then you can use HTCondor. 
 
-HTCondor is a batch-processing system, so you only need to submit your jobs to
-the HTCondor queue and it will do all the work. The submission is done using a
-HTCondor script where you specify your executable, its arguments, inputs and
-outputs, etc. (visit HTCondor submit files page to see some
-examples and recommendations). You do not need to prepare or compile your
-programs in any special way to run them, and almost all programming languages
-that are commonly used at IAC should be suitable to be run with HTCondor (shell
-scripts, Python, Perl, C, Fortran, IDL, etc.). Sometimes a few minor
-modifications may be needed in order to specify arguments and the locations of
-inputs or outputs, so that HTCondor can find them, but that should be all.
+HTCondor is a batch-processing system (i.e. non-interactive), so you submit jobs
+to the HTCondor queue with the =condor_submit= command, and providing a text
+submission file, where you specify the executable file, its arguments, inputs
+and outputs, etc. (see Section [[*Submitting jobs]]).
 
-Once the submitted jobs are in HTCondor queue, it uses its allocation algorithm
-to send and execute your jobs on those idle slots that satisfy your
+You do not need to prepare or compile your programs in any special way to run
+them, and almost all programming languages should be suitable (shell scripts,
+Python, Perl, C, Fortran, IDL, etc.). Sometimes a few minor modifications may be
+needed in order to specify arguments and the locations of inputs or outputs.
+
+** Where will my application run?
+
+When you submit jobs to the HTCondor queue, HTCondor uses its allocation
+algorithm to send and execute your jobs on those idle slots that satisfy your
 requirements. Idle slots are those located in machines where there has been no
-keyboard/mouse activity for a long while and the computer load is low enough to
-ensure that there is no interference with the owner's processes. While HTCondor
-is running its jobs, it also keeps checking that the owner is not using the
-machine. If HTCondor detects any activity in the computer (for instance, a key
-is pressed), then it will suspend all its jobs and wait a little while to see
-whether the machine gets idle again so as to resume the jobs. If the owner keeps
-working, HTCondor will interrupt all jobs and send them to other available slots
-in any other idle machine. HTCondor will repeat this process till all jobs are
-done, sending notifications via email when they are finished or if any errors
-show up.
+keyboard/mouse activity for a long time and the computer load is low enough to
+ensure that there is no interference with the owner's processes. 
 
-** I am using HTCondor, should I add an acknowledgement text in my publications?
+While HTCondor is running its jobs, it also keeps checking that the owner is not
+using the machine. If HTCondor detects any activity in the computer (for
+instance, keyboard activity), then it will suspend all its jobs and wait a
+little while to see whether the machine gets idle again so as to resume the
+jobs. If the machine does not become idle in a short time, HTCondor will
+/vacate/ it, interrupting all HTCondor jobs and sending them to other available
+slots in any other idle machine. 
 
-Yes, you should mention it in the acknowledgments of your papers or any other
-publications where you have used HTCondor. Although there is no standard format,
-we suggest the following:
+HTCondor will repeat this process untill all jobs are done, optionally sending
+notifications via email when they are finished or if any errors show up.
 
->>frame<< ''"This paper made use of the IAC Supercomputing facility HTCondor
+** Acknowledging HTCondor in publications
+
+It is important that you acknowledge HTCondor in any publication of your work
+where you have used HTCondor (and we would be grateful if you could send us the
+details of the published paper). This will help us to improve the visibility of
+the HTCondor@IAC facility and ensure that it is available at the IAC for the
+foreseable future. Although there is no standard acknowledgment format, we
+suggest the following:
+
+#+begin_example
+This paper made use of the IAC Supercomputing facility HTCondor
 (http://research.cs.wisc.edu/htcondor/), partly financed by the Ministry of
-Economy and Competitiveness with FEDER funds, code IACA13-3E-2493."''  >><<
+Economy and Competitiveness with FEDER funds, code IACA13-3E-2493.
+#+end_example
 
-If you have used any other IAC Supercomputing facilities (LaPalma, TeideHPC,
-etc.), please, add them in the acknowledgments too:
+** Further information, support
 
-'''LaPalma''': ''"The author thankfully acknowledges the technical expertise and
-assistance provided by the Spanish Supercomputing Network (Red Española de
-Supercomputación), as well as the computer resources used: the LaPalma
-Supercomputer, located at the Instituto de Astrofísica de Canarias."''
-
-'''TeideHPC''': ''"The author(s) wish to acknowledge the contribution of Teide
-High-Performance Computing facilities to the results of this research. TeideHPC
-facilities are provided by the Instituto Tecnológico y de Energías Renovables
-(ITER, SA). URL: http://teidehpc.iter.es/"''
-
-** I need more information or have some problems, who can help me...?
-
-If you need further information, please check the other pages about HTCondor at
-the SIEpedia: Useful Commands, Submit Files (description and examples), Submit
-Files (HowTo), FAQs, etc. HTCondor at SIEpedia is continuously updated, but we
-also have more documentation about older versions of HTCondor at the [[http://research.iac.es/sieinvens/SINFIN/Condor/index.php][the
-HTCondor section at IAC]] (most of that information is still valid, but some may
-be obsolete, including broken links). For detailed and complete information,
-check the [[http://research.cs.wisc.edu/htcondor/manual/v8.6/][official documentation about HTCondor]].
+This manual is only a brief introduction to all HTCondor has to offer. For
+detailed and complete information, check the official [[https://htcondor.readthedocs.io/en/v10_0/][HTCondor v10.0 Manual]].
 
 If you need help or you are having any kind of issues related to HTCondor,
-'''the SIE gives direct support''' to IAC's users who want to use HTCondor: we
-will not code your whole application, but we help and advise you about how to
-get the most out of HTCondor: use its commands, create submit files, modify your
-application to run it with HTCondor (in case it is needed), fix common mistakes,
-etc. We also organize workshops about HTCondor for IAC's users (the last one was
-on February, 25th 2014 - [[https://docs.google.com/presentation/d/1PqCih4yL6D3FOFo0W336RjLCKrSICZbYuPX1F1CZqtQ/present#slide=id.p][slides]], and we can organize a new workshop on demand if
-you and your colleges need it: if the group is large enough -10 or 12 people-,
-just contact us!).
+the SIE gives direct support to IAC's users who want to use HTCondor: we
+will not code your whole application, but we will help and advise you on how to
+get the most out of HTCondor. 
 
+If you want to stay informed about HTCondor@IAC updates, tips, etc. there is a
+low traffic mailing list (send us an e-mail if you want to be subscribed to it).
 
-* Useful Commands
+* Useful Commands (TBD)
 
 HTCondor has several dozens of commands, but in this section we will present
 just the most common ones (if you want to check the complete list, try the
@@ -437,7 +421,7 @@ transferring input; and *>*: transferring output]. Useful options:
   about HTCondor: http://carlota:81/condor_stats/ and http://nectarino/.
 
 
-* Submit files 
+* Submit files (TBD)
 
 ** Introduction
 
@@ -4615,6 +4599,6 @@ los administradores de Condor en la dirección de correo condor@iac.es.
 
 ** Python bindings                                                 :noexport:
 
-* TODO TO DOs [0/1]                                                :noexport:
-
+* TODO TO DOs [0/2]                                                :noexport:
   + [ ] Pre-introduction: date of FEDER funds?
+  + [ ] Write info about policies burros vs desktops
