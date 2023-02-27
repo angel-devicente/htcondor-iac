@@ -1,40 +1,45 @@
 
 # Table of Contents
 
-1.  [Introduction](#orged28c07)
-    1.  [What is HTCondor?](#org03da304)
-    2.  [How can HTCondor help me?](#org21819c5)
-    3.  [How **powerful** is HTCondor?](#orgd21db17)
-    4.  [Which machines are part of HTCondor?](#orgaee1d84)
-    5.  [How can I use HTCondor?](#orge5b1bc7)
-    6.  [Where will my application run?](#orgfb1b9af)
-    7.  [Basic HTCondor workflow](#orgaa11284)
-    8.  [Acknowledging HTCondor in publications](#orgd9fc6c7)
-    9.  [Further information and support](#org62db7f2)
-2.  [Main HTCondor commands](#org4f9f19f)
-    1.  [Checking pool status](#orgf589b93)
-    2.  [Submitting jobs](#orgc30703d)
-    3.  [Checking and managing submitted jobs](#orgb331372)
-    4.  [Getting info from logs](#org5ee95f7)
-    5.  [Other commands](#org0fedb05)
-3.  [Submit files (TBD)](#org76a7f94)
-    1.  [Introduction](#org9b601f9)
-    2.  [Creating a Submit File](#org6ea48bf)
-        1.  [Comments](#org73d93c5)
-        2.  [Variables and macros](#org90a8e5c)
-        3.  [Submit commands](#orgb380b34)
-    3.  [Templates and examples](#org1ebc263)
-        1.  [Common Template](#orgd9f3da8)
-        2.  [Examples when working with input/output files and arguments](#org965ecb9)
-            1.  [**Example A** (arbitrary filenames)](#org5adb645)
-            2.  [**Example B** (based on ProcessID, old system before HTCondor v8.4.0)](#org24aa949)
-            3.  [**Example C** (lists of files and arguments written in submit file)](#org1cf0c3b)
-            4.  [Example D (lists of files and arguments in external file)](#orgc323561)
-            5.  [Example E (`stdin`, `initialdir` external scripts and lists)](#org93e7de2)
-            6.  [Example F (loops)](#orgf8dc0ba)
-            7.  [Example G](#orgcfa922f)
+1.  [Introduction](#org914c41d)
+    1.  [What is HTCondor?](#org23d7936)
+    2.  [How can HTCondor help me?](#orgc07b9c0)
+    3.  [How **powerful** is HTCondor?](#org15d0fe3)
+    4.  [Which machines are part of HTCondor?](#orgafd9f1b)
+    5.  [How can I use HTCondor?](#orgf8f63df)
+    6.  [Where will my application run?](#org11f6fdd)
+    7.  [Basic HTCondor workflow](#org769456b)
+    8.  [Acknowledging HTCondor in publications](#org8aadf46)
+    9.  [Further information and support](#orgcf643ac)
+2.  [Main HTCondor commands](#org274d4ea)
+    1.  [Checking pool status](#orge9c533f)
+    2.  [Submitting jobs](#org83257c7)
+    3.  [Checking and managing submitted jobs](#org53c7c67)
+    4.  [Getting info from logs](#orge4beff7)
+    5.  [Other commands](#org28b4eb5)
+3.  [Submit files (TBD)](#org48a9e0d)
+    1.  [Introduction](#org62e4078)
+    2.  [Creating a Submit File](#orgb2a5fda)
+        1.  [Comments](#orgc14b1cf)
+        2.  [Variables and macros](#org1c2047d)
+        3.  [Submit commands](#org33d0cb8)
+    3.  [Templates and examples](#org1ad297d)
+        1.  [Common Template](#org3ca8f42)
+        2.  [Examples when working with input/output files and arguments](#orgc472ed7)
+            1.  [**Example A** (arbitrary filenames)](#org8831d0f)
+            2.  [**Example B** (based on ProcessID, old system before HTCondor v8.4.0)](#orga439196)
+            3.  [**Example C** (lists of files and arguments written in submit file)](#org13b1ff3)
+            4.  [Example D (lists of files and arguments in external file)](#org8e22885)
+            5.  [Example E (`stdin`, `initialdir` external scripts and lists)](#org0d7ae6c)
+            6.  [Example F (loops)](#org2e83b70)
+            7.  [Example G](#orga20c480)
 
-<div class="mdframed">
+
+
+<a id="org914c41d"></a>
+
+# Introduction
+
 <div class="warning">
 If you have no experience with HTCondor, we recommend that you contact us before
 running any job so we can give you a quick introduction (bear in mind that you
@@ -43,9 +48,6 @@ you must follow to avoid disturbing them).
 
 </div>
 
-</div>
-
-<div class="mdframed">
 <div class="note">
 The HTCondor infrastructure at the IAC has been recently expanded and improved,
 with about 100 new Linux desktop PCs financed by the Ministry of Economy and
@@ -53,15 +55,8 @@ Competitiveness through FEDER funds, code IACA13-3E-2493.
 
 </div>
 
-</div>
 
-
-<a id="orged28c07"></a>
-
-# Introduction
-
-
-<a id="org03da304"></a>
+<a id="org23d7936"></a>
 
 ## What is HTCondor?
 
@@ -76,7 +71,7 @@ they are not being used, achieving a better utilization of our resources. A more
 detailed overview of HTCondor is available at the [official documentation](https://htcondor.readthedocs.io/en/v10_0/overview/index.html).
 
 
-<a id="org21819c5"></a>
+<a id="orgc07b9c0"></a>
 
 ## How can HTCondor help me?
 
@@ -93,7 +88,7 @@ execute your program there with different inputs and bring back the results to
 your machine when they are complete.
 
 
-<a id="orgd21db17"></a>
+<a id="org15d0fe3"></a>
 
 ## How **powerful** is HTCondor?
 
@@ -107,7 +102,7 @@ available slots could be around 400 during office hours and around 700 at nights
 and weekends.
 
 You can see real-time **HTCondor@IAC statistics** (global and per user) [here](http://pasa/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false). Figure
-[7](#org3bb57cb) is an example showing the global usage where *Owner* represents
+[7](#org6ceb000) is an example showing the global usage where *Owner* represents
 *slots* that are being used outside of HTCondor. The remaining *slots* are
 available to HTCondor, but if there are no eligible jobs to run, those slots
 will be in *CPUsNotInUse* state. Those *slots* that are actually being used by
@@ -116,7 +111,7 @@ HTCondor are those in the *CPUsInUse* state.
 ![img](images/introduction/weekly_usage.png "Weekly global usage")
 
 
-<a id="orgaee1d84"></a>
+<a id="orgafd9f1b"></a>
 
 ## Which machines are part of HTCondor?
 
@@ -134,14 +129,14 @@ every machine (see the [software supported by the SIE](http://research.iac.es/si
 run almost every application in any machine.
 
 Detailed information about each machine can be obtained with the command
-`condor_status` (see Section [2.1](#orgf589b93)). 
+`condor_status` (see Section [2.1](#orge9c533f)). 
 
 HTCondor provides a simple mechanism by which you can specify a set of
 requirements for the machines where you want your application to run, for
-example: memory per slot, OS version, etc. (see Section [3](#org76a7f94)).
+example: memory per slot, OS version, etc. (see Section [3](#org48a9e0d)).
 
 
-<a id="orge5b1bc7"></a>
+<a id="orgf8f63df"></a>
 
 ## How can I use HTCondor?
 
@@ -150,7 +145,7 @@ If you have an account in the IAC network, then you can use HTCondor.
 HTCondor is a batch-processing system (i.e. non-interactive), so you submit jobs
 to the HTCondor queue with the `condor_submit` command, and providing a text
 submission file, where you specify the executable file, its arguments, inputs
-and outputs, etc. (see Section [2.2](#orgc30703d)).
+and outputs, etc. (see Section [2.2](#org83257c7)).
 
 You do not need to prepare or compile your programs in any special way to run
 them, and almost all programming languages should be suitable (shell scripts,
@@ -158,7 +153,7 @@ Python, Perl, C, Fortran, IDL, etc.). Sometimes a few minor modifications may be
 needed in order to specify arguments and the locations of inputs or outputs.
 
 
-<a id="orgfb1b9af"></a>
+<a id="org11f6fdd"></a>
 
 ## Where will my application run?
 
@@ -180,7 +175,7 @@ HTCondor will repeat this process untill all jobs are done, optionally sending
 notifications via email when they are finished or if any errors show up.
 
 
-<a id="orgaa11284"></a>
+<a id="org769456b"></a>
 
 ## Basic HTCondor workflow
 
@@ -195,7 +190,6 @@ basic example to **Quick Start** you.
     You can use the command `condor_status`, to quickly check the status of the
     HTCondor pool:
     
-    <div class="mdframed">
         [angelv@denso ~]$ condor_status -compact
         Machine             Platform     Slots Cpus Gpus  TotalGb FreCpu  FreeGb  CpuLoad ST
         
@@ -212,8 +206,6 @@ basic example to **Quick Start** you.
           x64/Ubuntu18   868   318       2       548       0          0        0      0
         
                  Total   868   318       2       548       0          0        0      0
-    
-    </div>
 
 -   **Submitting a job**
     
@@ -223,7 +215,6 @@ basic example to **Quick Start** you.
         
         For example, given the following basic C code (`simple.c`):
         
-        <div class="mdframed">
             #include <stdio.h>
             
             main(int argc, char **argv)
@@ -247,21 +238,15 @@ basic example to **Quick Start** you.
                 return failure;
             }
         
-        </div>
-        
         You would compile it as usual:
         
-        <div class="mdframed">
             gcc -o simple simple.c
-        
-        </div>
     
     -   **a *submit file***
         
         The submit file specifies the name of your executable (`simple`), how many
         jobs to submit (`Queue 100`), etc.
         
-        <div class="mdframed">
             Universe   = vanilla
             Executable = simple
             Arguments  = 400 10
@@ -271,20 +256,15 @@ basic example to **Quick Start** you.
             nice_user  = True
             
             Queue 100
-        
-        </div>
     
     -   **the `condor_submit` command**
         
         Using the *submit file* as an argument to the command `condor_submit` you
         instruct HTCondor to start executing your job in the HTCondor Pool.
         
-        <div class="mdframed">
             [angelv@denso ~]$ condor_submit test.condor
             Submitting job(s)...........................................................
             100 job(s) submitted to cluster 4.
-        
-        </div>
 
 -   **Checking the progress of the submitted jobs**
     
@@ -292,7 +272,6 @@ basic example to **Quick Start** you.
     following example we can see that all the 100 jobs submitted above are successfully
     running:
     
-    <div class="mdframed">
         [angelv@denso ~]$ condor_q
         
         -- Schedd: denso.ll.iac.es : <161.72.216.13:9618?... @ 02/27/23 09:27:40
@@ -302,8 +281,6 @@ basic example to **Quick Start** you.
         Total for query: 100 jobs; 0 completed, 0 removed, 0 idle, 100 running, 0 held, 0 suspended 
         Total for angelv: 100 jobs; 0 completed, 0 removed, 0 idle, 100 running, 0 held, 0 suspended 
         Total for all users: 100 jobs; 0 completed, 0 removed, 0 idle, 100 running, 0 held, 0 suspended
-    
-    </div>
 
 -   **Getting information from the logs**
     
@@ -318,12 +295,9 @@ basic example to **Quick Start** you.
     of each job (in this case, given that we submitted 100 jobs, the numbers will
     go from 0 to 99). For example, the file `simple.0.out` could read:
     
-    <div class="mdframed">
         [angelv@denso ~]$ cat simple.0.out 
         Thinking really hard for 400 seconds...
         We calculated: 20
-    
-    </div>
     
     Also, a global log of the steps taken by HTCondor to execute your jobs can
     generated (in the example above called `simple.log`). This log will give you
@@ -331,7 +305,6 @@ basic example to **Quick Start** you.
     was evicted or had any other problems, etc. In this example, the file
     `simple.log` could read: 
     
-    <div class="mdframed">
         [angelv@denso ~]$ cat simple.log 
         000 (004.000.000) 2023-02-27 09:24:41 Job submitted from host: <161.72.216.13:9618?addrs=161.72.216.13-9618+[2001-720-1610-50d8--d]-9618&alias=denso.ll.iac.es&noUDP&sock=schedd_3008_d0f7>
         ...
@@ -371,11 +344,9 @@ basic example to **Quick Start** you.
                    Memory (MB)          :        0        1      4024
         
                 Job terminated of its own accord at 2023-02-27T09:31:44Z with exit-code 0.
-    
-    </div>
 
 
-<a id="orgd9fc6c7"></a>
+<a id="org8aadf46"></a>
 
 ## Acknowledging HTCondor in publications
 
@@ -386,7 +357,6 @@ the HTCondor@IAC facility and ensure that it is available at the IAC for the
 foreseable future. Although there is no standard acknowledgment format, we
 suggest the following:
 
-<div class="mdframed">
 <div class="important">
 This paper made use of the IAC Supercomputing facility HTCondor
 (<http://research.cs.wisc.edu/htcondor/>), partly financed by the Ministry of
@@ -394,10 +364,8 @@ Economy and Competitiveness with FEDER funds, code IACA13-3E-2493.
 
 </div>
 
-</div>
 
-
-<a id="org62db7f2"></a>
+<a id="orgcf643ac"></a>
 
 ## Further information and support
 
@@ -413,22 +381,22 @@ If you want to stay informed about HTCondor@IAC updates, tips, etc. there is a
 low traffic mailing list (send us an e-mail if you want to subscribe to it).
 
 
-<a id="org4f9f19f"></a>
+<a id="org274d4ea"></a>
 
 # Main HTCondor commands
 
 HTCondor provides around 100 commands (see the [Command Reference Manual)](https://htcondor.readthedocs.io/en/v10_0/man-pages/index.html), but
 you will only need a few of them for most of you work with HTCondor. In this
 section we introduce the most common ones, grouped according to the four common
-tasks introduced in section [1.7](#orgaa11284): Checking pool status
-([2.1](#orgf589b93)), Submitting jobs ([2.2](#orgc30703d)), Checking and
-managing submitted jobs ([2.3](#orgb331372)) and Getting info
-from logs ([2.4](#org5ee95f7)). For each command we also give a list of some
+tasks introduced in section [1.7](#org769456b): Checking pool status
+([2.1](#orge9c533f)), Submitting jobs ([2.2](#org83257c7)), Checking and
+managing submitted jobs ([2.3](#org53c7c67)) and Getting info
+from logs ([2.4](#orge4beff7)). For each command we also give a list of some
 of their most useful options (but note that you can also get full details about
 each command by executing `man condor_<cmd>` in your shell).
 
 
-<a id="orgf589b93"></a>
+<a id="orge9c533f"></a>
 
 ## Checking pool status
 
@@ -461,7 +429,7 @@ each command by executing `man condor_<cmd>` in your shell).
         slots with more than 1.5GB of RAM per slot.
 
 
-<a id="orgc30703d"></a>
+<a id="org83257c7"></a>
 
 ## Submitting jobs
 
@@ -493,7 +461,6 @@ instance, if you submit a file specifying 4 jobs and HTCondor assign id 523 to
 that cluster, then the ids of your jobs will be 523.0, 523.1, 523.2 and 523.3
 (you can get these ids and more info using `condor_q` command).
 
-<div class="mdframed">
 <div class="warning">
 Before submitting your jobs, always do some simple tests in order to make sure
 that both your submit file and program work in a proper way: if you are going to
@@ -506,14 +473,11 @@ priority will be lower in following submissions.
 
 </div>
 
-</div>
 
-
-<a id="orgb331372"></a>
+<a id="org53c7c67"></a>
 
 ## Checking and managing submitted jobs
 
-<div class="mdframed">
 <div class="note">
 Each machine manages its own HTCondor queue, so it has information only about
 those jobs that were submitted on it (and no information about any other jobs
@@ -527,8 +491,6 @@ with extra options to communicate with other machines.
 
 </div>
 
-</div>
-
 -   **`condor_q`** Show my jobs that have been submitted in this machine. By default
     you will see the ID of the job(`clusterID.processID`), the owner, submitting
     time, run time, status, priority, size and command. **STATUS** can be: **I**:idle
@@ -536,12 +498,9 @@ with extra options to communicate with other machines.
     an error, waiting for user's action); **S**: suspended; **C**: completed; **X**:
     removed; **<**: transferring input; and **>**: transferring output. 
     
-    <div class="mdframed">
     <div class="note">
     HTCondor will, by default, show only your jobs. If you want to use all
     users' submitted jobs, you can use the option **`-allusers`**
-    
-    </div>
     
     </div>
     
@@ -637,7 +596,7 @@ with extra options to communicate with other machines.
     this command is available in CondorFAQs#ssh.
 
 
-<a id="org5ee95f7"></a>
+<a id="orge4beff7"></a>
 
 ## Getting info from logs
 
@@ -662,7 +621,7 @@ with extra options to communicate with other machines.
     information: `HTCondor Log Analyzer` (<http://condorlog.cse.nd.edu/>).
 
 
-<a id="org0fedb05"></a>
+<a id="org28b4eb5"></a>
 
 ## Other commands
 
@@ -683,12 +642,12 @@ with extra options to communicate with other machines.
     about HTCondor: <http://carlota:81/condor_stats/> and <http://nectarino/>.
 
 
-<a id="org76a7f94"></a>
+<a id="org48a9e0d"></a>
 
 # Submit files (TBD)
 
 
-<a id="org9b601f9"></a>
+<a id="org62e4078"></a>
 
 ## Introduction
 
@@ -729,7 +688,6 @@ contact us if you have any doubt or issue. Topics:
 -   OLD examples
 -   Some more useful commands and info
 
-<div class="mdframed">
 **Caution!: Before submitting your real jobs, perform always some simple tests**
  in order to make sure that both your submit file and program will work in a
  proper way: if you are going to submit hundreds of jobs and each job takes
@@ -741,10 +699,8 @@ contact us if you have any doubt or issue. Topics:
  submitting untested files and/or jobs may cause a waste of time and resources
  if they fail, and also your priority will be lower in following submissions.
 
-</div>
 
-
-<a id="org6ea48bf"></a>
+<a id="orgb2a5fda"></a>
 
 ## Creating a Submit File
 
@@ -754,7 +710,7 @@ can check the [official documentation](https://research.cs.wisc.edu/htcondor/man
 information about submit files and submitting process.
 
 
-<a id="org73d93c5"></a>
+<a id="orgc14b1cf"></a>
 
 ### Comments
 
@@ -768,7 +724,7 @@ different lines.
            #  anything else in the same line!
 
 
-<a id="org90a8e5c"></a>
+<a id="org1c2047d"></a>
 
 ### Variables and macros
 
@@ -802,7 +758,7 @@ you can define your own ones.
     the same purpose.
 
 
-<a id="orgb380b34"></a>
+<a id="org33d0cb8"></a>
 
 ### Submit commands
 
@@ -983,7 +939,7 @@ the most common ones (commands are case-insensitive):
             certain time **CondorHowTo#howto<sub>runintime</sub>**
 
 
-<a id="org1ebc263"></a>
+<a id="org1ad297d"></a>
 
 ## Templates and examples
 
@@ -992,7 +948,7 @@ point and then do the customizations needed for your executions. Check the
 examples in following sections for details and explanations.
 
 
-<a id="orgd9f3da8"></a>
+<a id="org3ca8f42"></a>
 
 ### Common Template
 
@@ -1055,7 +1011,7 @@ examples in following sections for details and explanations.
             totally sure you can omit them.
 
 
-<a id="org965ecb9"></a>
+<a id="orgc472ed7"></a>
 
 ### Examples when working with input/output files and arguments
 
@@ -1075,7 +1031,7 @@ included using command `include` (we assume that the common template filename is
 `condor_common.tmpl`).
 
 
-<a id="org5adb645"></a>
+<a id="org8831d0f"></a>
 
 #### **Example A** (arbitrary filenames)
 
@@ -1124,7 +1080,7 @@ program: `./myprogram -i inputFile -o outputFile`
     output file.
 
 
-<a id="org24aa949"></a>
+<a id="orga439196"></a>
 
 #### **Example B** (based on ProcessID, old system before HTCondor v8.4.0)
 
@@ -1171,7 +1127,7 @@ using the same program as previous example
     many jobs we want (we have used the variable `N`).
 
 
-<a id="org1cf0c3b"></a>
+<a id="org13b1ff3"></a>
 
 #### **Example C** (lists of files and arguments written in submit file)
 
@@ -1217,7 +1173,7 @@ specify the file. For instance, suppose you have all items in a file named
 `queue transfer_input_files,arguments from /path/to/data.lst`
 
 
-<a id="orgc323561"></a>
+<a id="org8e22885"></a>
 
 #### Example D (lists of files and arguments in external file)
 
@@ -1271,7 +1227,7 @@ output files will be `output28.out`, `output33.out`, `output38.out` and
 `output43.out`.
 
 
-<a id="org93e7de2"></a>
+<a id="org0d7ae6c"></a>
 
 #### Example E (`stdin`, `initialdir` external scripts and lists)
 
@@ -1340,7 +1296,7 @@ case, our external script `input_tables.sh` is the following one:
     echo "transfer_input_files = `ls -w 400 -m /path/to/tables/*.tbl`"
 
 
-<a id="orgf8dc0ba"></a>
+<a id="org2e83b70"></a>
 
 #### Example F (loops)
 
@@ -1390,7 +1346,7 @@ For a 2-level loop, you can use next code:
     J = ($(Process) % $(MAX_J))
 
 
-<a id="orgcfa922f"></a>
+<a id="orga20c480"></a>
 
 #### Example G
 
@@ -1477,7 +1433,6 @@ further details and explanation about the submit commands there.
     
     queue $(N) 
 
-<div class="mdframed">
 **IMPORTANT**: Although your program could use shared locations
 (`/net/XXXX/scratch`, `/net/nasX`, etc.) to read/write files from any machine so
 there is no need to copy files, we highly recommend **you always use the HTCondor
@@ -1488,6 +1443,4 @@ same shared location, network could experience a huge stress and fail. If for
 any reason you cannot copy files and you have to use shared locations -you are
 using huge files of several GB, etc.-, then contact us before submitting to
 adapt your jobs in order to avoid network congestion. 
-
-</div>
 
