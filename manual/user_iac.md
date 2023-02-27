@@ -1,38 +1,38 @@
 
 # Table of Contents
 
-1.  [Introduction](#orga1d9b22)
-    1.  [What is HTCondor?](#org549d7f4)
-    2.  [How can HTCondor help me?](#orgc6a9653)
-    3.  [How **powerful** is HTCondor?](#org61b2b1c)
-    4.  [Which machines are part of HTCondor?](#org38f37c3)
-    5.  [How can I use HTCondor?](#org602ed57)
-    6.  [Where will my application run?](#org02b15cf)
-    7.  [Basic HTCondor workflow](#org25d1ed8)
-    8.  [Acknowledging HTCondor in publications](#org2636006)
-    9.  [Further information and support](#org88b915a)
-2.  [Main HTCondor commands](#org0bb9c0e)
-    1.  [Checking pool status](#orgfa3f595)
-    2.  [Submitting jobs](#orgc835c43)
-    3.  [Checking and managing submitted jobs](#org2fe500c)
-    4.  [Getting info from logs](#org4f8f619)
-    5.  [Other commands](#orge48e879)
-3.  [Submit files (TBD)](#org76a908f)
-    1.  [Introduction](#orgca882b1)
-    2.  [Creating a Submit File](#org7cc1fb6)
-        1.  [Comments](#orgf7c31db)
-        2.  [Variables and macros](#orgac44d14)
-        3.  [Submit commands](#orgcdc103e)
-    3.  [Templates and examples](#org696f7ca)
-        1.  [Common Template](#org376bcee)
-        2.  [Examples when working with input/output files and arguments](#org4d22115)
-            1.  [**Example A** (arbitrary filenames)](#org698722f)
-            2.  [**Example B** (based on ProcessID, old system before HTCondor v8.4.0)](#org37a491e)
-            3.  [**Example C** (lists of files and arguments written in submit file)](#orgd12ffa5)
-            4.  [Example D (lists of files and arguments in external file)](#org6e69497)
-            5.  [Example E (`stdin`, `initialdir` external scripts and lists)](#orgf6e33a8)
-            6.  [Example F (loops)](#org98da0aa)
-            7.  [Example G](#orgaf5c6f4)
+1.  [Introduction](#orged28c07)
+    1.  [What is HTCondor?](#org03da304)
+    2.  [How can HTCondor help me?](#org21819c5)
+    3.  [How **powerful** is HTCondor?](#orgd21db17)
+    4.  [Which machines are part of HTCondor?](#orgaee1d84)
+    5.  [How can I use HTCondor?](#orge5b1bc7)
+    6.  [Where will my application run?](#orgfb1b9af)
+    7.  [Basic HTCondor workflow](#orgaa11284)
+    8.  [Acknowledging HTCondor in publications](#orgd9fc6c7)
+    9.  [Further information and support](#org62db7f2)
+2.  [Main HTCondor commands](#org4f9f19f)
+    1.  [Checking pool status](#orgf589b93)
+    2.  [Submitting jobs](#orgc30703d)
+    3.  [Checking and managing submitted jobs](#orgb331372)
+    4.  [Getting info from logs](#org5ee95f7)
+    5.  [Other commands](#org0fedb05)
+3.  [Submit files (TBD)](#org76a7f94)
+    1.  [Introduction](#org9b601f9)
+    2.  [Creating a Submit File](#org6ea48bf)
+        1.  [Comments](#org73d93c5)
+        2.  [Variables and macros](#org90a8e5c)
+        3.  [Submit commands](#orgb380b34)
+    3.  [Templates and examples](#org1ebc263)
+        1.  [Common Template](#orgd9f3da8)
+        2.  [Examples when working with input/output files and arguments](#org965ecb9)
+            1.  [**Example A** (arbitrary filenames)](#org5adb645)
+            2.  [**Example B** (based on ProcessID, old system before HTCondor v8.4.0)](#org24aa949)
+            3.  [**Example C** (lists of files and arguments written in submit file)](#org1cf0c3b)
+            4.  [Example D (lists of files and arguments in external file)](#orgc323561)
+            5.  [Example E (`stdin`, `initialdir` external scripts and lists)](#org93e7de2)
+            6.  [Example F (loops)](#orgf8dc0ba)
+            7.  [Example G](#orgcfa922f)
 
 <div class="mdframed">
 <div class="warning">
@@ -56,12 +56,12 @@ Competitiveness through FEDER funds, code IACA13-3E-2493.
 </div>
 
 
-<a id="orga1d9b22"></a>
+<a id="orged28c07"></a>
 
 # Introduction
 
 
-<a id="org549d7f4"></a>
+<a id="org03da304"></a>
 
 ## What is HTCondor?
 
@@ -76,7 +76,7 @@ they are not being used, achieving a better utilization of our resources. A more
 detailed overview of HTCondor is available at the [official documentation](https://htcondor.readthedocs.io/en/v10_0/overview/index.html).
 
 
-<a id="orgc6a9653"></a>
+<a id="org21819c5"></a>
 
 ## How can HTCondor help me?
 
@@ -93,7 +93,7 @@ execute your program there with different inputs and bring back the results to
 your machine when they are complete.
 
 
-<a id="org61b2b1c"></a>
+<a id="orgd21db17"></a>
 
 ## How **powerful** is HTCondor?
 
@@ -107,7 +107,7 @@ available slots could be around 400 during office hours and around 700 at nights
 and weekends.
 
 You can see real-time **HTCondor@IAC statistics** (global and per user) [here](http://pasa/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false). Figure
-[7](#orga60ef6f) is an example showing the global usage where *Owner* represents
+[7](#org3bb57cb) is an example showing the global usage where *Owner* represents
 *slots* that are being used outside of HTCondor. The remaining *slots* are
 available to HTCondor, but if there are no eligible jobs to run, those slots
 will be in *CPUsNotInUse* state. Those *slots* that are actually being used by
@@ -116,7 +116,7 @@ HTCondor are those in the *CPUsInUse* state.
 ![img](images/introduction/weekly_usage.png "Weekly global usage")
 
 
-<a id="org38f37c3"></a>
+<a id="orgaee1d84"></a>
 
 ## Which machines are part of HTCondor?
 
@@ -134,14 +134,14 @@ every machine (see the [software supported by the SIE](http://research.iac.es/si
 run almost every application in any machine.
 
 Detailed information about each machine can be obtained with the command
-`condor_status` (see Section [2.1](#orgfa3f595)). 
+`condor_status` (see Section [2.1](#orgf589b93)). 
 
 HTCondor provides a simple mechanism by which you can specify a set of
 requirements for the machines where you want your application to run, for
-example: memory per slot, OS version, etc. (see Section [3](#org76a908f)).
+example: memory per slot, OS version, etc. (see Section [3](#org76a7f94)).
 
 
-<a id="org602ed57"></a>
+<a id="orge5b1bc7"></a>
 
 ## How can I use HTCondor?
 
@@ -150,7 +150,7 @@ If you have an account in the IAC network, then you can use HTCondor.
 HTCondor is a batch-processing system (i.e. non-interactive), so you submit jobs
 to the HTCondor queue with the `condor_submit` command, and providing a text
 submission file, where you specify the executable file, its arguments, inputs
-and outputs, etc. (see Section [2.2](#orgc835c43)).
+and outputs, etc. (see Section [2.2](#orgc30703d)).
 
 You do not need to prepare or compile your programs in any special way to run
 them, and almost all programming languages should be suitable (shell scripts,
@@ -158,7 +158,7 @@ Python, Perl, C, Fortran, IDL, etc.). Sometimes a few minor modifications may be
 needed in order to specify arguments and the locations of inputs or outputs.
 
 
-<a id="org02b15cf"></a>
+<a id="orgfb1b9af"></a>
 
 ## Where will my application run?
 
@@ -180,7 +180,7 @@ HTCondor will repeat this process untill all jobs are done, optionally sending
 notifications via email when they are finished or if any errors show up.
 
 
-<a id="org25d1ed8"></a>
+<a id="orgaa11284"></a>
 
 ## Basic HTCondor workflow
 
@@ -375,7 +375,7 @@ basic example to **Quick Start** you.
     </div>
 
 
-<a id="org2636006"></a>
+<a id="orgd9fc6c7"></a>
 
 ## Acknowledging HTCondor in publications
 
@@ -397,7 +397,7 @@ Economy and Competitiveness with FEDER funds, code IACA13-3E-2493.
 </div>
 
 
-<a id="org88b915a"></a>
+<a id="org62db7f2"></a>
 
 ## Further information and support
 
@@ -413,174 +413,183 @@ If you want to stay informed about HTCondor@IAC updates, tips, etc. there is a
 low traffic mailing list (send us an e-mail if you want to subscribe to it).
 
 
-<a id="org0bb9c0e"></a>
+<a id="org4f9f19f"></a>
 
 # Main HTCondor commands
 
-HTCondor provides about 100 commands (see the [Command Reference Manual)](https://htcondor.readthedocs.io/en/v10_0/man-pages/index.html), but you
-will only need a few of them for most of you work with HTCondor. In this section
-we introduce the most common ones, grouped according to the four common tasks
-introduced in section [1.7](#org25d1ed8): Checking pool status ([2.1](#orgfa3f595)), Submitting jobs ([2.2](#orgc835c43)), Checking and managing
-submitted jobs ([2.3](#org2fe500c)) and Getting info from
-logs ([2.4](#org4f8f619)). For each command we also give a list of some of
-their most useful options (but note that you can also get full details about
+HTCondor provides around 100 commands (see the [Command Reference Manual)](https://htcondor.readthedocs.io/en/v10_0/man-pages/index.html), but
+you will only need a few of them for most of you work with HTCondor. In this
+section we introduce the most common ones, grouped according to the four common
+tasks introduced in section [1.7](#orgaa11284): Checking pool status
+([2.1](#orgf589b93)), Submitting jobs ([2.2](#orgc30703d)), Checking and
+managing submitted jobs ([2.3](#orgb331372)) and Getting info
+from logs ([2.4](#org5ee95f7)). For each command we also give a list of some
+of their most useful options (but note that you can also get full details about
 each command by executing `man condor_<cmd>` in your shell).
 
 
-<a id="orgfa3f595"></a>
+<a id="orgf589b93"></a>
 
 ## Checking pool status
 
--   `condor_status` list slots in the HTCondor pool and their status: `Owner` (used
+-   **`condor_status`** list slots in the HTCondor pool and their status: `Owner` (used
     by owner), `Claimed` (used by HTCondor), `Unclaimed` (available to be used
     by HTCondor), etc. 
-    -   `-avail` List those slots that are not busy and could run HTCondor jobs at
+    -   **`-avail`** List those slots that are not busy and could run HTCondor jobs at
         this moment
-    -   `-submitters` Show information about the current general status, like
+    -   **`-submitters`** Show information about the current general status, like
         number of running, idle and held jobs (and submitters)
-    -   `-run` List slots that are currently running jobs and show related
+    -   **`-run`** List slots that are currently running jobs and show related
         information (owner of each job, machine where it was submitted from, etc.)
-    -   `-compact` Compact list, with one line per machine instead of per slot
-    -   `-state -total` List a summary according to the state of each slot
-    -   `-master` List machines, but just their names (status and slots are not
+    -   **`-compact`** Compact list, with one line per machine instead of per slot
+    -   **`-state -total`** List a summary according to the state of each slot
+    -   **`-master`** List machines, but just their names (status and slots are not
         shown)
-    -   `-server` List attributes of slots, such as memory, disk, load, flops, etc.
-    -   `-sort Memory` Sort slots by Memory, you can try also with other attributes
-    -   `-af <attr1> <attr2> <...>` List specific attributes of slots, using
+    -   **`-server`** List attributes of slots, such as memory, disk, load, flops, etc.
+    -   **`-sort Memory`** Sort slots by Memory, you can try also with other attributes
+    -   **`-af <attr1> <attr2> <...>`** List specific attributes of slots, using
         autoformat (new version, very powerful)
-    -   `-format <fmt> <attr>` List attributes using the specified format (old
+    -   **`-format <fmt> <attr>`** List attributes using the specified format (old
         version). For instance, next command will show the name of each slot and the
         disk space: `condor_status -format "%s\t " Name -format "%d KB\n" Disk`
-    -   `<machine>` Show the status of a specific machine
-    -   `<machine> -long` Show the complete "ClassAd" of a machine (its
+    -   **`<machine>`** Show the status of a specific machine
+    -   **`<machine> -long`** Show the complete "ClassAd" of a machine (its
         specifications). We can use these specifications to add restrictions in the
         submit file so we can control which machines we want to use.
-    -   `-constraint <constraint>` Only Show slots that satisfy the
+    -   **`-constraint <constraint>`** Only Show slots that satisfy the
         constraint. I.e: `condor_status -constraint 'Memory > 1536'` will only show
         slots with more than 1.5GB of RAM per slot.
 
 
-<a id="orgc835c43"></a>
+<a id="orgc30703d"></a>
 
 ## Submitting jobs
 
--   `condor_submit <submit_file>`: Submit jobs to the HTCondor queue according to
+-   **`condor_submit <submit_file>`** Submit jobs to the HTCondor queue according to
     the information specified in `submit_file`. Visit the **submit file page** to
     see some examples of these files. There are also some FAQs related to the
-    submit file. Useful options:
-    
-    -   =-dry-run <dest<sub>file</sub>> =: this option parses the submit file and saves all the
-    
-    related info (name and locations of input and output files after expanding all
-    variables, value of requirements, etc.) to `<dest_file>`, but jobs are '''not'''
-    submitted. Using this option is highly recommended when debugging or before the
-    actual submission if you have made some modifications in your submit file and
-    you are not sure whether they will work.
-    
-    -   `'var=value'`: add or modify variable(s) at submission time, without changing
-    
-    the submit file. For instance, if you are using `queue $(N)` in your submit
-    file, then `condor_submit <submit_file> 'N = 10'` will submit 10 jobs. You can
-    specify several pairs of `var=value`.
-    
-    -   `-append <command>`: add submit commands at submission time, without changing
-    
-    the submit file. You can add more than one command using several times
-    `-append`.
+    submit file. 
+    -   **`-dry-run <dest_file>`** this option parses the submit file and saves all
+        the related info (name and locations of input and output files after
+        expanding all variables, value of requirements, etc.) to `<dest_file>`, but
+        jobs are **not** submitted. Using this option is highly recommended when
+        debugging or before the actual submission if you have made some
+        modifications in your submit file and you are not sure whether they will
+        work.
+    -   **`'var=value'`** add or modify variable(s) at submission time, without
+        changing the submit file. For instance, if you are using `queue $(N)` in
+        your submit file, then `condor_submit <submit_file> 'N = 10'` will submit 10
+        jobs. You can specify several pairs of `var=value`.
+    -   **`-append <command>`** add submit commands at submission time, without
+        changing the submit file. You can add more than one command using several
+        times `-append`.
 
-When submitted, each job is identified by a pair of numbers '''X.Y''', like
-345.32. The first number (X) is the '''cluster id''': every submission gets a
+When submitted, each job is identified by a pair of numbers **X.Y**, like
+345.32. The first number (**X**) is the **cluster id**: every submission gets a
 different cluster id, that is shared by all jobs belonging to the same
-submission. The second number (Y) is the '''process id''': if you submitted N
+submission. The second number (**Y**) is the **process id**: if you submitted N
 jobs, then this id will go from 0 for the first job to N-1 for the last one. For
 instance, if you submit a file specifying 4 jobs and HTCondor assign id 523 to
 that cluster, then the ids of your jobs will be 523.0, 523.1, 523.2 and 523.3
 (you can get these ids and more info using `condor_q` command).
 
 <div class="mdframed">
-**Caution!**: Before submitting your jobs, always do some simple tests in
-order to make sure that both your submit file and program work in a proper way:
-if you are going to submit hundreds of jobs and each job takes several hours to
-finish, before doing that try with just a few jobs and change the input data in
-order to let them finish in minutes. Then check the results to see if everything
-went fine before submitting the real jobs. Bear in mind that submitting untested
-files and/or jobs may cause a waste of time and resources if they fail, and also
-your priority will be lower in following submissions. 
+<div class="warning">
+Before submitting your jobs, always do some simple tests in order to make sure
+that both your submit file and program work in a proper way: if you are going to
+submit hundreds of jobs and each job takes several hours to finish, before doing
+that try with just a few jobs and change the input data in order to let them
+finish in minutes. Then check the results to see if everything went fine before
+submitting the real jobs. Bear in mind that submitting untested files and/or
+jobs may cause a waste of time and resources if they fail, and also your
+priority will be lower in following submissions.
+
+</div>
 
 </div>
 
 
-<a id="org2fe500c"></a>
+<a id="orgb331372"></a>
 
 ## Checking and managing submitted jobs
 
 <div class="mdframed">
-**Note:** Each machine manages its own HTCondor queue, so it has information only
-about those jobs that were submitted on it (and no information about any other
-jobs you may have submitted on other machines). Most of the commands explained
-in this section get information asking only the local queue, which means that
-you will only see those jobs that you have submitted on that specific
-machine. If you submit jobs from different machines, and later you want to
-check, hold, release, remove, etc. those jobs, you may need to connect to each
-one of those machines where you have submitted jobs from, or, when possible, use
-the commands with extra options to communicate with other machines.
+<div class="note">
+Each machine manages its own HTCondor queue, so it has information only about
+those jobs that were submitted on it (and no information about any other jobs
+you may have submitted on other machines). Most of the commands explained in
+this section get information asking only the local queue, which means that you
+will only see those jobs that you have submitted on that specific machine. If
+you submit jobs from different machines, and later you want to check, hold,
+release, remove, etc. those jobs, you may need to connect to each one of those
+machines where you have submitted jobs from, or, when possible, use the commands
+with extra options to communicate with other machines.
 
 </div>
 
--   `condor_q`: Show my jobs that have been submitted in this machine. By default
+</div>
 
-you will see the ID of the job(`clusterID.processID`), the owner, submitting
-time, run time, status, priority, size and command. [\*STATUS\*: **I**:idle (waiting
-for a machine to execute on); **R**: running; **H**: on hold (there was an error,
-waiting for user's action); **S**: suspended; **C**: completed; **X**: removed; **<**:
-transferring input; and **>**: transferring output]. Useful options:
+-   **`condor_q`** Show my jobs that have been submitted in this machine. By default
+    you will see the ID of the job(`clusterID.processID`), the owner, submitting
+    time, run time, status, priority, size and command. **STATUS** can be: **I**:idle
+    (waiting for a machine to execute on); **R**: running; **H**: on hold (there was
+    an error, waiting for user's action); **S**: suspended; **C**: completed; **X**:
+    removed; **<**: transferring input; and **>**: transferring output. 
+    
+    <div class="mdframed">
+    <div class="note">
+    HTCondor will, by default, show only your jobs. If you want to use all
+    users' submitted jobs, you can use the option **`-allusers`**
+    
+    </div>
+    
+    </div>
+    
+    -   **`-global`** Show my jobs submitted in any machine, not only the current one
+    -   **`-nobatch`** Starting in version HTCondor 8.6.0 installed in January 2017,
+        data is displayed in a compact mode (one line per cluster). With this option
+        output will be displayed in the old format (one line per process)
+    -   **`-wide`** Do not truncate long lines. You can also use `-wide:<n>` to
+        truncate lines to fit `n` columns
+    -   **`-analyze <job_id>`** Analyse a specific job and show the reason why it is in
+        its current state (useful for those jobs in Idle status: Condor will show us
+        how many slots match our restrictions and may give us suggestion)
+    -   **`-better-analyze <job_id>`** Analyse a specific job and show the reason why
+        it is in its current state, giving extended info
+    -   **`-long <job_id>`** Show all information related to that job
+    -   **`-run`** Show your running jobs and related info, like how much time they
+        have been running, in which machine, etc.
+    -   **`-currentrun`** Show the consumed time on the current run, the cumulative
+        time from last executions will not be used (you can combine also with `-run`
+        flag to see only the running processes at the moment)
+    -   **`-hold`** Show only jobs in the "on hold" state and the reason for that. Held
+        jobs are those that got an error so they could not finish. An action from
+        the user is expected to solve the problem, and then he should use the
+        `condor_release` command in order to check the job again
+    -   **`-af <attr1> <attr2> <...>`** List specific attributes of jobs, using
+        autoformat
+    -   **`-global -submitter <user>`** Show all jobs from user `<user>` in all
+        machines.
 
--   `-global`: Show my jobs submitted in any machine, not only the current one
--   `-nobatch`: Starting in version HTCondor 8.6.0 installed in January 2017,
-    data is displayed in a compact mode (one line per cluster). With this option
-    output will be displayed in the old format (one line per process)
--   `-wide`: Do not truncate long lines. You can also use `-wide:<n>` to
-    truncate lines to fit `n` columns
--   `-analyze <job_id>`: Analyse a specific job and show the reason why it is in
-    its current state (useful for those jobs in Idle status: Condor will show us
-    how many slots match our restrictions and may give us suggestion)
--   `-better-analyze <job_id>`: Analyse a specific job and show the reason why
-    it is in its current state, giving extended info
--   `-long <job_id>`: Show all information related to that job
--   `-run`: Show your running jobs and related info, like how much time they
-    have been running, in which machine, etc.
--   `-currentrun`: Show the consumed time on the current run, the cumulative
-    time from last executions will not be used (you can combine also with `-run`
-    flag to see only the running processes at the moment)
--   `-hold`: Show only jobs in the "on hold" state and the reason for that. Held
-    jobs are those that got an error so they could not finish. An action from
-    the user is expected to solve the problem, and then he should use the
-    `condor_release` command in order to check the job again
--   `-af <attr1> <attr2> <...>`: List specific attributes of jobs, using
-    autoformat
--   [-{-`''-global -submitter <user>`-}: Show all jobs from user `<user>` in all
-    machines. **Note**: starting in HTCondor version 8.6.0 installed at IAC in
-    January 2017, HTCondor will NOT show other users' jobs'' by default, but you
-    can use some flags like `-allusers` to change this behaviour -]
-
--   `*condor_tail* <job_id>`: Display on screen the last lines of the `stdout`
+-   **`condor_tail <job_id>`** Display on screen the last lines of the `stdout`
     (screen) of a running job on a remote machine. You can use this command to
     check whether your job is working fine, you can also visualize errors
     (`stderr`) or output files created by your program (see also
     CondorFAQs#ssh). Useful options:
-    -   `-f`: Do not stop displaying the content, it will be displayed until
+    -   **`-f`** Do not stop displaying the content, it will be displayed until
         interrupted with `Ctrl+C`
-    -   `-no-stdout -stderr`: Show the content of `stderr` instead of `stdout`
-    -   `-no-stdout <output_file>`: Show the content of an output file (`output_file`
+    -   **`-no-stdout -stderr`** Show the content of `stderr` instead of `stdout`
+    -   **`-no-stdout <output_file>`** Show the content of an output file (`output_file`
         has to be listed in the `transfer_output_files` command in the submit file).
 
--   `*condor_release* <job_id>`: Release a specific held job in the queue. Useful options:
+-   **`condor_release <job_id>`** Release a specific held job in the queue. Useful
+    options: 
     
-    -   `<cluster_id>`: Instead of giving a `<job_id>`, you can specify just the
+    -   **`<cluster_id>`** Instead of giving a `<job_id>`, you can specify just the
         `<cluster_id>` in order to release all held jobs of a specific submission
-    -   `-constraint <constraint>`: Release all my held jobs that satisfy the
+    -   **`-constraint <constraint>`** Release all my held jobs that satisfy the
         constraint
-    -   `-all`: Release all my held jobs
+    -   **`-all`** Release all my held jobs
     -   **Note:** Jobs with ''on hold'' state are those that HTCondor was not able
     
     to properly execute, usually due to problems with executable, paths, etc. If
@@ -592,60 +601,60 @@ transferring input; and **>**: transferring output]. Useful options:
     `condor_qedit` (see the HOWTOs.CondorFAQs#ch<sub>submit</sub>) or cancel all
     held jobs and re-submit them again-]
 
--   `*condor_hold* <job_id>`: Put jobs into the hold state. It could be useful
+-   **`condor_hold <job_id>`** Put jobs into the hold state. It could be useful
     when you detect that there are some problems with your input data (see
     CondorFAQs#bad<sub>inputs</sub> for more info), you are running out of disk space for
     outputs, etc. With this command you can delay the execution of your jobs
     holding them, and, after solving the problems, assign them the idle status
     using `condor_release`, so they will be executed again. Useful options:
-    -   `<cluster_id>`: Instead of giving a `<job_id>`, you can specify just the
+    -   **`<cluster_id>`** Instead of giving a `<job_id>`, you can specify just the
         `<cluster_id>` in order to hold all jobs of a specific submission
-    -   `-constraint <constraint>`: Hold all jobs that satisfy the constraint
-    -   `-all`: Hold all my jobs from the queue
+    -   **`-constraint <constraint>`** Hold all jobs that satisfy the constraint
+    -   **`-all`** Hold all my jobs from the queue
 
--   `*condor_rm* <job_id>`: Remove a specific job from the queue (it will be
+-   **`condor_rm <job_id>`** Remove a specific job from the queue (it will be
     removed even if it is running). Jobs are only removed from the current
     machine, so if you submitted jobs from different machines, you need to remove
     your jobs from each of them. Useful options:
-    -   `<cluster_id>`: Instead of giving a `<job_id>`, you can specify just the
+    -   **`<cluster_id>`** Instead of giving a `<job_id>`, you can specify just the
         `<cluster_id>` in order to remove all jobs of a specific submission
-    -   `-constraint <constraint>`: Remove all jobs that satisfy the constraint
-    -   `-all`: Remove all my jobs from the queue
-    -   `-forcex <job_id>`: It could happen that after removing jobs, they don't
+    -   **`-constraint <constraint>`** Remove all jobs that satisfy the constraint
+    -   **`-all`** Remove all my jobs from the queue
+    -   **`-forcex <job_id>`** It could happen that after removing jobs, they don't
         disappear from the queue as expected, but they just change status to
         **X**. That's normal since HTCondor may need to do some extra operations. If
         jobs stay with 'X' status a very long time, you can force their elimination
         adding `-forcex` option. For instance: `condor_rm -forcex -all`.
 
--   `*condor_prio*`: Set the priority of my jobs. A user can only change the
+-   **`condor_prio`** Set the priority of my jobs. A user can only change the
     priority of her own jobs, to specify which ones she would like to run first
     (the higher the number, the bigger the priority). Priority could be absolute
     or relative, use `man condor_prio` for further information
 
--   `*condor_ssh_to_job <job_id>*`: Create an ssh session to a running job in a
+-   **`condor_ssh_to_job <job_id>`** Create an ssh session to a running job in a
     remote machine. You can use this command to check whether the execution is
     going fine, download/upload inputs or outputs, etc. More information about
     this command is available in CondorFAQs#ssh.
 
 
-<a id="org4f8f619"></a>
+<a id="org5ee95f7"></a>
 
 ## Getting info from logs
 
--   `*condor_userlog* <file.log>`: Show and summarize job statistics from the job
+-   **=\*condor<sub>userlog</sub>** <file.log>=\* Show and summarize job statistics from the job
     log files (those created when using `log` command in the submit file)
 
--   `*condor_history*`: Show all completed jobs to date (it has to be run in the
+-   **`*condor_history*`** Show all completed jobs to date (it has to be run in the
     {<del>same machine</del>} where the submission was done). Useful options:
-    -   `-userlog <file.log>`: list basic information registered in the log files (use
+    -   **`-userlog <file.log>`** list basic information registered in the log files (use
         `condor_logview <file.log>` to see information in graphic mode)
-    -   `-long XXX.YYY -af LastRemoteHost`: show machine where job XXX.YYY was
+    -   **`-long XXX.YYY -af LastRemoteHost`** show machine where job XXX.YYY was
         executed
-    -   `-constraint <constraint>`: Only show jobs that satisfy the constraint. I.e:
+    -   **`-constraint <constraint>`** Only show jobs that satisfy the constraint. I.e:
         `condor_history -constraint 'RemoveReason`!=UNDEFINED'=: show your jobs that
         were removed before completion
 
--   `condor_logview <file.log>`: This is not an original HTCondor command, we have
+-   **`condor_logview <file.log>`** This is not an original HTCondor command, we have
     created this link to the script that allows you to display graphical
     information contained in the log of your executions.
 
@@ -653,33 +662,33 @@ transferring input; and **>**: transferring output]. Useful options:
     information: `HTCondor Log Analyzer` (<http://condorlog.cse.nd.edu/>).
 
 
-<a id="orge48e879"></a>
+<a id="org0fedb05"></a>
 
 ## Other commands
 
--   `condor_userprio`: Show active HTCondor users' priority. Lower values means
+-   **`condor_userprio`** Show active HTCondor users' priority. Lower values means
     higher priority where 0.5 is the highest. Use `condor_userprio -allusers` to
     see all users' priority, you can also add flags `-priority` and/or `-usage` to
     get detailed information
--   `condor_qedit`: use this command to modify the attributes of a job placed on
+-   **`condor_qedit`** use this command to modify the attributes of a job placed on
     the queue. This may be useful when you need to change some of the parameters
     specified in the submit file without re-submitting jobs (see
     HOWTOs.CondorFAQs#ch<sub>submit</sub>).
--   `condor_submit_dag <dag_file>`: Submit a DAG file, used to describe jobs
+-   **`condor_submit_dag <dag_file>`** Submit a DAG file, used to describe jobs
     with dependencies. Visit the CondorHowTo#howto<sub>dagman</sub> section for more info
     and examples.
--   `condor_version`: Print the version of HTCondor.
+-   **`condor_version`** Print the version of HTCondor.
 -   If you want some general information about HTCondor queue, the pool of
     machines, where jobs have been executed on, etc., you can try our online stats
     about HTCondor: <http://carlota:81/condor_stats/> and <http://nectarino/>.
 
 
-<a id="org76a908f"></a>
+<a id="org76a7f94"></a>
 
 # Submit files (TBD)
 
 
-<a id="orgca882b1"></a>
+<a id="org9b601f9"></a>
 
 ## Introduction
 
@@ -735,7 +744,7 @@ contact us if you have any doubt or issue. Topics:
 </div>
 
 
-<a id="org7cc1fb6"></a>
+<a id="org6ea48bf"></a>
 
 ## Creating a Submit File
 
@@ -745,7 +754,7 @@ can check the [official documentation](https://research.cs.wisc.edu/htcondor/man
 information about submit files and submitting process.
 
 
-<a id="orgf7c31db"></a>
+<a id="org73d93c5"></a>
 
 ### Comments
 
@@ -759,7 +768,7 @@ different lines.
            #  anything else in the same line!
 
 
-<a id="orgac44d14"></a>
+<a id="org90a8e5c"></a>
 
 ### Variables and macros
 
@@ -793,7 +802,7 @@ you can define your own ones.
     the same purpose.
 
 
-<a id="orgcdc103e"></a>
+<a id="orgb380b34"></a>
 
 ### Submit commands
 
@@ -974,7 +983,7 @@ the most common ones (commands are case-insensitive):
             certain time **CondorHowTo#howto<sub>runintime</sub>**
 
 
-<a id="org696f7ca"></a>
+<a id="org1ebc263"></a>
 
 ## Templates and examples
 
@@ -983,7 +992,7 @@ point and then do the customizations needed for your executions. Check the
 examples in following sections for details and explanations.
 
 
-<a id="org376bcee"></a>
+<a id="orgd9f3da8"></a>
 
 ### Common Template
 
@@ -1046,7 +1055,7 @@ examples in following sections for details and explanations.
             totally sure you can omit them.
 
 
-<a id="org4d22115"></a>
+<a id="org965ecb9"></a>
 
 ### Examples when working with input/output files and arguments
 
@@ -1066,7 +1075,7 @@ included using command `include` (we assume that the common template filename is
 `condor_common.tmpl`).
 
 
-<a id="org698722f"></a>
+<a id="org5adb645"></a>
 
 #### **Example A** (arbitrary filenames)
 
@@ -1115,7 +1124,7 @@ program: `./myprogram -i inputFile -o outputFile`
     output file.
 
 
-<a id="org37a491e"></a>
+<a id="org24aa949"></a>
 
 #### **Example B** (based on ProcessID, old system before HTCondor v8.4.0)
 
@@ -1162,7 +1171,7 @@ using the same program as previous example
     many jobs we want (we have used the variable `N`).
 
 
-<a id="orgd12ffa5"></a>
+<a id="org1cf0c3b"></a>
 
 #### **Example C** (lists of files and arguments written in submit file)
 
@@ -1208,7 +1217,7 @@ specify the file. For instance, suppose you have all items in a file named
 `queue transfer_input_files,arguments from /path/to/data.lst`
 
 
-<a id="org6e69497"></a>
+<a id="orgc323561"></a>
 
 #### Example D (lists of files and arguments in external file)
 
@@ -1262,7 +1271,7 @@ output files will be `output28.out`, `output33.out`, `output38.out` and
 `output43.out`.
 
 
-<a id="orgf6e33a8"></a>
+<a id="org93e7de2"></a>
 
 #### Example E (`stdin`, `initialdir` external scripts and lists)
 
@@ -1331,7 +1340,7 @@ case, our external script `input_tables.sh` is the following one:
     echo "transfer_input_files = `ls -w 400 -m /path/to/tables/*.tbl`"
 
 
-<a id="org98da0aa"></a>
+<a id="orgf8dc0ba"></a>
 
 #### Example F (loops)
 
@@ -1381,7 +1390,7 @@ For a 2-level loop, you can use next code:
     J = ($(Process) % $(MAX_J))
 
 
-<a id="orgaf5c6f4"></a>
+<a id="orgcfa922f"></a>
 
 #### Example G
 
