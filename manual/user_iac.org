@@ -1,4 +1,4 @@
-# Time-stamp: <2023-02-27 09:52:32 angelv> 
+# Time-stamp: <2023-02-27 09:55:55 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -330,11 +330,13 @@ the HTCondor@IAC facility and ensure that it is available at the IAC for the
 foreseable future. Although there is no standard acknowledgment format, we
 suggest the following:
 
-#+begin_example
+#+begin_mdframed
+#+begin_important
 This paper made use of the IAC Supercomputing facility HTCondor
 (http://research.cs.wisc.edu/htcondor/), partly financed by the Ministry of
 Economy and Competitiveness with FEDER funds, code IACA13-3E-2493.
-#+end_example
+#+end_important
+#+end_mdframed
 
 ** Further information, support
 
