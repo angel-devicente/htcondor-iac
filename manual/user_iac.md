@@ -1,42 +1,42 @@
 
 # Table of Contents
 
-1.  [Introduction](#org914c41d)
-    1.  [What is HTCondor?](#org23d7936)
-    2.  [How can HTCondor help me?](#orgc07b9c0)
-    3.  [How **powerful** is HTCondor?](#org15d0fe3)
-    4.  [Which machines are part of HTCondor?](#orgafd9f1b)
-    5.  [How can I use HTCondor?](#orgf8f63df)
-    6.  [Where will my application run?](#org11f6fdd)
-    7.  [Basic HTCondor workflow](#org769456b)
-    8.  [Acknowledging HTCondor in publications](#org8aadf46)
-    9.  [Further information and support](#orgcf643ac)
-2.  [Main HTCondor commands](#org274d4ea)
-    1.  [Checking pool status](#orge9c533f)
-    2.  [Submitting jobs](#org83257c7)
-    3.  [Checking and managing submitted jobs](#org53c7c67)
-    4.  [Getting info from logs](#orge4beff7)
-    5.  [Other commands](#org28b4eb5)
-3.  [Submit files (TBD)](#org48a9e0d)
-    1.  [Introduction](#org62e4078)
-    2.  [Creating a Submit File](#orgb2a5fda)
-        1.  [Comments](#orgc14b1cf)
-        2.  [Variables and macros](#org1c2047d)
-        3.  [Submit commands](#org33d0cb8)
-    3.  [Templates and examples](#org1ad297d)
-        1.  [Common Template](#org3ca8f42)
-        2.  [Examples when working with input/output files and arguments](#orgc472ed7)
-            1.  [**Example A** (arbitrary filenames)](#org8831d0f)
-            2.  [**Example B** (based on ProcessID, old system before HTCondor v8.4.0)](#orga439196)
-            3.  [**Example C** (lists of files and arguments written in submit file)](#org13b1ff3)
-            4.  [Example D (lists of files and arguments in external file)](#org8e22885)
-            5.  [Example E (`stdin`, `initialdir` external scripts and lists)](#org0d7ae6c)
-            6.  [Example F (loops)](#org2e83b70)
-            7.  [Example G](#orga20c480)
+1.  [Introduction](#orgd906349)
+    1.  [What is HTCondor?](#orgf79e069)
+    2.  [How can HTCondor help me?](#org458f29b)
+    3.  [How **powerful** is HTCondor?](#orgd33ff5f)
+    4.  [Which machines are part of HTCondor?](#org490b438)
+    5.  [How can I use HTCondor?](#org252eb2c)
+    6.  [Where will my application run?](#org312ddc0)
+    7.  [Basic HTCondor workflow](#org4957966)
+    8.  [Acknowledging HTCondor in publications](#orga8d590f)
+    9.  [Further information and support](#org91ed91d)
+2.  [Main HTCondor commands](#org3655d9a)
+    1.  [Checking pool status](#org50c6323)
+    2.  [Submitting jobs](#org4d1b17b)
+    3.  [Checking and managing submitted jobs](#org8664184)
+    4.  [Getting info from logs](#org999a29c)
+    5.  [Other commands](#orgdc938b1)
+3.  [Submit files (TBD)](#org6e99616)
+    1.  [Introduction](#org1540be3)
+    2.  [Creating a Submit File](#orge83a633)
+        1.  [Comments](#org7fcac20)
+        2.  [Variables and macros](#org4bae2fc)
+        3.  [Submit commands](#org707549e)
+    3.  [Templates and examples](#org656d85e)
+        1.  [Common Template](#org9359976)
+        2.  [Examples when working with input/output files and arguments](#orgeed05b1)
+            1.  [**Example A** (arbitrary filenames)](#orgc15b839)
+            2.  [**Example B** (based on ProcessID, old system before HTCondor v8.4.0)](#orga906505)
+            3.  [**Example C** (lists of files and arguments written in submit file)](#org313fe0f)
+            4.  [Example D (lists of files and arguments in external file)](#orgee16682)
+            5.  [Example E (`stdin`, `initialdir` external scripts and lists)](#orgd5fe620)
+            6.  [Example F (loops)](#orgf407aca)
+            7.  [Example G](#org3b946ed)
 
 
 
-<a id="org914c41d"></a>
+<a id="orgd906349"></a>
 
 # Introduction
 
@@ -56,7 +56,7 @@ Competitiveness through FEDER funds, code IACA13-3E-2493.
 </div>
 
 
-<a id="org23d7936"></a>
+<a id="orgf79e069"></a>
 
 ## What is HTCondor?
 
@@ -71,7 +71,7 @@ they are not being used, achieving a better utilization of our resources. A more
 detailed overview of HTCondor is available at the [official documentation](https://htcondor.readthedocs.io/en/v10_0/overview/index.html).
 
 
-<a id="orgc07b9c0"></a>
+<a id="org458f29b"></a>
 
 ## How can HTCondor help me?
 
@@ -88,7 +88,7 @@ execute your program there with different inputs and bring back the results to
 your machine when they are complete.
 
 
-<a id="org15d0fe3"></a>
+<a id="orgd33ff5f"></a>
 
 ## How **powerful** is HTCondor?
 
@@ -102,7 +102,7 @@ available slots could be around 400 during office hours and around 700 at nights
 and weekends.
 
 You can see real-time **HTCondor@IAC statistics** (global and per user) [here](http://pasa/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false). Figure
-[7](#org6ceb000) is an example showing the global usage where *Owner* represents
+[7](#org241a71c) is an example showing the global usage where *Owner* represents
 *slots* that are being used outside of HTCondor. The remaining *slots* are
 available to HTCondor, but if there are no eligible jobs to run, those slots
 will be in *CPUsNotInUse* state. Those *slots* that are actually being used by
@@ -111,7 +111,7 @@ HTCondor are those in the *CPUsInUse* state.
 ![img](images/introduction/weekly_usage.png "Weekly global usage")
 
 
-<a id="orgafd9f1b"></a>
+<a id="org490b438"></a>
 
 ## Which machines are part of HTCondor?
 
@@ -129,14 +129,14 @@ every machine (see the [software supported by the SIE](http://research.iac.es/si
 run almost every application in any machine.
 
 Detailed information about each machine can be obtained with the command
-`condor_status` (see Section [2.1](#orge9c533f)). 
+`condor_status` (see Section [2.1](#org50c6323)). 
 
 HTCondor provides a simple mechanism by which you can specify a set of
 requirements for the machines where you want your application to run, for
-example: memory per slot, OS version, etc. (see Section [3](#org48a9e0d)).
+example: memory per slot, OS version, etc. (see Section [3](#org6e99616)).
 
 
-<a id="orgf8f63df"></a>
+<a id="org252eb2c"></a>
 
 ## How can I use HTCondor?
 
@@ -145,7 +145,7 @@ If you have an account in the IAC network, then you can use HTCondor.
 HTCondor is a batch-processing system (i.e. non-interactive), so you submit jobs
 to the HTCondor queue with the `condor_submit` command, and providing a text
 submission file, where you specify the executable file, its arguments, inputs
-and outputs, etc. (see Section [2.2](#org83257c7)).
+and outputs, etc. (see Section [2.2](#org4d1b17b)).
 
 You do not need to prepare or compile your programs in any special way to run
 them, and almost all programming languages should be suitable (shell scripts,
@@ -153,7 +153,7 @@ Python, Perl, C, Fortran, IDL, etc.). Sometimes a few minor modifications may be
 needed in order to specify arguments and the locations of inputs or outputs.
 
 
-<a id="org11f6fdd"></a>
+<a id="org312ddc0"></a>
 
 ## Where will my application run?
 
@@ -175,7 +175,7 @@ HTCondor will repeat this process untill all jobs are done, optionally sending
 notifications via email when they are finished or if any errors show up.
 
 
-<a id="org769456b"></a>
+<a id="org4957966"></a>
 
 ## Basic HTCondor workflow
 
@@ -346,7 +346,7 @@ basic example to **Quick Start** you.
                 Job terminated of its own accord at 2023-02-27T09:31:44Z with exit-code 0.
 
 
-<a id="org8aadf46"></a>
+<a id="orga8d590f"></a>
 
 ## Acknowledging HTCondor in publications
 
@@ -365,7 +365,7 @@ Economy and Competitiveness with FEDER funds, code IACA13-3E-2493.
 </div>
 
 
-<a id="orgcf643ac"></a>
+<a id="org91ed91d"></a>
 
 ## Further information and support
 
@@ -381,22 +381,22 @@ If you want to stay informed about HTCondor@IAC updates, tips, etc. there is a
 low traffic mailing list (send us an e-mail if you want to subscribe to it).
 
 
-<a id="org274d4ea"></a>
+<a id="org3655d9a"></a>
 
 # Main HTCondor commands
 
 HTCondor provides around 100 commands (see the [Command Reference Manual)](https://htcondor.readthedocs.io/en/v10_0/man-pages/index.html), but
 you will only need a few of them for most of you work with HTCondor. In this
 section we introduce the most common ones, grouped according to the four common
-tasks introduced in section [1.7](#org769456b): Checking pool status
-([2.1](#orge9c533f)), Submitting jobs ([2.2](#org83257c7)), Checking and
-managing submitted jobs ([2.3](#org53c7c67)) and Getting info
-from logs ([2.4](#orge4beff7)). For each command we also give a list of some
+tasks introduced in section [1.7](#org4957966): Checking pool status
+([2.1](#org50c6323)), Submitting jobs ([2.2](#org4d1b17b)), Checking and
+managing submitted jobs ([2.3](#org8664184)) and Getting info
+from logs ([2.4](#org999a29c)). For each command we also give a list of some
 of their most useful options (but note that you can also get full details about
 each command by executing `man condor_<cmd>` in your shell).
 
 
-<a id="orge9c533f"></a>
+<a id="org50c6323"></a>
 
 ## Checking pool status
 
@@ -429,7 +429,7 @@ each command by executing `man condor_<cmd>` in your shell).
         slots with more than 1.5GB of RAM per slot.
 
 
-<a id="org83257c7"></a>
+<a id="org4d1b17b"></a>
 
 ## Submitting jobs
 
@@ -474,7 +474,7 @@ priority will be lower in following submissions.
 </div>
 
 
-<a id="org53c7c67"></a>
+<a id="org8664184"></a>
 
 ## Checking and managing submitted jobs
 
@@ -596,7 +596,7 @@ with extra options to communicate with other machines.
     this command is available in CondorFAQs#ssh.
 
 
-<a id="orge4beff7"></a>
+<a id="org999a29c"></a>
 
 ## Getting info from logs
 
@@ -621,7 +621,7 @@ with extra options to communicate with other machines.
     information: `HTCondor Log Analyzer` (<http://condorlog.cse.nd.edu/>).
 
 
-<a id="org28b4eb5"></a>
+<a id="orgdc938b1"></a>
 
 ## Other commands
 
@@ -642,12 +642,12 @@ with extra options to communicate with other machines.
     about HTCondor: <http://carlota:81/condor_stats/> and <http://nectarino/>.
 
 
-<a id="org48a9e0d"></a>
+<a id="org6e99616"></a>
 
 # Submit files (TBD)
 
 
-<a id="org62e4078"></a>
+<a id="org1540be3"></a>
 
 ## Introduction
 
@@ -700,7 +700,7 @@ contact us if you have any doubt or issue. Topics:
  if they fail, and also your priority will be lower in following submissions.
 
 
-<a id="orgb2a5fda"></a>
+<a id="orge83a633"></a>
 
 ## Creating a Submit File
 
@@ -710,7 +710,7 @@ can check the [official documentation](https://research.cs.wisc.edu/htcondor/man
 information about submit files and submitting process.
 
 
-<a id="orgc14b1cf"></a>
+<a id="org7fcac20"></a>
 
 ### Comments
 
@@ -724,7 +724,7 @@ different lines.
            #  anything else in the same line!
 
 
-<a id="org1c2047d"></a>
+<a id="org4bae2fc"></a>
 
 ### Variables and macros
 
@@ -758,7 +758,7 @@ you can define your own ones.
     the same purpose.
 
 
-<a id="org33d0cb8"></a>
+<a id="org707549e"></a>
 
 ### Submit commands
 
@@ -939,7 +939,7 @@ the most common ones (commands are case-insensitive):
             certain time **CondorHowTo#howto<sub>runintime</sub>**
 
 
-<a id="org1ad297d"></a>
+<a id="org656d85e"></a>
 
 ## Templates and examples
 
@@ -948,7 +948,7 @@ point and then do the customizations needed for your executions. Check the
 examples in following sections for details and explanations.
 
 
-<a id="org3ca8f42"></a>
+<a id="org9359976"></a>
 
 ### Common Template
 
@@ -1011,7 +1011,7 @@ examples in following sections for details and explanations.
             totally sure you can omit them.
 
 
-<a id="orgc472ed7"></a>
+<a id="orgeed05b1"></a>
 
 ### Examples when working with input/output files and arguments
 
@@ -1031,7 +1031,7 @@ included using command `include` (we assume that the common template filename is
 `condor_common.tmpl`).
 
 
-<a id="org8831d0f"></a>
+<a id="orgc15b839"></a>
 
 #### **Example A** (arbitrary filenames)
 
@@ -1080,7 +1080,7 @@ program: `./myprogram -i inputFile -o outputFile`
     output file.
 
 
-<a id="orga439196"></a>
+<a id="orga906505"></a>
 
 #### **Example B** (based on ProcessID, old system before HTCondor v8.4.0)
 
@@ -1127,7 +1127,7 @@ using the same program as previous example
     many jobs we want (we have used the variable `N`).
 
 
-<a id="org13b1ff3"></a>
+<a id="org313fe0f"></a>
 
 #### **Example C** (lists of files and arguments written in submit file)
 
@@ -1173,7 +1173,7 @@ specify the file. For instance, suppose you have all items in a file named
 `queue transfer_input_files,arguments from /path/to/data.lst`
 
 
-<a id="org8e22885"></a>
+<a id="orgee16682"></a>
 
 #### Example D (lists of files and arguments in external file)
 
@@ -1227,7 +1227,7 @@ output files will be `output28.out`, `output33.out`, `output38.out` and
 `output43.out`.
 
 
-<a id="org0d7ae6c"></a>
+<a id="orgd5fe620"></a>
 
 #### Example E (`stdin`, `initialdir` external scripts and lists)
 
@@ -1296,7 +1296,7 @@ case, our external script `input_tables.sh` is the following one:
     echo "transfer_input_files = `ls -w 400 -m /path/to/tables/*.tbl`"
 
 
-<a id="org2e83b70"></a>
+<a id="orgf407aca"></a>
 
 #### Example F (loops)
 
@@ -1346,7 +1346,7 @@ For a 2-level loop, you can use next code:
     J = ($(Process) % $(MAX_J))
 
 
-<a id="orga20c480"></a>
+<a id="org3b946ed"></a>
 
 #### Example G
 

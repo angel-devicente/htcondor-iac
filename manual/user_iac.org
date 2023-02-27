@@ -1,4 +1,4 @@
-# Time-stamp: <2023-02-27 14:01:06 angelv> 
+# Time-stamp: <2023-02-27 15:31:33 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -4729,3 +4729,5 @@ los administradores de Condor en la dirección de correo condor@iac.es.
 * TODO TO DOs [0/2]                                                :noexport:
   + [ ] Pre-introduction: date of FEDER funds?
   + [ ] Write info about policies burros vs desktops
+  + [ ] Note: if you want to submit jobs from your desktop, it has to belong to
+    the pool.
