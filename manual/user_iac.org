@@ -1,4 +1,4 @@
-# Time-stamp: <2023-02-27 15:31:33 angelv> 
+# Time-stamp: <2023-02-27 19:39:54 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -114,7 +114,7 @@ Detailed information about each machine can be obtained with the command
 
 HTCondor provides a simple mechanism by which you can specify a set of
 requirements for the machines where you want your application to run, for
-example: memory per slot, OS version, etc. (see Section [[*Submit files (TBD)]]).
+example: memory per slot, OS version, etc. (see Section [[*Submit files]]).
 
 ** How can I use HTCondor? 
 
@@ -199,8 +199,8 @@ basic example to *Quick Start* you.
 
   + *a /submit file/*
 
-    The submit file specifies the name of your executable (=simple=), how many
-    jobs to submit (=Queue 100=), etc.
+    The submit file is a plain text file that specifies the name of your
+    executable (=simple=), how many jobs to submit (=Queue 100=), etc.
     
     #+INCLUDE: "../examples/hello_world/simple.submit" example
 
@@ -328,356 +328,75 @@ get the most out of HTCondor.
 If you want to stay informed about HTCondor@IAC updates, tips, etc. there is a
 low traffic mailing list (send us an e-mail if you want to subscribe to it).
 
-* Main HTCondor commands
-
-HTCondor provides around 100 commands (see the [[https://htcondor.readthedocs.io/en/v10_0/man-pages/index.html][Command Reference Manual)]], but
-you will only need a few of them for most of you work with HTCondor. In this
-section we introduce the most common ones, grouped according to the four common
-tasks introduced in section [[*Basic HTCondor workflow]]: Checking pool status
-([[*Checking pool status]]), Submitting jobs ([[*Submitting jobs]]), Checking and
-managing submitted jobs ([[*Checking and managing submitted jobs]]) and Getting info
-from logs ([[Getting info from logs]]). For each command we also give a list of some
-of their most useful options (but note that you can also get full details about
-each command by executing =man condor_<cmd>= in your shell).
-
-** Checking pool status
-
-+ *=condor_status=* list slots in the HTCondor pool and their status: =Owner= (used
-  by owner), =Claimed= (used by HTCondor), =Unclaimed= (available to be used
-  by HTCondor), etc. 
-  + *=-avail=* List those slots that are not busy and could run HTCondor jobs at
-    this moment
-  + *=-submitters=* Show information about the current general status, like
-    number of running, idle and held jobs (and submitters)
-  + *=-run=* List slots that are currently running jobs and show related
-    information (owner of each job, machine where it was submitted from, etc.)
-  + *=-compact=* Compact list, with one line per machine instead of per slot
-  + *=-state -total=* List a summary according to the state of each slot
-  + *=-master=* List machines, but just their names (status and slots are not
-    shown)
-  + *=-server=* List attributes of slots, such as memory, disk, load, flops, etc.
-  + *=-sort Memory=* Sort slots by Memory, you can try also with other attributes
-  + *=-af <attr1> <attr2> <...>=* List specific attributes of slots, using
-    autoformat (new version, very powerful)
-  + *=-format <fmt> <attr>=* List attributes using the specified format (old
-    version). For instance, next command will show the name of each slot and the
-    disk space: =condor_status -format "%s\t " Name -format "%d KB\n" Disk=
-  + *=<machine>=* Show the status of a specific machine
-  + *=<machine> -long=* Show the complete "ClassAd" of a machine (its
-    specifications). We can use these specifications to add restrictions in the
-    submit file so we can control which machines we want to use.
-  + *=-constraint <constraint>=* Only Show slots that satisfy the
-    constraint. I.e: =condor_status -constraint 'Memory > 1536'= will only show
-    slots with more than 1.5GB of RAM per slot.
-
-** Submitting jobs
-
-+ *=condor_submit <submit_file>=* Submit jobs to the HTCondor queue according to
-  the information specified in =submit_file=. Visit the *submit file page* to
-  see some examples of these files. There are also some FAQs related to the
-  submit file. 
-  + *=-dry-run <dest_file>=* this option parses the submit file and saves all
-    the related info (name and locations of input and output files after
-    expanding all variables, value of requirements, etc.) to =<dest_file>=, but
-    jobs are *not* submitted. Using this option is highly recommended when
-    debugging or before the actual submission if you have made some
-    modifications in your submit file and you are not sure whether they will
-    work.
-  + *='var=value'=* add or modify variable(s) at submission time, without
-    changing the submit file. For instance, if you are using =queue $(N)= in
-    your submit file, then =condor_submit <submit_file> 'N = 10'= will submit 10
-    jobs. You can specify several pairs of =var=value=.
-  + *=-append <command>=* add submit commands at submission time, without
-    changing the submit file. You can add more than one command using several
-    times =-append=. 
-
-When submitted, each job is identified by a pair of numbers *X.Y*, like
-345.32. The first number (*X*) is the *cluster id*: every submission gets a
-different cluster id, that is shared by all jobs belonging to the same
-submission. The second number (*Y*) is the *process id*: if you submitted N
-jobs, then this id will go from 0 for the first job to N-1 for the last one. For
-instance, if you submit a file specifying 4 jobs and HTCondor assign id 523 to
-that cluster, then the ids of your jobs will be 523.0, 523.1, 523.2 and 523.3
-(you can get these ids and more info using =condor_q= command).
-
-#+begin_warning
-Before submitting your jobs, always do some simple tests in order to make sure
-that both your submit file and program work in a proper way: if you are going to
-submit hundreds of jobs and each job takes several hours to finish, before doing
-that try with just a few jobs and change the input data in order to let them
-finish in minutes. Then check the results to see if everything went fine before
-submitting the real jobs. Bear in mind that submitting untested files and/or
-jobs may cause a waste of time and resources if they fail, and also your
-priority will be lower in following submissions.
-#+end_warning
-
-** Checking and managing submitted jobs
-
-#+begin_note
-Each machine manages its own HTCondor queue, so it has information only about
-those jobs that were submitted on it (and no information about any other jobs
-you may have submitted on other machines). Most of the commands explained in
-this section get information asking only the local queue, which means that you
-will only see those jobs that you have submitted on that specific machine. If
-you submit jobs from different machines, and later you want to check, hold,
-release, remove, etc. those jobs, you may need to connect to each one of those
-machines where you have submitted jobs from, or, when possible, use the commands
-with extra options to communicate with other machines.
-#+end_note
-
-+ *=condor_q=* Show my jobs that have been submitted in this machine. By default
-  you will see the ID of the job(=clusterID.processID=), the owner, submitting
-  time, run time, status, priority, size and command. *STATUS* can be: *I*:idle
-  (waiting for a machine to execute on); *R*: running; *H*: on hold (there was
-  an error, waiting for user's action); *S*: suspended; *C*: completed; *X*:
-  removed; *<*: transferring input; and *>*: transferring output. 
-  
-  #+begin_note
-  HTCondor will, by default, show only your jobs. If you want to use all
-  users' submitted jobs, you can use the option *=-allusers=*
-  #+end_note
-
-  + *=-global=* Show my jobs submitted in any machine, not only the current one
-  + *=-nobatch=* Starting in version HTCondor 8.6.0 installed in January 2017,
-    data is displayed in a compact mode (one line per cluster). With this option
-    output will be displayed in the old format (one line per process)
-  + *=-wide=* Do not truncate long lines. You can also use =-wide:<n>= to
-    truncate lines to fit =n= columns
-  + *=-analyze <job_id>=* Analyse a specific job and show the reason why it is in
-    its current state (useful for those jobs in Idle status: Condor will show us
-    how many slots match our restrictions and may give us suggestion)
-  + *=-better-analyze <job_id>=* Analyse a specific job and show the reason why
-    it is in its current state, giving extended info
-  + *=-long <job_id>=* Show all information related to that job
-  + *=-run=* Show your running jobs and related info, like how much time they
-    have been running, in which machine, etc.
-  + *=-currentrun=* Show the consumed time on the current run, the cumulative
-    time from last executions will not be used (you can combine also with =-run=
-    flag to see only the running processes at the moment)
-  + *=-hold=* Show only jobs in the "on hold" state and the reason for that. Held
-    jobs are those that got an error so they could not finish. An action from
-    the user is expected to solve the problem, and then he should use the
-    =condor_release= command in order to check the job again
-  + *=-af <attr1> <attr2> <...>=* List specific attributes of jobs, using
-    autoformat
-  + *=-global -submitter <user>=* Show all jobs from user =<user>= in all
-    machines. 
-
-+ *=condor_tail <job_id>=* Display on screen the last lines of the =stdout=
-  (screen) of a running job on a remote machine. You can use this command to
-  check whether your job is working fine, you can also visualize errors
-  (=stderr=) or output files created by your program (see also
-  CondorFAQs#ssh). Useful options:
-  + *=-f=* Do not stop displaying the content, it will be displayed until
-    interrupted with =Ctrl+C=
-  + *=-no-stdout -stderr=* Show the content of =stderr= instead of =stdout=
-  + *=-no-stdout <output_file>=* Show the content of an output file (=output_file=
-    has to be listed in the =transfer_output_files= command in the submit file).
-
-+ *=condor_release <job_id>=* Release a specific held job in the queue. Useful
-  options: 
-  + *=<cluster_id>=* Instead of giving a =<job_id>=, you can specify just the
-    =<cluster_id>= in order to release all held jobs of a specific submission
-  + *=-constraint <constraint>=* Release all my held jobs that satisfy the
-    constraint
-  + *=-all=* Release all my held jobs
-  + *Note:* Jobs with ''on hold'' state are those that HTCondor was not able
-  to properly execute, usually due to problems with executable, paths, etc. If
-  you can solve the problems changing the input files and/or the executable,
-  then you can use =condor_release= command to run again your program since it
-  will send again all files to the remote machines. If you need to change the
-  submit file to solve the problems, then =condor_release= will NOT work because
-  it will not evaluate again the submit file. In that case you can use
-  =condor_qedit= (see the HOWTOs.CondorFAQs#ch_submit) or cancel all
-  held jobs and re-submit them again-]
-
-+ *=condor_hold <job_id>=* Put jobs into the hold state. It could be useful
-  when you detect that there are some problems with your input data (see
-  CondorFAQs#bad_inputs for more info), you are running out of disk space for
-  outputs, etc. With this command you can delay the execution of your jobs
-  holding them, and, after solving the problems, assign them the idle status
-  using =condor_release=, so they will be executed again. Useful options:
-  + *=<cluster_id>=* Instead of giving a =<job_id>=, you can specify just the
-    =<cluster_id>= in order to hold all jobs of a specific submission
-  + *=-constraint <constraint>=* Hold all jobs that satisfy the constraint
-  + *=-all=* Hold all my jobs from the queue
-
-+ *=condor_rm <job_id>=* Remove a specific job from the queue (it will be
-  removed even if it is running). Jobs are only removed from the current
-  machine, so if you submitted jobs from different machines, you need to remove
-  your jobs from each of them. Useful options:
-  + *=<cluster_id>=* Instead of giving a =<job_id>=, you can specify just the
-    =<cluster_id>= in order to remove all jobs of a specific submission
-  + *=-constraint <constraint>=* Remove all jobs that satisfy the constraint
-  + *=-all=* Remove all my jobs from the queue
-  + *=-forcex <job_id>=* It could happen that after removing jobs, they don't
-    disappear from the queue as expected, but they just change status to
-    *X*. That's normal since HTCondor may need to do some extra operations. If
-    jobs stay with 'X' status a very long time, you can force their elimination
-    adding =-forcex= option. For instance: =condor_rm -forcex -all=.
-
-+ *=condor_prio=* Set the priority of my jobs. A user can only change the
-  priority of her own jobs, to specify which ones she would like to run first
-  (the higher the number, the bigger the priority). Priority could be absolute
-  or relative, use =man condor_prio= for further information
-
-+ *=condor_ssh_to_job <job_id>=* Create an ssh session to a running job in a
-  remote machine. You can use this command to check whether the execution is
-  going fine, download/upload inputs or outputs, etc. More information about
-  this command is available in CondorFAQs#ssh.
-
-** Getting info from logs
-
-+ *=*condor_userlog* <file.log>=* Show and summarize job statistics from the job
-  log files (those created when using =log= command in the submit file) 
-
-+ *=*condor_history*=* Show all completed jobs to date (it has to be run in the
-  {+same machine+} where the submission was done). Useful options:
-  + *=-userlog <file.log>=* list basic information registered in the log files (use
-    =condor_logview <file.log>= to see information in graphic mode)
-  + *=-long XXX.YYY -af LastRemoteHost=* show machine where job XXX.YYY was
-    executed
-  + *=-constraint <constraint>=* Only show jobs that satisfy the constraint. I.e:
-    =condor_history -constraint 'RemoveReason=!=UNDEFINED'=: show your jobs that
-    were removed before completion
-
-+ *=condor_logview <file.log>=* This is not an original HTCondor command, we have
-  created this link to the script that allows you to display graphical
-  information contained in the log of your executions. 
-
-+ There is also an online tool to analyze your log files and get more
-  information: =HTCondor Log Analyzer= (http://condorlog.cse.nd.edu/).
-
-** Other commands
-
-+ *=condor_userprio=* Show active HTCondor users' priority. Lower values means
-  higher priority where 0.5 is the highest. Use =condor_userprio -allusers= to
-  see all users' priority, you can also add flags =-priority= and/or =-usage= to
-  get detailed information
-+ *=condor_qedit=* use this command to modify the attributes of a job placed on
-  the queue. This may be useful when you need to change some of the parameters
-  specified in the submit file without re-submitting jobs (see
-  HOWTOs.CondorFAQs#ch_submit). 
-+ *=condor_submit_dag <dag_file>=* Submit a DAG file, used to describe jobs
-  with dependencies. Visit the CondorHowTo#howto_dagman section for more info
-  and examples. 
-+ *=condor_version=* Print the version of HTCondor.
-+ If you want some general information about HTCondor queue, the pool of
-  machines, where jobs have been executed on, etc., you can try our online stats
-  about HTCondor: http://carlota:81/condor_stats/ and http://nectarino/.
-
-* Submit files (TBD)
+* Submit files
 
 ** Introduction
 
-To execute your application with HTCondor, you have to specify some parameters
+/HTCondor Submit Description Files/, or simply /Submit files/, are arguably the
+cornerstone of your interaction with HTCondor, since you use them to specify how
+to execute your application with HTCondor, by providing a number of parameters
 like the name of your executable, its arguments, inputs and outputs,
-requirements, etc. This information is written in a plain text using *submit
-commands* in a file called ''HTCondor Submit Description File'' or simply
-*submit file*. Once that file is filled with all needed info, you have to submit
-it to HTCondor using =*condor_submit*= in your terminal, and then it will be
-processed and your jobs will be added to the queue in order to be executed.
+requirements, etc. 
 
-*Submit files have considerably changed after the release of versions 8.4.X*
-(first version 8.4.0 released in Sept 2015, since Feb 2017 we are using versions
-8.6.X). Some operations were not possible or highly painful in previous versions
-(like dealing with an undetermined number of files with arbitrary names,
-declaring variables and macros and performing operations with them, including
-submission commands from other files, adding conditional statements, etc.). To
-solve that, many researchers developed external scripts (perl, python, bash,
-etc.) to dynamically create description files and submit them, what in most
-cases resulted in complex submissions and less efficient executions, not to
-mention that usually it was needed a hard work to adapt those scripts when the
-application, arguments and/or IO files changed.
+In section [[*Basic HTCondor workflow]] we saw a very simple /submit
+file/. Depending on your needs, that might be enough, but HTCondor offers many
+options and a rich syntax for writing /submit files/, which will be useful in
+more advanced cases. In this section we will cover the features needed in some
+of the most typical scenarios.
 
-With the addition of [[http://research.cs.wisc.edu/htcondor/manual/v8.6/2_5Submitting_Job.html#SECTION00352000000000000000][new, powerful and flexible commands]] most of those problems
-have been solved, so there should be no need of using external scripts and *we
-highly recommend you always use a HTCondor submit description file instead of
-developing scripts in other languages*. If you did that in the past, please,
-consider migrating your old scripts, we will give you support if you find any
-problems.
+#+begin_warning
+Before submitting your jobs, perform always some simple tests in order to make
+sure that both your submit file and program will work in a proper way. Also,
+=condor_submit -dry-run= can help you to debug your jobs and make sure they will
+work as expected.
+#+end_warning
 
-In this section you will find templates and examples of HTCondor Submit
-Description Files. Use them as reference to create your own submit files and
-contact us if you have any doubt or issue. Topics:
+** /Submit files/ syntax
 
-+ Creating a submit file (description and structure of
-  submit files: comments, variables, commands, etc.) 
-+ Templates and examples of submit files
-+ OLD examples
-+ Some more useful commands and info
-
-*Caution!: Before submitting your real jobs, perform always some simple tests*
- in order to make sure that both your submit file and program will work in a
- proper way: if you are going to submit hundreds of jobs and each job takes
- several hours to finish, before doing that try with just a few jobs and change
- the input data in order to let them finish in minutes. Then check the results
- to see if everything went fine before submitting the real jobs. Also we
- recommend you use =condor_submit *-dry-run*= to debug your jobs and make sure
- they will work as expected, see *useful commands* page). Bear in mind that
- submitting untested files and/or jobs may cause a waste of time and resources
- if they fail, and also your priority will be lower in following submissions.
-
-** Creating a Submit File
-
-As many other languages, HTCondor submit files allow the use of comments,
-variable, macros, commands, etc. Here we will describe the most common ones, you
-can check the [[https://research.cs.wisc.edu/htcondor/manual][official documentation]] for a complete and detailed
-information about submit files and submitting process.
+HTCondor /submit files/ can include comments, variables, macros, commands,
+etc. Here we will describe the most important syntax components. For a more
+detailed description you can check the official documentation ([[https://htcondor.readthedocs.io/en/v10_0/users-manual/submitting-a-job.html][Submitting a Job]],
+[[https://htcondor.readthedocs.io/en/v10_0/man-pages/condor_submit.html][condor_submit]]).
 
 *** Comments
 
-HTCondor uses symbol =*#*= for comments. Everything found after that symbol will
-be ignored. Please, do not mix commands and comments in the same line, since it
-may produce errors. We recommend you always write commands and comments in
-different lines.
-
-#+begin_example
-# This is a valid comment
-A = 4  # This may produce errors when expanding =A=, do not use comments and 
-       #  anything else in the same line!
-#+end_example
+Blank lines and lines beginning with a pound sign (=#=) character are ignored by
+the submit description file parser.
 
 *** Variables and macros
 
-There are many predefined variables and macros in HTCondor that you can use, and
-you can define your own ones.
+You can define your own variables, and there are also many predefined variables
+and macros that you can use in /submit files/.
 
-+ To *define a variable*, just chose a valid name (names are case-insensitive)
++ To *define a variable*, just choose a valid name (names are case-insensitive)
   and assign a value to it, like =N = 4=, =Name = "example"=
-+ To *get the value* of a variable, use next syntax: =$(varName)=, both =$=
-  symbol and parentheses =()= are mandatory.
-+ You can do *basic operations* with variables, like =B = $(A) + 1=, etc. (since
-  version 8.4.0 is not needed to use the old and complex syntax [@$$[(...)]@]
-  for the operations). To get the expression evaluated, you may need to use
-  function macros like =$INT(B)=, =$REAL(B)=, etc.
-+ There are several special *automatic variables* defined by HTCondor that will
-  help you when creating your submit file. The most useful one is =*$(Process)*=
-  or =$(ProcId)=, that will contain the Process ID of each job (if you submit
-  =N= jobs, the value of =$(Process)= will be =0= for the first job and =N-1= in
-  the last job). This variable is like an *iteration counter* and you can use it
-  to specify different inputs, outputs, arguments, ... for each job. There are
-  some *automatic variables*, 
-  like =$(Cluster)= or =$(ClusterId)= that stores the ID of each submission,
-  =$(Item)=, =$(ItemIndex)=, =$(Step)=, =$(Row)=, etc. (see *Example1* for
-  further information). 
++ To *get the value* of a variable, use next syntax: =$(varName)= (both the =$=
+  symbol and the parentheses =()= are mandatory).
++ There are several special *automatic variables* defined. The most useful one
+  is =*$(Process)*= or =$(ProcId)=, that will contain the Process ID of each job
+  (if you submit =N= jobs, the value of =$(Process)= will be =0= for the first
+  job and =N-1= in the last job). This variable is like an *iteration counter*
+  and you can use it to specify different inputs, outputs, arguments, ... for
+  each job. There are some *other automatic variables*, like =$(Cluster)= or
+  =$(ClusterId)= that stores the ID of each submission, =$(Item)=,
+  =$(ItemIndex)=, =$(Step)=, =$(Row)=, etc.
 + There are several *pre-defined Function Macros*. Their syntax is
   =*$FunctName(varName)*= and they can perform some operations on variable
   =varName= like evaluating expressions and type conversions, selecting a value
   from a list according an index, getting random numbers, string operations,
-  filenames processing, setting environment variables, etc. Before creating your
-  own macros, check if HTCondor has already a *pre-defined Function Macro* with
-  the same purpose.
+  filenames processing, setting environment variables, etc. 
++ You can do *basic operations* with variables, like =B = $(A) + 1=, etc. To get
+  the expression evaluated, you may need to use function macros like =$INT(B)=,
+  =$REAL(B)=, etc.
 
 *** Submit commands
 
-You will need to add several HTCondor submit commands in your script file in
-order to specify which executable you want to run and where it is located, its
-arguments if any, input files, which result files will be generated, etc. There
-is a wide set of HTCondor with almost 200 different *submit description file
-commands* to cover many different scenarios. But in most situations you will
-only need to specify a few of them (usually about 10-15). Here we will present
-the most common ones (commands are case-insensitive):
+The commands which can appear in the submit description file are numerous (see
+[[https://htcondor.readthedocs.io/en/v10_0/man-pages/condor_submit.html#submit-description-file-commands][submit description file commands]]), but in most situations you will only need a
+few of them. Here we present the most common ones (/commands are
+case-insensitive/): 
+
+CONTINUE HERE
 
 + *Mandatory commands:*
   + =*executable*=: specify where your executable is located (you can use an
@@ -1546,7 +1265,6 @@ Also remember that if you specify directories with =transfer_input_files= and =t
 
 Also you can add in your submit file some more commands that could be very useful when dealing with inputs and output files. For instance, =preCmd= and =postCmd= commands allow you to run scripts or shell commands before and after executing your program, respectively, so you can use them to rename or change the location of your input and output files, or any other operation that you may need. You have more information about these commands in [[ Submit File (HowTo) -> CondorHowTo#howto__prepostcmd]] section.
 
-
 [[#example_files]]
 !!  Example 4. A more complex example, step by step  [[[--^ Top -> #top--]]]
 
@@ -1642,7 +1360,6 @@ And that is all: HTCondor will expand =$(Process)= macro in every job, so it wil
 
    [...]$ =condor_submit= myprogram.submit =-append= 'N = 279'
 
-
 [[#example_complex_macros]]
 !!  Example 5. Working with more complex loops and macros  [[[--^ Top -> #top--]]]
 
@@ -1700,8 +1417,6 @@ According to the written commands in the third and fourth blocks, the behaviour 
 **Outputs*: On the outputs side, once all jobs have finished, we should find in our machine the next structure in the same directory where we did the submission: =data.out= (file) and one directory called =data-XXX= for each job (where =XXX= is the value of each =-init= argument). Note that we have a problem because our application always name the result file with =data.out=, so all jobs will override it in destination. To avoid that, we use the =transfer_output_remaps= command to specify that  =data.out= file has to be renamed to =data-XXX.out= and then all results will be copied in different files (this command ONLY works with files, NOT with directories). 
 >><<
 
-
-
 [[#some_more_commands]]
 !! Some more useful commands and info
 
@@ -1714,6 +1429,243 @@ HTCondor and the [[Howto recipes ->
 https://htcondor-wiki.cs.wisc.edu/index.cgi/wiki?p=HowToAdminRecipes]]. If you
 need further support, just contact us.
 
+* Main HTCondor commands
+
+HTCondor provides around 100 commands (see the [[https://htcondor.readthedocs.io/en/v10_0/man-pages/index.html][Command Reference Manual)]], but
+you will only need a few of them for most of you work with HTCondor. In this
+section we introduce the most common ones, grouped according to the four common
+tasks introduced in section [[*Basic HTCondor workflow]]: Checking pool status
+([[*Checking pool status]]), Submitting jobs ([[*Submitting jobs]]), Checking and
+managing submitted jobs ([[*Checking and managing submitted jobs]]) and Getting info
+from logs ([[Getting info from logs]]). For each command we also give a list of some
+of their most useful options (but note that you can also get full details about
+each command by executing =man condor_<cmd>= in your shell).
+
+** Checking pool status
+
++ *=condor_status=* list slots in the HTCondor pool and their status: =Owner= (used
+  by owner), =Claimed= (used by HTCondor), =Unclaimed= (available to be used
+  by HTCondor), etc. 
+  + *=-avail=* List those slots that are not busy and could run HTCondor jobs at
+    this moment
+  + *=-submitters=* Show information about the current general status, like
+    number of running, idle and held jobs (and submitters)
+  + *=-run=* List slots that are currently running jobs and show related
+    information (owner of each job, machine where it was submitted from, etc.)
+  + *=-compact=* Compact list, with one line per machine instead of per slot
+  + *=-state -total=* List a summary according to the state of each slot
+  + *=-master=* List machines, but just their names (status and slots are not
+    shown)
+  + *=-server=* List attributes of slots, such as memory, disk, load, flops, etc.
+  + *=-sort Memory=* Sort slots by Memory, you can try also with other attributes
+  + *=-af <attr1> <attr2> <...>=* List specific attributes of slots, using
+    autoformat (new version, very powerful)
+  + *=-format <fmt> <attr>=* List attributes using the specified format (old
+    version). For instance, next command will show the name of each slot and the
+    disk space: =condor_status -format "%s\t " Name -format "%d KB\n" Disk=
+  + *=<machine>=* Show the status of a specific machine
+  + *=<machine> -long=* Show the complete "ClassAd" of a machine (its
+    specifications). We can use these specifications to add restrictions in the
+    submit file so we can control which machines we want to use.
+  + *=-constraint <constraint>=* Only Show slots that satisfy the
+    constraint. I.e: =condor_status -constraint 'Memory > 1536'= will only show
+    slots with more than 1.5GB of RAM per slot.
+
+** Submitting jobs
+
++ *=condor_submit <submit_file>=* Submit jobs to the HTCondor queue according to
+  the information specified in =submit_file=. Visit the *submit file page* to
+  see some examples of these files. There are also some FAQs related to the
+  submit file. 
+  + *=-dry-run <dest_file>=* this option parses the submit file and saves all
+    the related info (name and locations of input and output files after
+    expanding all variables, value of requirements, etc.) to =<dest_file>=, but
+    jobs are *not* submitted. Using this option is highly recommended when
+    debugging or before the actual submission if you have made some
+    modifications in your submit file and you are not sure whether they will
+    work.
+  + *='var=value'=* add or modify variable(s) at submission time, without
+    changing the submit file. For instance, if you are using =queue $(N)= in
+    your submit file, then =condor_submit <submit_file> 'N = 10'= will submit 10
+    jobs. You can specify several pairs of =var=value=.
+  + *=-append <command>=* add submit commands at submission time, without
+    changing the submit file. You can add more than one command using several
+    times =-append=. 
+
+When submitted, each job is identified by a pair of numbers *X.Y*, like
+345.32. The first number (*X*) is the *cluster id*: every submission gets a
+different cluster id, that is shared by all jobs belonging to the same
+submission. The second number (*Y*) is the *process id*: if you submitted N
+jobs, then this id will go from 0 for the first job to N-1 for the last one. For
+instance, if you submit a file specifying 4 jobs and HTCondor assign id 523 to
+that cluster, then the ids of your jobs will be 523.0, 523.1, 523.2 and 523.3
+(you can get these ids and more info using =condor_q= command).
+
+#+begin_warning
+Before submitting your jobs, always do some simple tests in order to make sure
+that both your submit file and program work in a proper way: if you are going to
+submit hundreds of jobs and each job takes several hours to finish, before doing
+that try with just a few jobs and change the input data in order to let them
+finish in minutes. Then check the results to see if everything went fine before
+submitting the real jobs. Bear in mind that submitting untested files and/or
+jobs may cause a waste of time and resources if they fail, and also your
+priority will be lower in following submissions.
+#+end_warning
+
+** Checking and managing submitted jobs
+
+#+begin_note
+Each machine manages its own HTCondor queue, so it has information only about
+those jobs that were submitted on it (and no information about any other jobs
+you may have submitted on other machines). Most of the commands explained in
+this section get information asking only the local queue, which means that you
+will only see those jobs that you have submitted on that specific machine. If
+you submit jobs from different machines, and later you want to check, hold,
+release, remove, etc. those jobs, you may need to connect to each one of those
+machines where you have submitted jobs from, or, when possible, use the commands
+with extra options to communicate with other machines.
+#+end_note
+
++ *=condor_q=* Show my jobs that have been submitted in this machine. By default
+  you will see the ID of the job(=clusterID.processID=), the owner, submitting
+  time, run time, status, priority, size and command. *STATUS* can be: *I*:idle
+  (waiting for a machine to execute on); *R*: running; *H*: on hold (there was
+  an error, waiting for user's action); *S*: suspended; *C*: completed; *X*:
+  removed; *<*: transferring input; and *>*: transferring output. 
+  
+  #+begin_note
+  HTCondor will, by default, show only your jobs. If you want to use all
+  users' submitted jobs, you can use the option *=-allusers=*
+  #+end_note
+
+  + *=-global=* Show my jobs submitted in any machine, not only the current one
+  + *=-nobatch=* Starting in version HTCondor 8.6.0 installed in January 2017,
+    data is displayed in a compact mode (one line per cluster). With this option
+    output will be displayed in the old format (one line per process)
+  + *=-wide=* Do not truncate long lines. You can also use =-wide:<n>= to
+    truncate lines to fit =n= columns
+  + *=-analyze <job_id>=* Analyse a specific job and show the reason why it is in
+    its current state (useful for those jobs in Idle status: Condor will show us
+    how many slots match our restrictions and may give us suggestion)
+  + *=-better-analyze <job_id>=* Analyse a specific job and show the reason why
+    it is in its current state, giving extended info
+  + *=-long <job_id>=* Show all information related to that job
+  + *=-run=* Show your running jobs and related info, like how much time they
+    have been running, in which machine, etc.
+  + *=-currentrun=* Show the consumed time on the current run, the cumulative
+    time from last executions will not be used (you can combine also with =-run=
+    flag to see only the running processes at the moment)
+  + *=-hold=* Show only jobs in the "on hold" state and the reason for that. Held
+    jobs are those that got an error so they could not finish. An action from
+    the user is expected to solve the problem, and then he should use the
+    =condor_release= command in order to check the job again
+  + *=-af <attr1> <attr2> <...>=* List specific attributes of jobs, using
+    autoformat
+  + *=-global -submitter <user>=* Show all jobs from user =<user>= in all
+    machines. 
+
++ *=condor_tail <job_id>=* Display on screen the last lines of the =stdout=
+  (screen) of a running job on a remote machine. You can use this command to
+  check whether your job is working fine, you can also visualize errors
+  (=stderr=) or output files created by your program (see also
+  CondorFAQs#ssh). Useful options:
+  + *=-f=* Do not stop displaying the content, it will be displayed until
+    interrupted with =Ctrl+C=
+  + *=-no-stdout -stderr=* Show the content of =stderr= instead of =stdout=
+  + *=-no-stdout <output_file>=* Show the content of an output file (=output_file=
+    has to be listed in the =transfer_output_files= command in the submit file).
+
++ *=condor_release <job_id>=* Release a specific held job in the queue. Useful
+  options: 
+  + *=<cluster_id>=* Instead of giving a =<job_id>=, you can specify just the
+    =<cluster_id>= in order to release all held jobs of a specific submission
+  + *=-constraint <constraint>=* Release all my held jobs that satisfy the
+    constraint
+  + *=-all=* Release all my held jobs
+  + *Note:* Jobs with ''on hold'' state are those that HTCondor was not able
+  to properly execute, usually due to problems with executable, paths, etc. If
+  you can solve the problems changing the input files and/or the executable,
+  then you can use =condor_release= command to run again your program since it
+  will send again all files to the remote machines. If you need to change the
+  submit file to solve the problems, then =condor_release= will NOT work because
+  it will not evaluate again the submit file. In that case you can use
+  =condor_qedit= (see the HOWTOs.CondorFAQs#ch_submit) or cancel all
+  held jobs and re-submit them again-]
+
++ *=condor_hold <job_id>=* Put jobs into the hold state. It could be useful
+  when you detect that there are some problems with your input data (see
+  CondorFAQs#bad_inputs for more info), you are running out of disk space for
+  outputs, etc. With this command you can delay the execution of your jobs
+  holding them, and, after solving the problems, assign them the idle status
+  using =condor_release=, so they will be executed again. Useful options:
+  + *=<cluster_id>=* Instead of giving a =<job_id>=, you can specify just the
+    =<cluster_id>= in order to hold all jobs of a specific submission
+  + *=-constraint <constraint>=* Hold all jobs that satisfy the constraint
+  + *=-all=* Hold all my jobs from the queue
+
++ *=condor_rm <job_id>=* Remove a specific job from the queue (it will be
+  removed even if it is running). Jobs are only removed from the current
+  machine, so if you submitted jobs from different machines, you need to remove
+  your jobs from each of them. Useful options:
+  + *=<cluster_id>=* Instead of giving a =<job_id>=, you can specify just the
+    =<cluster_id>= in order to remove all jobs of a specific submission
+  + *=-constraint <constraint>=* Remove all jobs that satisfy the constraint
+  + *=-all=* Remove all my jobs from the queue
+  + *=-forcex <job_id>=* It could happen that after removing jobs, they don't
+    disappear from the queue as expected, but they just change status to
+    *X*. That's normal since HTCondor may need to do some extra operations. If
+    jobs stay with 'X' status a very long time, you can force their elimination
+    adding =-forcex= option. For instance: =condor_rm -forcex -all=.
+
++ *=condor_prio=* Set the priority of my jobs. A user can only change the
+  priority of her own jobs, to specify which ones she would like to run first
+  (the higher the number, the bigger the priority). Priority could be absolute
+  or relative, use =man condor_prio= for further information
+
++ *=condor_ssh_to_job <job_id>=* Create an ssh session to a running job in a
+  remote machine. You can use this command to check whether the execution is
+  going fine, download/upload inputs or outputs, etc. More information about
+  this command is available in CondorFAQs#ssh.
+
+** Getting info from logs
+
++ *=*condor_userlog* <file.log>=* Show and summarize job statistics from the job
+  log files (those created when using =log= command in the submit file) 
+
++ *=*condor_history*=* Show all completed jobs to date (it has to be run in the
+  {+same machine+} where the submission was done). Useful options:
+  + *=-userlog <file.log>=* list basic information registered in the log files (use
+    =condor_logview <file.log>= to see information in graphic mode)
+  + *=-long XXX.YYY -af LastRemoteHost=* show machine where job XXX.YYY was
+    executed
+  + *=-constraint <constraint>=* Only show jobs that satisfy the constraint. I.e:
+    =condor_history -constraint 'RemoveReason=!=UNDEFINED'=: show your jobs that
+    were removed before completion
+
++ *=condor_logview <file.log>=* This is not an original HTCondor command, we have
+  created this link to the script that allows you to display graphical
+  information contained in the log of your executions. 
+
++ There is also an online tool to analyze your log files and get more
+  information: =HTCondor Log Analyzer= (http://condorlog.cse.nd.edu/).
+
+** Other commands
+
++ *=condor_userprio=* Show active HTCondor users' priority. Lower values means
+  higher priority where 0.5 is the highest. Use =condor_userprio -allusers= to
+  see all users' priority, you can also add flags =-priority= and/or =-usage= to
+  get detailed information
++ *=condor_qedit=* use this command to modify the attributes of a job placed on
+  the queue. This may be useful when you need to change some of the parameters
+  specified in the submit file without re-submitting jobs (see
+  HOWTOs.CondorFAQs#ch_submit). 
++ *=condor_submit_dag <dag_file>=* Submit a DAG file, used to describe jobs
+  with dependencies. Visit the CondorHowTo#howto_dagman section for more info
+  and examples. 
++ *=condor_version=* Print the version of HTCondor.
++ If you want some general information about HTCondor queue, the pool of
+  machines, where jobs have been executed on, etc., you can try our online stats
+  about HTCondor: http://carlota:81/condor_stats/ and http://nectarino/.
 
 * Submit files (HowTo)                                             :noexport:
 
@@ -1725,7 +1677,6 @@ complement *some of the previous examples*, we will
 mention here a few useful commands that can be added to the submit file when
 needed. You can also find more details about these and other commands at the
 *FAQs page*.
-
 
 ** How to ... add requirements on the target machines where my jobs will be run? 
 
