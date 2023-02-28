@@ -5,6 +5,7 @@ uname=`whoami`
 echo running in `uname -a`
 echo cache: $KRB5CCNAME
 #export KRB5CCNAME=/tmp/krb5cc_${UID}_$3
+rm /scratch/.krb5cc_2071_*
 kinit -V ${uname}@IAC.ES -k -t krb_keytab -c $KRB5CCNAME
 
 # Create a new ticket every 28800s == 8 hours
@@ -23,7 +24,7 @@ do
     echo ""
 
     #    ls -ltr krb_keytab
-    ls -ltr /scratch/krb5cc_2071*
+    ls -ltr /scratch/.krb5cc_2071*
     klist 
 
     ls -ltr /home/angelv/words*
