@@ -1,4 +1,4 @@
-# Time-stamp: <2023-02-27 19:39:54 angelv> 
+# Time-stamp: <2023-02-28 13:11:27 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -356,7 +356,7 @@ work as expected.
 HTCondor /submit files/ can include comments, variables, macros, commands,
 etc. Here we will describe the most important syntax components. For a more
 detailed description you can check the official documentation ([[https://htcondor.readthedocs.io/en/v10_0/users-manual/submitting-a-job.html][Submitting a Job]],
-[[https://htcondor.readthedocs.io/en/v10_0/man-pages/condor_submit.html][condor_submit]]).
+[[https://htcondor.readthedocs.io/en/v10_0/man-pages/condor_submit.html][=condor_submit=]]).
 
 *** Comments
 
@@ -376,12 +376,12 @@ and macros that you can use in /submit files/.
   is =*$(Process)*= or =$(ProcId)=, that will contain the Process ID of each job
   (if you submit =N= jobs, the value of =$(Process)= will be =0= for the first
   job and =N-1= in the last job). This variable is like an *iteration counter*
-  and you can use it to specify different inputs, outputs, arguments, ... for
+  and you can use it to specify different inputs, outputs, arguments, etc. for
   each job. There are some *other automatic variables*, like =$(Cluster)= or
   =$(ClusterId)= that stores the ID of each submission, =$(Item)=,
   =$(ItemIndex)=, =$(Step)=, =$(Row)=, etc.
 + There are several *pre-defined Function Macros*. Their syntax is
-  =*$FunctName(varName)*= and they can perform some operations on variable
+  =$FunctName(varName)= and they can perform some operations on variable
   =varName= like evaluating expressions and type conversions, selecting a value
   from a list according an index, getting random numbers, string operations,
   filenames processing, setting environment variables, etc. 
@@ -396,71 +396,54 @@ The commands which can appear in the submit description file are numerous (see
 few of them. Here we present the most common ones (/commands are
 case-insensitive/): 
 
-CONTINUE HERE
++ *Mandatory commands*
+  + *=executable=* location of the executable file (you can use an
+    absolute path, one relative to the directory where you do the submission or
+    to another directory specified with =initialdir=). You should specify *only
+    the executable* and not other things like arguments, etc., since there are
+    specific commands for that.
+  + *=queue=* this command will send your job(s) to the queue, so it should be
+    the last command in your submit file. With it you can specify the number of
+    jobs to submit, but you can also use it to specify variables, iterations
+    over other commands, files to be processed, list of arguments, etc.
 
-+ *Mandatory commands:*
-  + =*executable*=: specify where your executable is located (you can use an
-    absolute path, a relative one to the directory where you do the submission
-    or to another directory specified with =initialdir=). You should specify
-    *only the executable* and not other things like arguments, etc., there are
-    specific commands for that. HTCondor will automatically copy the executable
-    file from your machine to any machine where your job will be executed, so
-    you do not need to worry about that.
-  + =*queue*=: this command will send your job(s) to the queue, so it should be
-    the last command in your submit file. In previous versions of HTCondor it
-    was quite limited, only allowing the number of jobs as argument. But since
-    version 8.4.0, this command is very powerful and flexible, and you can use
-    it to specify variables, iterations over other commands, files to be
-    processed, list of arguments, etc. *see complete syntax and examples*.
-
-+ *Highly recommended commands:*
-  + =*output*=: it will copy the standard output printed on the screen
++ *Highly recommended commands*
+  + *=output=* it will copy the standard output printed on the screen
     (=stdout=) of the remote machines when executing your program to the local
-    file you specify here. Since all the jobs will use the same name, the
-    filename should include some variable parts that change depending on the job
-    to avoid overwritten the same file, like =$(Process)= (and also =$(Cluster)=
-    if you do not want that different submissions ruin your output files). Even
-    if your program does not print any useful results on screen, it is very
-    recommended you save the screen output to check if there were errors, debug
-    them if any, etc.
-  + =*error*=: the same as previous command, but for standard error output
+    file you specify here. In order to generate a different output file for each
+    job, the filename should include variables, like =$(Process)= (and perhaps
+    also =$(Cluster)=.
+  + *=error=* the same as previous command, but for standard error output
     (=stderr=).
-  + =*log*=: it will save a log of your submission that later can be analysed
-    with HTCondor tools. This is very useful when there is any problem with your
-    job(s) to find the problem and fix it.  The log should be the same for all
-    jobs submitted in the same cluster, so you should *not* use =$(Process)= in
-    the filename (but including =$(Cluster)= is recommended).
-  + =universe=: there are several *runtime environments* in HTCondor called
-    ''universes'', we will mostly use the one named =vanilla= since it is the
-    easiest one. This is the universe by default, so if you miss this command,
-    your jobs will also go to =vanilla= universe.
+  + *=log=* file to keep track of the progress of your submission (very useful
+    to debug problems with your job(s). It is advisable to keep just one log
+    file for all jobs belonging to the same submission, so a filename with a
+    name like =log.$(Cluster)= is recommended.
+  + *=universe=* your job(s) *execution environment*. By default, the simplest
+    one (=vanilla=) will be chosen, but for more advanced users, other
+    =universe= might be necessarey. See [[https://htcondor.readthedocs.io/en/v10_0/users-manual/choosing-an-htcondor-universe.html][Choosing an HTCondor Universe]].
 
-+ *Useful commands when working with inputs and outputs (arguments, files,
-  keyboard, etc.)*:
-  + =*arguments*=: it is used to specify options and flags for your executable
-    file, like when using it in command line.
-  + =*should_transfer_files*=: assign =YES= to it in order to activate HTCondor
-    file transfer system (needed when working with files).
-  + =*when_to_transfer_output*=: it will usually have a value of =ON_EXIT= to
-    only copy output files when your job is finished, avoiding the copy of
-    temporary or incomplete files if your job fails or it is moved to another
-    machine.
-  + =*transfer_input_files*=: it is used to specify where the needed input files
-    are located. We can use a comma-separated list of files (with absolute or
-    relative paths, as mentioned in =executable= command). Local path will be
-    ignored, and HTCondor will copy all files to the root directory of a virtual
-    location on the remote machine (your executable will be also copy to the
-    same place, so input files will be in the same directory). If you specify a
-    directory in this command, you can choose if you want to copy only the
-    content of the directory (add a slash "=*/*=" at the end, for instance
-    =myInputDir*/*=) or the directory itself and its content (do not add a
-    slash).
-  + =*transfer_output_files*=: a comma-separated list of result files to be
++ *Useful commands for application Input/Output*
+  + *=arguments=* used to specify options and flags for your executable
+    file (as if it executed in the command line).
+  + *=should_transfer_files=* assign =YES= in order to activate HTCondor's file
+    transfer system (needed when working with files). 
+  + *=transfer_input_files=* a comma-separated list of files (with absolute or
+    relative paths) used to specify
+    where the needed input files are located. HTCondor will copy all the files
+    (together with the executable) to the root directory of a virtual
+    location on the remote machine. A directory name with a trailing *=/=*
+    character will copy only the contents of the directory. Without the trailing
+    *=/=* the directory itself and its contents will be copied.
+  + *=transfer_output_files=* a comma-separated list of result files to be
     copied back to our machine. If this command is omitted, HTCondor will
     automatically copy all files that have been created or modified on the
     remote machine. Sometimes omitting this command is useful, but other times
     our program creates many temporary or useless files and we only want to get
     the ones we specify with this command.
+
+    CONTINUE HERE
+
   + More commands for input/output files:
     + =transfer_output_remaps=: it changes the name of the output files when
       copying them to your machine. That is useful when your executable
@@ -476,13 +459,18 @@ CONTINUE HERE
       file or a comma-separated list of files containing it (each end of line in
       the file will have the same behaviour as pressing =Intro= key in the
       keyboard, like when using =stdin= redirection in command line with
-      =*<*=). As other similar commands, you can use absolute or relative paths.
+      *=<*=). As other similar commands, you can use absolute or relative paths.
     + =transfer_executable=: by default its value is =True=, but if it is set to
       =False=, HTCondor will not copy the executable file to the remote
       machine(s). This is useful when the executable is a system command or a
       program that is installed in all machines, so it is not needed to copy it.
+  + *=when_to_transfer_output=* it will usually have a value of =ON_EXIT= to
+    only copy output files when your job is finished, avoiding the copy of
+    temporary or incomplete files if your job fails or it is moved to another
+    machine.
 
-+ *Other useful commands:*
+
++ *Other useful commands*
   + =request_memory=, =request_disk=: if your program needs a certain amount of
     total RAM memory or free disk space, you can use these commands to force
     that your jobs will be only executed on machines with at least the requested
@@ -518,9 +506,9 @@ CONTINUE HERE
     resource (=/scratch=, =/net/nas=, etc.), in order to avoid that too many
     concurrent access can stress the network *CondorHowTo#howto_limit*
   + =include=: since HTCondor v8.4.0, it is possible to *include externally
-    defined submit commands* using syntax: =*include :* ''<myfile>''=. You can
+    defined submit commands* using syntax: *=include :* ''<myfile>''=. You can
     even include the output of external scripts that will be executed at
-    submission time, adding a pipe symbol after the file: =*include :*
+    submission time, adding a pipe symbol after the file: *=include :*
     ''<myscript.sh>'' *|*=
   + More useful commands:
     + =environment=: this command will allow you to set/unset/change any
@@ -725,7 +713,7 @@ queue $(N)
   location on the remote machine (your executable will be also copy to the same
   place, so input files will be in the same directory). If you specify a directory
   in this command, you can choose if you want to copy only the content of the
-  directory (add a slash "=*/*=" at the end, for instance =myInputDir*/*=) or the
+  directory (add a slash "*=/*=" at the end, for instance =myInputDir*/*=) or the
   directory itself and its content (do not add a slash). In this case, each job
   will process a different input file, and since they have a consecutive name
   beginning from =0=, we will use HTCondor macro =$(Process)= to build the proper
@@ -852,7 +840,7 @@ data). We have written that input data in 4 files (=dataFeH.in=, =dataOFe.in=,
 directories (=dir000=, =dir001= and =dir002=). Output files will be generated
 with the same name as inputs and extension =.out= (use =-o= argument) and they
 must be located in the same directory where the respective input file
-is. Program also needs all =*.tbl= files located in =/path/to/tables=.
+is. Program also needs all *=.tbl= files located in =/path/to/tables=.
 
 #+begin_example
 # Including Common Template
@@ -874,7 +862,7 @@ queue $(N) *met* *in* FeH, OFe, OH, He
 + *Explanation:*
 
 The key of this example is the =queue= command in last line. We are using the
-clause =*in*= to specify a list of values. HTCondor will create a job for each
+clause *=in*= to specify a list of values. HTCondor will create a job for each
 element in the list and the current value will be assigned to the variable =met=
 that we have declared (this variable is optional, you can omit it and use the
 automatic variable =Item=). We have 3 set of experiments, so we need to go over
@@ -899,7 +887,7 @@ the right directory to get the input files and to place later the respective
 output files there.
 
 Last thing we have to solve is the problem with the required input files (all
-=*.tbl= files located in =/path/to/tables=). HTCondor does not allow globbing in
+*=.tbl= files located in =/path/to/tables=). HTCondor does not allow globbing in
 =transfer_input_files=, but instead we can use the new feature of *including
 external files* with =include= command. This command not only include other
 files, but also invoke them if the command finish with a *bar* =*|*=. Then we
@@ -1443,7 +1431,7 @@ each command by executing =man condor_<cmd>= in your shell).
 
 ** Checking pool status
 
-+ *=condor_status=* list slots in the HTCondor pool and their status: =Owner= (used
++ *=condor_status=* List slots in the HTCondor pool and their status: =Owner= (used
   by owner), =Claimed= (used by HTCondor), =Unclaimed= (available to be used
   by HTCondor), etc. 
   + *=-avail=* List those slots that are not busy and could run HTCondor jobs at
@@ -1667,7 +1655,7 @@ with extra options to communicate with other machines.
   machines, where jobs have been executed on, etc., you can try our online stats
   about HTCondor: http://carlota:81/condor_stats/ and http://nectarino/.
 
-* Submit files (HowTo)                                             :noexport:
+* Submit files (HowTo)
 
 HTCondor has a huge set of commands that should cover most possible
 scenarios. It is impossible to describe here all of them, but you can read the
@@ -2351,7 +2339,7 @@ Ading those commands in your submit file will create output and error files with
 names similar to =$.slot3@xilofon.ll.iac.es.$=.
 
 
-* FAQs                                                             :noexport:
+* FAQs
 
 ** General Information
 
@@ -2573,18 +2561,18 @@ from =0= for the first job to =N-1= for last job when =N= jobs are submitted. To
 understand what is happening to your jobs, check ''State'' column (=ST=), the
 common values are:
 
-+ =*I*=: ''idle'' job, waiting for a slot to be executed on (it can take a while
++ =*I=* ''idle'' job, waiting for a slot to be executed on (it can take a while
   before your jobs are executed, but if they are always in this state, check
   *this FAQ -> #idle*)
-+ =*<*=: your job is about to be executed, executable and input files are being
++ =*<=* your job is about to be executed, executable and input files are being
   transferred to the remote machine
-+ =*R*=: ''running'', your job is being executed at this moment
-+ =*S*=: ''suspended'', the machine that was running this job is being used,
++ =*R=* ''running'', your job is being executed at this moment
++ =*S=* ''suspended'', the machine that was running this job is being used,
   jobs are suspended while waiting for the machine gets idle again
-+ =*>*=: execution is finished, output files are being transferred
-+ =*H*=: ''on hold'', there are problems with your job that have to be solved
++ =*>=* execution is finished, output files are being transferred
++ =*H=* ''on hold'', there are problems with your job that have to be solved
   (check *this FAQ -> #hel*)
-+ =*<q*= or =*>q*=: if you see those symbols, your transfers are waiting for the
++ =*<q*= or =*>q=* if you see those symbols, your transfers are waiting for the
   completion of other active transfers. This is done to avoid an excessive use
   of the available bandwidth.
 
@@ -3706,7 +3694,7 @@ Condor#contact* our contact data).
 
 
 
-* HTCondor and IDL                                                 :noexport:
+* HTCondor and IDL
 
 A recurring question to us has been whether IDL jobs can be run with
 HTCondor. The *use of IDL with HTCondor is limited by the number of available
@@ -4677,8 +4665,11 @@ los administradores de Condor en la dirección de correo condor@iac.es.
 
 ** Python bindings                                                 :noexport:
 
-* TODO TO DOs [0/2]                                                :noexport:
+* TODO TO DOs [0/6]                                                :noexport:
   + [ ] Pre-introduction: date of FEDER funds?
   + [ ] Write info about policies burros vs desktops
   + [ ] Note: if you want to submit jobs from your desktop, it has to belong to
     the pool.
+  + [ ] point out that only background processes!
+  + [ ] HTCondor + IDL example
+  + [ ] HTCondor + Apptainer example
