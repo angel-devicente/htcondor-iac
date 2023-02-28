@@ -7,8 +7,7 @@ Error      = error.test.$(ClusterID).$(Process)
 
 transfer_input_files = krb_pre,krb_keytab,simple
 +PreCmd = "krb_pre"
-+PreEnvironment = "id=$(ClusterID)_$(ProcID)"
-environment = "KRB5CCNAME=/scratch/.krb5cc_2071_$(ClusterID)_$(ProcID) KRB5_TRACE=/dev/stdout"
+environment = "KRB5CCNAME=/scratch/.krb5cc_2071"
 
 Requirements = Machine == "dama.ll.iac.es"
 Queue
