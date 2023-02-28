@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+uname=`whoami`
+
+#rm -f /tmp/krb5cc_${UID}
+kinit ${uname}@IAC.ES -k -t krb_keytab
+
+echo "running post" > post.txt
+klist >> post.txt
+
+ls -ltr /tmp/krb5cc_${UID}* >> post.txt
+ls -ltr /scratch/krb5cc_${UID}* >> post.txt
+
+
+
+
+

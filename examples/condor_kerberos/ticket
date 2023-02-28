@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+uname=`whoami`
+
+# rm -f /tmp/krb5cc_${UID}
+# [ ! -L /tmp/krb5cc_${UID} ] && rm -f /tmp/krb5cc_${UID} && ln -sf /scratch/krb5cc_${UID} /tmp/
+
+echo "running pre" >> pre.txt
+
+export KRB5CCNAME=/scratch/krb5cc_${UID}_${id}
+#kinit -V ${uname}@IAC.ES -k -t krb_keytab -c $KRB5CCNAME 2> pre.txt
+ln -sf $KRB5CCNAME /tmp/krb5cc_${UID}
+
+ls -ltr /tmp/krb5cc_${UID}* >> pre.txt
+ls -ltr /scratch/krb5cc_${UID}* >> pre.txt
+klist >> pre.txt
+
+#echo "ID: $id" >> pre.txt
+
+

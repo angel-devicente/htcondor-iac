@@ -1,0 +1,2 @@
+running pre
+lrwxrwxrwx 1 angelv sieinves 27 Feb 28 06:48 /tmp/krb5cc_2071 -> /scratch/krb5cc_2071_222_34

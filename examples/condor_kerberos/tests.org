@@ -1,0 +1,90 @@
+|----+---------------------+---+---+---+---+---+---+---+---+---+----|
+|  # | Machine             | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|----+---------------------+---+---+---+---+---+---+---+---+---+----|
+|  0 | dama.ll.iac.es      | - | - | 1 | - | - | - | 1 | 1 | 1 | 1  |
+|  1 | cruise.dyn.iac.es   |   |   |   |   |   |   |   |   |   |    |
+|  2 | danza.ll.iac.es     | - | - | - | - | - | - | - | - | - | -  |
+|  3 | darko.dyn.iac.es    |   |   | 2 | 2 | 2 | 2 | 2 |   |   | 2  |
+|  4 | datil.ll.iac.es     | 2 | 2 | - | - |   | - | 3 | 3 | 3 | 2  |
+|  5 | debil.ll.iac.es     | - | - | - | - | - | - | - | - | - | -  |
+|  6 | dedal.dyn.iac.es    | - | - | - | - | - | - | - | - | - | -  |
+|  7 | delfin.ll.iac.es    |   |   |   |   |   | - | - | - | - | -  |
+|  8 | delta.ll.iac.es     | - | - | - | - | - | - | - |   | - | -  |
+|  9 | denso.ll.iac.es     |   |   | - | - | - | - | - | - | - | -  |
+| 10 | diablos.ll.iac.es   |   |   | - |   |   | - | - | - | - | -  |
+| 11 | diosa.ll.iac.es     | - | - | - | - | - | - | - | - | - | -  |
+| 12 | dique.ll.iac.es     |   |   | - | - | - | - | - | - | - | -  |
+| 13 | divan.ll.iac.es     |   | - | - | - | - | - | - | - | - | -  |
+| 14 | dogma.ll.iac.es     | - | - | - | - | - | - | - | - | - | -  |
+| 15 | dolme.ll.iac.es     | - | - | - | - | - | - | - | - | - | -  |
+| 16 | domino.ll.iac.es    | - | - | - | - | - | - | - | - | - | -  |
+| 17 | domo.ll.iac.es      | 1 | 1 | 1 | 1 |   | 1 | 1 |   | - | -  |
+| 18 | dracarys.ll.iac.es  | - | - | - | - | - | - | - | - | - | -  |
+| 19 | duna.ll.iac.es      | - | - | - | - | - | - | - | - | - | -  |
+| 20 | duque.ll.iac.es     | - | - | - |   |   | - | - | - | - | -  |
+| 21 | elixir.dyn.iac.es   |   |   |   |   |   | - | - |   |   |    |
+| 22 | emir.dyn.iac.es     |   |   |   |   |   | - | - |   |   |    |
+| 23 | emisor.dyn.iac.es   |   |   |   |   |   | - | - |   |   |    |
+| 24 | eolo.dyn.iac.es     |   |   |   |   |   | - | - |   |   |    |
+| 25 | esqui.dyn.iac.es    |   |   |   |   |   | - | - |   |   |    |
+| 26 | ingles.dyn.iac.es   |   |   |   |   |   | - | - |   |   |    |
+| 27 | inka.dyn.iac.es     |   |   |   |   |   | - | - |   |   |    |
+| 28 | intimo.dyn.iac.es   |   |   |   |   |   | - | - |   |   |    |
+| 29 | islandia.dyn.iac.es |   |   |   |   |   | 2 | 2 |   |   |    |
+| 30 | item.dyn.iac.es     |   |   |   |   |   | - | - |   |   |    |
+| 31 | leon.dyn.iac.es     |   |   |   |   |   | - | - |   |   |    |
+| 32 | velero.dyn.iac.es   |   |   |   |   |   | - | - |   |   |    |
+| 33 | villa.dyn.iac.es    |   |   |   |   |   | - | - |   |   |    |
+| 34 | virus.dyn.iac.es    |   |   |   |   |   | - | - |   |   |    |
+|----+---------------------+---+---+---+---+---+---+---+---+---+----|
+
+1 - Credential cache permissions incorrect
+2 - Permission denied
+3 - Key has expired
+
+
+|----+---------------------+---+---+---+---+---+---+---+---+---+----+----|
+|  # | Machine             | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 |
+|----+---------------------+---+---+---+---+---+---+---+---+---+----+----|
+|  0 | dama.ll.iac.es      | - | - | - | - | - | - | - | - | - | -  | -  |
+|  1 | cruise.dyn.iac.es   |   |   |   |   |   | - |   |   |   |    |    |
+|  2 | danza.ll.iac.es     | - | - | - | - | - |   | - | - | - | -  | -  |
+|  3 | darko.dyn.iac.es    | 2 | 2 |   | 2 | 2 | 2 | - | - | - | -  |    |
+|  4 | datil.ll.iac.es     |   | - | 2 | 2 | 2 | 2 | - | - | - | -  | -  |
+|  5 | debil.ll.iac.es     | - | - | - | - | - | - | - | - | - | -  | -  |
+|  6 | dedal.dyn.iac.es    | - | - | - |   | - | - | - | - | - | -  | -  |
+|  7 | delfin.ll.iac.es    | - | - | - |   |   |   | - |   |   |    |    |
+|  8 | delta.ll.iac.es     | - | - | - | - | - | - | - | - | - | -  | -  |
+|  9 | denso.ll.iac.es     | - | - | - | - | - | - | - | - | - | -  | -  |
+| 10 | diablos.ll.iac.es   | - | - | - | - | - | - | - | - | - | -  | -  |
+| 11 | diosa.ll.iac.es     |   | - | - | - | - | - | - | - | - | -  | -  |
+| 12 | dique.ll.iac.es     | - | - | - | - | - | - | - | - | - | -  | -  |
+| 13 | divan.ll.iac.es     | - | - | - | - | - | - | - | - | - | -  |    |
+| 14 | dogma.ll.iac.es     | - | - | - | - | - | - | - | - | - | -  | -  |
+| 15 | dolme.ll.iac.es     | - | - | - | - | - | - | - | - | - | -  | -  |
+| 16 | domino.ll.iac.es    | - |   | - | - | - | - | - | - | - | -  | -  |
+| 17 | domo.ll.iac.es      | 1 | 1 | - | - | - | - | - | - | - | -  | -  |
+| 18 | dracarys.ll.iac.es  |   |   | - | - | - | - | - | - | - | -  | -  |
+| 19 | duna.ll.iac.es      | - |   | - | - | - | - | - | - | - | -  | -  |
+| 20 | duque.ll.iac.es     | - | - | - | - | - | - | - | - | - | -  | -  |
+| 21 | elixir.dyn.iac.es   |   |   | - | - | - | - |   |   |   | -  | -  |
+| 22 | emir.dyn.iac.es     |   |   | - |   | - | - |   | - | - | -  | -  |
+| 23 | emisor.dyn.iac.es   |   |   | - | - | - | - |   | - | - | -  | -  |
+| 24 | eolo.dyn.iac.es     |   |   | - | - | - | - |   | - | - | -  | -  |
+| 25 | esqui.dyn.iac.es    |   |   | - | - | - | - |   | - | - | -  | -  |
+| 26 | ingles.dyn.iac.es   |   |   | - |   | - | - |   | - | - | -  | -  |
+| 27 | inka.dyn.iac.es     |   |   | - | - | - | - |   | - | - | -  | -  |
+| 28 | intimo.dyn.iac.es   |   |   | - |   | - | - |   | - | - | -  | -  |
+| 29 | islandia.dyn.iac.es |   |   | 2 | 2 | 2 | 2 |   |   |   | -  | -  |
+| 30 | item.dyn.iac.es     |   |   | - |   | - | - |   | - | - | -  | -  |
+| 31 | leon.dyn.iac.es     |   |   | - | - | - | - |   | - | - | -  | -  |
+| 32 | velero.dyn.iac.es   |   |   | - | - | - | - |   | - | - | -  | -  |
+| 33 | villa.dyn.iac.es    |   |   | - | - | - | - |   | - | - | -  | -  |
+| 34 | virus.dyn.iac.es    |   |   | - | - | - | - |   | - | - | -  | -  |
+|----+---------------------+---+---+---+---+---+---+---+---+---+----+----|
+
+(before each run, I remove all /tmp/krb5cc_2071* and /scratch/krb5cc_2071*
+
+1 - Credential cache permissions incorrect
+2 - Permission denied
+3 - Key has expired
