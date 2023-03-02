@@ -1,4 +1,4 @@
-# Time-stamp: <2023-03-02 20:33:06 angelv> 
+# Time-stamp: <2023-03-02 21:27:33 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -31,6 +31,20 @@
 #  mdframed works for the PDF backend, but it is ignored by HTML
 #  putting both we get a frame in both backends
 
+#+begin_mdframed
+#+begin_note
+This documentation, together with example submit files and other material can be
+found in the [[https://github.com/angel-devicente/htcondor-iac][HTCondor@IAC]] repository.
+#+end_note
+#+end_mdframed
+
+#+begin_mdframed
+#+begin_note
+Part of the HTCondor infrastructure at the IAC was financed by the Ministry of
+Economy and Competitiveness through FEDER funds, code IACA13-3E-2493.
+#+end_note
+#+end_mdframed
+
 * Introduction   
 
 #+begin_mdframed
@@ -40,14 +54,6 @@ running any job so we can give you a quick introduction (bear in mind that you
 will be using other users' computers and there are some basic guidelines that
 you must follow to avoid disturbing them).
 #+end_warning
-#+end_mdframed
-
-#+begin_mdframed
-#+begin_note
-The HTCondor infrastructure at the IAC has been recently expanded and improved,
-with about 100 new Linux desktop PCs financed by the Ministry of Economy and
-Competitiveness through FEDER funds, code IACA13-3E-2493. 
-#+end_note
 #+end_mdframed
 
 ** What is HTCondor? 
@@ -194,8 +200,10 @@ basic example to *Quick Start* you.
   + *your application*
 
     For example, given the following basic C code (=simple.c=):
-    
+
+    #+begin_mdframed
     #+INCLUDE: "../examples/hello_world/simple.c" src C
+    #+end_mdframed
 
     You would compile it as usual:
     
@@ -210,7 +218,9 @@ basic example to *Quick Start* you.
     The submit file is a plain text file that specifies the name of your
     executable (=simple=), how many jobs to submit (=Queue 100=), etc.
     
+    #+begin_mdframed
     #+INCLUDE: "../examples/hello_world/simple.submit" example
+    #+end_mdframed
 
   + *the =condor_submit= command*
 
@@ -506,13 +516,37 @@ case-insensitive/):
   + *=notify_user=, =notification=* commands to request a notification (an
     email) when your jobs begin, fail and/or finish
 
-** Templates and examples
+** Examples
 
-Here you can find basic templates of submit files, you can use them as starting
-point and then do the customizations needed for your executions. Check the
-examples in following sections for details and explanations.
+#+begin_mdframed
+#+begin_note
+All the submit files in this section can be found in the =examples= directory of
+the [[https://github.com/angel-devicente/htcondor-iac][HTCondor@IAC]] repository. 
+#+end_note
+#+end_mdframed
 
-*** Common Template
+*** HTCondor /Hello World!/ 
+
+This example (directory =hello_world=) was the basis for the introductory
+section [[*Basic HTCondor workflow]]. For convenience we repeat below the /submit
+file/ (=simple.sumbit=):
+
+#+begin_mdframed
+#+INCLUDE: "../examples/hello_world/simple.submit" example
+#+end_mdframed
+
+This example simply defines:
++ the executable to run (=simple=), here to be compiled from source code
+  =simple.c= 
++ the arguments to pass to the executable
++ the log file (one file for the log of the 100 submitted jobs)
++ the output files (since we use $(Process), one file will be used for each job:
+  =simple.0.out=, =simple.1.out=, etc.)
++ the error files (similar to the output files above)
++ the =Queue= command, specifying that we want to run 100 jobs (the variable
+  $(Process) will have the range [0:99]
+
+*** Common Template                                                :noexport:
 
 #+begin_mdframed
 #+begin_example
@@ -575,7 +609,7 @@ when_to_transfer_output = ON_EXIT
       working with files, we recommend you always use them unless you are
       totally sure you can omit them.
 
-*** Examples when working with input/output files and arguments
+*** Examples when working with input/output files and arguments    :noexport:
 
 Most times you will want to run applications that deal with input and/or output
 files. Commonly, the input files will be located on your local machine, but
@@ -4619,7 +4653,7 @@ los administradores de Condor en la dirección de correo condor@iac.es.
 
 ** Python bindings                                                 :noexport:
 
-* TODO TO DOs [0/6]                                                :noexport:
+* TODO TO DOs [1/7]                                                :noexport:
   + [ ] Pre-introduction: date of FEDER funds?
   + [ ] Write info about policies burros vs desktops
   + [ ] Note: if you want to submit jobs from your desktop, it has to belong to
@@ -4627,3 +4661,4 @@ los administradores de Condor en la dirección de correo condor@iac.es.
   + [ ] point out that only background processes!
   + [ ] HTCondor + IDL example
   + [ ] HTCondor + Apptainer example
+  + [X] Point to the repository

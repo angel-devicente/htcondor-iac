@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-02 Thu 20:33 -->
+<!-- 2023-03-02 Thu 21:27 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTCondor@IAC User's Manual</title>
@@ -91,150 +91,160 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgcb5f00b">1. Introduction</a>
+<li><a href="#org811c392">1. Introduction</a>
 <ul>
-<li><a href="#orgf4d276e">1.1. What is HTCondor?</a></li>
-<li><a href="#org9e5bfaa">1.2. How can HTCondor help me?</a></li>
-<li><a href="#orgf5c210a">1.3. How <b>powerful</b> is HTCondor?</a></li>
-<li><a href="#orga76cd21">1.4. Which machines are part of HTCondor?</a></li>
-<li><a href="#org065aa79">1.5. How can I use HTCondor?</a></li>
-<li><a href="#orgfb7588e">1.6. Where will my application run?</a></li>
-<li><a href="#orgc2e367d">1.7. Basic HTCondor workflow</a></li>
-<li><a href="#orgb9bf9d1">1.8. Acknowledging HTCondor in publications</a></li>
-<li><a href="#org0904d91">1.9. Further information and support</a></li>
+<li><a href="#org30b475b">1.1. What is HTCondor?</a></li>
+<li><a href="#org1387661">1.2. How can HTCondor help me?</a></li>
+<li><a href="#orgbe8286e">1.3. How <b>powerful</b> is HTCondor?</a></li>
+<li><a href="#orgd3160db">1.4. Which machines are part of HTCondor?</a></li>
+<li><a href="#orgf1a682f">1.5. How can I use HTCondor?</a></li>
+<li><a href="#org18681d3">1.6. Where will my application run?</a></li>
+<li><a href="#org41dd0a2">1.7. Basic HTCondor workflow</a></li>
+<li><a href="#org4bd831e">1.8. Acknowledging HTCondor in publications</a></li>
+<li><a href="#orga1db6ff">1.9. Further information and support</a></li>
 </ul>
 </li>
-<li><a href="#orga6aa54e">2. Submit files</a>
+<li><a href="#org0e982f9">2. Submit files</a>
 <ul>
-<li><a href="#org3977bed">2.1. Introduction</a></li>
-<li><a href="#orgef8a3cc">2.2. <i>Submit files</i> syntax</a>
+<li><a href="#org694c105">2.1. Introduction</a></li>
+<li><a href="#orgf507ee1">2.2. <i>Submit files</i> syntax</a>
 <ul>
-<li><a href="#orgc53fd74">2.2.1. Comments</a></li>
-<li><a href="#org7480544">2.2.2. Variables and macros</a></li>
-<li><a href="#org93e9efd">2.2.3. Submit commands</a></li>
+<li><a href="#org6d76872">2.2.1. Comments</a></li>
+<li><a href="#orge389616">2.2.2. Variables and macros</a></li>
+<li><a href="#org72a6e56">2.2.3. Submit commands</a></li>
 </ul>
 </li>
-<li><a href="#org227eccc">2.3. Templates and examples</a>
+<li><a href="#orgccfa6dd">2.3. Examples</a>
 <ul>
-<li><a href="#orgcff4d65">2.3.1. Common Template</a></li>
-<li><a href="#org573cffa">2.3.2. Examples when working with input/output files and arguments</a>
-<ul>
-<li><a href="#orgcbc7f57">2.3.2.1. <b>Example A</b> (arbitrary filenames)</a></li>
-<li><a href="#org94c358c">2.3.2.2. <b>Example B</b> (based on ProcessID, old system before HTCondor v8.4.0)</a></li>
-<li><a href="#orge7eb8b6">2.3.2.3. <b>Example C</b> (lists of files and arguments written in submit file)</a></li>
-<li><a href="#orgd697329">2.3.2.4. Example D (lists of files and arguments in external file)</a></li>
-<li><a href="#orgc9e7626">2.3.2.5. Example E (<code>stdin</code>, <code>initialdir</code> external scripts and lists)</a></li>
-<li><a href="#org1d745f0">2.3.2.6. Example F (loops)</a></li>
-<li><a href="#orgd632e9a">2.3.2.7. Example G</a></li>
+<li><a href="#orgd22d9b3">2.3.1. HTCondor <i>Hello World!</i></a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a href="#orga24a47e">3. Main HTCondor commands</a>
+<ul>
+<li><a href="#org61c337f">3.1. Checking pool status</a></li>
+<li><a href="#orge11b9fc">3.2. Submitting jobs</a></li>
+<li><a href="#orgfda4759">3.3. Checking and managing submitted jobs</a></li>
+<li><a href="#orgabb1781">3.4. Getting info from logs</a></li>
+<li><a href="#orga09622b">3.5. Other commands</a></li>
 </ul>
 </li>
-<li><a href="#org3f6c039">3. Main HTCondor commands</a>
+<li><a href="#orgf7feb0b">4. Submit files (HowTo)</a>
 <ul>
-<li><a href="#org8e15637">3.1. Checking pool status</a></li>
-<li><a href="#org61da23f">3.2. Submitting jobs</a></li>
-<li><a href="#org2f44256">3.3. Checking and managing submitted jobs</a></li>
-<li><a href="#orgb018a32">3.4. Getting info from logs</a></li>
-<li><a href="#orgf3428f7">3.5. Other commands</a></li>
+<li><a href="#orgec9fb8f">4.1. How to &#x2026; add requirements on the target machines where my jobs will be run?</a></li>
+<li><a href="#orgc3b8325">4.2. How to &#x2026; add preferences on the target machines where my jobs will be run?</a></li>
+<li><a href="#org2b61c7c">4.3. How to &#x2026; get/set environment variables?</a></li>
+<li><a href="#org65086ba">4.4. How to &#x2026; control HTCondor notifications?</a></li>
+<li><a href="#org3cec3f6">4.5. How to &#x2026; run some shell commands/scripts/programs before/after our application?</a></li>
+<li><a href="#org357278c">4.6. How to &#x2026; specify the priority of your jobs?</a></li>
+<li><a href="#orgf72becb">4.7. How to &#x2026; deal with jobs that fail?</a></li>
+<li><a href="#org5726368">4.8. How to &#x2026; limit the number of concurrent running jobs?</a></li>
+<li><a href="#org8bb34a3">4.9. How to &#x2026; do some complex operations in my submit file?</a></li>
+<li><a href="#org93bd351">4.10. How to &#x2026; work with nested loops?</a></li>
+<li><a href="#orgb81ed2f">4.11. How to &#x2026; program my jobs to begin at a predefined time?</a></li>
+<li><a href="#org4a77672">4.12. How to &#x2026; run jobs that have dependencies among them?</a></li>
+<li><a href="#org268efd0">4.13. How to &#x2026; know the attributes of the machines where our jobs are run?</a></li>
 </ul>
 </li>
-<li><a href="#orgb418336">4. Submit files (HowTo)</a>
+<li><a href="#orge329bd1">5. FAQs</a>
 <ul>
-<li><a href="#org3e06ff2">4.1. How to &#x2026; add requirements on the target machines where my jobs will be run?</a></li>
-<li><a href="#org7d05455">4.2. How to &#x2026; add preferences on the target machines where my jobs will be run?</a></li>
-<li><a href="#org98809dd">4.3. How to &#x2026; get/set environment variables?</a></li>
-<li><a href="#org18c5276">4.4. How to &#x2026; control HTCondor notifications?</a></li>
-<li><a href="#org87c4100">4.5. How to &#x2026; run some shell commands/scripts/programs before/after our application?</a></li>
-<li><a href="#orgfee4a8f">4.6. How to &#x2026; specify the priority of your jobs?</a></li>
-<li><a href="#orgd219f2e">4.7. How to &#x2026; deal with jobs that fail?</a></li>
-<li><a href="#orgae21ed9">4.8. How to &#x2026; limit the number of concurrent running jobs?</a></li>
-<li><a href="#org25984f6">4.9. How to &#x2026; do some complex operations in my submit file?</a></li>
-<li><a href="#orgd4d2e07">4.10. How to &#x2026; work with nested loops?</a></li>
-<li><a href="#orge55ee7f">4.11. How to &#x2026; program my jobs to begin at a predefined time?</a></li>
-<li><a href="#org7df930a">4.12. How to &#x2026; run jobs that have dependencies among them?</a></li>
-<li><a href="#orgfa98c4f">4.13. How to &#x2026; know the attributes of the machines where our jobs are run?</a></li>
+<li><a href="#orgc98da6e">5.1. General Information</a>
+<ul>
+<li><a href="#org617a1ef">5.1.1. What is Condor? How can Condor help me? Who can use it? Who could help me if I have any problems?</a></li>
+<li><a href="#orga25d2dc">5.1.2. How does Condor work? My machine is in ''Owner/Unclaimed/Claimed'' state, what does it mean?</a></li>
+<li><a href="#orgdaaf56b">5.1.3. Sometimes Condor runs jobs on my computer when I am working on it, can I avoid that?</a></li>
+<li><a href="#orgf39d5ec">5.1.4. I am using Condor, should I add an acknowledgement text in my publications?</a></li>
 </ul>
 </li>
-<li><a href="#orgd280831">5. FAQs</a>
+<li><a href="#orgcb19529">5.2. Preparing and submitting your jobs</a>
 <ul>
-<li><a href="#orgdc89d82">5.1. General Information</a>
-<ul>
-<li><a href="#org01c8ef2">5.1.1. What is Condor? How can Condor help me? Who can use it? Who could help me if I have any problems?</a></li>
-<li><a href="#orga7cf97d">5.1.2. How does Condor work? My machine is in ''Owner/Unclaimed/Claimed'' state, what does it mean?</a></li>
-<li><a href="#org3a3fdfd">5.1.3. Sometimes Condor runs jobs on my computer when I am working on it, can I avoid that?</a></li>
-<li><a href="#org0378153">5.1.4. I am using Condor, should I add an acknowledgement text in my publications?</a></li>
+<li><a href="#orge0e497a">5.2.1. I have developed a program, do I need to make any modification to run it with Condor?</a></li>
+<li><a href="#org7e5a89d">5.2.2. How do I run my application with Condor? (submitting jobs to queue)</a></li>
+<li><a href="#orgb5210db">5.2.3. How do I check the Condor queue and my submitted jobs?</a></li>
+<li><a href="#org99d8e24">5.2.4. Where should I put my input files so that Condor will be able to find them?</a></li>
+<li><a href="#orgca05c12">5.2.5. If Condor runs my program on different machines, how I can get my output files?</a></li>
+<li><a href="#org6e2488e">5.2.6. Can I tell Condor to use a different directory for input/output files?</a></li>
+<li><a href="#org1bc6497">5.2.7. I would like to use a loop to send my jobs with different arguments&#x2026; can I do that?</a></li>
+<li><a href="#org23290f9">5.2.8. Do I need to rename my input/output files to work with Condor?</a></li>
+<li><a href="#org9bbe857">5.2.9. Should I delete temporary files?</a></li>
+<li><a href="#orgf13cd78">5.2.10. What are the technical specifications of machines running Condor? Can I restrict and/or prioritize those specifications in my jobs?</a></li>
+<li><a href="#org9fe2db2">5.2.11. How can I get/set environment variables when running with Condor (python and other programs may need them)?</a></li>
+<li><a href="#org96747ee">5.2.12. Can I change my jobs attributes after submitting them?</a></li>
 </ul>
 </li>
-<li><a href="#org71c8eb1">5.2. Preparing and submitting your jobs</a>
+<li><a href="#org4a7dd10">5.3. Having some troubles with your jobs</a>
 <ul>
-<li><a href="#org952ab29">5.2.1. I have developed a program, do I need to make any modification to run it with Condor?</a></li>
-<li><a href="#orgba19c48">5.2.2. How do I run my application with Condor? (submitting jobs to queue)</a></li>
-<li><a href="#orge8bd9f9">5.2.3. How do I check the Condor queue and my submitted jobs?</a></li>
-<li><a href="#org5db881c">5.2.4. Where should I put my input files so that Condor will be able to find them?</a></li>
-<li><a href="#org035b7cc">5.2.5. If Condor runs my program on different machines, how I can get my output files?</a></li>
-<li><a href="#org52ad097">5.2.6. Can I tell Condor to use a different directory for input/output files?</a></li>
-<li><a href="#org4eb4c65">5.2.7. I would like to use a loop to send my jobs with different arguments&#x2026; can I do that?</a></li>
-<li><a href="#org8bc1e8e">5.2.8. Do I need to rename my input/output files to work with Condor?</a></li>
-<li><a href="#org34af66f">5.2.9. Should I delete temporary files?</a></li>
-<li><a href="#org5ad608e">5.2.10. What are the technical specifications of machines running Condor? Can I restrict and/or prioritize those specifications in my jobs?</a></li>
-<li><a href="#orgd634e94">5.2.11. How can I get/set environment variables when running with Condor (python and other programs may need them)?</a></li>
-<li><a href="#orgdfcf892">5.2.12. Can I change my jobs attributes after submitting them?</a></li>
+<li><a href="#org80804bf">5.3.1. I cannot submit jobs, what is wrong?</a></li>
+<li><a href="#org2048c38">5.3.2. How can I check that my program is running fine? Can I access to the input/output files in the remote machine?</a></li>
+<li><a href="#org8116ce8">5.3.3. My submitted jobs are always in Idle status, why do they never run (and what about users' priority)?</a></li>
+<li><a href="#orgfaf5658">5.3.4. Condor have problems with input and/or output files&#x2026; are my paths wrong?</a></li>
+<li><a href="#orgfcf39d0">5.3.5. My jobs are 'on hold' status and never finish, what does it mean?</a></li>
+<li><a href="#org719d729">5.3.6. Condor is copying unwanted files to my machine, how can I avoid that?</a></li>
+<li><a href="#org21794b0">5.3.7. Some of my jobs are failing due to wrong inputs, can I fix that problem and then run again only those jobs that failed?</a></li>
+<li><a href="#org811516b">5.3.8. Some of my jobs randomly fail (or I know they will fail in some specific machines)&#x2026; how can I prevent that?</a></li>
+<li><a href="#orgb76bef6">5.3.9. I want to repeat (resubmit) ONLY some of my jobs, is that possible?</a></li>
+<li><a href="#orge51dff1">5.3.10. I see that my jobs complete after being running for N+X minutes/hours, when they only need N to finish. Is that normal?</a></li>
+<li><a href="#org5a8c4b7">5.3.11. I have submitted jobs that need some hours to finish. They have been running for days and just few have finished&#x2026; what is happening?</a></li>
+<li><a href="#org91262d0">5.3.12. Some of my python programs work fine, but other fail&#x2026;</a></li>
+<li><a href="#org0a1fc20">5.3.13. I receive an error when running HTCondor jobs that use python and matplotlib&#x2026;</a></li>
+<li><a href="#org2d9463b">5.3.14. I would like to get more information about the execution, is there an easy way to see the logs created by Condor?</a></li>
 </ul>
 </li>
-<li><a href="#org627f8d6">5.3. Having some troubles with your jobs</a>
+<li><a href="#orgc8b98a5">5.4. Special needs</a>
 <ul>
-<li><a href="#orgabe2796">5.3.1. I cannot submit jobs, what is wrong?</a></li>
-<li><a href="#org872eabf">5.3.2. How can I check that my program is running fine? Can I access to the input/output files in the remote machine?</a></li>
-<li><a href="#orgb51d204">5.3.3. My submitted jobs are always in Idle status, why do they never run (and what about users' priority)?</a></li>
-<li><a href="#orgcaed1ba">5.3.4. Condor have problems with input and/or output files&#x2026; are my paths wrong?</a></li>
-<li><a href="#org32de76a">5.3.5. My jobs are 'on hold' status and never finish, what does it mean?</a></li>
-<li><a href="#orgf73796d">5.3.6. Condor is copying unwanted files to my machine, how can I avoid that?</a></li>
-<li><a href="#org83a32d3">5.3.7. Some of my jobs are failing due to wrong inputs, can I fix that problem and then run again only those jobs that failed?</a></li>
-<li><a href="#org1450d56">5.3.8. Some of my jobs randomly fail (or I know they will fail in some specific machines)&#x2026; how can I prevent that?</a></li>
-<li><a href="#org653bc5b">5.3.9. I want to repeat (resubmit) ONLY some of my jobs, is that possible?</a></li>
-<li><a href="#org43a5589">5.3.10. I see that my jobs complete after being running for N+X minutes/hours, when they only need N to finish. Is that normal?</a></li>
-<li><a href="#org44c7f2d">5.3.11. I have submitted jobs that need some hours to finish. They have been running for days and just few have finished&#x2026; what is happening?</a></li>
-<li><a href="#org1621481">5.3.12. Some of my python programs work fine, but other fail&#x2026;</a></li>
-<li><a href="#org34cbf28">5.3.13. I receive an error when running HTCondor jobs that use python and matplotlib&#x2026;</a></li>
-<li><a href="#org2816e97">5.3.14. I would like to get more information about the execution, is there an easy way to see the logs created by Condor?</a></li>
+<li><a href="#org889c696">5.4.1. I am running many jobs, but some are more important than others, how can I prioritize them?</a></li>
+<li><a href="#orgb115ca2">5.4.2. I am receiving hundreds of emails from Condor, can I stop that?</a></li>
+<li><a href="#org105041f">5.4.3. What happens with my IDL or Matlab jobs that require licences to run?</a></li>
+<li><a href="#orgbf29d9c">5.4.4. I need to run some commands or scripts before/after my executable, is that possible?</a></li>
+<li><a href="#org2552783">5.4.5. Is it possible to limit the maximum number of concurrent running jobs?</a></li>
+<li><a href="#org2f78810">5.4.6. I need to do some complex operations in my submit file, is that possible?</a></li>
+<li><a href="#org5a01c00">5.4.7. I would like to submit my jobs now, but they should run at a programmed time, can I do that?</a></li>
+<li><a href="#org023936b">5.4.8. Jobs leave the queue after finishing. If something went wrong&#x2026; could they be held or automatically re-executed instead?</a></li>
+<li><a href="#org8bcf887">5.4.9. I have a fault tolerant application, can I save the state and restore it when executing with Condor?</a></li>
+<li><a href="#org5168a39">5.4.10. My jobs have some dependencies, is it possible to specify that?</a></li>
 </ul>
 </li>
-<li><a href="#org802dcdd">5.4. Special needs</a>
+<li><a href="#org157ea2e">5.5. More info</a>
 <ul>
-<li><a href="#orgb283597">5.4.1. I am running many jobs, but some are more important than others, how can I prioritize them?</a></li>
-<li><a href="#orgdd45027">5.4.2. I am receiving hundreds of emails from Condor, can I stop that?</a></li>
-<li><a href="#orgaaf18cc">5.4.3. What happens with my IDL or Matlab jobs that require licences to run?</a></li>
-<li><a href="#org189083b">5.4.4. I need to run some commands or scripts before/after my executable, is that possible?</a></li>
-<li><a href="#org77da9d0">5.4.5. Is it possible to limit the maximum number of concurrent running jobs?</a></li>
-<li><a href="#orgab9514a">5.4.6. I need to do some complex operations in my submit file, is that possible?</a></li>
-<li><a href="#org58eb3b0">5.4.7. I would like to submit my jobs now, but they should run at a programmed time, can I do that?</a></li>
-<li><a href="#orgc0c66fa">5.4.8. Jobs leave the queue after finishing. If something went wrong&#x2026; could they be held or automatically re-executed instead?</a></li>
-<li><a href="#org5750777">5.4.9. I have a fault tolerant application, can I save the state and restore it when executing with Condor?</a></li>
-<li><a href="#orgded1851">5.4.10. My jobs have some dependencies, is it possible to specify that?</a></li>
-</ul>
-</li>
-<li><a href="#org072ff9b">5.5. More info</a>
-<ul>
-<li><a href="#org66348c0">5.5.1. My question is not in this list or I need further information, where can I find it?</a></li>
+<li><a href="#orgdd8d391">5.5.1. My question is not in this list or I need further information, where can I find it?</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org6998e45">6. HTCondor and IDL</a>
+<li><a href="#org500e477">6. HTCondor and IDL</a>
 <ul>
-<li><a href="#org8078e05">6.1. Submitting a job to HTCondor using the IDL Virtual Machine (for the impatient)</a></li>
-<li><a href="#org8b2ce5b">6.2. How is it all done?</a></li>
+<li><a href="#org1294474">6.1. Submitting a job to HTCondor using the IDL Virtual Machine (for the impatient)</a></li>
+<li><a href="#org057c1e6">6.2. How is it all done?</a></li>
 </ul>
 </li>
 </ul>
 </div>
+</div>
+<div class="mdframed">
+<div class="note">
+<p>
+This documentation, together with example submit files and other material can be
+found in the <a href="https://github.com/angel-devicente/htcondor-iac">HTCondor@IAC</a> repository.
+</p>
+
 </div>
 
-<div id="outline-container-orgcb5f00b" class="outline-2">
-<h2 id="orgcb5f00b"><span class="section-number-2">1</span> Introduction</h2>
+</div>
+
+<div class="mdframed">
+<div class="note">
+<p>
+Part of the HTCondor infrastructure at the IAC was financed by the Ministry of
+Economy and Competitiveness through FEDER funds, code IACA13-3E-2493.
+</p>
+
+</div>
+
+</div>
+
+<div id="outline-container-org811c392" class="outline-2">
+<h2 id="org811c392"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <div class="mdframed">
 <div class="warning">
@@ -248,22 +258,10 @@ you must follow to avoid disturbing them).
 </div>
 
 </div>
-
-<div class="mdframed">
-<div class="note">
-<p>
-The HTCondor infrastructure at the IAC has been recently expanded and improved,
-with about 100 new Linux desktop PCs financed by the Ministry of Economy and
-Competitiveness through FEDER funds, code IACA13-3E-2493. 
-</p>
-
 </div>
 
-</div>
-</div>
-
-<div id="outline-container-orgf4d276e" class="outline-3">
-<h3 id="orgf4d276e"><span class="section-number-3">1.1</span> What is HTCondor?</h3>
+<div id="outline-container-org30b475b" class="outline-3">
+<h3 id="org30b475b"><span class="section-number-3">1.1</span> What is HTCondor?</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 At the IAC we have several <a href="http://research.iac.es/sieinvens/SINFIN/Main/supercomputing.php">Supercomputing</a> resources that allow you to obtain
@@ -279,8 +277,8 @@ detailed overview of HTCondor is available at the <a href="https://htcondor.read
 </div>
 </div>
 
-<div id="outline-container-org9e5bfaa" class="outline-3">
-<h3 id="org9e5bfaa"><span class="section-number-3">1.2</span> How can HTCondor help me?</h3>
+<div id="outline-container-org1387661" class="outline-3">
+<h3 id="org1387661"><span class="section-number-3">1.2</span> How can HTCondor help me?</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 HTCondor is very useful when you have an application that has to run a large
@@ -298,8 +296,8 @@ your machine when they are complete.
 </div>
 </div>
 
-<div id="outline-container-orgf5c210a" class="outline-3">
-<h3 id="orgf5c210a"><span class="section-number-3">1.3</span> How <b>powerful</b> is HTCondor?</h3>
+<div id="outline-container-orgbe8286e" class="outline-3">
+<h3 id="orgbe8286e"><span class="section-number-3">1.3</span> How <b>powerful</b> is HTCondor?</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 HTCondor calls a <i>slot</i> the unit that executes a job, typically a CPU or a core
@@ -314,7 +312,7 @@ and weekends.
 
 <p>
 You can see real-time <b>HTCondor@IAC statistics</b> (global and per user) <a href="http://pasa/ganglia/?r=week&amp;cs=&amp;ce=&amp;m=load_one&amp;tab=v&amp;vn=pool_usage&amp;hide-hf=false">here</a>. Figure
-<a href="#org781a718">1</a> is an example showing the global usage where <i>Owner</i> represents
+<a href="#org4d3f75e">1</a> is an example showing the global usage where <i>Owner</i> represents
 <i>slots</i> that are being used outside of HTCondor. The remaining <i>slots</i> are
 available to HTCondor, but if there are no eligible jobs to run, those slots
 will be in <i>CPUsNotInUse</i> state. Those <i>slots</i> that are actually being used by
@@ -322,7 +320,7 @@ HTCondor are those in the <i>CPUsInUse</i> state.
 </p>
 
 
-<div id="org781a718" class="figure">
+<div id="org4d3f75e" class="figure">
 <p><img src="images/introduction/weekly_usage.png" alt="weekly_usage.png" />
 </p>
 <p><span class="figure-number">Figure 1: </span>Weekly global usage</p>
@@ -330,8 +328,8 @@ HTCondor are those in the <i>CPUsInUse</i> state.
 </div>
 </div>
 
-<div id="outline-container-orga76cd21" class="outline-3">
-<h3 id="orga76cd21"><span class="section-number-3">1.4</span> Which machines are part of HTCondor?</h3>
+<div id="outline-container-orgd3160db" class="outline-3">
+<h3 id="orgd3160db"><span class="section-number-3">1.4</span> Which machines are part of HTCondor?</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 HTCondor is installed in a number of <i>burros</i> (High Performance Linux PCs) and
@@ -354,19 +352,19 @@ run almost every application in any machine.
 
 <p>
 Detailed information about each machine can be obtained with the command
-<code>condor_status</code> (see Section <a href="#org8e15637">3.1</a>). 
+<code>condor_status</code> (see Section <a href="#org61c337f">3.1</a>). 
 </p>
 
 <p>
 HTCondor provides a simple mechanism by which you can specify a set of
 requirements for the machines where you want your application to run, for
-example: memory per slot, OS version, etc. (see Section <a href="#orga6aa54e">2</a>).
+example: memory per slot, OS version, etc. (see Section <a href="#org0e982f9">2</a>).
 </p>
 </div>
 </div>
 
-<div id="outline-container-org065aa79" class="outline-3">
-<h3 id="org065aa79"><span class="section-number-3">1.5</span> How can I use HTCondor?</h3>
+<div id="outline-container-orgf1a682f" class="outline-3">
+<h3 id="orgf1a682f"><span class="section-number-3">1.5</span> How can I use HTCondor?</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 If you have an account in the IAC network, then you can use HTCondor. 
@@ -376,7 +374,7 @@ If you have an account in the IAC network, then you can use HTCondor.
 HTCondor is a batch-processing system (i.e. non-interactive), so you submit jobs
 to the HTCondor queue with the <code>condor_submit</code> command, and providing a text
 submission file, where you specify the executable file, its arguments, inputs
-and outputs, etc. (see Section <a href="#org61da23f">3.2</a>).
+and outputs, etc. (see Section <a href="#orge11b9fc">3.2</a>).
 </p>
 
 <p>
@@ -388,8 +386,8 @@ needed in order to specify arguments and the locations of inputs or outputs.
 </div>
 </div>
 
-<div id="outline-container-orgfb7588e" class="outline-3">
-<h3 id="orgfb7588e"><span class="section-number-3">1.6</span> Where will my application run?</h3>
+<div id="outline-container-org18681d3" class="outline-3">
+<h3 id="org18681d3"><span class="section-number-3">1.6</span> Where will my application run?</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 When you submit jobs to the HTCondor queue, HTCondor uses its allocation
@@ -416,8 +414,8 @@ notifications via email when they are finished or if any errors show up.
 </div>
 </div>
 
-<div id="outline-container-orgc2e367d" class="outline-3">
-<h3 id="orgc2e367d"><span class="section-number-3">1.7</span> Basic HTCondor workflow</h3>
+<div id="outline-container-org41dd0a2" class="outline-3">
+<h3 id="org41dd0a2"><span class="section-number-3">1.7</span> Basic HTCondor workflow</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 The basic workflow with HTCondor will include four steps: checking the HTCondor
@@ -476,6 +474,7 @@ In order to ask HTCondor to run you application you will need:
 For example, given the following basic C code (<code>simple.c</code>):
 </p>
 
+<div class="mdframed">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #b0c4de;">#include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
 
@@ -502,6 +501,8 @@ For example, given the following basic C code (<code>simple.c</code>):
 </pre>
 </div>
 
+</div>
+
 <p>
 You would compile it as usual:
 </p>
@@ -523,17 +524,18 @@ The submit file is a plain text file that specifies the name of your
 executable (<code>simple</code>), how many jobs to submit (<code>Queue 100</code>), etc.
 </p>
 
+<div class="mdframed">
 <pre class="example">
-Universe   = vanilla
 Executable = simple
 Arguments  = 400 10
 Log        = simple.log
 Output     = simple.$(Process).out
 Error      = simple.$(Process).error
-nice_user  = True
 
 Queue 100
-</pre></li>
+</pre>
+
+</div></li>
 
 <li><p>
 <b>the <code>condor_submit</code> command</b>
@@ -663,8 +665,8 @@ was evicted or had any other problems, etc. In this example, the file
 </div>
 </div>
 
-<div id="outline-container-orgb9bf9d1" class="outline-3">
-<h3 id="orgb9bf9d1"><span class="section-number-3">1.8</span> Acknowledging HTCondor in publications</h3>
+<div id="outline-container-org4bd831e" class="outline-3">
+<h3 id="org4bd831e"><span class="section-number-3">1.8</span> Acknowledging HTCondor in publications</h3>
 <div class="outline-text-3" id="text-1-8">
 <p>
 It is important that you acknowledge HTCondor in any publication of your work
@@ -689,8 +691,8 @@ Economy and Competitiveness with FEDER funds, code IACA13-3E-2493.
 </div>
 </div>
 
-<div id="outline-container-org0904d91" class="outline-3">
-<h3 id="org0904d91"><span class="section-number-3">1.9</span> Further information and support</h3>
+<div id="outline-container-orga1db6ff" class="outline-3">
+<h3 id="orga1db6ff"><span class="section-number-3">1.9</span> Further information and support</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
 This manual is only a brief introduction to all HTCondor has to offer. For
@@ -712,12 +714,12 @@ low traffic mailing list (send us an e-mail if you want to subscribe to it).
 </div>
 </div>
 
-<div id="outline-container-orga6aa54e" class="outline-2">
-<h2 id="orga6aa54e"><span class="section-number-2">2</span> Submit files</h2>
+<div id="outline-container-org0e982f9" class="outline-2">
+<h2 id="org0e982f9"><span class="section-number-2">2</span> Submit files</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org3977bed" class="outline-3">
-<h3 id="org3977bed"><span class="section-number-3">2.1</span> Introduction</h3>
+<div id="outline-container-org694c105" class="outline-3">
+<h3 id="org694c105"><span class="section-number-3">2.1</span> Introduction</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <i>HTCondor Submit Description Files</i>, or simply <i>Submit files</i>, are arguably the
@@ -728,7 +730,7 @@ requirements, etc.
 </p>
 
 <p>
-In section <a href="#orgc2e367d">1.7</a> we saw a very simple <i>submit
+In section <a href="#org41dd0a2">1.7</a> we saw a very simple <i>submit
 file</i>. Depending on your needs, that might be enough, but HTCondor offers many
 options and a rich syntax for writing <i>submit files</i>, which will be useful in
 more advanced cases. In this section we will cover the features needed in some
@@ -750,8 +752,8 @@ work as expected.
 </div>
 </div>
 
-<div id="outline-container-orgef8a3cc" class="outline-3">
-<h3 id="orgef8a3cc"><span class="section-number-3">2.2</span> <i>Submit files</i> syntax</h3>
+<div id="outline-container-orgf507ee1" class="outline-3">
+<h3 id="orgf507ee1"><span class="section-number-3">2.2</span> <i>Submit files</i> syntax</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 HTCondor <i>submit files</i> can include comments, variables, macros, commands,
@@ -761,8 +763,8 @@ detailed description you can check the official documentation (<a href="https://
 </p>
 </div>
 
-<div id="outline-container-orgc53fd74" class="outline-4">
-<h4 id="orgc53fd74"><span class="section-number-4">2.2.1</span> Comments</h4>
+<div id="outline-container-org6d76872" class="outline-4">
+<h4 id="org6d76872"><span class="section-number-4">2.2.1</span> Comments</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 Blank lines and lines beginning with a pound sign (<code>#</code>) character are ignored by
@@ -771,8 +773,8 @@ the submit description file parser.
 </div>
 </div>
 
-<div id="outline-container-org7480544" class="outline-4">
-<h4 id="org7480544"><span class="section-number-4">2.2.2</span> Variables and macros</h4>
+<div id="outline-container-orge389616" class="outline-4">
+<h4 id="orge389616"><span class="section-number-4">2.2.2</span> Variables and macros</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 You can define your own variables, and there are also many predefined variables
@@ -804,8 +806,8 @@ the expression evaluated, you may need to use function macros like <code>$INT(B)
 </div>
 </div>
 
-<div id="outline-container-org93e9efd" class="outline-4">
-<h4 id="org93e9efd"><span class="section-number-4">2.2.3</span> Submit commands</h4>
+<div id="outline-container-org72a6e56" class="outline-4">
+<h4 id="org72a6e56"><span class="section-number-4">2.2.3</span> Submit commands</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 The commands which can appear in the submit description file are numerous (see
@@ -919,651 +921,80 @@ email) when your jobs begin, fail and/or finish</li>
 </div>
 </div>
 
-<div id="outline-container-org227eccc" class="outline-3">
-<h3 id="org227eccc"><span class="section-number-3">2.3</span> Templates and examples</h3>
+<div id="outline-container-orgccfa6dd" class="outline-3">
+<h3 id="orgccfa6dd"><span class="section-number-3">2.3</span> Examples</h3>
 <div class="outline-text-3" id="text-2-3">
+<div class="mdframed">
+<div class="note">
 <p>
-Here you can find basic templates of submit files, you can use them as starting
-point and then do the customizations needed for your executions. Check the
-examples in following sections for details and explanations.
+All the submit files in this section can be found in the <code>examples</code> directory of
+the <a href="https://github.com/angel-devicente/htcondor-iac">HTCondor@IAC</a> repository. 
 </p>
+
 </div>
 
-<div id="outline-container-orgcff4d65" class="outline-4">
-<h4 id="orgcff4d65"><span class="section-number-4">2.3.1</span> Common Template</h4>
+</div>
+</div>
+
+<div id="outline-container-orgd22d9b3" class="outline-4">
+<h4 id="orgd22d9b3"><span class="section-number-4">2.3.1</span> HTCondor <i>Hello World!</i></h4>
 <div class="outline-text-4" id="text-2-3-1">
+<p>
+This example (directory <code>hello_world</code>) was the basis for the introductory
+section <a href="#org41dd0a2">1.7</a>. For convenience we repeat below the <i>submit
+file</i> (<code>simple.sumbit</code>):
+</p>
+
 <div class="mdframed">
 <pre class="example">
-######################################################
-# HTCondor Submit Description File. COMMON TEMPLATE   
-# Next commands should be added to all your submit files   
-######################################################
-if !defined FNAME
-  FNAME = condor_exec
-endif
-ID      = $(Cluster).$(Process)
+Executable = simple
+Arguments  = 400 10
+Log        = simple.log
+Output     = simple.$(Process).out
+Error      = simple.$(Process).error
 
-output  = $(FNAME).$(ID).out
-error   = $(FNAME).$(ID).err
-log     = $(FNAME).$(Cluster).log
-
-universe                = vanilla
-should_transfer_files   = YES
-when_to_transfer_output = ON_EXIT
+Queue 100
 </pre>
 
 </div>
 
-<ul class="org-ul">
-<li><p>
-<b>Explanation:</b>
-</p>
-
 <p>
-Let's analyse the common template: 
+This example simply defines:
 </p>
 <ul class="org-ul">
-<li>First block:
-<ul class="org-ul">
-<li>Here we will define some variables that will be used later. The first of
-them is <code>FNAME</code> and first we ask with the <code>if defined</code> condition whether
-that variable is not already defined (if so, we will use the previous
-value). This variable will contain the base name for the files where
-HTCondor will save the information displayed on the screen (<code>stdout</code> and
-<code>stderr</code>) and the log file. It is interesting to give a common name to
-those files generated by HTCondor so later we can identify and manage them
-together. Since all jobs will use the name specified there, we have to
-include a variable part that has to be different in each job, in order to
-avoid overwriting the files. We recommend you use a combination of
-<code>$(Process)</code> (it contains the process ID that is different for each job)
-and <code>$(Cluster)</code> (it contains the cluster ID that is different for each
-submission), as we have done when defining <code>$(ID)</code>. In this way, different
-jobs and different submission will use different filenames and none of
-them will be overwritten.</li>
-</ul></li>
-<li>Second block:
-<ul class="org-ul">
-<li>With <code>output</code> command we force HTCondor to write in the specified file all
-the screen output (<code>stdout</code>) generated by each job. We have used the
-variables <code>$(FNAME)</code> and <code>$(ID)</code> defined above.</li>
-<li>With <code>error</code> command we manage <code>stderr</code> in the same way we did with
-<code>output</code>.</li>
-<li>Then we have also specified a HTCondor log file with <code>log</code> command. You
-should not use <code>$(Process)</code> in the filename of the log since all jobs
-should share the same log.</li>
-</ul></li>
-<li>Third block:
-<ul class="org-ul">
-<li><code>universe</code>: there are <b>runtime environments</b>
-in HTCondor called ''universes'', we will mostly use the one named
-<code>vanilla</code> since it is the easiest one. This is the universe by default, so
-if you miss this command, your jobs will go also to <code>vanilla</code> universe.</li>
-<li><code>should_transfer_files=YES</code> and <code>when_to_transfer_output=ON_EXIT</code> commands
-are used to specify that input files have to be copied to the remote
-machines and output files must be copied back to your machine only when
-our program is finished. Although these commands are only needed when
-working with files, we recommend you always use them unless you are
-totally sure you can omit them.</li>
-</ul></li>
-</ul></li>
+<li>the executable to run (<code>simple</code>), here to be compiled from source code
+<code>simple.c</code></li>
+<li>the arguments to pass to the executable</li>
+<li>the log file (one file for the log of the 100 submitted jobs)</li>
+<li>the output files (since we use $(Process), one file will be used for each job:
+<code>simple.0.out</code>, <code>simple.1.out</code>, etc.)</li>
+<li>the error files (similar to the output files above)</li>
+<li>the <code>Queue</code> command, specifying that we want to run 100 jobs (the variable
+$(Process) will have the range [0:99]</li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org573cffa" class="outline-4">
-<h4 id="org573cffa"><span class="section-number-4">2.3.2</span> Examples when working with input/output files and arguments</h4>
-<div class="outline-text-4" id="text-2-3-2">
-<p>
-Most times you will want to run applications that deal with input and/or output
-files. Commonly, the input files will be located on your local machine, but
-since your application will be executed on other machine(s), it will be needed
-to copy your input files there, and then copy the result files back to your
-computer once your program is done. HTCondor have some commands to automatically
-do both operations in an easy way, so you do not need to worry about the file
-transfers: you just need to specify where your files are and HTCondor will copy
-them.
-</p>
-
-<p>
-<b>Note:</b> All these examples will begin defining a specific variable <code>FNAME</code> that
-contains the base name of the files that HTCondor will generate to save the
-<code>stdout</code>, <code>stderr</code> and log. Next, the common template explained above with be
-included using command <code>include</code> (we assume that the common template filename is
-<code>condor_common.tmpl</code>).
-</p>
-</div>
-
-<div id="outline-container-orgcbc7f57" class="outline-5">
-<h5 id="orgcbc7f57"><span class="section-number-5">2.3.2.1</span> <b>Example A</b> (arbitrary filenames)</h5>
-<div class="outline-text-5" id="text-2-3-2-1">
-<p>
-Process all input files with extension <code>.in</code> in a given directory with next
-program: <code>./myprogram -i inputFile -o outputFile</code>
-</p>
-
-<pre class="example">
-# Including Common Template
-FNAME = exampleA
-include : /path/to/condor_common.tmpl
-
-transfer_input_files    = $(mydata)
-transfer_output_files   = $Fn(mydata).out
-
-executable    = myprogram
-arguments     = "-i $Fnx(mydata) -o $Fn(mydata).out"
-
-queue *mydata* matching files /path/to/inputs/*.in
-</pre>
-
-<ul class="org-ul">
-<li><p>
-<b>Explanation:</b> 
-We use <code>transfer_input_files</code> to specify where the needed input files are
-located. We can use a comma-separated list of files, but since we do not know
-the name of the files, we will use the variable <code>mydata</code> to specify them. That
-variable is defined in the last line, with the <code>queue</code> command: there, we choose
-to process all files in <code>/path/to/inputs</code> with extension <code>.in</code>. When submitting,
-HTCondor will check that directory and it will automatically create a job for
-each <code>.in</code> file found there, assigning the complete filename to <code>mydata</code> (in
-this way, each job will work with a different file). We have used the <code>matching
-  files</code> to specify that we only want files matching the condition, but we can
-also select only directories (<code>matching dirs</code>) or both of them (just
-<code>matching</code>).
-</p>
-
-<p>
-With <code>transfer_output_files</code> we set the name of the output files, that is the
-same as the input file with <code>.out</code> extension. To remove the old extension we use
-the <code>$Fn</code> macro, that is one of the <b>new Function Macros</b>
-available since version 8.4.0, used to operate the filename and extract the
-path, name without extension, extension, etc.
-</p>
-
-<p>
-Then we use <code>executable</code> to specify the name of the executable (it can be a
-system command, your own application, a script, etc). We can use a absolute path
-or a relative one to the directory where we will perform the submission. This
-executable will be copied to all remote machines automatically. Finally,
-<code>arguments</code> is used to specify the options for the program. We have to employ
-again <code>Fpdnxq</code> macros, first <code>Fnx</code> to remove the original path (file we be
-copied to the root of a virtual location where HTCondor will run the executable
-on the remote machine) and then <code>Fn</code> to remove path and change extension of the
-output file.
-</p></li>
-</ul>
 </div>
 </div>
 
-<div id="outline-container-org94c358c" class="outline-5">
-<h5 id="org94c358c"><span class="section-number-5">2.3.2.2</span> <b>Example B</b> (based on ProcessID, old system before HTCondor v8.4.0)</h5>
-<div class="outline-text-5" id="text-2-3-2-2">
-<p>
-Process 50 input files with consecutive names (from data0.in to data49.out)
-using the same program as previous example
-</p>
-
-<pre class="example">
-# Including Common Template
-FNAME = example2
-include : /path/to/condor_common.tmpl
-
-transfer_input_files    = /path/to/inputs/data$(Process).in
-transfer_output_files   = data$(Process).out
-
-N             = 50
-executable    = myprogram
-arguments     = "-i data$(Process).in -o data$(Process).out"
-
-queue $(N)
-</pre>
-
-<ul class="org-ul">
-<li><p>
-<b>Explanation:</b>
-<code>transfer_input_files</code> command allows a comma-separated list of files or
-directories that will be copied to the remote machine. Local path will be
-ignored, and HTCondor will copy all files to the root directory of a virtual
-location on the remote machine (your executable will be also copy to the same
-place, so input files will be in the same directory). If you specify a directory
-in this command, you can choose if you want to copy only the content of the
-directory (add a slash "*=/*=" at the end, for instance <code>myInputDir*/*</code>) or the
-directory itself and its content (do not add a slash). In this case, each job
-will process a different input file, and since they have a consecutive name
-beginning from <code>0</code>, we will use HTCondor macro <code>$(Process)</code> to build the proper
-name, since the process ID will be <code>0</code> from the first job to <code>N-1</code> for the last
-job.
-</p>
-
-<p>
-With <code>transfer_output_files</code> we specify a comma-separated list of result files
-to be copied back to our machine. In this case, we specify just one file, with
-the same name as the input file, but with <code>.out</code> extension.
-</p>
-
-<p>
-Then we define the variable <code>N</code> to specify the number of jobs to be
-executed. Our program is set using <code>executable</code> command and with <code>arguments</code>
-command we specify all the needed options (here the name of the input and output
-file with the corresponding flags).
-</p>
-
-<p>
-At the end, we send all jobs to the queue with <code>queue</code> command, specifying how
-many jobs we want (we have used the variable <code>N</code>). 
-</p></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orge7eb8b6" class="outline-5">
-<h5 id="orge7eb8b6"><span class="section-number-5">2.3.2.3</span> <b>Example C</b> (lists of files and arguments written in submit file)</h5>
-<div class="outline-text-5" id="text-2-3-2-3">
-<p>
-Process all arbitrary files and arguments of a given list. Executable is
- <code>myprogram</code> and it needs an input file with extension <code>.dat</code> and some
- arguments. Results will be printed on screen (<code>stdout</code>). 
-</p>
-
-<pre class="example">
-# Including Common Template
-FNAME = exampleC
-include : /path/to/condor_common.tmpl
-
-executable    = myprogram
-
-queue transfer_input_files,arguments *from* (
-  xray434.dat, -d 345 -p f034
-  sunf37.dat,  -d 2   -p f302
-  light67.dat, -d 62  -p f473
-) 
-</pre>
-
-<ul class="org-ul">
-<li><b>Explanation:</b></li>
-</ul>
-
-<p>
-We will use the flexibility of <code>queue</code> command to assign values of a list to
-several commands. We must specify which files must be transferred and which
-arguments are needed by each file. We specify then <code>transfer_input_files</code> and
-<code>arguments</code> commands using the <code>from</code> option, and then we add a list of pairs
-''file,argument''.
-</p>
-
-<p>
-At submission time, HTCondor will iterate over the list and expand the
-assignations. For instance, our jobs will have next values:
-</p>
-
-<ul class="org-ul">
-<li><code>transfer_input_files = xray434.dat, arguments = -d 345 -p f034-</code></li>
-<li><code>transfer_input_files = sunf37.dat, arguments = -d 2   -p f302-</code></li>
-<li><code>transfer_input_files = light67.dat, arguments = -d 62  -p f473-</code></li>
-</ul>
-
-<p>
-When using this format you can specify as many commands separated by commas as
-needed between <code>queue</code> and <code>from</code>, but check that each line in the list has the
-right number of elements also separated by commas.
-</p>
-
-<p>
-Writing the list of items in the submit file can be a little bit tedious, but it
-may be easily done in an external file using scripts. Then you can directly
-specify the file. For instance, suppose you have all items in a file named
-<code>data.lst</code>, then you can use next <code>queue</code> command: 
-<code>queue transfer_input_files,arguments from /path/to/data.lst</code>
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgd697329" class="outline-5">
-<h5 id="orgd697329"><span class="section-number-5">2.3.2.4</span> Example D (lists of files and arguments in external file)</h5>
-<div class="outline-text-5" id="text-2-3-2-4">
-<p>
-Process arbitrary files and arguments stored in file <code>data.lst</code> (process only
- lines from 28 to 43, both inclusive, with step 5). Executable is <code>myprogram</code> as
- in previous example, but this time it saves the result in a file named
- <code>output.out</code>. 
-</p>
-
-<pre class="example">
-# Including Common Template
-FNAME = exampleD
-include : /path/to/condor_common.tmpl
-
-transfer_output_files  = output.out
-line                   = $(Row)+1
-transfer_output_remaps = "output.out=output$INT(line).out"
-
-executable    = myprogram
-
-queue transfer_input_files,arguments *from* [27:43:5] data.lst
-</pre>
-
-<ul class="org-ul">
-<li><b>Explanation:</b></li>
-</ul>
-
-<p>
-This example is similar to the previous one, but this time the list of input
-files and arguments is written in a file with the following format:
-</p>
-
-<pre class="example">
-[input_file1,args1]
-[input_file2,args2]
-[input_file3,args3]
-...
-</pre>
-
-<p>
-To illustrate the <b>slice</b> feature, we have been asked to process only items
-(lines) from 28 to 43 with step 5 (28, 33, 38 and 43), this could be useful when
-we want to run only certain experiments. The syntax for the slices is very easy,
-the same as Python: <code>[init:end:step]</code>. Since the first index is 0, but we do not
-use line 0 but line 1, the <code>init</code> should be 27. Then the <code>end</code> is 43 (it should
-be 42, but we need to add 1 because the upper limit is included according to our
-example). So we specify the slice using <code>[27:43:5]</code> in the <code>queue</code> command,
-between the <code>from</code> clause and the file.
-</p>
-
-<p>
-We have to be careful with the results. Our program writes them in a file named
-<code>output.out</code>. We cannot get all files with the same name because they will be
-overwritten, so we need to use <code>transfer_output_remaps</code> to change names when
-copying from remote machines to our. We can add the <code>$(Process)</code> variable to the
-new name, so all of them will be different, but then it could be a little bit
-complicated to identify each result. Instead, we will use another of the
-<b>automatic variables</b>, called <code>$(Row)</code>. It stores the number of the row in the
-list that is being processed, that is, almost the number of the line: since
-<code>$(Row)</code> begins in 0, we need to add 1 to get the line number. We do that in
-variable <code>$(line)</code>. Then, HTCondor will process rows 27, 32, 37 and 42, and our
-output files will be <code>output28.out</code>, <code>output33.out</code>, <code>output38.out</code> and
-<code>output43.out</code>.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgc9e7626" class="outline-5">
-<h5 id="orgc9e7626"><span class="section-number-5">2.3.2.5</span> Example E (<code>stdin</code>, <code>initialdir</code> external scripts and lists)</h5>
-<div class="outline-text-5" id="text-2-3-2-5">
-<p>
-Our program <code>myprogram</code> works with <code>stdin</code> (keyboard is used to specify input
-data). We have written that input data in 4 files (<code>dataFeH.in</code>, <code>dataOFe.in</code>,
-<code>dataOH.in</code> and <code>dataHe.in</code>) and there is a set of 3 different experiments in
-directories (<code>dir000</code>, <code>dir001</code> and <code>dir002</code>). Output files will be generated
-with the same name as inputs and extension <code>.out</code> (use <code>-o</code> argument) and they
-must be located in the same directory where the respective input file
-is. Program also needs all *=.tbl= files located in <code>/path/to/tables</code>.
-</p>
-
-<pre class="example">
-# Including Common Template
-FNAME = exampleE
-include : /path/to/condor_common.tmpl
-
-N            = 3
-input        = data$(met).in
-initialdir   = /path/to/dir$INT(Step,%03d)
-include      : input_tables.sh |
-transfer_output_files = data$(met).out
-
-executable   = myprogram
-arguments    = "-o data$(met).out"
-
-queue $(N) *met* *in* FeH, OFe, OH, He
-</pre>
-
-<ul class="org-ul">
-<li><b>Explanation:</b></li>
-</ul>
-
-<p>
-The key of this example is the <code>queue</code> command in last line. We are using the
-clause *=in*= to specify a list of values. HTCondor will create a job for each
-element in the list and the current value will be assigned to the variable <code>met</code>
-that we have declared (this variable is optional, you can omit it and use the
-automatic variable <code>Item</code>). We have 3 set of experiments, so we need to go over
-the list 3 times, that is why we have defined <code>N = 3</code> and we are using <code>$(N)</code> in
-the <code>queue</code> command. So, at the end, HTCondor will execute 12 jobs (3 runs * 4
-elements in the list): we will use automatic variable <code>$(Step)</code> to get the
-number of the present run (0, 1 or 2) and <code>$(met)</code> (or <code>$(Item)</code> if we omit the
-variable) to get the value of the current element in the list.
-</p>
-
-<p>
-<code>input</code> command is used to specify a file that will be used as <code>stdin</code>, using
-variable <code>$(met)</code> to get the proper filename. That variable will be also used
-when building the name of the output files (<code>transfer_output_files</code> command) and
-the arguments (<code>arguments</code> command).
-</p>
-
-<p>
-We use <code>initialdir</code> to specify a base directory that changes according to the
-current job, using the automatic variable <code>$(Step)</code>. HTCondor will use this
-directory as base for the relative paths, so it will affect the input and output
-files, including the <code>stdout</code>, <code>stderr</code> and log files created by HTCondor (see
-common template). We use <code>$INT(Step,%03d)</code> to get a 3-digit number (000, 001
-and 002) to build the proper path for each experiment, then HTCondor will go to
-the right directory to get the input files and to place later the respective
-output files there.
-</p>
-
-<p>
-Last thing we have to solve is the problem with the required input files (all
-*=.tbl= files located in <code>/path/to/tables</code>). HTCondor does not allow globbing in
-<code>transfer_input_files</code>, but instead we can use the new feature of <b>including
-external files</b> with <code>include</code> command. This command not only include other
-files, but also invoke them if the command finish with a <b>bar</b> <code>*|*</code>. Then we
-can easily make a external script to get the list of needed files with linux
-command <code>ls</code> and options <code>-m</code> (commas are used to separate elements) and <code>-w</code>
-(used to specify the wide of the screen before adding a new line. Since we need
-all elements in the same line, we should specify a number big enough). In this
-case, our external script <code>input_tables.sh</code> is the following one:
-</p>
-
-<pre class="example">
-#!/bin/bash
-echo "transfer_input_files = `ls -w 400 -m /path/to/tables/*.tbl`"
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org1d745f0" class="outline-5">
-<h5 id="org1d745f0"><span class="section-number-5">2.3.2.6</span> Example F (loops)</h5>
-<div class="outline-text-5" id="text-2-3-2-6">
-<p>
-Execute each iteration of a 3-level nested loop using: <code>myprogram -dim1 i -dim2
-j -dim3 k = with the following ranges: =i:[0,20)</code>, <code>j:[0,15)</code> and
-<code>k:[0,35)</code>. Output will be written on screen, no input files are needed.
-</p>
-
-<pre class="example">
-# Including Common Template
-FNAME = exampleF
-include : /path/to/condor_common.tmpl
- 
-MAX_I = 20
-MAX_J = 15
-MAX_K = 35
-
-N = $(MAX_I) * $(MAX_J) * $(MAX_K)
-
-I = ( $(Process) / ($(MAX_K)  * $(MAX_J)))
-J = (($(Process) /  $(MAX_K)) % $(MAX_J))
-K = ( $(Process) %  $(MAX_K))
-
-executable = myprogram
-arguments  = "-dim1 $INT(I) -dim2 $INT(J) -dim3 $INT(K)"
-
-queue $(N) 
-</pre>
-
-<ul class="org-ul">
-<li><b>Explanation:</b></li>
-</ul>
-
-<p>
-In this example we only need to ''simulate'' a 3 nested loops from a 1-level
-loop (we will use <code>$(Process)</code> as main loop counter). The 3-level loop will be
-the next ones, and HTCondor will create a job for each iteration:
-</p>
-
-<pre class="example">
-for (i = 0; i &lt; MAX_I; i++)
-  for (j = 0; j &lt; MAX_J; j++)
-    for (k = 0; k &lt; MAX_K; k++)
-      ./myprogram  -dim1 i -dim2 j -dim3 k
-</pre>
-
-<p>
-Then we only need to set the limits (<code>MAX_I</code>, <code>MAX_J</code>, <code>MAX_K</code>), the number of
-total iterations (<code>N = $(MAX_I) * $(MAX_J) * $(MAX_K)</code>) and use some maths to
-get the values of <code>I</code>, <code>J</code> and <code>K</code> according the value of <code>$(Process)</code>, as we
-have done above (just a few multiplications, integer divisions and remeinders
-are needed). 
-</p>
-
-<p>
-For a 2-level loop, you can use next code:
-</p>
-
-<pre class="example">
-I = ($(Process) / $(MAX_J))
-J = ($(Process) % $(MAX_J))
-</pre>
-</div>
-</div>
-
-<div id="outline-container-orgd632e9a" class="outline-5">
-<h5 id="orgd632e9a"><span class="section-number-5">2.3.2.7</span> Example G</h5>
-<div class="outline-text-5" id="text-2-3-2-7">
-<p>
-This example shows the use of several useful commands for specific
-conditions. It is also a summary of the <b>CondorHowTo</b>, you can find
-further details and explanation about the submit commands there. 
-</p>
-
-<ul class="org-ul">
-<li>Execute <code>myprogram</code> with argument "=-run =" from 0 to 99 by default.</li>
-<li><b>BLOCK A</b>: Execute only on machines with at least 4GB RAM and 2GB of free
-disk space. The higher memory and the faster calculations, the better (we can
-use KFLOPS to choose the faster machines doing floating point operations, but
-since memory and kflops have different units, we need to weight them, for
-instance, multiplying memory by 200).</li>
-<li><b>BLOCK B</b>: Execute only on machines with Linux Fedora21 or upper and avoid
-executing on <code>cata</code>, <code>miel</code> and those with hostname beginning with letter <code>m</code>
-or <code>d</code>.</li>
-<li><b>BLOCK C</b>: It is needed to run script <code>processData.sh</code> before (argument:
-<code>-decompress</code>) and after (argument: <code>-compress</code>) to prepare our data.</li>
-<li><b>BLOCK D</b>: Our executable needs the environment variables and variable <code>OUT</code>
-has to be set with the argument.</li>
-<li><b>BLOCK E</b>: Avoid <b>black holes</b> (when your jobs do not execute correctly on
-a machine, and since they finish quickly, that machine is getting most of the
-jobs).</li>
-<li><b>BLOCK F</b>: Get a notification via email when errors in the job. If the job
-finishes before 5 minutes or takes more than 2 hours to be done, there was a
-problem: hold it to check later what happened.</li>
-<li><b>BLOCK G</b>: Our program needs licenses, so we cannot run more than 20 jobs at
-the same time. Execute jobs as <b>nice user</b> to save priority since there are
-no other jobs running at this moment.</li>
-</ul>
-
-<pre class="example">
-# Including Common Template
-FNAME = exampleG
-include : /path/to/condor_common.tmpl
-
-if !defined N
-  N = 100
-endif
-
-#BLOCK A
-requested_memory = 4 GB
-requested_disk   = 2 GB
-rank             = (200 * Memory) + KFLOPS
-
-#BLOCK B
-letter           = substr(toLower(Target.Machine),0,1)
-requirements     = (UtsnameSysname == "Linux") 
-        &amp;&amp; (OpSysName == "Fedora") &amp;&amp; (OpSysMajorVer &gt;= 21) 
-        &amp;&amp; !stringListMember(UtsnameNodename, "cata,miel")
-        &amp;&amp; !stringListMember($(letter), "m,d")
-
-
-#BLOCK C
-transfer_input_data = processData.sh
-+PreCmd             = "processData.sh"
-+PreArguments       = "-decompress"
-+PostCmd            = "processData.sh"
-+PostArguments      = "-compress"
-
-#BLOCK D
-getenv              = True
-environment         = "OUT$(Process)"
-
-#BLOCK E
-job_machine_attrs = Machine  
-job_machine_attrs_history_length = 5           
-requirements = $(requirements) 
-      &amp;&amp; (target.machine =!= MachineAttrMachine1)  
-      &amp;&amp; (target.machine =!= MachineAttrMachine2)
-
-#BLOCK F
-notify_user       = myuser@iac.es
-notification      = Error
-
-on_exit_hold = ((CurrentTime - JobStartDate) &lt; (5 * 60)
-periodic_hold = ((JobStatus == 2) 
-         &amp;&amp; (time() - EnteredCurrentStatus) &gt;  (2  $(HOUR)))
-
-#BLOCK G
-concurrency_limits = myuser$(Cluster):50
-nice_user = True
-
-executable = myprogram
-arguments  = "-run $(Process)"
-
-queue $(N) 
-</pre>
-
-<p>
-<b>IMPORTANT</b>: Although your program could use shared locations
-(<code>/net/XXXX/scratch</code>, <code>/net/nasX</code>, etc.) to read/write files from any machine so
-there is no need to copy files, we highly recommend <b>you always use the HTCondor
-file transfer system</b> to avoid network congestion since files will be accessed
-locally on the remote machines. Bear in mind that HTCondor can execute hundreds
-of your jobs at the same time, and if all of them concurrently access to the
-same shared location, network could experience a huge stress and fail. If for
-any reason you cannot copy files and you have to use shared locations -you are
-using huge files of several GB, etc.-, then contact us before submitting to
-adapt your jobs in order to avoid network congestion. 
-</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org3f6c039" class="outline-2">
-<h2 id="org3f6c039"><span class="section-number-2">3</span> Main HTCondor commands</h2>
+<div id="outline-container-orga24a47e" class="outline-2">
+<h2 id="orga24a47e"><span class="section-number-2">3</span> Main HTCondor commands</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 HTCondor provides around 100 commands (see the <a href="https://htcondor.readthedocs.io/en/v10_0/man-pages/index.html">Command Reference Manual)</a>, but
 you will only need a few of them for most of you work with HTCondor. In this
 section we introduce the most common ones, grouped according to the four common
-tasks introduced in section <a href="#orgc2e367d">1.7</a>: Checking pool status
-(<a href="#org8e15637">3.1</a>), Submitting jobs (<a href="#org61da23f">3.2</a>), Checking and
-managing submitted jobs (<a href="#org2f44256">3.3</a>) and Getting info
-from logs (<a href="#orgb018a32">3.4</a>). For each command we also give a list of some
+tasks introduced in section <a href="#org41dd0a2">1.7</a>: Checking pool status
+(<a href="#org61c337f">3.1</a>), Submitting jobs (<a href="#orge11b9fc">3.2</a>), Checking and
+managing submitted jobs (<a href="#orgfda4759">3.3</a>) and Getting info
+from logs (<a href="#orgabb1781">3.4</a>). For each command we also give a list of some
 of their most useful options (but note that you can also get full details about
 each command by executing <code>man condor_&lt;cmd&gt;</code> in your shell).
 </p>
 </div>
 
-<div id="outline-container-org8e15637" class="outline-3">
-<h3 id="org8e15637"><span class="section-number-3">3.1</span> Checking pool status</h3>
+<div id="outline-container-org61c337f" class="outline-3">
+<h3 id="org61c337f"><span class="section-number-3">3.1</span> Checking pool status</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li><b><code>condor_status</code></b> List slots in the HTCondor pool and their status: <code>Owner</code> (used
@@ -1599,8 +1030,8 @@ slots with more than 1.5GB of RAM per slot.</li>
 </div>
 </div>
 
-<div id="outline-container-org61da23f" class="outline-3">
-<h3 id="org61da23f"><span class="section-number-3">3.2</span> Submitting jobs</h3>
+<div id="outline-container-orge11b9fc" class="outline-3">
+<h3 id="orge11b9fc"><span class="section-number-3">3.2</span> Submitting jobs</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li><b><code>condor_submit &lt;submit_file&gt;</code></b> Submit jobs to the HTCondor queue according to
@@ -1652,8 +1083,8 @@ priority will be lower in following submissions.
 </div>
 </div>
 
-<div id="outline-container-org2f44256" class="outline-3">
-<h3 id="org2f44256"><span class="section-number-3">3.3</span> Checking and managing submitted jobs</h3>
+<div id="outline-container-orgfda4759" class="outline-3">
+<h3 id="orgfda4759"><span class="section-number-3">3.3</span> Checking and managing submitted jobs</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="note">
 <p>
@@ -1794,8 +1225,8 @@ this command is available in CondorFAQs#ssh.</li>
 </div>
 </div>
 
-<div id="outline-container-orgb018a32" class="outline-3">
-<h3 id="orgb018a32"><span class="section-number-3">3.4</span> Getting info from logs</h3>
+<div id="outline-container-orgabb1781" class="outline-3">
+<h3 id="orgabb1781"><span class="section-number-3">3.4</span> Getting info from logs</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li><b>=*condor<sub>userlog</sub></b> &lt;file.log&gt;=* Show and summarize job statistics from the job
@@ -1823,8 +1254,8 @@ information: <code>HTCondor Log Analyzer</code> (<a href="http://condorlog.cse.n
 </div>
 </div>
 
-<div id="outline-container-orgf3428f7" class="outline-3">
-<h3 id="orgf3428f7"><span class="section-number-3">3.5</span> Other commands</h3>
+<div id="outline-container-orga09622b" class="outline-3">
+<h3 id="orga09622b"><span class="section-number-3">3.5</span> Other commands</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li><b><code>condor_userprio</code></b> Show active HTCondor users' priority. Lower values means
@@ -1847,8 +1278,8 @@ about HTCondor: <a href="http://carlota:81/condor_stats/">http://carlota:81/cond
 </div>
 </div>
 
-<div id="outline-container-orgb418336" class="outline-2">
-<h2 id="orgb418336"><span class="section-number-2">4</span> Submit files (HowTo)</h2>
+<div id="outline-container-orgf7feb0b" class="outline-2">
+<h2 id="orgf7feb0b"><span class="section-number-2">4</span> Submit files (HowTo)</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 HTCondor has a huge set of commands that should cover most possible
@@ -1862,8 +1293,8 @@ needed. You can also find more details about these and other commands at the
 </p>
 </div>
 
-<div id="outline-container-org3e06ff2" class="outline-3">
-<h3 id="org3e06ff2"><span class="section-number-3">4.1</span> How to &#x2026; add requirements on the target machines where my jobs will be run?</h3>
+<div id="outline-container-orgec9fb8f" class="outline-3">
+<h3 id="orgec9fb8f"><span class="section-number-3">4.1</span> How to &#x2026; add requirements on the target machines where my jobs will be run?</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 If your program has some limitations (memory, disk, libraries, etc.) and cannot
@@ -1922,8 +1353,8 @@ some machines (see <b>HOWTOs.#howto<sub>failing</sub></b> where this is explaine
 </div>
 </div>
 
-<div id="outline-container-org7d05455" class="outline-3">
-<h3 id="org7d05455"><span class="section-number-3">4.2</span> How to &#x2026; add preferences on the target machines where my jobs will be run?</h3>
+<div id="outline-container-orgc3b8325" class="outline-3">
+<h3 id="orgc3b8325"><span class="section-number-3">4.2</span> How to &#x2026; add preferences on the target machines where my jobs will be run?</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Preferences are similar to requirements, but they do not limit the machines (you
@@ -1956,8 +1387,8 @@ RAM, and those with also more than 100GB of disk will have 200 extra ''points'':
 </div>
 
 
-<div id="outline-container-org98809dd" class="outline-3">
-<h3 id="org98809dd"><span class="section-number-3">4.3</span> How to &#x2026; get/set environment variables?</h3>
+<div id="outline-container-org2b61c7c" class="outline-3">
+<h3 id="org2b61c7c"><span class="section-number-3">4.3</span> How to &#x2026; get/set environment variables?</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 If you application needs them, use the <code>getenv</code> command and HTCondor will create
@@ -1989,8 +1420,8 @@ some environment variables, please, read this FAQ
 </div>
 
 
-<div id="outline-container-org18c5276" class="outline-3">
-<h3 id="org18c5276"><span class="section-number-3">4.4</span> How to &#x2026; control HTCondor notifications?</h3>
+<div id="outline-container-org65086ba" class="outline-3">
+<h3 id="org65086ba"><span class="section-number-3">4.4</span> How to &#x2026; control HTCondor notifications?</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 If you are submitting a large set of jobs, receiving notifications from all of
@@ -2015,8 +1446,8 @@ use <code>Error</code>.
 </div>
 
 
-<div id="outline-container-org87c4100" class="outline-3">
-<h3 id="org87c4100"><span class="section-number-3">4.5</span> How to &#x2026; run some shell commands/scripts/programs before/after our application?</h3>
+<div id="outline-container-org3cec3f6" class="outline-3">
+<h3 id="org3cec3f6"><span class="section-number-3">4.5</span> How to &#x2026; run some shell commands/scripts/programs before/after our application?</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 If your application needs some pre- or post-processing, you can use <code>+PreCmd</code>
@@ -2052,8 +1483,8 @@ you should add to <code>transfer_input_files</code> command.
 </div>
 
 
-<div id="outline-container-orgfee4a8f" class="outline-3">
-<h3 id="orgfee4a8f"><span class="section-number-3">4.6</span> How to &#x2026; specify the priority of your jobs?</h3>
+<div id="outline-container-org357278c" class="outline-3">
+<h3 id="org357278c"><span class="section-number-3">4.6</span> How to &#x2026; specify the priority of your jobs?</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 HTCondor uses two different types of priorities: <b>job priority</b> (which of your
@@ -2167,8 +1598,8 @@ but they will be valid in jobs that begin to run after using the command.</li>
 </div>
 
 
-<div id="outline-container-orgd219f2e" class="outline-3">
-<h3 id="orgd219f2e"><span class="section-number-3">4.7</span> How to &#x2026; deal with jobs that fail?</h3>
+<div id="outline-container-orgf72becb" class="outline-3">
+<h3 id="orgf72becb"><span class="section-number-3">4.7</span> How to &#x2026; deal with jobs that fail?</h3>
 <div class="outline-text-3" id="text-4-7">
 <p>
 Sometimes jobs fail because there are problems when executing your program. It
@@ -2431,8 +1862,8 @@ MY<sub>ARGS</sub> = "your<sub>arg1</sub> your<sub>arg2</sub>"
 
 
 
-<div id="outline-container-orgae21ed9" class="outline-3">
-<h3 id="orgae21ed9"><span class="section-number-3">4.8</span> How to &#x2026; limit the number of concurrent running jobs?</h3>
+<div id="outline-container-org5726368" class="outline-3">
+<h3 id="org5726368"><span class="section-number-3">4.8</span> How to &#x2026; limit the number of concurrent running jobs?</h3>
 <div class="outline-text-3" id="text-4-8">
 <p>
 There are some situations where it could be interesting to limit the number of
@@ -2553,8 +1984,8 @@ command.
 </div>
 
 
-<div id="outline-container-org25984f6" class="outline-3">
-<h3 id="org25984f6"><span class="section-number-3">4.9</span> How to &#x2026; do some complex operations in my submit file?</h3>
+<div id="outline-container-org8bb34a3" class="outline-3">
+<h3 id="org8bb34a3"><span class="section-number-3">4.9</span> How to &#x2026; do some complex operations in my submit file?</h3>
 <div class="outline-text-3" id="text-4-9">
 <p>
 If you need to do some special operations in your submit file like evaluating
@@ -2586,8 +2017,8 @@ also the <b>special macros</b>.
 </div>
 </div>
 
-<div id="outline-container-orgd4d2e07" class="outline-3">
-<h3 id="orgd4d2e07"><span class="section-number-3">4.10</span> How to &#x2026; work with nested loops?</h3>
+<div id="outline-container-org93bd351" class="outline-3">
+<h3 id="org93bd351"><span class="section-number-3">4.10</span> How to &#x2026; work with nested loops?</h3>
 <div class="outline-text-3" id="text-4-10">
 <p>
 You can use <code>$(Process)</code> macro to simulate simple loops in the submit file and
@@ -2662,8 +2093,8 @@ K = ( $(Process) %  $(MAX<sub>K</sub>))
 </div>
 </div>
 
-<div id="outline-container-orge55ee7f" class="outline-3">
-<h3 id="orge55ee7f"><span class="section-number-3">4.11</span> How to &#x2026; program my jobs to begin at a predefined time?</h3>
+<div id="outline-container-orgb81ed2f" class="outline-3">
+<h3 id="orgb81ed2f"><span class="section-number-3">4.11</span> How to &#x2026; program my jobs to begin at a predefined time?</h3>
 <div class="outline-text-3" id="text-4-11">
 <p>
 Sometimes you may want to submit your jobs, but those jobs should not begin at
@@ -2758,8 +2189,8 @@ Execution</b> section in the official documentation to get more information.
 </div>
 
 
-<div id="outline-container-org7df930a" class="outline-3">
-<h3 id="org7df930a"><span class="section-number-3">4.12</span> How to &#x2026; run jobs that have dependencies among them?</h3>
+<div id="outline-container-org4a77672" class="outline-3">
+<h3 id="org4a77672"><span class="section-number-3">4.12</span> How to &#x2026; run jobs that have dependencies among them?</h3>
 <div class="outline-text-3" id="text-4-12">
 <p>
 If your jobs have dependencies related to inputs, outputs, execution order,
@@ -2804,8 +2235,8 @@ course about HTCondor imparted by SIE some years ago (solution here
 </div>
 
 
-<div id="outline-container-orgfa98c4f" class="outline-3">
-<h3 id="orgfa98c4f"><span class="section-number-3">4.13</span> How to &#x2026; know the attributes of the machines where our jobs are run?</h3>
+<div id="outline-container-org268efd0" class="outline-3">
+<h3 id="org268efd0"><span class="section-number-3">4.13</span> How to &#x2026; know the attributes of the machines where our jobs are run?</h3>
 <div class="outline-text-3" id="text-4-13">
 <p>
 There is a special macro to get the string attributes of target machines that we
@@ -2835,16 +2266,16 @@ names similar to <code>$.slot3@xilofon.ll.iac.es.$</code>.
 </div>
 
 
-<div id="outline-container-orgd280831" class="outline-2">
-<h2 id="orgd280831"><span class="section-number-2">5</span> FAQs</h2>
+<div id="outline-container-orge329bd1" class="outline-2">
+<h2 id="orge329bd1"><span class="section-number-2">5</span> FAQs</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgdc89d82" class="outline-3">
-<h3 id="orgdc89d82"><span class="section-number-3">5.1</span> General Information</h3>
+<div id="outline-container-orgc98da6e" class="outline-3">
+<h3 id="orgc98da6e"><span class="section-number-3">5.1</span> General Information</h3>
 <div class="outline-text-3" id="text-5-1">
 </div>
-<div id="outline-container-org01c8ef2" class="outline-4">
-<h4 id="org01c8ef2"><span class="section-number-4">5.1.1</span> What is Condor? How can Condor help me? Who can use it? Who could help me if I have any problems?</h4>
+<div id="outline-container-org617a1ef" class="outline-4">
+<h4 id="org617a1ef"><span class="section-number-4">5.1.1</span> What is Condor? How can Condor help me? Who can use it? Who could help me if I have any problems?</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 Condor is a software that may help you to get your computational results in
@@ -2860,8 +2291,8 @@ SIE will give you support if you have any issue with it. Please, visit our
 </div>
 </div>
 
-<div id="outline-container-orga7cf97d" class="outline-4">
-<h4 id="orga7cf97d"><span class="section-number-4">5.1.2</span> How does Condor work? My machine is in ''Owner/Unclaimed/Claimed'' state, what does it mean?</h4>
+<div id="outline-container-orga25d2dc" class="outline-4">
+<h4 id="orga25d2dc"><span class="section-number-4">5.1.2</span> How does Condor work? My machine is in ''Owner/Unclaimed/Claimed'' state, what does it mean?</h4>
 <div class="outline-text-4" id="text-5-1-2">
 <p>
 Condor has to deal with complex situations, but here we will just give some
@@ -2917,8 +2348,8 @@ about commands in Condor.
 </div>
 </div>
 
-<div id="outline-container-org3a3fdfd" class="outline-4">
-<h4 id="org3a3fdfd"><span class="section-number-4">5.1.3</span> Sometimes Condor runs jobs on my computer when I am working on it, can I avoid that?</h4>
+<div id="outline-container-orgdaaf56b" class="outline-4">
+<h4 id="orgdaaf56b"><span class="section-number-4">5.1.3</span> Sometimes Condor runs jobs on my computer when I am working on it, can I avoid that?</h4>
 <div class="outline-text-4" id="text-5-1-3">
 <p>
 Condor should run jobs {<del>only</del>} on idle computers that are not being used
@@ -2959,8 +2390,8 @@ just contact us and we will find a solution.
 </div>
 </div>
 
-<div id="outline-container-org0378153" class="outline-4">
-<h4 id="org0378153"><span class="section-number-4">5.1.4</span> I am using Condor, should I add an acknowledgement text in my publications?</h4>
+<div id="outline-container-orgf39d5ec" class="outline-4">
+<h4 id="orgf39d5ec"><span class="section-number-4">5.1.4</span> I am using Condor, should I add an acknowledgement text in my publications?</h4>
 <div class="outline-text-4" id="text-5-1-4">
 <p>
 Yes, you should mention it in the acknowledgments of your papers or any
@@ -2995,12 +2426,12 @@ facilities are provided by the Instituto Tecnológico y de Energías Renovables
 </div>
 </div>
 
-<div id="outline-container-org71c8eb1" class="outline-3">
-<h3 id="org71c8eb1"><span class="section-number-3">5.2</span> Preparing and submitting your jobs</h3>
+<div id="outline-container-orgcb19529" class="outline-3">
+<h3 id="orgcb19529"><span class="section-number-3">5.2</span> Preparing and submitting your jobs</h3>
 <div class="outline-text-3" id="text-5-2">
 </div>
-<div id="outline-container-org952ab29" class="outline-4">
-<h4 id="org952ab29"><span class="section-number-4">5.2.1</span> I have developed a program, do I need to make any modification to run it with Condor?</h4>
+<div id="outline-container-orge0e497a" class="outline-4">
+<h4 id="orge0e497a"><span class="section-number-4">5.2.1</span> I have developed a program, do I need to make any modification to run it with Condor?</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <p>
 For a basic execution in Condor, you do not need to compile your program
@@ -3024,8 +2455,8 @@ should be able to change them in your application if needed.</li>
 </div>
 
 
-<div id="outline-container-orgba19c48" class="outline-4">
-<h4 id="orgba19c48"><span class="section-number-4">5.2.2</span> How do I run my application with Condor? (submitting jobs to queue)</h4>
+<div id="outline-container-org7e5a89d" class="outline-4">
+<h4 id="org7e5a89d"><span class="section-number-4">5.2.2</span> How do I run my application with Condor? (submitting jobs to queue)</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <p>
 All the information needed by Condor to run your program should be written
@@ -3098,8 +2529,8 @@ Condor.
 </div>
 
 
-<div id="outline-container-orge8bd9f9" class="outline-4">
-<h4 id="orge8bd9f9"><span class="section-number-4">5.2.3</span> How do I check the Condor queue and my submitted jobs?</h4>
+<div id="outline-container-orgb5210db" class="outline-4">
+<h4 id="orgb5210db"><span class="section-number-4">5.2.3</span> How do I check the Condor queue and my submitted jobs?</h4>
 <div class="outline-text-4" id="text-5-2-3">
 <p>
 You can check the general status of the queue using <code>*condor_status*</code>, then
@@ -3174,8 +2605,8 @@ that by using some commands in your submit files (check <b>this FAQ -&gt; #lesst
 </div>
 </div>
 
-<div id="outline-container-org5db881c" class="outline-4">
-<h4 id="org5db881c"><span class="section-number-4">5.2.4</span> Where should I put my input files so that Condor will be able to find them?</h4>
+<div id="outline-container-org99d8e24" class="outline-4">
+<h4 id="org99d8e24"><span class="section-number-4">5.2.4</span> Where should I put my input files so that Condor will be able to find them?</h4>
 <div class="outline-text-4" id="text-5-2-4">
 <p>
 If you are using <code>stdin</code> as input (i.e. you directly specify your input
@@ -3243,8 +2674,8 @@ submitting your jobs, contact us if you have doubts about this.
 </div>
 
 
-<div id="outline-container-org035b7cc" class="outline-4">
-<h4 id="org035b7cc"><span class="section-number-4">5.2.5</span> If Condor runs my program on different machines, how I can get my output files?</h4>
+<div id="outline-container-orgca05c12" class="outline-4">
+<h4 id="orgca05c12"><span class="section-number-4">5.2.5</span> If Condor runs my program on different machines, how I can get my output files?</h4>
 <div class="outline-text-4" id="text-5-2-5">
 <p>
 Condor will copy your output files back to your machine after the execution
@@ -3373,8 +2804,8 @@ about this.
 </div>
 </div>
 
-<div id="outline-container-org52ad097" class="outline-4">
-<h4 id="org52ad097"><span class="section-number-4">5.2.6</span> Can I tell Condor to use a different directory for input/output files?</h4>
+<div id="outline-container-org6e2488e" class="outline-4">
+<h4 id="org6e2488e"><span class="section-number-4">5.2.6</span> Can I tell Condor to use a different directory for input/output files?</h4>
 <div class="outline-text-4" id="text-5-2-6">
 <p>
 Sometimes you are submitting your jobs from the directory where your
@@ -3397,8 +2828,8 @@ effect over the executable file.
 </div>
 </div>
 
-<div id="outline-container-org4eb4c65" class="outline-4">
-<h4 id="org4eb4c65"><span class="section-number-4">5.2.7</span> I would like to use a loop to send my jobs with different arguments&#x2026; can I do that?</h4>
+<div id="outline-container-org1bc6497" class="outline-4">
+<h4 id="org1bc6497"><span class="section-number-4">5.2.7</span> I would like to use a loop to send my jobs with different arguments&#x2026; can I do that?</h4>
 <div class="outline-text-4" id="text-5-2-7">
 <p>
 Yes, a loop is the most natural way of submitting different jobs in
@@ -3466,8 +2897,8 @@ etc.
 </div>
 
 
-<div id="outline-container-org8bc1e8e" class="outline-4">
-<h4 id="org8bc1e8e"><span class="section-number-4">5.2.8</span> Do I need to rename my input/output files to work with Condor?</h4>
+<div id="outline-container-org23290f9" class="outline-4">
+<h4 id="org23290f9"><span class="section-number-4">5.2.8</span> Do I need to rename my input/output files to work with Condor?</h4>
 <div class="outline-text-4" id="text-5-2-8">
 <p>
 Using filenames with a known pattern makes it much easier to specify files
@@ -3506,8 +2937,8 @@ if you use absolute paths, they have to exists in every machine).
 </div>
 
 
-<div id="outline-container-org34af66f" class="outline-4">
-<h4 id="org34af66f"><span class="section-number-4">5.2.9</span> Should I delete temporary files?</h4>
+<div id="outline-container-org9bbe857" class="outline-4">
+<h4 id="org9bbe857"><span class="section-number-4">5.2.9</span> Should I delete temporary files?</h4>
 <div class="outline-text-4" id="text-5-2-9">
 <p>
 No, that is not needed if you are only using local directories (those that
@@ -3529,8 +2960,8 @@ abnormally due to either internal errors or a system crash.
 </div>
 
 
-<div id="outline-container-org5ad608e" class="outline-4">
-<h4 id="org5ad608e"><span class="section-number-4">5.2.10</span> What are the technical specifications of machines running Condor? Can I restrict and/or prioritize those specifications in my jobs?</h4>
+<div id="outline-container-orgf13cd78" class="outline-4">
+<h4 id="orgf13cd78"><span class="section-number-4">5.2.10</span> What are the technical specifications of machines running Condor? Can I restrict and/or prioritize those specifications in my jobs?</h4>
 <div class="outline-text-4" id="text-5-2-10">
 <p>
 To see an overview of the hardware and software available when running with
@@ -3611,8 +3042,8 @@ more info and examples.''
 </div>
 
 
-<div id="outline-container-orgd634e94" class="outline-4">
-<h4 id="orgd634e94"><span class="section-number-4">5.2.11</span> How can I get/set environment variables when running with Condor (python and other programs may need them)?</h4>
+<div id="outline-container-org9fe2db2" class="outline-4">
+<h4 id="org9fe2db2"><span class="section-number-4">5.2.11</span> How can I get/set environment variables when running with Condor (python and other programs may need them)?</h4>
 <div class="outline-text-4" id="text-5-2-11">
 <p>
 If you are running a python program it is likely it will need to access the
@@ -3647,8 +3078,8 @@ examples.
 </div>
 
 
-<div id="outline-container-orgdfcf892" class="outline-4">
-<h4 id="orgdfcf892"><span class="section-number-4">5.2.12</span> Can I change my jobs attributes after submitting them?</h4>
+<div id="outline-container-org96747ee" class="outline-4">
+<h4 id="org96747ee"><span class="section-number-4">5.2.12</span> Can I change my jobs attributes after submitting them?</h4>
 <div class="outline-text-4" id="text-5-2-12">
 <p>
 Yes, most of the jobs attributes can be changed after the submission (but
@@ -3696,12 +3127,12 @@ jobs.-]</li>
 </div>
 </div>
 
-<div id="outline-container-org627f8d6" class="outline-3">
-<h3 id="org627f8d6"><span class="section-number-3">5.3</span> Having some troubles with your jobs</h3>
+<div id="outline-container-org4a7dd10" class="outline-3">
+<h3 id="org4a7dd10"><span class="section-number-3">5.3</span> Having some troubles with your jobs</h3>
 <div class="outline-text-3" id="text-5-3">
 </div>
-<div id="outline-container-orgabe2796" class="outline-4">
-<h4 id="orgabe2796"><span class="section-number-4">5.3.1</span> I cannot submit jobs, what is wrong?</h4>
+<div id="outline-container-org80804bf" class="outline-4">
+<h4 id="org80804bf"><span class="section-number-4">5.3.1</span> I cannot submit jobs, what is wrong?</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <p>
 If you use <code>condor_submit &lt;submit_file&gt;</code> and your jobs do not appear in the
@@ -3716,8 +3147,8 @@ error, please contact us.
 </div>
 
 
-<div id="outline-container-org872eabf" class="outline-4">
-<h4 id="org872eabf"><span class="section-number-4">5.3.2</span> How can I check that my program is running fine? Can I access to the input/output files in the remote machine?</h4>
+<div id="outline-container-org2048c38" class="outline-4">
+<h4 id="org2048c38"><span class="section-number-4">5.3.2</span> How can I check that my program is running fine? Can I access to the input/output files in the remote machine?</h4>
 <div class="outline-text-4" id="text-5-3-2">
 <p>
 There are several ways to check in real-time what is happening on the
@@ -3793,8 +3224,8 @@ those directories.
 </div>
 </div>
 
-<div id="outline-container-orgb51d204" class="outline-4">
-<h4 id="orgb51d204"><span class="section-number-4">5.3.3</span> My submitted jobs are always in Idle status, why do they never run (and what about users' priority)?</h4>
+<div id="outline-container-org8116ce8" class="outline-4">
+<h4 id="org8116ce8"><span class="section-number-4">5.3.3</span> My submitted jobs are always in Idle status, why do they never run (and what about users' priority)?</h4>
 <div class="outline-text-4" id="text-5-3-3">
 <p>
 If your jobs are always in Idle status, it may be caused by several
@@ -3862,8 +3293,8 @@ should be executed first (please, <b>check this FAQ -&gt; #priority</b>).
 </div>
 </div>
 
-<div id="outline-container-orgcaed1ba" class="outline-4">
-<h4 id="orgcaed1ba"><span class="section-number-4">5.3.4</span> Condor have problems with input and/or output files&#x2026; are my paths wrong?</h4>
+<div id="outline-container-orgfaf5658" class="outline-4">
+<h4 id="orgfaf5658"><span class="section-number-4">5.3.4</span> Condor have problems with input and/or output files&#x2026; are my paths wrong?</h4>
 <div class="outline-text-4" id="text-5-3-4">
 <p>
 If Condor is not able to find your input files, probably your jobs will get
@@ -3884,8 +3315,8 @@ for this purpose.
 </div>
 </div>
 
-<div id="outline-container-org32de76a" class="outline-4">
-<h4 id="org32de76a"><span class="section-number-4">5.3.5</span> My jobs are 'on hold' status and never finish, what does it mean?</h4>
+<div id="outline-container-orgfcf39d0" class="outline-4">
+<h4 id="orgfcf39d0"><span class="section-number-4">5.3.5</span> My jobs are 'on hold' status and never finish, what does it mean?</h4>
 <div class="outline-text-4" id="text-5-3-5">
 <p>
 When there is an error, jobs change their state to "''on hold''". It means
@@ -3902,8 +3333,8 @@ held jobs again and change their status accordingly.
 </div>
 </div>
 
-<div id="outline-container-orgf73796d" class="outline-4">
-<h4 id="orgf73796d"><span class="section-number-4">5.3.6</span> Condor is copying unwanted files to my machine, how can I avoid that?</h4>
+<div id="outline-container-org719d729" class="outline-4">
+<h4 id="org719d729"><span class="section-number-4">5.3.6</span> Condor is copying unwanted files to my machine, how can I avoid that?</h4>
 <div class="outline-text-4" id="text-5-3-6">
 <p>
 By default, Condor will copy all files generated or modified by your
@@ -3932,8 +3363,8 @@ the output files, then you should use next commands:
 </div>
 </div>
 
-<div id="outline-container-org83a32d3" class="outline-4">
-<h4 id="org83a32d3"><span class="section-number-4">5.3.7</span> Some of my jobs are failing due to wrong inputs, can I fix that problem and then run again only those jobs that failed?</h4>
+<div id="outline-container-org21794b0" class="outline-4">
+<h4 id="org21794b0"><span class="section-number-4">5.3.7</span> Some of my jobs are failing due to wrong inputs, can I fix that problem and then run again only those jobs that failed?</h4>
 <div class="outline-text-4" id="text-5-3-7">
 <p>
 First of all, we strongly recommend you always perform some simple tests
@@ -4120,8 +3551,8 @@ so it might be easier if you just come to our office.
 
 
 
-<div id="outline-container-org1450d56" class="outline-4">
-<h4 id="org1450d56"><span class="section-number-4">5.3.8</span> Some of my jobs randomly fail (or I know they will fail in some specific machines)&#x2026; how can I prevent that?</h4>
+<div id="outline-container-org811516b" class="outline-4">
+<h4 id="org811516b"><span class="section-number-4">5.3.8</span> Some of my jobs randomly fail (or I know they will fail in some specific machines)&#x2026; how can I prevent that?</h4>
 <div class="outline-text-4" id="text-5-3-8">
 <p>
 If you see that some of your jobs fail with apparently no reasons, but they
@@ -4234,8 +3665,8 @@ and not on your code in order to avoid re-executing failing jobs):
 </div>
 
 
-<div id="outline-container-org653bc5b" class="outline-4">
-<h4 id="org653bc5b"><span class="section-number-4">5.3.9</span> I want to repeat (resubmit) ONLY some of my jobs, is that possible?</h4>
+<div id="outline-container-orgb76bef6" class="outline-4">
+<h4 id="orgb76bef6"><span class="section-number-4">5.3.9</span> I want to repeat (resubmit) ONLY some of my jobs, is that possible?</h4>
 <div class="outline-text-4" id="text-5-3-9">
 <p>
 If you submit a large number of jobs and for any reason some of them fail
@@ -4282,8 +3713,8 @@ remove <code>Complete</code> jobs that belongs to cluster <code>XXX</code>):
 </div>
 </div>
 
-<div id="outline-container-org43a5589" class="outline-4">
-<h4 id="org43a5589"><span class="section-number-4">5.3.10</span> I see that my jobs complete after being running for N+X minutes/hours, when they only need N to finish. Is that normal?</h4>
+<div id="outline-container-orge51dff1" class="outline-4">
+<h4 id="orge51dff1"><span class="section-number-4">5.3.10</span> I see that my jobs complete after being running for N+X minutes/hours, when they only need N to finish. Is that normal?</h4>
 <div class="outline-text-4" id="text-5-3-10">
 <p>
 Yes, it is normal. Bear in mind that executing a Condor job in a machine is
@@ -4313,8 +3744,8 @@ modify the application to create checkpoints.
 </div>
 </div>
 
-<div id="outline-container-org44c7f2d" class="outline-4">
-<h4 id="org44c7f2d"><span class="section-number-4">5.3.11</span> I have submitted jobs that need some hours to finish. They have been running for days and just few have finished&#x2026; what is happening?</h4>
+<div id="outline-container-org5a8c4b7" class="outline-4">
+<h4 id="org5a8c4b7"><span class="section-number-4">5.3.11</span> I have submitted jobs that need some hours to finish. They have been running for days and just few have finished&#x2026; what is happening?</h4>
 <div class="outline-text-4" id="text-5-3-11">
 <p>
 First of all, check that your program is properly running. Maybe there are
@@ -4356,8 +3787,8 @@ will need about 20 minutes to finish, that could be a good approach.
 </div>
 </div>
 
-<div id="outline-container-org1621481" class="outline-4">
-<h4 id="org1621481"><span class="section-number-4">5.3.12</span> Some of my python programs work fine, but other fail&#x2026;</h4>
+<div id="outline-container-org91262d0" class="outline-4">
+<h4 id="org91262d0"><span class="section-number-4">5.3.12</span> Some of my python programs work fine, but other fail&#x2026;</h4>
 <div class="outline-text-4" id="text-5-3-12">
 <p>
 If you are executing python programs with HTCondor and some jobs work fine
@@ -4424,8 +3855,8 @@ HOWTOs.CondorSubmitFile#common<sub>template</sub></b>).  Contact us if you have 
 </div>
 
 
-<div id="outline-container-org34cbf28" class="outline-4">
-<h4 id="org34cbf28"><span class="section-number-4">5.3.13</span> I receive an error when running HTCondor jobs that use python and matplotlib&#x2026;</h4>
+<div id="outline-container-org0a1fc20" class="outline-4">
+<h4 id="org0a1fc20"><span class="section-number-4">5.3.13</span> I receive an error when running HTCondor jobs that use python and matplotlib&#x2026;</h4>
 <div class="outline-text-4" id="text-5-3-13">
 <p>
 If you are running some <code>python</code> jobs that use <code>matplotlib</code> (for example,
@@ -4467,8 +3898,8 @@ You can find more info about this issue <b>here -&gt;
 </div>
 </div>
 
-<div id="outline-container-org2816e97" class="outline-4">
-<h4 id="org2816e97"><span class="section-number-4">5.3.14</span> I would like to get more information about the execution, is there an easy way to see the logs created by Condor?</h4>
+<div id="outline-container-org2d9463b" class="outline-4">
+<h4 id="org2d9463b"><span class="section-number-4">5.3.14</span> I would like to get more information about the execution, is there an easy way to see the logs created by Condor?</h4>
 <div class="outline-text-4" id="text-5-3-14">
 <p>
 Yes, there are several possibilities for that. The first step is to create
@@ -4509,12 +3940,12 @@ stats about Condor: <b><a href="http://carlota:81/condor_stats/">http://carlota:
 
 
 
-<div id="outline-container-org802dcdd" class="outline-3">
-<h3 id="org802dcdd"><span class="section-number-3">5.4</span> Special needs</h3>
+<div id="outline-container-orgc8b98a5" class="outline-3">
+<h3 id="orgc8b98a5"><span class="section-number-3">5.4</span> Special needs</h3>
 <div class="outline-text-3" id="text-5-4">
 </div>
-<div id="outline-container-orgb283597" class="outline-4">
-<h4 id="orgb283597"><span class="section-number-4">5.4.1</span> I am running many jobs, but some are more important than others, how can I prioritize them?</h4>
+<div id="outline-container-org889c696" class="outline-4">
+<h4 id="org889c696"><span class="section-number-4">5.4.1</span> I am running many jobs, but some are more important than others, how can I prioritize them?</h4>
 <div class="outline-text-4" id="text-5-4-1">
 <p>
 You can prioritize your jobs (and only your jobs, not other users' jobs)
@@ -4527,8 +3958,8 @@ submit file page -&gt; CondorHowTo#howto<sub>priority</sub></b> to see more exam
 </div>
 </div>
 
-<div id="outline-container-orgdd45027" class="outline-4">
-<h4 id="orgdd45027"><span class="section-number-4">5.4.2</span> I am receiving hundreds of emails from Condor, can I stop that?</h4>
+<div id="outline-container-orgb115ca2" class="outline-4">
+<h4 id="orgb115ca2"><span class="section-number-4">5.4.2</span> I am receiving hundreds of emails from Condor, can I stop that?</h4>
 <div class="outline-text-4" id="text-5-4-2">
 <p>
 Yes, by default Condor send an email notifying any event related to each
@@ -4546,8 +3977,8 @@ examples.''
 </div>
 </div>
 
-<div id="outline-container-orgaaf18cc" class="outline-4">
-<h4 id="orgaaf18cc"><span class="section-number-4">5.4.3</span> What happens with my IDL or Matlab jobs that require licences to run?</h4>
+<div id="outline-container-org105041f" class="outline-4">
+<h4 id="org105041f"><span class="section-number-4">5.4.3</span> What happens with my IDL or Matlab jobs that require licences to run?</h4>
 <div class="outline-text-4" id="text-5-4-3">
 <p>
 There is a limited number of IDL licences, so if you try to run a large
@@ -4566,8 +3997,8 @@ possible for you to create Matlab executables using the <b>Matlab Compiler -&gt;
 </div>
 </div>
 
-<div id="outline-container-org189083b" class="outline-4">
-<h4 id="org189083b"><span class="section-number-4">5.4.4</span> I need to run some commands or scripts before/after my executable, is that possible?</h4>
+<div id="outline-container-orgbf29d9c" class="outline-4">
+<h4 id="orgbf29d9c"><span class="section-number-4">5.4.4</span> I need to run some commands or scripts before/after my executable, is that possible?</h4>
 <div class="outline-text-4" id="text-5-4-4">
 <p>
 Yes, it is possible adding the <code>+PreCmd</code> and <code>+PostCmd</code> commands to your
@@ -4602,8 +4033,8 @@ commands (like <code>tree</code> in the example), you have to transfer that comm
 </div>
 
 
-<div id="outline-container-org77da9d0" class="outline-4">
-<h4 id="org77da9d0"><span class="section-number-4">5.4.5</span> Is it possible to limit the maximum number of concurrent running jobs?</h4>
+<div id="outline-container-org2552783" class="outline-4">
+<h4 id="org2552783"><span class="section-number-4">5.4.5</span> Is it possible to limit the maximum number of concurrent running jobs?</h4>
 <div class="outline-text-4" id="text-5-4-5">
 <p>
 There are some situations where it could be interesting to limit the number
@@ -4618,8 +4049,8 @@ limits.
 </div>
 </div>
 
-<div id="outline-container-orgab9514a" class="outline-4">
-<h4 id="orgab9514a"><span class="section-number-4">5.4.6</span> I need to do some complex operations in my submit file, is that possible?</h4>
+<div id="outline-container-org2f78810" class="outline-4">
+<h4 id="org2f78810"><span class="section-number-4">5.4.6</span> I need to do some complex operations in my submit file, is that possible?</h4>
 <div class="outline-text-4" id="text-5-4-6">
 <p>
 Yes, Condor has some <b>predefined functions</b> and some <b>special macros</b> that
@@ -4647,8 +4078,8 @@ and also the <b>function and pre-defined macros -&gt;
 </div>
 </div>
 
-<div id="outline-container-org58eb3b0" class="outline-4">
-<h4 id="org58eb3b0"><span class="section-number-4">5.4.7</span> I would like to submit my jobs now, but they should run at a programmed time, can I do that?</h4>
+<div id="outline-container-org5a01c00" class="outline-4">
+<h4 id="org5a01c00"><span class="section-number-4">5.4.7</span> I would like to submit my jobs now, but they should run at a programmed time, can I do that?</h4>
 <div class="outline-text-4" id="text-5-4-7">
 <p>
 Sometimes it might be interesting to run your jobs at a specific time,
@@ -4664,8 +4095,8 @@ time, and also how to program periodical programmed executions.
 </div>
 </div>
 
-<div id="outline-container-orgc0c66fa" class="outline-4">
-<h4 id="orgc0c66fa"><span class="section-number-4">5.4.8</span> Jobs leave the queue after finishing. If something went wrong&#x2026; could they be held or automatically re-executed instead?</h4>
+<div id="outline-container-org023936b" class="outline-4">
+<h4 id="org023936b"><span class="section-number-4">5.4.8</span> Jobs leave the queue after finishing. If something went wrong&#x2026; could they be held or automatically re-executed instead?</h4>
 <div class="outline-text-4" id="text-5-4-8">
 <p>
 By default all your jobs will leave the queue after completion. But it
@@ -4685,8 +4116,8 @@ and examples about this feature.
 </div>
 </div>
 
-<div id="outline-container-org5750777" class="outline-4">
-<h4 id="org5750777"><span class="section-number-4">5.4.9</span> I have a fault tolerant application, can I save the state and restore it when executing with Condor?</h4>
+<div id="outline-container-org8bcf887" class="outline-4">
+<h4 id="org8bcf887"><span class="section-number-4">5.4.9</span> I have a fault tolerant application, can I save the state and restore it when executing with Condor?</h4>
 <div class="outline-text-4" id="text-5-4-9">
 <p>
 Yes, Condor allows you to use your fault tolerant programs. You only need
@@ -4712,8 +4143,8 @@ job restarts.''
 </div>
 </div>
 
-<div id="outline-container-orgded1851" class="outline-4">
-<h4 id="orgded1851"><span class="section-number-4">5.4.10</span> My jobs have some dependencies, is it possible to specify that?</h4>
+<div id="outline-container-org5168a39" class="outline-4">
+<h4 id="org5168a39"><span class="section-number-4">5.4.10</span> My jobs have some dependencies, is it possible to specify that?</h4>
 <div class="outline-text-4" id="text-5-4-10">
 <p>
 Yes, if you have some dependencies in your inputs, outputs or execution
@@ -4728,12 +4159,12 @@ page -&gt; CondorHowTo#howto<sub>dagman</sub></b> for more info and examples.
 </div>
 </div>
 
-<div id="outline-container-org072ff9b" class="outline-3">
-<h3 id="org072ff9b"><span class="section-number-3">5.5</span> More info</h3>
+<div id="outline-container-org157ea2e" class="outline-3">
+<h3 id="org157ea2e"><span class="section-number-3">5.5</span> More info</h3>
 <div class="outline-text-3" id="text-5-5">
 </div>
-<div id="outline-container-org66348c0" class="outline-4">
-<h4 id="org66348c0"><span class="section-number-4">5.5.1</span> My question is not in this list or I need further information, where can I find it?</h4>
+<div id="outline-container-orgdd8d391" class="outline-4">
+<h4 id="orgdd8d391"><span class="section-number-4">5.5.1</span> My question is not in this list or I need further information, where can I find it?</h4>
 <div class="outline-text-4" id="text-5-5-1">
 <p>
 There are more <b>FAQs and How-to recipes -&gt;
@@ -4752,8 +4183,8 @@ Condor#contact</b> our contact data).
 
 
 
-<div id="outline-container-org6998e45" class="outline-2">
-<h2 id="org6998e45"><span class="section-number-2">6</span> HTCondor and IDL</h2>
+<div id="outline-container-org500e477" class="outline-2">
+<h2 id="org500e477"><span class="section-number-2">6</span> HTCondor and IDL</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 A recurring question to us has been whether IDL jobs can be run with
@@ -4787,8 +4218,8 @@ CondorSubmitFile#howto<sub>limit</sub></b> using a command like <code>concurrenc
 </div>
 
 
-<div id="outline-container-org8078e05" class="outline-3">
-<h3 id="org8078e05"><span class="section-number-3">6.1</span> Submitting a job to HTCondor using the IDL Virtual Machine (for the impatient)</h3>
+<div id="outline-container-org1294474" class="outline-3">
+<h3 id="org1294474"><span class="section-number-3">6.1</span> Submitting a job to HTCondor using the IDL Virtual Machine (for the impatient)</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 All you will need to do in order to run your IDL jobs with the Virtual Machine is:
@@ -4967,8 +4398,8 @@ held jobs using <code>condor_q -hold</code>).-]
 </div>
 
 
-<div id="outline-container-org8b2ce5b" class="outline-3">
-<h3 id="org8b2ce5b"><span class="section-number-3">6.2</span> How is it all done?</h3>
+<div id="outline-container-org057c1e6" class="outline-3">
+<h3 id="org057c1e6"><span class="section-number-3">6.2</span> How is it all done?</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 All the real work to avoid having to press the "Click to continue" button in all
@@ -5163,7 +4594,7 @@ fi
 <div id="postamble" class="status">
 <p class="author">Author: Ángel de Vicente</p>
 <p class="email">Email: <a href="mailto:angel.de.vicente@iac.es">angel.de.vicente@iac.es</a></p>
-<p class="date">Created: 2023-03-02 Thu 20:33</p>
+<p class="date">Created: 2023-03-02 Thu 21:27</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
