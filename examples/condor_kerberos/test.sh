@@ -43,4 +43,4 @@ done
 kill $ticket_PID
 wait $ticket_PID 2>/dev/null
 
-
+exit 0

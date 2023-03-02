@@ -1,4 +1,4 @@
-# Time-stamp: <2023-03-02 10:16:55 angelv> 
+# Time-stamp: <2023-03-02 20:33:06 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -461,118 +461,50 @@ case-insensitive/):
     remote machine. Sometimes omitting this command is useful, but other times
     our program creates many temporary or useless files and we only want to get
     the ones we specify with this command.
-
-    CONTINUEING HERE
-
-  + More commands for input/output files:
-    + =transfer_output_remaps=: it changes the name of the output files when
-      copying them to your machine. That is useful when your executable
-      generates result file(s) with the same name, so changing the filename to
-      include a variable part (like =$(Process)= and maybe also =$(Cluster)=)
-      will avoid overwritten them.
-    + =initialdir=: this command is used to specify the base directory for input
-      and output files, instead of the directory where the submission was
-      performed from. If this command include a variable part (like
-      =$(Process)=), you can use this command to specify a different base
-      directory for each job.
-    + =input=: if your program needs some data from keyboard, you can specify a
-      file or a comma-separated list of files containing it (each end of line in
-      the file will have the same behaviour as pressing =Intro= key in the
-      keyboard, like when using =stdin= redirection in command line with
-      *=<*=). As other similar commands, you can use absolute or relative paths.
-    + =transfer_executable=: by default its value is =True=, but if it is set to
-      =False=, HTCondor will not copy the executable file to the remote
-      machine(s). This is useful when the executable is a system command or a
-      program that is installed in all machines, so it is not needed to copy it.
-  + *=when_to_transfer_output=* it will usually have a value of =ON_EXIT= to
-    only copy output files when your job is finished, avoiding the copy of
-    temporary or incomplete files if your job fails or it is moved to another
-    machine.
-
+  + Other commands for input/output files:
+    + *=transfer_output_remaps=* it changes the name of the output files when
+      copying them to your machine (useful when output files have the same name,
+      so including a variable part, e.g. =$(Process)=, will avoid overwritten
+      them). 
+    + *=initialdir=* used to specify the base directory for input and output
+      files (if it includes a variable part (like =$(Process)=), a different
+      base directory can be used for each job).
+    + *=input=* if your program needs some data from keyboard, you can write it
+      down in a file (as when using =stdin= redirection in the command line with
+      *=<=*).
+    + *=transfer_executable=* by default =True=. Useful to set it to =False=
+      when the executable is a system command or a program that is installed in
+      all machines, so copying it is not needed.
 
 + *Other useful commands*
-  + =request_memory=, =request_disk=: if your program needs a certain amount of
-    total RAM memory or free disk space, you can use these commands to force
-    that your jobs will be only executed on machines with at least the requested
-    memory/free disk space *HowTo*
-  + =requirements=: this is a very useful command if your program has any
-    special needs. With it you can specify that your job can be only executed on
-    some machines (or some machines cannot run your program) according to a wide
-    set of parameters (machine name, operative system and version and a large
-    etc.) *HowTo*
-  + =rank=: you can specify some values or combination of them (total memory,
+  + *=request_memory=*, *=request_disk=* to request machines with at least a
+    certain amount of total RAM memory or fee disk space
+  + *=requirements=* a very useful command to register any special needs for a
+    job (for example, if you need to avoid certain machines, or you need
+    machines with a given OS, etc.)
+  + *=rank=* you can specify some values or combination of them (total memory,
     free disk space, MIPS, etc.) and HTCondor will choose the best machines for
     your jobs according to your specifications, where the higher the value, the
     better (this command is used to specify preferences, not requirements)
-    *HowTo*
-  + =getenv=: if it is set to =True=, all your environment variables will be
-    copied at submission time and they will be available when your program is
-    executed on remote machines (if you do not use this command or it is set to
-    =False=, then your jobs will have no environment variables). This is useful
-    when running some programs that need a special environment, like python,
-    etc. *HowTo*
-  + =nice_user=: if it is set to =True=, your jobs will be executed with a fake
-    user with very low priority, what could be very useful when the queue is
-    (almost) empty, so you can run your jobs without wasting your real user
-    priority (you can activate and deactivate this feature when your jobs are
-    being executed, so you can begin running your jobs as nice user if the queue
-    is empty and change to normal user when the queue has many other jobs, or
-    vice versa) *HowTo*
-  + =concurrency_limits=: you can limit the maximum number of your jobs that
-    could be executed at the same time. You should use this command if your
-    program needs licences and there are a few of them (like =IDL=, see also
-    *CondorAndidlvirtualmachine*) or if for any reason you cannot use the
-    HTCondor file transfer system and all your jobs access to the same shared
-    resource (=/scratch=, =/net/nas=, etc.), in order to avoid that too many
-    concurrent access can stress the network *CondorHowTo#howto_limit*
-  + =include=: since HTCondor v8.4.0, it is possible to *include externally
-    defined submit commands* using syntax: *=include :* ''<myfile>''=. You can
-    even include the output of external scripts that will be executed at
-    submission time, adding a pipe symbol after the file: *=include :*
-    ''<myscript.sh>'' *|*=
-  + More useful commands:
-    + =environment=: this command will allow you to set/unset/change any
-      environment variable(s) *CondorHowTo#howto_env*
-    + =priority=: if some of your jobs/clusters are more important than others
-      and you want to execute them first, you can use =priority= command to
-      assign them a priority (the higher the value, the higher priority). This
-      command only have an effect on your own jobs, and it is not related to
-      users priority *CondorHowTo#howto_priority*.
-    + =job_machine_attrs=, =job_machine_attrs_history_length=: use these
-      commands to reduce the effects of ''black holes'' in HTCondor, what causes
-      that many of your jobs could fail in a short time
-      *CondorHowTo#howto_failing* 
-    + =noop_job=: you specify a condition and those jobs that evaluate it to
-      true will not be executed. This is useful when some of your jobs failed
-      and you want to repeat only the failing jobs, not all of them
-      *CondorHowTo#howto_failing* 
-    + =+PreCmd=, =+PreArguments=, =+PostCmd=, =+PostArguments=: These commands
-      allow you to run some scripts before and/or after your executable. That is
-      useful to prepare, convert, decompress, etc. your inputs and outputs if
-      needed, or debug your executions *CondorHowTo#howto_prepostcmd*
-    + =notify_user=, =notification=: use these commands if you want to receive a
-      notification (an email) when your jobs begin, fail and/or finish
-      *CondorHowTo#howto__notify* 
-    + =if= ... =elif= ... =else= ...  =endif=: since HTCondor version 8.4.0, a
-      *limited conditional semantic* is available. You can use it to specify
-      different commands or options depending on the defined/undefined
-      variables, HTCondor version, etc.
-    + =on_exit_hold=, =on_exit_remove=, =periodic_hold=, =periodic_remove=,
-      =periodic_release=, etc.: you can modify the default behaviour of your
-      jobs and the associated status. These commands can be used in a wide set
-      of circumstances. For instance, you can force that jobs that are running
-      for more than X minutes or hours will be deleted or get a ''on hold''
-      status (with this you can prevent that failing jobs will be running
-      forever, since they will be stopped or deleted if they run for a much
-      longer while than expected) or the opposite, hold those jobs that finish
-      in an abnormal short time to check later what happened. Or you can also
-      periodically release your held jobs, to run them on other machines if for
-      any reason your jobs work fine on some machines, but fail on others
-      *CondorHowTo#howto_failing*
-    + =deferrall_time=, =deferral_window=, =deferral_prep_time=: you can force
-      your jobs begin at a given date and time. That is useful when the input
-      data is not ready when submitting and your jobs have to wait till a
-      certain time *CondorHowTo#howto_runintime*
+  + *=getenv=* (/default/: =False=) if set to =True=, the job will run with the
+    same environment variables as when the job was submitted. If =False= the
+    jobs will have no preset environment variables.
+  + *=environment=* list of environment variables to set for the job
+  + *=nice_user=* (/default/: =False=) if set to =True= the jobs will be
+    executed with very low priority.
+  + *=priority=* assign a priority for your jobs (the higher the value, the
+    higher the priority).
+  + *=concurrency_limits=* to limit the maximum number of your jobs that
+    could be executed at the same time (for example if the program needs a
+    licence and only a limited number of them is available).
+  + *=include : <myfile>=* to include commands from an external file. It is also
+    possible to include the output of external scripts that will be executed at
+    submission time, adding a pipe symbol after the file: *=include : <myscript.sh> | =*
+  + *=+PreCmd=, =+PreArguments=, =+PostCmd=, =+PostArguments=* commands to
+    specify scripts to run before and/or after your executable (to convert,
+    decompress, etc. your inputs and outputs if needed, or for debugging)
+  + *=notify_user=, =notification=* commands to request a notification (an
+    email) when your jobs begin, fail and/or finish
 
 ** Templates and examples
 
