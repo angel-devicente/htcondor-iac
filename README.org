@@ -1,1 +1,3 @@
-* User information for HTCondor @ IAC
+Information for HTCondor users @ IAC.
+
++ [[https://angel-devicente.github.io/htcondor-iac/][User's manual]]

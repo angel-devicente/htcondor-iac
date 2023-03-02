@@ -1,10 +1,9 @@
 
 # Table of Contents
 
-1.  [User information for HTCondor @ IAC](#orgf62b409)
 
 
-<a id="orgf62b409"></a>
+Information for HTCondor users @ IAC.
 
-# User information for HTCondor @ IAC
+-   [User's manual](https://angel-devicente.github.io/htcondor-iac/)
 
