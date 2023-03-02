@@ -1,4 +1,4 @@
-# Time-stamp: <2023-03-02 09:25:04 angelv> 
+# Time-stamp: <2023-03-02 10:16:55 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -33,18 +33,22 @@
 
 * Introduction   
 
+#+begin_mdframed
 #+begin_warning
 If you have no experience with HTCondor, we recommend that you contact us before
 running any job so we can give you a quick introduction (bear in mind that you
 will be using other users' computers and there are some basic guidelines that
 you must follow to avoid disturbing them).
 #+end_warning
+#+end_mdframed
 
+#+begin_mdframed
 #+begin_note
 The HTCondor infrastructure at the IAC has been recently expanded and improved,
 with about 100 new Linux desktop PCs financed by the Ministry of Economy and
 Competitiveness through FEDER funds, code IACA13-3E-2493. 
 #+end_note
+#+end_mdframed
 
 ** What is HTCondor? 
 
@@ -162,6 +166,7 @@ basic example to *Quick Start* you.
   You can use the command =condor_status=, to quickly check the status of the
   HTCondor pool:
   
+  #+begin_mdframed
   #+begin_example
   [angelv@denso ~]$ condor_status -compact
   Machine             Platform     Slots Cpus Gpus  TotalGb FreCpu  FreeGb  CpuLoad ST
@@ -180,6 +185,7 @@ basic example to *Quick Start* you.
 
            Total   868   318       2       548       0          0        0      0
   #+end_example  
+  #+end_mdframed
 
 + *Submitting a job*
 
@@ -193,9 +199,11 @@ basic example to *Quick Start* you.
 
     You would compile it as usual:
     
+    #+begin_mdframed
     #+begin_src bash
     gcc -o simple simple.c
     #+end_src
+    #+end_mdframed
 
   + *a /submit file/*
 
@@ -209,11 +217,13 @@ basic example to *Quick Start* you.
     Using the /submit file/ as an argument to the command =condor_submit= you
     instruct HTCondor to start executing your job in the HTCondor Pool.
     
+    #+begin_mdframed
     #+begin_example
     [angelv@denso ~]$ condor_submit test.condor
     Submitting job(s)...........................................................
     100 job(s) submitted to cluster 4.
     #+end_example
+    #+end_mdframed
 
 + *Checking the progress of the submitted jobs*
 
@@ -221,6 +231,7 @@ basic example to *Quick Start* you.
   following example we can see that all the 100 jobs submitted above are successfully
   running:
   
+  #+begin_mdframed
   #+begin_example
   [angelv@denso ~]$ condor_q
 
@@ -232,6 +243,7 @@ basic example to *Quick Start* you.
   Total for angelv: 100 jobs; 0 completed, 0 removed, 0 idle, 100 running, 0 held, 0 suspended 
   Total for all users: 100 jobs; 0 completed, 0 removed, 0 idle, 100 running, 0 held, 0 suspended
   #+end_example
+  #+end_mdframed
 
 + *Getting information from the logs*
 
@@ -246,18 +258,21 @@ basic example to *Quick Start* you.
   of each job (in this case, given that we submitted 100 jobs, the numbers will
   go from 0 to 99). For example, the file =simple.0.out= could read:
 
+  #+begin_mdframed
   #+begin_example
   [angelv@denso ~]$ cat simple.0.out 
   Thinking really hard for 400 seconds...
   We calculated: 20
   #+end_example
-  
+  #+end_mdframed
+
   Also, a global log of the steps taken by HTCondor to execute your jobs can
   generated (in the example above called =simple.log=). This log will give you
   details of when each job was submitted, when it started executing, whether it
   was evicted or had any other problems, etc. In this example, the file
   =simple.log= could read: 
 
+  #+begin_mdframed
   #+begin_example
   [angelv@denso ~]$ cat simple.log 
   000 (004.000.000) 2023-02-27 09:24:41 Job submitted from host: <161.72.216.13:9618?addrs=161.72.216.13-9618+[2001-720-1610-50d8--d]-9618&alias=denso.ll.iac.es&noUDP&sock=schedd_3008_d0f7>
@@ -299,7 +314,8 @@ basic example to *Quick Start* you.
 
           Job terminated of its own accord at 2023-02-27T09:31:44Z with exit-code 0.
   #+end_example
-  
+  #+end_mdframed
+
 ** Acknowledging HTCondor in publications
 
 It is important that you acknowledge HTCondor in any publication of your work
@@ -309,11 +325,13 @@ the HTCondor@IAC facility and ensure that it is available at the IAC for the
 foreseable future. Although there is no standard acknowledgment format, we
 suggest the following:
 
+#+begin_mdframed
 #+begin_important
 This paper made use of the IAC Supercomputing facility HTCondor
 (http://research.cs.wisc.edu/htcondor/), partly financed by the Ministry of
 Economy and Competitiveness with FEDER funds, code IACA13-3E-2493.
 #+end_important
+#+end_mdframed
 
 ** Further information and support
 
@@ -344,12 +362,14 @@ options and a rich syntax for writing /submit files/, which will be useful in
 more advanced cases. In this section we will cover the features needed in some
 of the most typical scenarios.
 
+#+begin_mdframed
 #+begin_warning
 Before submitting your jobs, perform always some simple tests in order to make
 sure that both your submit file and program will work in a proper way. Also,
 =condor_submit -dry-run= can help you to debug your jobs and make sure they will
 work as expected.
 #+end_warning
+#+end_mdframed
 
 ** /Submit files/ syntax
 
@@ -562,6 +582,7 @@ examples in following sections for details and explanations.
 
 *** Common Template
 
+#+begin_mdframed
 #+begin_example
 ######################################################
 # HTCondor Submit Description File. COMMON TEMPLATE   
@@ -580,6 +601,7 @@ universe                = vanilla
 should_transfer_files   = YES
 when_to_transfer_output = ON_EXIT
 #+end_example
+#+end_mdframed
 
 + *Explanation:*
 
