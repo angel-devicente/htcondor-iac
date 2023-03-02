@@ -1,4 +1,4 @@
-# Time-stamp: <2023-02-28 13:11:27 angelv> 
+# Time-stamp: <2023-03-02 09:25:04 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -442,7 +442,7 @@ case-insensitive/):
     our program creates many temporary or useless files and we only want to get
     the ones we specify with this command.
 
-    CONTINUE HERE
+    CONTINUEING HERE
 
   + More commands for input/output files:
     + =transfer_output_remaps=: it changes the name of the output files when
