@@ -1,0 +1,3 @@
+Luckily, the queue command has a powerful syntax that makes this
+unnecessary. Here we only present one example, but in the official HTCondor
+documentation you can check the full syntax and further examples.

@@ -1,0 +1,7 @@
+Executable = process.sh
+Arguments  = $(txtfile)
+Log        = queue.log
+Output     = queue.$(txtfile).out
+Error      = queue.$(txtfile).error
+
+queue txtfile matching files *.txt

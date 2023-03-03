@@ -1,0 +1,8 @@
+The example in the previous section HTCondor /Hello World!/ used the
+variable $(Process) to identify the different jobs in a single run. Sometimes
+this is enough, but not always. Say you have 100 images to process and your
+executable takes the filename of the image as an argument. If you were going to
+use the same method as above, you would need to rename your files to something
+like image00.jpg, image01.jpg, etc. or some other similar idea, in order to
+relate each image with each of the possible values of $(Process). 
+

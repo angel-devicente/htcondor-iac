@@ -1,4 +1,4 @@
-# Time-stamp: <2023-03-02 21:27:33 angelv> 
+# Time-stamp: <2023-03-03 07:07:43 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -528,8 +528,9 @@ the [[https://github.com/angel-devicente/htcondor-iac][HTCondor@IAC]] repository
 *** HTCondor /Hello World!/ 
 
 This example (directory =hello_world=) was the basis for the introductory
-section [[*Basic HTCondor workflow]]. For convenience we repeat below the /submit
-file/ (=simple.sumbit=):
+section [[*Basic HTCondor workflow]]. The commands used were already introduced in
+section [[*Submit commands]]. For convenience we repeat below the /submit file/
+(=simple.submit=):
 
 #+begin_mdframed
 #+INCLUDE: "../examples/hello_world/simple.submit" example
@@ -540,11 +541,34 @@ This example simply defines:
   =simple.c= 
 + the arguments to pass to the executable
 + the log file (one file for the log of the 100 submitted jobs)
-+ the output files (since we use $(Process), one file will be used for each job:
++ the output files (since we use =$(Process)=, one file will be used for each job:
   =simple.0.out=, =simple.1.out=, etc.)
 + the error files (similar to the output files above)
 + the =Queue= command, specifying that we want to run 100 jobs (the variable
-  $(Process) will have the range [0:99]
+  =$(Process)= will have the range [0:99]
+
+*** Similar jobs with one =Queue= command 
+
+The example in the previous section [[*HTCondor /Hello World!/]] used the variable
+=$(Process)= to identify the different jobs in a single run. Sometimes this is
+enough, but not always. Say you have 100 images to process and your executable
+takes the filename of the image as an argument. If you were going to use the
+same method as above, you would need to rename your files to something like
+=image00.jpg=, =image01.jpg=, etc. or some other similar idea, in order to
+relate each image with each of the possible values of =$(Process)=. 
+
+Luckily, the =queue= command has a powerful syntax that makes this
+unnecessary. Here we only present one example, but in the official HTCondor
+documentation you can check the [[https://htcondor.readthedocs.io/en/v10_0/users-manual/submitting-a-job.html#submitting-many-similar-jobs-with-one-queue-command][full syntax and further examples]]. 
+
+This example (directory =queue_similar=) shows how to use =queue [...] matching=
+command to process a number of files having the extension =.txt=, without the
+need to rename the filenames, and without the need to specify the exact number
+of jobs to submit. The /submit file/ (=simple.submit=) is very simple:
+
+#+begin_mdframed
+#+INCLUDE: "../examples/queue_similar/simple.submit" example
+#+end_mdframed
 
 *** Common Template                                                :noexport:
 
