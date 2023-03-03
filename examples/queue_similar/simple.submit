@@ -4,4 +4,6 @@ Log        = queue.log
 Output     = queue.$(txtfile).out
 Error      = queue.$(txtfile).error
 
+transfer_input_files = $(txtfile)
+
 queue txtfile matching files *.txt
