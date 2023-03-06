@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-ln -sf /scratch/.krb5cc_${UID} /tmp/krb5cc_${UID}
