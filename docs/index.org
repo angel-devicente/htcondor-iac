@@ -1,4 +1,4 @@
-# Time-stamp: <2023-03-09 16:52:30 angelv> 
+# Time-stamp: <2023-03-09 17:02:47 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -1662,7 +1662,7 @@ can try to fix them or find some other way around the problem.
 
 ** HTCondor and Kerberos
 
-/The files for this recipe are in directory =condor_kerberos=./
+/The files for this recipe are in directory [[https://github.com/angel-devicente/htcondor-iac/tree/main/recipes/condor_kerberos][=condor_kerberos=]]./
 
 At the IAC we use Kerberos for authentication. While the details of Kerberos are
 beyond the scope of this manual, let's just say that you need a /ticket/ when
@@ -1676,7 +1676,8 @@ In order to avoid these problems, you can do the following (step #1 is only
 needed once, in order to generate a file that you can use for as many times as
 you wish):
 
-+ Create a Kerberos keytab file, compatible with Active Directory
++ Create a Kerberos /keytab/ file, compatible with Active Directory
+
   The following information was taken from [[https://www.itadmintools.com/2011/07/creating-kerberos-keytab-files.html][here]]:
 
   #+begin_example
@@ -1688,16 +1689,16 @@ you wish):
   $
   #+end_example
 
-  The keytab file is created by default with read/write permissions only for the
+  The /keytab/ file is created by default with read/write permissions only for the
   owner, but in any case you should keep it in a safe place and don't let anyone
-  else access it. You can check that the keytab file can be used to obtain a
+  else access it. You can check that the /keytab/ file can be used to obtain a
   Kerberos ticket without having to type in your password again by doing:
 
   #+begin_example
   $ kinit <username>@IAC.ES -k -t krb_keytab
   #+end_example
 
-  If the keytab is working without problems, copy it to the =condor_kerberos=
+  If the /keytab/ is working without problems, copy it to the =condor_kerberos=
   directory.
 
 + The job that we are submitting for this recipe uses the same *C* source file
