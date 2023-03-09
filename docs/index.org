@@ -1,4 +1,4 @@
-# Time-stamp: <2023-03-09 17:22:52 angelv> 
+# Time-stamp: <2023-03-09 17:27:01 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -1666,7 +1666,7 @@ can try to fix them or find some other way around the problem.
 #+begin_warning
 You should only try to follow this recipe if you find no other way to avoid the
 use of Kerberos protected resources from within your HTCondor jobs, which in most
-cases you will be able to by using the [[https://htcondor.readthedocs.io/en/latest/users-manual/file-transfer.html][HTCondor's File Transfer Mechanism]]. 
+cases you will be able to by using the [[https://htcondor.readthedocs.io/en/v10_0/users-manual/file-transfer.html][HTCondor's File Transfer Mechanism]]. 
 #+end_warning
 #+end_mdframed
 
