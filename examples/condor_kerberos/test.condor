@@ -1,0 +1,81 @@
+Universe   = vanilla
+Executable = test.sh
+Arguments  = 4 10 $(ClusterID)_$(ProcID)
+Log        = test.log
+Output     = out.test.$(ClusterID).$(Process)
+Error      = error.test.$(ClusterID).$(Process)
+
+transfer_input_files = krb_pre,krb_keytab,simple
++PreCmd = "krb_pre"
+environment = "KRB5CCNAME=/scratch/.krb5cc_2071"
+
+Requirements = Machine == "dama.ll.iac.es"
+Queue
+Requirements = Machine == "cruise.dyn.iac.es"
+Queue
+Requirements = Machine == "danza.ll.iac.es"
+Queue
+Requirements = Machine == "darko.dyn.iac.es"
+Queue
+Requirements = Machine == "datil.ll.iac.es"
+Queue
+Requirements = Machine == "debil.ll.iac.es"
+Queue
+Requirements = Machine == "dedal.dyn.iac.es"
+Queue
+Requirements = Machine == "delfin.ll.iac.es"
+Queue
+Requirements = Machine == "delta.ll.iac.es"
+Queue
+Requirements = Machine == "denso.ll.iac.es"
+Queue
+Requirements = Machine == "diablos.ll.iac.es"
+Queue
+Requirements = Machine == "diosa.ll.iac.es"
+Queue
+Requirements = Machine == "dique.ll.iac.es"
+Queue
+Requirements = Machine == "divan.ll.iac.es"
+Queue
+Requirements = Machine == "dogma.ll.iac.es"
+Queue
+Requirements = Machine == "dolme.ll.iac.es"
+Queue
+Requirements = Machine == "domino.ll.iac.es"
+Queue
+Requirements = Machine == "domo.ll.iac.es"
+Queue
+Requirements = Machine == "dracarys.ll.iac.es"
+Queue
+Requirements = Machine == "duna.ll.iac.es"
+Queue
+Requirements = Machine == "duque.ll.iac.es"
+Queue
+Requirements = Machine == "elixir.dyn.iac.es"
+Queue
+Requirements = Machine == "emir.dyn.iac.es"
+Queue
+Requirements = Machine == "emisor.dyn.iac.es"
+Queue
+Requirements = Machine == "eolo.dyn.iac.es"
+Queue
+Requirements = Machine == "esqui.dyn.iac.es"
+Queue
+Requirements = Machine == "ingles.dyn.iac.es"
+Queue
+Requirements = Machine == "inka.dyn.iac.es"
+Queue
+Requirements = Machine == "intimo.dyn.iac.es"
+Queue
+Requirements = Machine == "islandia.dyn.iac.es"
+Queue
+Requirements = Machine == "item.dyn.iac.es"
+Queue
+Requirements = Machine == "leon.dyn.iac.es"
+Queue
+Requirements = Machine == "velero.dyn.iac.es"
+Queue
+Requirements = Machine == "villa.dyn.iac.es"
+Queue
+Requirements = Machine == "virus.dyn.iac.es"
+Queue

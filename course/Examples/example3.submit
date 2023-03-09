@@ -1,0 +1,14 @@
+########################################################
+##
+## Example 3
+##
+## Simple condor job description file (with errors)
+##
+########################################################
+
+executable = /bin/uname
+universe = vanilla
+output = /scratch/angelv/Condor-Course/example3.out
+error =  /scratch/angelv/Condor-Course/example3.err
+log =    example3.log
+queue

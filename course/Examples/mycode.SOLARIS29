@@ -1,0 +1,9 @@
+#!/usr/bin/tcsh
+
+# mycode.SOLARIS29
+
+echo I yawn, therefore I will be sleeping $argv[1] seconds ...
+sleep $argv[1]
+echo This amazing program was run in `uname -n`, a `uname -m` on `date`
+
+

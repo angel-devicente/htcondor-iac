@@ -1,0 +1,14 @@
+########################################################
+##
+## Example 2
+##
+## Simple condor job description file (with errors)
+##
+########################################################
+
+executable = uname
+universe = vanilla
+output = example2.out
+error =  example2.err
+log =    example2.log
+queue

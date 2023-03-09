@@ -1,0 +1,80 @@
+Subject: Do you need more computing power? Then join the upcoming Condor system
+course.
+
+Hi all,
+
+do you need more computing power? Do you have hundreds of simulations to run,
+and just running them in your computer is going to take weeks or months? Then
+Condor might help you to reduce drastically the amount of time needed to perform
+those simulations! Keep reading....
+
+At the IAC there are hundreds of workstations that sit idle for long periods of
+time. Condor takes this wasted computation time and puts it to good use: you can
+use Condor's opportunistic behavior to scavenge cycles from desktop machines
+when their users are not using the machines (for example, in the evening or
+during lunch). Typically, these desktop machines are unused for twelve or more
+hours per day. This processing time is available at no extra cost under Condor.
+
+Condor can also streamline your work by allowing the submission of many jobs at
+the same time. In this way, tremendous amounts of computation can be done with
+very little intervention from the user. Source code does not have to be modified
+in any way to take advantage of these benefits.
+
+But if your code can be re-linked with the Condor libraries, then your jobs can
+also produce checkpoints, that can be used to resume execution (and thus save
+days, or even weeks of accumulated computation time), if a machine crashes, or
+must be rebooted for an administrative task.
+
+If this sounds good to you, you would be pleased to know that we have organized
+a talk on Condor for the 28th of September (see
+http://www.iac.es/sieinvens/SINFIN/sie_courses.html).
+
+Also, we are planning to have a small practical course on Condor (a hands-on
+session on the days 4/10 and 6/10 from 16.00-18.00). In order to gauge the
+interest for this course and to help us organize the course more efficiently,
+please reply to this e-mail if you would be interested in attending the course.
+
+[If you are interested in the course but could not make it during the given
+times, please send me an e-mail anyway, and depending on interest we could
+perhaps organize an alternative session. This course can be given in English if
+required. You are supposed to bring your own laptop, and the maximum number of
+attendees will be 12, so send an e-mail to angelv@iac.es if you want to reserve
+a place.]
+ 
+Sincerely,
+Angel de Vicente
+
+
+------------------------------------------------------------------------------------
+TESTIMONIAL
+
+From: Daniel Martyn Bramich <dmb7@st-andrews.ac.uk>
+To: Angel de Vicente <angelv@iac.es>
+Subject: Condor
+Date: Wed, 8 Sep 2004 13:32:29 +0100 (BST)
+
+Hola Angel,
+Abajo es el testimonio que queriste. Lo hice en Ingles porque mi espanol
+escrito es muy mal:
+
+I have been using Condor in order to carry out calculations which would
+not have been possible otherwise for my project. I have 33000 lightcurves
+and I want to calculate the number of hot Jupiters that I expect to detect
+from my data. To do this I use a Monte Carlo simulation and inject 1000
+random planets into each lightcurve and count how many transits I recover.
+In total, that is 33 million tests.
+
+Each lightcurve requires from 10 to 30 minutes on a fast machine with IDL.
+That makes an average of 11000 computer hours or equivalently, 458 days on
+one machine, way too long! Even if I use a faster language like Fortran it
+may still take 3 months! Instead I used Condor, and submitted the
+lightcurves individually as jobs. On average I have 30 of the
+fastest computers at the IAC working for me at any one time (limited by
+the number of free licenses), and 40 computers working for me at St
+Andrews (limited by the number of computers). It took a couple of weeks to
+complete the calculations, and this will result in a whole paper by
+itself...
+
+Daniel Bramich, IAC & University Of St Andrews
+
+

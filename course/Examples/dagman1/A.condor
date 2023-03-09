@@ -1,0 +1,14 @@
+########################################################
+##
+## A.condor
+##
+## Simple condor job description file
+##
+########################################################
+
+executable = basic.sh
+universe = vanilla
+output = A.out
+error =  A.err
+log =    dagman_example.log
+queue
