@@ -1,6 +1,6 @@
 Universe   = vanilla
 Executable = kerberos.sh
-Arguments  = 4 10 $(ClusterID)_$(ProcID)
+Arguments  = 4 10 
 Log        = kerberos.log
 Output     = out.$(Process)
 Error      = error.$(Process)
