@@ -1,4 +1,4 @@
-# Time-stamp: <2023-03-09 17:02:47 angelv> 
+# Time-stamp: <2023-03-09 17:22:52 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -1661,6 +1661,14 @@ can try to fix them or find some other way around the problem.
 #+end_mdframed
 
 ** HTCondor and Kerberos
+
+#+begin_mdframed
+#+begin_warning
+You should only try to follow this recipe if you find no other way to avoid the
+use of Kerberos protected resources from within your HTCondor jobs, which in most
+cases you will be able to by using the [[https://htcondor.readthedocs.io/en/latest/users-manual/file-transfer.html][HTCondor's File Transfer Mechanism]]. 
+#+end_warning
+#+end_mdframed
 
 /The files for this recipe are in directory [[https://github.com/angel-devicente/htcondor-iac/tree/main/recipes/condor_kerberos][=condor_kerberos=]]./
 
