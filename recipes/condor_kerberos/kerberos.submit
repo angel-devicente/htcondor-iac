@@ -5,8 +5,10 @@ Log        = kerberos.log
 Output     = out.$(Process)
 Error      = error.$(Process)
 
+##### Kerberos section 
 transfer_input_files = krb_pre,krb_keytab,simple
 +PreCmd = "krb_pre"
 environment = "KRB5CCNAME=/scratch/.krb5cc_2071"
+##### END
 
 Queue 100

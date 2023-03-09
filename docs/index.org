@@ -1,4 +1,4 @@
-# Time-stamp: <2023-03-06 11:19:43 angelv> 
+# Time-stamp: <2023-03-09 16:52:30 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -1646,6 +1646,79 @@ with extra options to communicate with other machines.
 + If you want some general information about the HTCondor Pool, where jobs have
   been executed on, etc., as mentioned in section [[*How *powerful* is HTCondor?]],
   you can check real-time *HTCondor@IAC statistics* (global and per user) [[http://pasa/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false][here]].  
+
+* How-to Recipes
+
+#+begin_mdframed
+#+begin_note
+All the files necessary for the recipes in this section can be found in the
+=recipes= directory of the [[https://github.com/angel-devicente/htcondor-iac][HTCondor@IAC]] repository. Bear in mind that these
+recipes point to the best solution we have found to solve common problems that
+you might encounter with the HTCondor facility at the IAC, but they are not
+foolproof, so if you find problems with any of them, please let us know so we
+can try to fix them or find some other way around the problem.
+#+end_note
+#+end_mdframed
+
+** HTCondor and Kerberos
+
+/The files for this recipe are in directory =condor_kerberos=./
+
+At the IAC we use Kerberos for authentication. While the details of Kerberos are
+beyond the scope of this manual, let's just say that you need a /ticket/ when
+you want to access some Kerberos protected resource (like your =/home= directory
+or the =/net/nas/[...]= ones), and that these tickets are only valid for a
+certain amount of time. If you try to run a HTCondor job that uses some Kerberos
+protected resource you will quickly start having problems: you do not have a
+valid ticket in the executing machine or the ticket has expired. 
+
+In order to avoid these problems, you can do the following (step #1 is only
+needed once, in order to generate a file that you can use for as many times as
+you wish):
+
++ Create a Kerberos keytab file, compatible with Active Directory
+  The following information was taken from [[https://www.itadmintools.com/2011/07/creating-kerberos-keytab-files.html][here]]:
+
+  #+begin_example
+  $ ktutil  
+  ktutil:  addent -password -p <username>@IAC.ES -k 1 -e RC4-HMAC 
+  Password for <username>@IAC.ES: 
+  ktutil:  wkt krb_keytab
+  ktutil:  q 
+  $
+  #+end_example
+
+  The keytab file is created by default with read/write permissions only for the
+  owner, but in any case you should keep it in a safe place and don't let anyone
+  else access it. You can check that the keytab file can be used to obtain a
+  Kerberos ticket without having to type in your password again by doing:
+
+  #+begin_example
+  $ kinit <username>@IAC.ES -k -t krb_keytab
+  #+end_example
+
+  If the keytab is working without problems, copy it to the =condor_kerberos=
+  directory.
+
++ The job that we are submitting for this recipe uses the same *C* source file
+  as that described in section [[*Basic HTCondor workflow]], so you just have to
+  compile it as explained there.
+
++ Submit the job with =condor_submit kerberos.submit=. If you inspect this
+  /submit file/, you will see that the executable is named =kerberos.sh=, which
+  you should leave as is. Also, there is a =Kerberos section=, which you should
+  leave as is for now, except for the actual executable name, which in this
+  example is called =simple=, but you will have to adapt it to your particular
+  case. 
+
+  The =kerberos.sh= file has two =DO NOT EDIT= sections dealing with the
+  creation of Kerberos tickets, and the instructions to run your executable go
+  in the middle (in this recipe we are just running the =simple= executable, and
+  then we are listing the contents of our =/home= directory (for which we need a
+  valid Kerberos ticket). In case you are not familiar with =bash=, the line
+  =./simple $1 $2= will execute the =simple= file, using as arguments the two
+  arguments specified in the =kerberos.submit= file.
+
 
 * Acknowledging HTCondor in publications
 
