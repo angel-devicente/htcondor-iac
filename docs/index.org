@@ -1,4 +1,4 @@
-# Time-stamp: <2023-03-09 17:27:01 angelv> 
+# Time-stamp: <2023-03-09 18:02:34 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -1716,9 +1716,11 @@ you wish):
 + Submit the job with =condor_submit kerberos.submit=. If you inspect this
   /submit file/, you will see that the executable is named =kerberos.sh=, which
   you should leave as is. Also, there is a =Kerberos section=, which you should
-  leave as is for now, except for the actual executable name, which in this
-  example is called =simple=, but you will have to adapt it to your particular
-  case. 
+  leave as is for now, except for:
+  + your <user_id>, which is you user ID number, which you can obtain by running
+    =id -u=
+  + the actual executable name, which in this example is called =simple=, but
+    you will have to adapt it to your particular case. 
 
   The =kerberos.sh= file has two =DO NOT EDIT= sections dealing with the
   creation of Kerberos tickets, and the instructions to run your executable go
