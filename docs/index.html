@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-09 Thu 18:03 -->
+<!-- 2023-03-09 Thu 18:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTCondor@IAC User's Manual</title>
@@ -69,51 +69,51 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org70e6639">1. Introduction</a>
+<li><a href="#org6266d85">1. Introduction</a>
 <ul>
-<li><a href="#org6e72717">1.1. What is HTCondor?</a></li>
-<li><a href="#orgfea931f">1.2. How can HTCondor help me?</a></li>
-<li><a href="#orge0afca1">1.3. How <b>powerful</b> is HTCondor?</a></li>
-<li><a href="#orge18c5cb">1.4. Which machines are part of HTCondor?</a></li>
-<li><a href="#org010b973">1.5. How can I use HTCondor?</a></li>
-<li><a href="#orgdbde00f">1.6. Where will my application run?</a></li>
-<li><a href="#org2d89980">1.7. Basic HTCondor workflow</a></li>
+<li><a href="#org56cb426">1.1. What is HTCondor?</a></li>
+<li><a href="#org3fa29a8">1.2. How can HTCondor help me?</a></li>
+<li><a href="#org68a1876">1.3. How <b>powerful</b> is HTCondor?</a></li>
+<li><a href="#org9cd18c6">1.4. Which machines are part of HTCondor?</a></li>
+<li><a href="#org55f9849">1.5. How can I use HTCondor?</a></li>
+<li><a href="#org4fddd3b">1.6. Where will my application run?</a></li>
+<li><a href="#orgbe5da7c">1.7. Basic HTCondor workflow</a></li>
 </ul>
 </li>
-<li><a href="#org571a5dd">2. Submit files</a>
+<li><a href="#orgabc471c">2. Submit files</a>
 <ul>
-<li><a href="#org033251d">2.1. Introduction</a></li>
-<li><a href="#org5752267">2.2. <i>Submit files</i> syntax</a>
+<li><a href="#orgfac1811">2.1. Introduction</a></li>
+<li><a href="#org5fe58ef">2.2. <i>Submit files</i> syntax</a>
 <ul>
-<li><a href="#org638a0b7">2.2.1. Comments</a></li>
-<li><a href="#orgc34fd77">2.2.2. Variables and macros</a></li>
-<li><a href="#orgc1c0800">2.2.3. Submit commands</a></li>
+<li><a href="#orgc61d53e">2.2.1. Comments</a></li>
+<li><a href="#org9b11786">2.2.2. Variables and macros</a></li>
+<li><a href="#orgf6d747d">2.2.3. Submit commands</a></li>
 </ul>
 </li>
-<li><a href="#orgaa62652">2.3. Examples</a>
+<li><a href="#org4c85afb">2.3. Examples</a>
 <ul>
-<li><a href="#org565a9da">2.3.1. HTCondor <i>Hello World!</i></a></li>
-<li><a href="#org409c810">2.3.2. Similar jobs with one <code>Queue</code> command</a></li>
+<li><a href="#org0be926e">2.3.1. HTCondor <i>Hello World!</i></a></li>
+<li><a href="#orgf49ac63">2.3.2. Similar jobs with one <code>Queue</code> command</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org0f2617f">3. Main HTCondor commands</a>
+<li><a href="#orgc34e2e4">3. Main HTCondor commands</a>
 <ul>
-<li><a href="#org44d8d14">3.1. Checking pool status</a></li>
-<li><a href="#org8584ccd">3.2. Submitting jobs</a></li>
-<li><a href="#org43d247a">3.3. Checking and managing submitted jobs</a></li>
-<li><a href="#org0f02679">3.4. Getting information from the logs</a></li>
-<li><a href="#orgfd85e6c">3.5. Other commands</a></li>
+<li><a href="#org61ddb6b">3.1. Checking pool status</a></li>
+<li><a href="#org62707ab">3.2. Submitting jobs</a></li>
+<li><a href="#org6985b8e">3.3. Checking and managing submitted jobs</a></li>
+<li><a href="#org979cce0">3.4. Getting information from the logs</a></li>
+<li><a href="#org704a84c">3.5. Other commands</a></li>
 </ul>
 </li>
-<li><a href="#org9513292">4. How-to Recipes</a>
+<li><a href="#orgf335d12">4. How-to Recipes</a>
 <ul>
-<li><a href="#orgb17cda3">4.1. HTCondor and Kerberos</a></li>
+<li><a href="#org28d2892">4.1. HTCondor and Kerberos</a></li>
 </ul>
 </li>
-<li><a href="#org122c2c2">5. Acknowledging HTCondor in publications</a></li>
-<li><a href="#orgf108d4d">6. Further information and support</a></li>
+<li><a href="#orgf556ac1">5. Acknowledging HTCondor in publications</a></li>
+<li><a href="#org7a8a159">6. Further information and support</a></li>
 </ul>
 </div>
 </div>
@@ -139,8 +139,8 @@ Economy and Competitiveness through FEDER funds, code IACA13-3E-2493.
 
 </div>
 
-<div id="outline-container-org70e6639" class="outline-2">
-<h2 id="org70e6639"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org6266d85" class="outline-2">
+<h2 id="org6266d85"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <div class="mdframed">
 <div class="warning">
@@ -156,8 +156,8 @@ you must follow to avoid disturbing them).
 </div>
 </div>
 
-<div id="outline-container-org6e72717" class="outline-3">
-<h3 id="org6e72717"><span class="section-number-3">1.1</span> What is HTCondor?</h3>
+<div id="outline-container-org56cb426" class="outline-3">
+<h3 id="org56cb426"><span class="section-number-3">1.1</span> What is HTCondor?</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 At the IAC we have several <a href="http://research.iac.es/sieinvens/SINFIN/Main/supercomputing.php">Supercomputing</a> resources that allow you to obtain
@@ -173,8 +173,8 @@ detailed overview of HTCondor is available at the <a href="https://htcondor.read
 </div>
 </div>
 
-<div id="outline-container-orgfea931f" class="outline-3">
-<h3 id="orgfea931f"><span class="section-number-3">1.2</span> How can HTCondor help me?</h3>
+<div id="outline-container-org3fa29a8" class="outline-3">
+<h3 id="org3fa29a8"><span class="section-number-3">1.2</span> How can HTCondor help me?</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 HTCondor is very useful when you have an application that has to run a large
@@ -192,8 +192,8 @@ your machine when they are complete.
 </div>
 </div>
 
-<div id="outline-container-orge0afca1" class="outline-3">
-<h3 id="orge0afca1"><span class="section-number-3">1.3</span> How <b>powerful</b> is HTCondor?</h3>
+<div id="outline-container-org68a1876" class="outline-3">
+<h3 id="org68a1876"><span class="section-number-3">1.3</span> How <b>powerful</b> is HTCondor?</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 HTCondor calls a <i>slot</i> the unit that executes a job, typically a CPU or a core
@@ -208,7 +208,7 @@ and weekends.
 
 <p>
 You can see real-time <b>HTCondor@IAC statistics</b> (global and per user) <a href="http://pasa/ganglia/?r=week&amp;cs=&amp;ce=&amp;m=load_one&amp;tab=v&amp;vn=pool_usage&amp;hide-hf=false">here</a>. Figure
-<a href="#orgcf02da2">1</a> is an example showing the global usage where <i>Owner</i> represents
+<a href="#orge5c56e5">1</a> is an example showing the global usage where <i>Owner</i> represents
 <i>slots</i> that are being used outside of HTCondor. The remaining <i>slots</i> are
 available to HTCondor, but if there are no eligible jobs to run, those slots
 will be in <i>CPUsNotInUse</i> state. Those <i>slots</i> that are actually being used by
@@ -216,7 +216,7 @@ HTCondor are those in the <i>CPUsInUse</i> state.
 </p>
 
 
-<div id="orgcf02da2" class="figure">
+<div id="orge5c56e5" class="figure">
 <p><img src="images/introduction/weekly_usage.png" alt="weekly_usage.png" />
 </p>
 <p><span class="figure-number">Figure 1: </span>Weekly global usage</p>
@@ -224,8 +224,8 @@ HTCondor are those in the <i>CPUsInUse</i> state.
 </div>
 </div>
 
-<div id="outline-container-orge18c5cb" class="outline-3">
-<h3 id="orge18c5cb"><span class="section-number-3">1.4</span> Which machines are part of HTCondor?</h3>
+<div id="outline-container-org9cd18c6" class="outline-3">
+<h3 id="org9cd18c6"><span class="section-number-3">1.4</span> Which machines are part of HTCondor?</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 HTCondor is installed in a number of <i>burros</i> (High Performance Linux PCs) and
@@ -248,19 +248,19 @@ run almost every application in any machine.
 
 <p>
 Detailed information about each machine can be obtained with the command
-<code>condor_status</code> (see Section <a href="#org44d8d14">3.1</a>). 
+<code>condor_status</code> (see Section <a href="#org61ddb6b">3.1</a>). 
 </p>
 
 <p>
 HTCondor provides a simple mechanism by which you can specify a set of
 requirements for the machines where you want your application to run, for
-example: memory per slot, OS version, etc. (see Section <a href="#org571a5dd">2</a>).
+example: memory per slot, OS version, etc. (see Section <a href="#orgabc471c">2</a>).
 </p>
 </div>
 </div>
 
-<div id="outline-container-org010b973" class="outline-3">
-<h3 id="org010b973"><span class="section-number-3">1.5</span> How can I use HTCondor?</h3>
+<div id="outline-container-org55f9849" class="outline-3">
+<h3 id="org55f9849"><span class="section-number-3">1.5</span> How can I use HTCondor?</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 If you have an account in the IAC network, then you can use HTCondor. 
@@ -270,7 +270,7 @@ If you have an account in the IAC network, then you can use HTCondor.
 HTCondor is a batch-processing system (i.e. non-interactive), so you submit jobs
 to the HTCondor queue with the <code>condor_submit</code> command, and providing a text
 submission file, where you specify the executable file, its arguments, inputs
-and outputs, etc. (see Section <a href="#org8584ccd">3.2</a>).
+and outputs, etc. (see Section <a href="#org62707ab">3.2</a>).
 </p>
 
 <p>
@@ -282,8 +282,8 @@ needed in order to specify arguments and the locations of inputs or outputs.
 </div>
 </div>
 
-<div id="outline-container-orgdbde00f" class="outline-3">
-<h3 id="orgdbde00f"><span class="section-number-3">1.6</span> Where will my application run?</h3>
+<div id="outline-container-org4fddd3b" class="outline-3">
+<h3 id="org4fddd3b"><span class="section-number-3">1.6</span> Where will my application run?</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 When you submit jobs to the HTCondor queue, HTCondor uses its allocation
@@ -310,8 +310,8 @@ notifications via email when they are finished or if any errors show up.
 </div>
 </div>
 
-<div id="outline-container-org2d89980" class="outline-3">
-<h3 id="org2d89980"><span class="section-number-3">1.7</span> Basic HTCondor workflow</h3>
+<div id="outline-container-orgbe5da7c" class="outline-3">
+<h3 id="orgbe5da7c"><span class="section-number-3">1.7</span> Basic HTCondor workflow</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 The basic workflow with HTCondor will include four steps: checking the HTCondor
@@ -562,12 +562,12 @@ was evicted or had any other problems, etc. In this example, the file
 </div>
 </div>
 
-<div id="outline-container-org571a5dd" class="outline-2">
-<h2 id="org571a5dd"><span class="section-number-2">2</span> Submit files</h2>
+<div id="outline-container-orgabc471c" class="outline-2">
+<h2 id="orgabc471c"><span class="section-number-2">2</span> Submit files</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org033251d" class="outline-3">
-<h3 id="org033251d"><span class="section-number-3">2.1</span> Introduction</h3>
+<div id="outline-container-orgfac1811" class="outline-3">
+<h3 id="orgfac1811"><span class="section-number-3">2.1</span> Introduction</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <i>HTCondor Submit Description Files</i>, or simply <i>Submit files</i>, are arguably the
@@ -578,7 +578,7 @@ requirements, etc.
 </p>
 
 <p>
-In section <a href="#org2d89980">1.7</a> we saw a very simple <i>submit
+In section <a href="#orgbe5da7c">1.7</a> we saw a very simple <i>submit
 file</i>. Depending on your needs, that might be enough, but HTCondor offers many
 options and a rich syntax for writing <i>submit files</i>, which will be useful in
 more advanced cases. In this section we will cover the features needed in some
@@ -600,8 +600,8 @@ work as expected.
 </div>
 </div>
 
-<div id="outline-container-org5752267" class="outline-3">
-<h3 id="org5752267"><span class="section-number-3">2.2</span> <i>Submit files</i> syntax</h3>
+<div id="outline-container-org5fe58ef" class="outline-3">
+<h3 id="org5fe58ef"><span class="section-number-3">2.2</span> <i>Submit files</i> syntax</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 HTCondor <i>submit files</i> can include comments, variables, macros, commands,
@@ -611,8 +611,8 @@ detailed description you can check the official documentation (<a href="https://
 </p>
 </div>
 
-<div id="outline-container-org638a0b7" class="outline-4">
-<h4 id="org638a0b7"><span class="section-number-4">2.2.1</span> Comments</h4>
+<div id="outline-container-orgc61d53e" class="outline-4">
+<h4 id="orgc61d53e"><span class="section-number-4">2.2.1</span> Comments</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 Blank lines and lines beginning with a pound sign (<code>#</code>) character are ignored by
@@ -621,8 +621,8 @@ the submit description file parser.
 </div>
 </div>
 
-<div id="outline-container-orgc34fd77" class="outline-4">
-<h4 id="orgc34fd77"><span class="section-number-4">2.2.2</span> Variables and macros</h4>
+<div id="outline-container-org9b11786" class="outline-4">
+<h4 id="org9b11786"><span class="section-number-4">2.2.2</span> Variables and macros</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 You can define your own variables, and there are also many predefined variables
@@ -654,8 +654,8 @@ the expression evaluated, you may need to use function macros like <code>$INT(B)
 </div>
 </div>
 
-<div id="outline-container-orgc1c0800" class="outline-4">
-<h4 id="orgc1c0800"><span class="section-number-4">2.2.3</span> Submit commands</h4>
+<div id="outline-container-orgf6d747d" class="outline-4">
+<h4 id="orgf6d747d"><span class="section-number-4">2.2.3</span> Submit commands</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 The commands which can appear in the submit description file are numerous (see
@@ -769,8 +769,8 @@ email) when your jobs begin, fail and/or finish</li>
 </div>
 </div>
 
-<div id="outline-container-orgaa62652" class="outline-3">
-<h3 id="orgaa62652"><span class="section-number-3">2.3</span> Examples</h3>
+<div id="outline-container-org4c85afb" class="outline-3">
+<h3 id="org4c85afb"><span class="section-number-3">2.3</span> Examples</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="mdframed">
 <div class="note">
@@ -784,13 +784,13 @@ the <a href="https://github.com/angel-devicente/htcondor-iac">HTCondor@IAC</a> r
 </div>
 </div>
 
-<div id="outline-container-org565a9da" class="outline-4">
-<h4 id="org565a9da"><span class="section-number-4">2.3.1</span> HTCondor <i>Hello World!</i></h4>
+<div id="outline-container-org0be926e" class="outline-4">
+<h4 id="org0be926e"><span class="section-number-4">2.3.1</span> HTCondor <i>Hello World!</i></h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 This example (directory <code>hello_world</code>) was the basis for the introductory
-section <a href="#org2d89980">1.7</a>. The commands used were already introduced in
-section <a href="#orgc1c0800">2.2.3</a>. For convenience we repeat below the <i>submit file</i>
+section <a href="#orgbe5da7c">1.7</a>. The commands used were already introduced in
+section <a href="#orgf6d747d">2.2.3</a>. For convenience we repeat below the <i>submit file</i>
 (<code>simple.submit</code>):
 </p>
 
@@ -824,11 +824,11 @@ This example simply defines:
 </div>
 </div>
 
-<div id="outline-container-org409c810" class="outline-4">
-<h4 id="org409c810"><span class="section-number-4">2.3.2</span> Similar jobs with one <code>Queue</code> command</h4>
+<div id="outline-container-orgf49ac63" class="outline-4">
+<h4 id="orgf49ac63"><span class="section-number-4">2.3.2</span> Similar jobs with one <code>Queue</code> command</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
-The example in the previous section <a href="#org565a9da">2.3.1</a> used the variable
+The example in the previous section <a href="#org0be926e">2.3.1</a> used the variable
 <code>$(Process)</code> to identify the different jobs in a single run. Sometimes this is
 enough, but not always. Say you have 100 images to process and your executable
 takes the filename of the image as an argument. If you were going to use the
@@ -870,24 +870,24 @@ queue txtfile matching files *.txt
 </div>
 
 
-<div id="outline-container-org0f2617f" class="outline-2">
-<h2 id="org0f2617f"><span class="section-number-2">3</span> Main HTCondor commands</h2>
+<div id="outline-container-orgc34e2e4" class="outline-2">
+<h2 id="orgc34e2e4"><span class="section-number-2">3</span> Main HTCondor commands</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 HTCondor provides around 100 commands (see the <a href="https://htcondor.readthedocs.io/en/v10_0/man-pages/index.html">Command Reference Manual)</a>, but
 you will only need a few of them for most of you work with HTCondor. In this
 section we introduce the most common ones, grouped according to the four common
-tasks introduced in section <a href="#org2d89980">1.7</a>: Checking pool status
-(<a href="#org44d8d14">3.1</a>), Submitting jobs (<a href="#org8584ccd">3.2</a>), Checking and
-managing submitted jobs (<a href="#org43d247a">3.3</a>) and Getting info
-from logs (<a href="#org0f02679">3.4</a>). For each command we also give a
+tasks introduced in section <a href="#orgbe5da7c">1.7</a>: Checking pool status
+(<a href="#org61ddb6b">3.1</a>), Submitting jobs (<a href="#org62707ab">3.2</a>), Checking and
+managing submitted jobs (<a href="#org6985b8e">3.3</a>) and Getting info
+from logs (<a href="#org979cce0">3.4</a>). For each command we also give a
 list of some of their most useful options (but note that you can also get full
 details about each command by executing <code>man condor_&lt;cmd&gt;</code> in your shell).
 </p>
 </div>
 
-<div id="outline-container-org44d8d14" class="outline-3">
-<h3 id="org44d8d14"><span class="section-number-3">3.1</span> Checking pool status</h3>
+<div id="outline-container-org61ddb6b" class="outline-3">
+<h3 id="org61ddb6b"><span class="section-number-3">3.1</span> Checking pool status</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li><b><code>condor_status</code></b> List slots in the HTCondor pool and their status: <code>Owner</code> (used
@@ -923,8 +923,8 @@ slots with more than 1.5GB of RAM per slot.</li>
 </div>
 </div>
 
-<div id="outline-container-org8584ccd" class="outline-3">
-<h3 id="org8584ccd"><span class="section-number-3">3.2</span> Submitting jobs</h3>
+<div id="outline-container-org62707ab" class="outline-3">
+<h3 id="org62707ab"><span class="section-number-3">3.2</span> Submitting jobs</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="warning">
 <p>
@@ -976,8 +976,8 @@ that cluster, then the ids of your jobs will be 523.0, 523.1, 523.2 and 523.3
 </div>
 </div>
 
-<div id="outline-container-org43d247a" class="outline-3">
-<h3 id="org43d247a"><span class="section-number-3">3.3</span> Checking and managing submitted jobs</h3>
+<div id="outline-container-org6985b8e" class="outline-3">
+<h3 id="org6985b8e"><span class="section-number-3">3.3</span> Checking and managing submitted jobs</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="mdframed">
 <div class="note">
@@ -1128,8 +1128,8 @@ going fine, download/upload inputs or outputs, etc.</li>
 </div>
 </div>
 
-<div id="outline-container-org0f02679" class="outline-3">
-<h3 id="org0f02679"><span class="section-number-3">3.4</span> Getting information from the logs</h3>
+<div id="outline-container-org979cce0" class="outline-3">
+<h3 id="org979cce0"><span class="section-number-3">3.4</span> Getting information from the logs</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li><b><code>condor_userlog &lt;log file&gt;</code></b> Show and summarize job statistics from the job
@@ -1154,11 +1154,11 @@ condor_history -constraint 'RemoveReason=!=UNDEFINED'
 <li><p>
 There is also a useful online tool to analyze your log files and get more
 information: <code>HTCondor Log Analyzer</code> (<a href="http://condorlog.cse.nd.edu/">http://condorlog.cse.nd.edu/</a>). Figure
-<a href="#org16a0f09">2</a> shows an example of the output generated.
+<a href="#org775b710">2</a> shows an example of the output generated.
 </p>
 
 
-<div id="org16a0f09" class="figure">
+<div id="org775b710" class="figure">
 <p><img src="images/commands/condor_log_analyzer.png" alt="condor_log_analyzer.png" />
 </p>
 <p><span class="figure-number">Figure 2: </span>Condor Log Analyzer sample output</p>
@@ -1168,8 +1168,8 @@ information: <code>HTCondor Log Analyzer</code> (<a href="http://condorlog.cse.n
 </div>
 
 
-<div id="outline-container-orgfd85e6c" class="outline-3">
-<h3 id="orgfd85e6c"><span class="section-number-3">3.5</span> Other commands</h3>
+<div id="outline-container-org704a84c" class="outline-3">
+<h3 id="org704a84c"><span class="section-number-3">3.5</span> Other commands</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li><b><code>condor_userprio</code></b> Show active HTCondor users' priority. Lower values means
@@ -1183,15 +1183,15 @@ specified in the submit file without re-submitting jobs.</li>
 with dependencies. See the section on <a href="https://htcondor.readthedocs.io/en/v10_0/users-manual/dagman-workflows.html">DAGMan Workflows</a> for more information.</li>
 <li><b><code>condor_version</code></b> Print the version of HTCondor.</li>
 <li>If you want some general information about the HTCondor Pool, where jobs have
-been executed on, etc., as mentioned in section <a href="#orge0afca1">1.3</a>,
+been executed on, etc., as mentioned in section <a href="#org68a1876">1.3</a>,
 you can check real-time <b>HTCondor@IAC statistics</b> (global and per user) <a href="http://pasa/ganglia/?r=week&amp;cs=&amp;ce=&amp;m=load_one&amp;tab=v&amp;vn=pool_usage&amp;hide-hf=false">here</a>.</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org9513292" class="outline-2">
-<h2 id="org9513292"><span class="section-number-2">4</span> How-to Recipes</h2>
+<div id="outline-container-orgf335d12" class="outline-2">
+<h2 id="orgf335d12"><span class="section-number-2">4</span> How-to Recipes</h2>
 <div class="outline-text-2" id="text-4">
 <div class="mdframed">
 <div class="note">
@@ -1209,8 +1209,8 @@ can try to fix them or find some other way around the problem.
 </div>
 </div>
 
-<div id="outline-container-orgb17cda3" class="outline-3">
-<h3 id="orgb17cda3"><span class="section-number-3">4.1</span> HTCondor and Kerberos</h3>
+<div id="outline-container-org28d2892" class="outline-3">
+<h3 id="org28d2892"><span class="section-number-3">4.1</span> HTCondor and Kerberos</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="mdframed">
 <div class="warning">
@@ -1279,7 +1279,7 @@ directory.
 </p></li>
 
 <li>The job that we are submitting for this recipe uses the same <b>C</b> source file
-as that described in section <a href="#org2d89980">1.7</a>, so you just have to
+as that described in section <a href="#orgbe5da7c">1.7</a>, so you just have to
 compile it as explained there.</li>
 
 <li><p>
@@ -1289,8 +1289,8 @@ you should leave as is. Also, there is a <code>Kerberos section</code>, which yo
 leave as is for now, except for:
 </p>
 <ul class="org-ul">
-<li>your &lt;user<sub>id</sub>&gt;, which is you user ID number, which you can obtain by running
-<code>id -u</code></li>
+<li><code>&lt;user_id&gt;</code>, which is you user Linux ID number, that you can obtain by
+running <code>id -u</code></li>
 <li>the actual executable name, which in this example is called <code>simple</code>, but
 you will have to adapt it to your particular case.</li>
 </ul>
@@ -1310,8 +1310,8 @@ arguments specified in the <code>kerberos.submit</code> file.
 </div>
 
 
-<div id="outline-container-org122c2c2" class="outline-2">
-<h2 id="org122c2c2"><span class="section-number-2">5</span> Acknowledging HTCondor in publications</h2>
+<div id="outline-container-orgf556ac1" class="outline-2">
+<h2 id="orgf556ac1"><span class="section-number-2">5</span> Acknowledging HTCondor in publications</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 It is important that you acknowledge HTCondor in any publication of your work
@@ -1336,8 +1336,8 @@ Economy and Competitiveness with FEDER funds, code IACA13-3E-2493.
 </div>
 </div>
 
-<div id="outline-container-orgf108d4d" class="outline-2">
-<h2 id="orgf108d4d"><span class="section-number-2">6</span> Further information and support</h2>
+<div id="outline-container-org7a8a159" class="outline-2">
+<h2 id="org7a8a159"><span class="section-number-2">6</span> Further information and support</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 This manual is only a brief introduction to all HTCondor has to offer. For
@@ -1361,7 +1361,7 @@ low traffic mailing list (send us an e-mail if you want to subscribe to it).
 <div id="postamble" class="status">
 <p class="author">Author: Ángel de Vicente</p>
 <p class="email">Email: <a href="mailto:angel.de.vicente@iac.es">angel.de.vicente@iac.es</a></p>
-<p class="date">Created: 2023-03-09 Thu 18:03</p>
+<p class="date">Created: 2023-03-09 Thu 18:06</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
