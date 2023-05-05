@@ -1,3 +1,7 @@
+# Time-stamp: <2023-05-05 10:09:28 angelv> 
+
+#+OPTIONS:   toc:nil
+
 Information for HTCondor users @ IAC.
 
 + User's manual ([[https://angel-devicente.github.io/htcondor-iac/][HTML]], [[https://github.com/angel-devicente/htcondor-iac/raw/main/docs/index.pdf][PDF]])
