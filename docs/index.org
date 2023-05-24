@@ -1,4 +1,4 @@
-# Time-stamp: <2023-03-09 18:06:32 angelv> 
+# Time-stamp: <2023-05-24 23:36:54 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -1758,8 +1758,11 @@ the [[http://research.iac.es/sieinvens/SINFIN/Main/index.php][SIE]] gives direct
 will not code your whole application, but we will help and advise you on how to
 get the most out of HTCondor. 
 
-If you want to stay informed about HTCondor@IAC updates, tips, etc. there is a
-low traffic mailing list (send us an e-mail if you want to subscribe to it).
+If you want to stay informed about HTCondor@IAC updates, tips, etc., subscribe
+to the HTCondor@IAC /stream/ (*#computing/htcondor*) in IAC-Zulip 
+#+begin_export html
+<a href="https://iac-es.zulipchat.com"><img src="https://img.shields.io/badge/zulip-join_chat-brightgreen.svg" /></a>
+#+end_export
 
 
 * Submit files (HowTo)                                             :noexport:
