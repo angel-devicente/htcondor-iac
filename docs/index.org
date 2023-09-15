@@ -1,8 +1,11 @@
-# Time-stamp: <2023-05-24 23:36:54 angelv> 
+# Time-stamp: <2023-09-15 13:53:31 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
 #+EMAIL:   angel.de.vicente@iac.es
+
+# LOAD minor mode: unpackaged/org-export-html-with-useful-ids-mode
+#  otherwise the anchors are random orgxxxxx IDs
 
 # For ReadtheDoc clone
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
