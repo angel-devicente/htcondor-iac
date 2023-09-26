@@ -1,4 +1,4 @@
-# Time-stamp: <2023-09-15 13:53:31 angelv> 
+# Time-stamp: <2023-09-26 12:09:07 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -6,12 +6,14 @@
 
 # LOAD minor mode: unpackaged/org-export-html-with-useful-ids-mode
 #  otherwise the anchors are random orgxxxxx IDs
+# Load only to generate the HTML and disable afterwards, otherwise I will get
+#  trouble generating PDFs from Orgs.
 
 # For ReadtheDoc clone
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 
 # From https://emacs.stackexchange.com/questions/14320/org-mode-links-open-in-new-tab/46383#46383
-#  but this opens a new taw everytime I move in the table of contents, so we disable it
+#  but this opens a new tag everytime I move in the table of contents, so we disable it
 # #+HTML_HEAD: <base target="_blank">
 
 #+OPTIONS:   H:6 num:6 toc:4 author:t email:t title:t
