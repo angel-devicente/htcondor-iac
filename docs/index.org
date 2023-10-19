@@ -1668,7 +1668,7 @@ can try to fix them or find some other way around the problem.
 ** HTCondor and Python
 
 If you are comfortable with Python, or even want to send python script in HTCondor the best way is surely to take
-advantage of the htcondor module readily available though the module command in the updated "burros" as in:
+advantage of the htcondor module readily available though the module command in the Ubuntu 22.04 updated "burros" as in:
 
 #+begin_example
 % module load python/3.10 
@@ -1689,7 +1689,7 @@ as in this example.
 #+end_note
 #+end_mdframed
 
-The simple python script reads (called simple_update.py):
+The simple python script reads (called =simple_update.py=):
 
 #+begin_example
 import re
@@ -1721,15 +1721,15 @@ print(f"Value of {parameter_name} changed to {new_value}")
 #+end_example
 
 
-to use the module load command on each remote machine (so you are sure the environment is homogeneus) a useful
-bash script can be executed before (called pre_cmd.sh and has to be executable):
+to activate the =module load= command on each remote machine (so you are sure each job environment is homogeneus) 
+a useful bash script can be executed before (called =pre_cmd.sh= and has to be executable):
 
 #+begin_example
 #!/bin/bash
 module load python/3.10
 #+end_example
 
-The launch.py script is then:
+The =launch.py= script is then:
 
 #+begin_example
 import os
@@ -1743,7 +1743,7 @@ job_parameters = [
 ]
 
 # Directory for results (replace by your own path)
-results_dir = '/scratch/user/results/'
+results_dir = '/scratch/<user>/results/'
 
 # Create an HTCondor submit object
 submit_description = htcondor.Submit()
@@ -1759,15 +1759,15 @@ submit_description['+PreCmd'] = 'pre_cmd.sh'
 # Results will be transfered back to these directories
 submit_description['initialdir'] = '$(results_dir)'
 # Needed files: comma separated absolute values (otherwise relative to initialdir if set)
-submit_description['transfer_input_files'] = '/scratch/user/simple_update.py, /scratch/user/parameters.ini'
+submit_description['transfer_input_files'] = '/scratch/<user>/simple_update.py, /scratch/<user>/parameters.ini'
 # If initialdir is set (which is) uncomment will create a output/error/log for each job under each directory
 #submit_description['output'] = '$(Cluster).$(Process).out'
 #submit_description['error'] = '$(Cluster).$(Process).err'
 #submit_description['log'] = '$(Cluster).log'
 # - instead of the above, merge output/error/log for all Processes, so absolute routes on sender system
-submit_description['output'] = '/scratch/user/results/$(Cluster).$(Process).out'
-submit_description['error'] = '/scratch/user/results/$(Cluster).$(Process).err'
-submit_description['log'] = '/scratch/user/results/$(Cluster).log'
+submit_description['output'] = '/scratch/<user>/results/$(Cluster).$(Process).out'
+submit_description['error'] = '/scratch/<user>/results/$(Cluster).$(Process).err'
+submit_description['log'] = '/scratch/<user>/results/$(Cluster).log'
 submit_description['should_transfer_files'] = 'YES'
 submit_description['when_to_transfer_output'] = 'ON_EXIT'
 
@@ -1790,7 +1790,7 @@ print(f"Jobs submitted with Cluster ID: {submit_result.cluster()}")
 
 #+end_example
 
-The parameters.ini input file is plain text with entries in the form:
+The =parameters.ini= input file is plain text with entries in the form:
 
 #+begin_example
 initial_gas_density =  3.200E+06 ! initial gas density [part/cm-3]
