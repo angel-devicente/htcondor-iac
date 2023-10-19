@@ -1665,6 +1665,138 @@ can try to fix them or find some other way around the problem.
 #+end_note
 #+end_mdframed
 
+** HTCondor and Python
+
+If you are comfortable with Python, or even want to send python script in HTCondor the best way is surely to take
+advantage of the htcondor module readily available though the module command in the updated "burros" as in:
+
+#+begin_example
+% module load python/3.10 
+#+end_example
+
+The following recipe uses this module to send the HTCondor jobs (no need to even save a submit file!) and it send a 
+python script that uses an input file and two parameters. This input file (parameters.ini) is then searched for a 
+text key and then changes the numerical value following (can be useful in many cases!).
+The resulting file with the same name is transferred to the original machine, in a separate directory for each job. 
+
+#+begin_mdframed
+#+begin_note
+This recipe might be too complicated as it does many things some you might not want, adapt to your needs. The juicy
+part is the "itemdata" iterator that consistson a list of dictionaries, the values are used to give each individual
+job different values by substituting in the keys in the format $(key_value) of the submit_description() object. Two 
+variables, $(Cluster) and $(Process) are given by HTCondor and can be used to differentiate between output directories
+as in this example.
+#+end_note
+#+end_mdframed
+
+The simple python script reads (called simple_update.py):
+
+#+begin_example
+import re
+import sys
+
+# Get the parameter name and new value from command-line arguments
+parameter_name = sys.argv[1]
+new_value = sys.argv[2]
+
+# Define the path to your parameter file
+file_path = "parameters.ini"  # Replace with your file path
+
+# Read the file content
+with open(file_path, 'r') as file:
+    file_content = file.read()
+
+# Define a regular expression pattern to match the parameter line
+pattern = rf'({parameter_name}\s*=\s*)([\d.+-eE]+)'
+
+# Use re.sub to replace the value, using non-capturing groups (?:)
+new_file_content = re.sub(pattern, r'\g<1>' + new_value, file_content)
+
+# Write the updated content back to the file
+with open(file_path, 'w') as file:
+    file.write(new_file_content)
+
+# Prints some output (to see something in the *.out file)
+print(f"Value of {parameter_name} changed to {new_value}")
+#+end_example
+
+
+to use the module load command on each remote machine (so you are sure the environment is homogeneus) a useful
+bash script can be executed before (called pre_cmd.sh and has to be executable):
+
+#+begin_example
+#!/bin/bash
+module load python/3.10
+#+end_example
+
+The launch.py script is then:
+
+#+begin_example
+import os
+import htcondor
+
+# Define the parameters and values for the jobs (3 in this example)
+job_parameters = [
+    {"keyword": "initial_gas_density", "value": "0.400E+06"},
+    {"keyword": "initial_gas_density", "value": "1.460E+06"},
+    {"keyword": "initial_gas_density", "value": "3.200E+06"},
+]
+
+# Directory for results (replace by your own path)
+results_dir = '/scratch/user/results/'
+
+# Create an HTCondor submit object
+submit_description = htcondor.Submit()
+
+# Define the HTCondor executable and other job attributes
+submit_description['universe'] = 'vanilla'
+submit_description['executable'] = 'python3'  # Path to Python3
+submit_description['arguments'] = 'simple_update.py $(parameter) $(value)'
+# Choose only Ubuntu22 (otherwise no python/3.10!)
+submit_description['requirements']   = 'OpSysAndVer == "Ubuntu22"'
+# Pre-commands: Launch module load python/3.10 (available on Ubuntu 22.04 machines)
+submit_description['+PreCmd'] = 'pre_cmd.sh'
+# Results will be transfered back to these directories
+submit_description['initialdir'] = '$(results_dir)'
+# Needed files: comma separated absolute values (otherwise relative to initialdir if set)
+submit_description['transfer_input_files'] = '/scratch/user/simple_update.py, /scratch/user/parameters.ini'
+# If initialdir is set (which is) uncomment will create a output/error/log for each job under each directory
+#submit_description['output'] = '$(Cluster).$(Process).out'
+#submit_description['error'] = '$(Cluster).$(Process).err'
+#submit_description['log'] = '$(Cluster).log'
+# - instead of the above, merge output/error/log for all Processes, so absolute routes on sender system
+submit_description['output'] = '/scratch/user/results/$(Cluster).$(Process).out'
+submit_description['error'] = '/scratch/user/results/$(Cluster).$(Process).err'
+submit_description['log'] = '/scratch/user/results/$(Cluster).log'
+submit_description['should_transfer_files'] = 'YES'
+submit_description['when_to_transfer_output'] = 'ON_EXIT'
+
+
+# Iterate through job_parameters and add them to the itemdata
+itemdata = []
+for i, params in enumerate(job_parameters):
+    output_dir = results_dir+str(i)
+    itemdata.append({'parameter': params['keyword'], 'value': params['value'], 'results_dir': output_dir})
+    # Create the directories if they don't exist (they must exist before submitting!)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+# Submit the jobs using the itemdata
+schedd = htcondor.Schedd()
+submit_result = schedd.submit(submit_description, itemdata = iter(itemdata))
+
+# Notify of the HTCondor job
+print(f"Jobs submitted with Cluster ID: {submit_result.cluster()}")
+
+#+end_example
+
+The parameters.ini input file is plain text with entries in the form:
+
+#+begin_example
+initial_gas_density =  3.200E+06 ! initial gas density [part/cm-3]
+initial_gas_temperature =  1.000E+01 ! initial gas temperature [K]
+#+end_example
+
 ** HTCondor and Kerberos
 
 #+begin_mdframed
