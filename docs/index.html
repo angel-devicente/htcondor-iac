@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-09-15 Fri 13:50 -->
+<!-- 2023-10-20 Fri 11:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTCondor@IAC User's Manual</title>
@@ -105,11 +105,13 @@ for the JavaScript code in this tag.
 <li><a href="#Checking%20and%20managing%20submitted%20jobs">3.3. Checking and managing submitted jobs</a></li>
 <li><a href="#Getting%20information%20from%20the%20logs">3.4. Getting information from the logs</a></li>
 <li><a href="#Other%20commands">3.5. Other commands</a></li>
+<li><a href="#HTCondor%20from%20Python">3.6. HTCondor from Python</a></li>
 </ul>
 </li>
 <li><a href="#How-to%20Recipes">4. How-to Recipes</a>
 <ul>
 <li><a href="#HTCondor%20and%20Kerberos">4.1. HTCondor and Kerberos</a></li>
+<li><a href="#HTCondor%20and%20Environment%20Modules">4.2. HTCondor and Environment Modules</a></li>
 </ul>
 </li>
 <li><a href="#Acknowledging%20HTCondor%20in%20publications">5. Acknowledging HTCondor in publications</a></li>
@@ -168,7 +170,7 @@ perform computations while their owners are away. So, in a nutshell, HTCondor is
 an application that is installed in our PCs to make it possible to run a large
 number of yours and others' computations at a time in different machines when
 they are not being used, achieving a better utilization of our resources. A more
-detailed overview of HTCondor is available at the <a href="https://htcondor.readthedocs.io/en/v10_0/overview/index.html">official documentation</a>.
+detailed overview of HTCondor is available at the <a href="https://htcondor.readthedocs.io/en/latest/overview/index.html">official documentation</a>.
 </p>
 </div>
 </div>
@@ -208,7 +210,7 @@ and weekends.
 
 <p>
 You can see real-time <b>HTCondor@IAC statistics</b> (global and per user) <a href="http://pasa/ganglia/?r=week&amp;cs=&amp;ce=&amp;m=load_one&amp;tab=v&amp;vn=pool_usage&amp;hide-hf=false">here</a>. Figure
-<a href="#orge1fe1f4">1</a> is an example showing the global usage where <i>Owner</i> represents
+<a href="#org8a5ee2f">1</a> is an example showing the global usage where <i>Owner</i> represents
 <i>slots</i> that are being used outside of HTCondor. The remaining <i>slots</i> are
 available to HTCondor, but if there are no eligible jobs to run, those slots
 will be in <i>CPUsNotInUse</i> state. Those <i>slots</i> that are actually being used by
@@ -216,7 +218,7 @@ HTCondor are those in the <i>CPUsInUse</i> state.
 </p>
 
 
-<div id="orge1fe1f4" class="figure">
+<div id="org8a5ee2f" class="figure">
 <p><img src="images/introduction/weekly_usage.png" alt="weekly_usage.png" />
 </p>
 <p><span class="figure-number">Figure 1: </span>Weekly global usage</p>
@@ -606,8 +608,8 @@ work as expected.
 <p>
 HTCondor <i>submit files</i> can include comments, variables, macros, commands,
 etc. Here we will describe the most important syntax components. For a more
-detailed description you can check the official documentation (<a href="https://htcondor.readthedocs.io/en/v10_0/users-manual/submitting-a-job.html">Submitting a Job</a>,
-<a href="https://htcondor.readthedocs.io/en/v10_0/man-pages/condor_submit.html"><code>condor_submit</code></a>).
+detailed description you can check the official documentation (<a href="https://htcondor.readthedocs.io/en/latest/users-manual/submitting-a-job.html">Submitting a Job</a>,
+<a href="https://htcondor.readthedocs.io/en/latest/man-pages/condor_submit.html"><code>condor_submit</code></a>).
 </p>
 </div>
 
@@ -659,7 +661,7 @@ the expression evaluated, you may need to use function macros like <code>$INT(B)
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 The commands which can appear in the submit description file are numerous (see
-<a href="https://htcondor.readthedocs.io/en/v10_0/man-pages/condor_submit.html#submit-description-file-commands">submit description file commands</a>), but in most situations you will only need a
+<a href="https://htcondor.readthedocs.io/en/latest/man-pages/condor_submit.html#submit-description-file-commands">submit description file commands</a>), but in most situations you will only need a
 few of them. Here we present the most common ones (<i>commands are
 case-insensitive</i>): 
 </p>
@@ -693,7 +695,7 @@ file for all jobs belonging to the same submission, so a filename with a
 name like <code>log.$(Cluster)</code> is recommended.</li>
 <li><b><code>universe</code></b> your job(s) <b>execution environment</b>. By default, the simplest
 one (<code>vanilla</code>) will be chosen, but for more advanced users, other
-<code>universe</code> might be necessarey. See <a href="https://htcondor.readthedocs.io/en/v10_0/users-manual/choosing-an-htcondor-universe.html">Choosing an HTCondor Universe</a>.</li>
+<code>universe</code> might be necessarey. See <a href="https://htcondor.readthedocs.io/en/latest/users-manual/choosing-an-htcondor-universe.html">Choosing an HTCondor Universe</a>.</li>
 </ul></li>
 
 <li><b>Useful commands for application Input/Output</b>
@@ -840,7 +842,7 @@ relate each image with each of the possible values of <code>$(Process)</code>.
 <p>
 Luckily, the <code>queue</code> command has a powerful syntax that makes this
 unnecessary. Here we only present one example, but in the official HTCondor
-documentation you can check the <a href="https://htcondor.readthedocs.io/en/v10_0/users-manual/submitting-a-job.html#submitting-many-similar-jobs-with-one-queue-command">full syntax and further examples</a>. 
+documentation you can check the <a href="https://htcondor.readthedocs.io/en/latest/users-manual/submitting-a-job.html#submitting-many-similar-jobs-with-one-queue-command">full syntax and further examples</a>. 
 </p>
 
 <p>
@@ -874,7 +876,7 @@ queue txtfile matching files *.txt
 <h2 id="Main%20HTCondor%20commands"><span class="section-number-2">3</span> Main HTCondor commands</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-HTCondor provides around 100 commands (see the <a href="https://htcondor.readthedocs.io/en/v10_0/man-pages/index.html">Command Reference Manual)</a>, but
+HTCondor provides around 100 commands (see the <a href="https://htcondor.readthedocs.io/en/latest/man-pages/index.html">Command Reference Manual)</a>, but
 you will only need a few of them for most of you work with HTCondor. In this
 section we introduce the most common ones, grouped according to the four common
 tasks introduced in section <a href="#Basic%20HTCondor%20workflow">1.7</a>: Checking pool status
@@ -1154,11 +1156,11 @@ condor_history -constraint 'RemoveReason=!=UNDEFINED'
 <li><p>
 There is also a useful online tool to analyze your log files and get more
 information: <code>HTCondor Log Analyzer</code> (<a href="http://condorlog.cse.nd.edu/">http://condorlog.cse.nd.edu/</a>). Figure
-<a href="#org467d9dd">2</a> shows an example of the output generated.
+<a href="#orge5c89d0">2</a> shows an example of the output generated.
 </p>
 
 
-<div id="org467d9dd" class="figure">
+<div id="orge5c89d0" class="figure">
 <p><img src="images/commands/condor_log_analyzer.png" alt="condor_log_analyzer.png" />
 </p>
 <p><span class="figure-number">Figure 2: </span>Condor Log Analyzer sample output</p>
@@ -1180,7 +1182,7 @@ see all users' priority, and you can also add flags <code>-priority</code> and/o
 the queue. This may be useful when you need to change some of the parameters
 specified in the submit file without re-submitting jobs.</li>
 <li><b><code>condor_submit_dag &lt;dag_file&gt;</code></b> Submit a DAG file, used to describe jobs
-with dependencies. See the section on <a href="https://htcondor.readthedocs.io/en/v10_0/users-manual/dagman-workflows.html">DAGMan Workflows</a> for more information.</li>
+with dependencies. See the section on <a href="https://htcondor.readthedocs.io/en/latest/users-manual/dagman-workflows.html">DAGMan Workflows</a> for more information.</li>
 <li><b><code>condor_version</code></b> Print the version of HTCondor.</li>
 <li>If you want some general information about the HTCondor Pool, where jobs have
 been executed on, etc., as mentioned in section <a href="#How%20%2Apowerful%2A%20is%20HTCondor%3F">1.3</a>,
@@ -1188,7 +1190,111 @@ you can check real-time <b>HTCondor@IAC statistics</b> (global and per user) <a 
 </ul>
 </div>
 </div>
+
+
+<div id="outline-container-HTCondor%20from%20Python" class="outline-3">
+<h3 id="HTCondor%20from%20Python"><span class="section-number-3">3.6</span> HTCondor from Python</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+HTCondor comes with <a href="https://htcondor.readthedocs.io/en/latest/apis/python-bindings/tutorials/index.html">Python Bindings</a>, which provide a powerful mechanism to
+interact with HTCondor from a Python program.
+</p>
+
+<p>
+Most users are probably just interested on how to use these bindings to submit
+and manage jobs all from within Python. A nice tutorial for this can be found
+<a href="https://htcondor.readthedocs.io/en/latest/apis/python-bindings/tutorials/Submitting-and-Managing-Jobs.html">here</a>, but as a quick example, the following script illustrates how you can use
+Python to submit a number of jobs:
+</p>
+
+<div class="mdframed">
+<div class="note">
+<p>
+The complete example can be found in the <code>examples/python_bindings</code> directory of
+the <a href="https://github.com/angel-devicente/htcondor-iac">HTCondor@IAC</a> repository.  
+</p>
+
 </div>
+
+</div>
+
+<div class="mdframed">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #00ffff;">import</span> htcondor
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Define the parameters for the jobs</span>
+<span style="color: #eedd82;">job_parameters</span> = [
+    {<span style="color: #ffa07a;">"keyword"</span>: <span style="color: #ffa07a;">"initial_gas_density"</span>, <span style="color: #ffa07a;">"value"</span>: <span style="color: #ffa07a;">"0.400E+06"</span>},
+    {<span style="color: #ffa07a;">"keyword"</span>: <span style="color: #ffa07a;">"initial_gas_density"</span>, <span style="color: #ffa07a;">"value"</span>: <span style="color: #ffa07a;">"1.460E+06"</span>},
+    {<span style="color: #ffa07a;">"keyword"</span>: <span style="color: #ffa07a;">"initial_gas_density"</span>, <span style="color: #ffa07a;">"value"</span>: <span style="color: #ffa07a;">"3.200E+06"</span>},
+]
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Create an HTCondor submit object</span>
+<span style="color: #eedd82;">submit_description</span> = htcondor.Submit({
+   <span style="color: #ffa07a;">"requirements"</span>: <span style="color: #ffa07a;">'OpSysAndVer == "Ubuntu22"'</span>,
+    <span style="color: #ffa07a;">"executable"</span>: <span style="color: #ffa07a;">"/opt/python/python3.10/bin/python3"</span>,
+    <span style="color: #ffa07a;">"environment"</span>: <span style="color: #ffa07a;">"PYTHONPATH=/opt/python/python3.10/lib/python3.10/site-packages"</span>,
+    <span style="color: #ffa07a;">"transfer_executable"</span>: <span style="color: #ffa07a;">"false"</span>,
+    <span style="color: #ffa07a;">"arguments"</span>: <span style="color: #ffa07a;">"job.py $(ProcID) $(parameter) $(value)"</span>,
+    <span style="color: #ffa07a;">"output"</span>: <span style="color: #ffa07a;">"outs/hostname.$(ProcID).out"</span>,       
+    <span style="color: #ffa07a;">"error"</span>: <span style="color: #ffa07a;">"errors/hostname.$(ProcID).err"</span>,        
+    <span style="color: #ffa07a;">"log"</span>: <span style="color: #ffa07a;">"hostname.log"</span>,
+    <span style="color: #ffa07a;">"transfer_input_files"</span>: <span style="color: #ffa07a;">"job.py, parameters.ini"</span>,
+    <span style="color: #ffa07a;">"transfer_output_files"</span>: <span style="color: #ffa07a;">"results"</span>,    
+})
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Create itemdata (based on the job_parameters)</span>
+<span style="color: #eedd82;">itemdata</span> = []
+<span style="color: #00ffff;">for</span> i, params <span style="color: #00ffff;">in</span> <span style="color: #b0c4de;">enumerate</span>(job_parameters):
+    itemdata.append({<span style="color: #ffa07a;">'parameter'</span>: params[<span style="color: #ffa07a;">'keyword'</span>], <span style="color: #ffa07a;">'value'</span>: params[<span style="color: #ffa07a;">'value'</span>]})
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Submit the jobs using the itemdata    </span>
+<span style="color: #eedd82;">schedd</span> = htcondor.Schedd()                       
+<span style="color: #eedd82;">submit_result</span> = schedd.submit(submit_description, itemdata = <span style="color: #b0c4de;">iter</span>(itemdata))
+
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Notify of the HTCondor job</span>
+<span style="color: #b0c4de;">print</span>(f<span style="color: #ffa07a;">"Jobs submitted with Cluster ID: </span>{submit_result.cluster()}<span style="color: #ffa07a;">"</span>)
+</pre>
+</div>
+
+</div>
+
+<p>
+A few things to note about this example are:
+</p>
+<ul class="org-ul">
+<li><code>itemdata</code> is the mechanim used at submission (see call to <code>schedd.submit</code>) to
+specify how many jobs will be submitted. In this case we build <code>itemdata</code> out
+of the <code>job_parameters</code> list, so there will be three jobs. Each member of
+<code>itemdata</code> is a dictionary, that specifies the values of the variables to use
+for each job. For example, the <code>parameter</code> key is passed to each job as an
+argument by using the syntax <code>$(parameter)</code> (see call to <code>htcondor.Submit</code>).</li>
+<li>the description of a job is done via a <code>Submit</code> object. This is, in essence,
+the Pythonic equivalent of a submit file, so the same variables, macros and
+commands can be used (see section <a href="#Submit%20files">2</a>).</li>
+<li>when you use the <code>condor_submit</code> command, HTCondor will, by default, make sure
+that the jobs will be executed only in machines with the same operating system
+version as the machine from where you submit the jobs. When you use the Python
+bindings this is not the case, so we use the <code>requirements</code> command to specify
+that in this case we only want to use execution machines with Ubuntu 22.</li>
+<li>this example illustrates how to use Python to submit jobs, where each job is
+itself a Python code, so the executable file is in this case the <code>python3</code>
+interpreter itself, but it doesn't have to be so. You could specify any other
+type of executable file (for example a compiled code or a shell script as in
+the examples in section <a href="#Examples">2.3</a>.
+<ul class="org-ul">
+<li>at the same time we also show how we can use software not installed in
+default locations. In this example we want to use the Python 3.10
+interpreter which we would normally use in an interactive session by
+executing the command <code>module load python/3.10</code> (see the
+<a href="../software/modules.html">Environment Modules</a> documentation). This is further explained in section
+<a href="#HTCondor%20and%20Environment%20Modules">4.2</a>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
 
 <div id="outline-container-How-to%20Recipes" class="outline-2">
 <h2 id="How-to%20Recipes"><span class="section-number-2">4</span> How-to Recipes</h2>
@@ -1200,8 +1306,9 @@ All the files necessary for the recipes in this section can be found in the
 <code>recipes</code> directory of the <a href="https://github.com/angel-devicente/htcondor-iac">HTCondor@IAC</a> repository. Bear in mind that these
 recipes point to the best solution we have found to solve common problems that
 you might encounter with the HTCondor facility at the IAC, but they are not
-foolproof, so if you find problems with any of them, please let us know so we
-can try to fix them or find some other way around the problem.
+foolproof, so if you find a better solution or any problems with any of the
+recipes, please let us know so we can try to fix them or find some other way
+around the problem.
 </p>
 
 </div>
@@ -1217,7 +1324,7 @@ can try to fix them or find some other way around the problem.
 <p>
 You should only try to follow this recipe if you find no other way to avoid the
 use of Kerberos protected resources from within your HTCondor jobs, which in most
-cases you will be able to by using the <a href="https://htcondor.readthedocs.io/en/v10_0/users-manual/file-transfer.html">HTCondor's File Transfer Mechanism</a>. 
+cases you will be able to by using the <a href="https://htcondor.readthedocs.io/en/latest/users-manual/file-transfer.html">HTCondor's File Transfer Mechanism</a>. 
 </p>
 
 </div>
@@ -1307,8 +1414,72 @@ arguments specified in the <code>kerberos.submit</code> file.
 </ul>
 </div>
 </div>
+
+
+<div id="outline-container-HTCondor%20and%20Environment%20Modules" class="outline-3">
+<h3 id="HTCondor%20and%20Environment%20Modules"><span class="section-number-3">4.2</span> HTCondor and Environment Modules</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+HTCondor jobs get executed in a "clean" environment, which means that many of
+the variables available in a regular shell session will not be available by
+default for HTCondor jobs. At the same time, the usage of Kerberos at the IAC
+makes it difficult to access (see section <a href="#HTCondor%20and%20Kerberos">4.1</a>) your shell
+init files (<code>.bashrc</code>, <code>.bash_profile</code>, etc.). Thus, you will likely run into
+troubles with HTCondor if you are used to running <a href="../software/modules.html">Environment Modules</a> (for
+example, by running <code>module load python/3.10</code>) to prepare the environment for
+your executions.
+</p>
+
+<p>
+In these cases the best option (let us know if you find a better one) is
+probably to manually specify the required changes to your environment variables
+in order to mimic the behaviour of the <code>module load ...</code> command. While this
+might sound as a daunting task, this is actually quite easy, as we only need to
+see the relevant changes introduced in the environment variables when a
+particular module is loaded, and once found we will use the same information for
+any future HTCondor jobs requiring this module.
+</p>
+
+<p>
+As an example, if we want to use the Python interpreter (and packages) provided
+by the module <code>python/3.10</code> available in all IAC <i>burros</i> with Ubuntu22, we can
+find the environment with and without the module loaded:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">$ module purge
+$ env &gt; env_base.txt
+$ module load python/3.10
+$ env &gt; env_python.txt
+</pre>
 </div>
 
+<p>
+And if we then look at the differences (ignoring variables
+<code>__MODULES_LMALTNAME</code>, <code>__MODULES_LMREFRESH</code>, <code>__MODULES_LMCONFLICT</code>,
+<code>LOADEDMODULES</code>, and <code>_LMFILES_</code>, which are internal Environment Modules
+variables) we can see that the only variables modified are <code>PYTHONPATH</code> and
+<code>PATH</code>):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">$ diff env_base.txt env_python.txt 
+
+  &gt; <span style="color: #eedd82;">PYTHONPATH</span>=/opt/python/python3.10/lib/python3.10/site-packages
+  &lt; <span style="color: #eedd82;">PATH</span>=/usr/local/go/bin:[...]
+  ---
+  &gt; <span style="color: #eedd82;">PATH</span>=/opt/python/python3.10/bin:/usr/local/go/bin:[...]
+</pre>
+</div>
+
+<p>
+These environment changes can be added manually to the job description using the
+<code>environment</code> command (see section <a href="#Submit%20commands">2.2.3</a>). For a worked-out example
+of this, see section <a href="#HTCondor%20from%20Python">3.6</a>.
+</p>
+</div>
+</div>
+</div>
 
 <div id="outline-container-Acknowledging%20HTCondor%20in%20publications" class="outline-2">
 <h2 id="Acknowledging%20HTCondor%20in%20publications"><span class="section-number-2">5</span> Acknowledging HTCondor in publications</h2>
@@ -1341,7 +1512,7 @@ Economy and Competitiveness with FEDER funds, code IACA13-3E-2493.
 <div class="outline-text-2" id="text-6">
 <p>
 This manual is only a brief introduction to all HTCondor has to offer. For
-detailed and complete information, check the official <a href="https://htcondor.readthedocs.io/en/v10_0/">HTCondor v10.0 Manual</a>.
+detailed and complete information, check the official <a href="https://htcondor.readthedocs.io/en/latest/">HTCondor Manual</a>.
 </p>
 
 <p>
@@ -1362,7 +1533,7 @@ to the HTCondor@IAC <i>stream</i> (<b>#computing/htcondor</b>) in IAC-Zulip
 <div id="postamble" class="status">
 <p class="author">Author: Ángel de Vicente</p>
 <p class="email">Email: <a href="mailto:angel.de.vicente@iac.es">angel.de.vicente@iac.es</a></p>
-<p class="date">Created: 2023-09-15 Fri 13:50</p>
+<p class="date">Created: 2023-10-20 Fri 11:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,4 +1,4 @@
-# Time-stamp: <2023-10-20 10:57:27 angelv> 
+# Time-stamp: <2023-10-20 11:07:39 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -1653,7 +1653,7 @@ with extra options to communicate with other machines.
   you can check real-time *HTCondor@IAC statistics* (global and per user) [[http://pasa/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false][here]].  
 
 
-** HTCondor from within Python
+** HTCondor from Python
 
 HTCondor comes with [[https://htcondor.readthedocs.io/en/latest/apis/python-bindings/tutorials/index.html][Python Bindings]], which provide a powerful mechanism to
 interact with HTCondor from a Python program.
@@ -1696,7 +1696,7 @@ A few things to note about this example are:
   the examples in section [[*Examples]].
   + at the same time we also show how we can use software not installed in
     default locations. In this example we want to use the Python 3.10
-    interpreter which we would normally use in an interactive session my
+    interpreter which we would normally use in an interactive session by
     executing the command =module load python/3.10= (see the
     [[../software/modules.html][Environment Modules]] documentation). This is further explained in section
     [[*HTCondor and Environment Modules]]. 
@@ -1710,9 +1710,9 @@ All the files necessary for the recipes in this section can be found in the
 =recipes= directory of the [[https://github.com/angel-devicente/htcondor-iac][HTCondor@IAC]] repository. Bear in mind that these
 recipes point to the best solution we have found to solve common problems that
 you might encounter with the HTCondor facility at the IAC, but they are not
-foolproof, so if you find a better solution of any problems with any of them,
-please let us know so we can try to fix them or find some other way around the
-problem.
+foolproof, so if you find a better solution or any problems with any of the
+recipes, please let us know so we can try to fix them or find some other way
+around the problem.
 #+end_note
 #+end_mdframed
 
@@ -1807,7 +1807,7 @@ particular module is loaded, and once found we will use the same information for
 any future HTCondor jobs requiring this module.
 
 As an example, if we want to use the Python interpreter (and packages) provided
-by the module =python/3.10= available in all IAC burros with Ubuntu22, we can
+by the module =python/3.10= available in all IAC /burros/ with Ubuntu22, we can
 find the environment with and without the module loaded:
 
 #+begin_src bash
@@ -1819,9 +1819,9 @@ $ env > env_python.txt
 
 And if we then look at the differences (ignoring variables
 =__MODULES_LMALTNAME=, =__MODULES_LMREFRESH=, =__MODULES_LMCONFLICT=,
-=LOADEDMODULES=, and =_LMFILES_=, that are internal variables of Environment
-Modules) we can see that the only variables modified are =PYTHONPATH= and
-=PATH=): 
+=LOADEDMODULES=, and =_LMFILES_=, which are internal Environment Modules
+variables) we can see that the only variables modified are =PYTHONPATH= and
+=PATH=):
 
 #+begin_src bash
 $ diff env_base.txt env_python.txt 
@@ -1834,7 +1834,7 @@ $ diff env_base.txt env_python.txt
 
 These environment changes can be added manually to the job description using the
 =environment= command (see section [[*Submit commands]]). For a worked-out example
-of this, see section [[*HTCondor from within Python]].
+of this, see section [[*HTCondor from Python]].
 
 * Acknowledging HTCondor in publications
 
