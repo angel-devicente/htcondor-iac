@@ -1,4 +1,4 @@
-# Time-stamp: <2023-09-26 12:09:07 angelv> 
+# Time-stamp: <2023-10-20 10:57:27 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -71,7 +71,7 @@ perform computations while their owners are away. So, in a nutshell, HTCondor is
 an application that is installed in our PCs to make it possible to run a large
 number of yours and others' computations at a time in different machines when
 they are not being used, achieving a better utilization of our resources. A more
-detailed overview of HTCondor is available at the [[https://htcondor.readthedocs.io/en/v10_0/overview/index.html][official documentation]].
+detailed overview of HTCondor is available at the [[https://htcondor.readthedocs.io/en/latest/overview/index.html][official documentation]].
 
 ** How can HTCondor help me?
 
@@ -360,8 +360,8 @@ work as expected.
 
 HTCondor /submit files/ can include comments, variables, macros, commands,
 etc. Here we will describe the most important syntax components. For a more
-detailed description you can check the official documentation ([[https://htcondor.readthedocs.io/en/v10_0/users-manual/submitting-a-job.html][Submitting a Job]],
-[[https://htcondor.readthedocs.io/en/v10_0/man-pages/condor_submit.html][=condor_submit=]]).
+detailed description you can check the official documentation ([[https://htcondor.readthedocs.io/en/latest/users-manual/submitting-a-job.html][Submitting a Job]],
+[[https://htcondor.readthedocs.io/en/latest/man-pages/condor_submit.html][=condor_submit=]]).
 
 *** Comments
 
@@ -397,7 +397,7 @@ and macros that you can use in /submit files/.
 *** Submit commands
 
 The commands which can appear in the submit description file are numerous (see
-[[https://htcondor.readthedocs.io/en/v10_0/man-pages/condor_submit.html#submit-description-file-commands][submit description file commands]]), but in most situations you will only need a
+[[https://htcondor.readthedocs.io/en/latest/man-pages/condor_submit.html#submit-description-file-commands][submit description file commands]]), but in most situations you will only need a
 few of them. Here we present the most common ones (/commands are
 case-insensitive/): 
 
@@ -426,7 +426,7 @@ case-insensitive/):
     name like =log.$(Cluster)= is recommended.
   + *=universe=* your job(s) *execution environment*. By default, the simplest
     one (=vanilla=) will be chosen, but for more advanced users, other
-    =universe= might be necessarey. See [[https://htcondor.readthedocs.io/en/v10_0/users-manual/choosing-an-htcondor-universe.html][Choosing an HTCondor Universe]].
+    =universe= might be necessarey. See [[https://htcondor.readthedocs.io/en/latest/users-manual/choosing-an-htcondor-universe.html][Choosing an HTCondor Universe]].
 
 + *Useful commands for application Input/Output*
   + *=arguments=* used to specify options and flags for your executable
@@ -534,7 +534,7 @@ relate each image with each of the possible values of =$(Process)=.
 
 Luckily, the =queue= command has a powerful syntax that makes this
 unnecessary. Here we only present one example, but in the official HTCondor
-documentation you can check the [[https://htcondor.readthedocs.io/en/v10_0/users-manual/submitting-a-job.html#submitting-many-similar-jobs-with-one-queue-command][full syntax and further examples]]. 
+documentation you can check the [[https://htcondor.readthedocs.io/en/latest/users-manual/submitting-a-job.html#submitting-many-similar-jobs-with-one-queue-command][full syntax and further examples]]. 
 
 This example (directory =queue_similar=) shows how to use =queue [...] matching=
 command to process a number of files having the extension =.txt=, without the
@@ -1407,7 +1407,7 @@ need further support, just contact us.
 
 * Main HTCondor commands
 
-HTCondor provides around 100 commands (see the [[https://htcondor.readthedocs.io/en/v10_0/man-pages/index.html][Command Reference Manual)]], but
+HTCondor provides around 100 commands (see the [[https://htcondor.readthedocs.io/en/latest/man-pages/index.html][Command Reference Manual)]], but
 you will only need a few of them for most of you work with HTCondor. In this
 section we introduce the most common ones, grouped according to the four common
 tasks introduced in section [[*Basic HTCondor workflow]]: Checking pool status
@@ -1646,11 +1646,61 @@ with extra options to communicate with other machines.
   the queue. This may be useful when you need to change some of the parameters
   specified in the submit file without re-submitting jobs.
 + *=condor_submit_dag <dag_file>=* Submit a DAG file, used to describe jobs
-  with dependencies. See the section on [[https://htcondor.readthedocs.io/en/v10_0/users-manual/dagman-workflows.html][DAGMan Workflows]] for more information. 
+  with dependencies. See the section on [[https://htcondor.readthedocs.io/en/latest/users-manual/dagman-workflows.html][DAGMan Workflows]] for more information. 
 + *=condor_version=* Print the version of HTCondor.
 + If you want some general information about the HTCondor Pool, where jobs have
   been executed on, etc., as mentioned in section [[*How *powerful* is HTCondor?]],
   you can check real-time *HTCondor@IAC statistics* (global and per user) [[http://pasa/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false][here]].  
+
+
+** HTCondor from within Python
+
+HTCondor comes with [[https://htcondor.readthedocs.io/en/latest/apis/python-bindings/tutorials/index.html][Python Bindings]], which provide a powerful mechanism to
+interact with HTCondor from a Python program.
+
+Most users are probably just interested on how to use these bindings to submit
+and manage jobs all from within Python. A nice tutorial for this can be found
+[[https://htcondor.readthedocs.io/en/latest/apis/python-bindings/tutorials/Submitting-and-Managing-Jobs.html][here]], but as a quick example, the following script illustrates how you can use
+Python to submit a number of jobs:
+
+#+begin_mdframed
+#+begin_note
+The complete example can be found in the =examples/python_bindings= directory of
+the [[https://github.com/angel-devicente/htcondor-iac][HTCondor@IAC]] repository.  
+#+end_note
+#+end_mdframed
+
+#+begin_mdframed
+#+INCLUDE: "../examples/python_bindings/submit.py" src python
+#+end_mdframed
+
+A few things to note about this example are:
++ =itemdata= is the mechanim used at submission (see call to =schedd.submit=) to
+  specify how many jobs will be submitted. In this case we build =itemdata= out
+  of the =job_parameters= list, so there will be three jobs. Each member of
+  =itemdata= is a dictionary, that specifies the values of the variables to use
+  for each job. For example, the =parameter= key is passed to each job as an
+  argument by using the syntax =$(parameter)= (see call to =htcondor.Submit=).
++ the description of a job is done via a =Submit= object. This is, in essence,
+  the Pythonic equivalent of a submit file, so the same variables, macros and
+  commands can be used (see section [[*Submit files]]).
++ when you use the =condor_submit= command, HTCondor will, by default, make sure
+  that the jobs will be executed only in machines with the same operating system
+  version as the machine from where you submit the jobs. When you use the Python
+  bindings this is not the case, so we use the =requirements= command to specify
+  that in this case we only want to use execution machines with Ubuntu 22.
++ this example illustrates how to use Python to submit jobs, where each job is
+  itself a Python code, so the executable file is in this case the =python3=
+  interpreter itself, but it doesn't have to be so. You could specify any other
+  type of executable file (for example a compiled code or a shell script as in
+  the examples in section [[*Examples]].
+  + at the same time we also show how we can use software not installed in
+    default locations. In this example we want to use the Python 3.10
+    interpreter which we would normally use in an interactive session my
+    executing the command =module load python/3.10= (see the
+    [[../software/modules.html][Environment Modules]] documentation). This is further explained in section
+    [[*HTCondor and Environment Modules]]. 
+
 
 * How-to Recipes
 
@@ -1660,146 +1710,11 @@ All the files necessary for the recipes in this section can be found in the
 =recipes= directory of the [[https://github.com/angel-devicente/htcondor-iac][HTCondor@IAC]] repository. Bear in mind that these
 recipes point to the best solution we have found to solve common problems that
 you might encounter with the HTCondor facility at the IAC, but they are not
-foolproof, so if you find problems with any of them, please let us know so we
-can try to fix them or find some other way around the problem.
+foolproof, so if you find a better solution of any problems with any of them,
+please let us know so we can try to fix them or find some other way around the
+problem.
 #+end_note
 #+end_mdframed
-
-** HTCondor and Python
-
-If you are comfortable with Python, or even want to send python script in HTCondor the best way is surely to take
-advantage of the htcondor module readily available though the module command in the Ubuntu 22.04 updated "burros" as in:
-
-#+begin_example
-% module load python/3.10 
-#+end_example
-
-The following recipe uses this module to send the HTCondor jobs (no need to even save a submit file!) and it send a 
-python script that uses an input file and two parameters. This input file (parameters.ini) is then searched for a 
-text key and then changes the numerical value following (can be useful in many cases!).
-The resulting file with the same name is transferred to the original machine, in a separate directory for each job. 
-
-#+begin_mdframed
-#+begin_note
-This recipe might be too complicated as it does many things some you might not want, adapt to your needs. The juicy
-part is the "itemdata" iterator that consistson a list of dictionaries, the values are used to give each individual
-job different values by substituting in the keys in the format $(key_value) of the submit_description() object. Two 
-variables, $(Cluster) and $(Process) are given by HTCondor and can be used to differentiate between output directories
-as in this example.
-#+end_note
-#+end_mdframed
-
-The simple python script launched for each job reads (called =simple_update.py=):
-
-/The files for this recipe are in directory [[https://github.com/angel-devicente/htcondor-iac/tree/main/recipes/condor_python][=condor_python=]]./
-
-#+begin_example
-import re
-import sys
-
-# Get the parameter name and new value from command-line arguments
-parameter_name = sys.argv[1]
-new_value = sys.argv[2]
-
-# Define the path to your parameter file
-file_path = "parameters.ini"  # Replace with your file path
-
-# Read the file content
-with open(file_path, 'r') as file:
-    file_content = file.read()
-
-# Define a regular expression pattern to match the parameter line
-pattern = rf'({parameter_name}\s*=\s*)([\d.+-eE]+)'
-
-# Use re.sub to replace the value, using non-capturing groups (?:)
-new_file_content = re.sub(pattern, r'\g<1>' + new_value, file_content)
-
-# Write the updated content back to the file
-with open(file_path, 'w') as file:
-    file.write(new_file_content)
-
-# Prints some output (to see something in the *.out file)
-print(f"Value of {parameter_name} changed to {new_value}")
-#+end_example
-
-
-to activate the =module load= command on each remote machine (so you are sure each job environment is homogeneus) 
-a useful bash script can be executed before (called =pre_cmd.sh= and has to be executable):
-
-#+begin_example
-#!/bin/bash
-module load python/3.10
-#+end_example
-
-The =launch.py= script is then:
-
-/The files for this recipe are in directory [[https://github.com/angel-devicente/htcondor-iac/tree/main/recipes/condor_python][=condor_python=]]./
-
-#+begin_example
-import os
-import htcondor
-
-# Define the parameters and values for the jobs (3 in this example)
-job_parameters = [
-    {"keyword": "initial_gas_density", "value": "0.400E+06"},
-    {"keyword": "initial_gas_density", "value": "1.460E+06"},
-    {"keyword": "initial_gas_density", "value": "3.200E+06"},
-]
-
-# Directory for results (replace by your own path)
-results_dir = '/scratch/<user>/results/'
-
-# Create an HTCondor submit object
-submit_description = htcondor.Submit()
-
-# Define the HTCondor executable and other job attributes
-submit_description['universe'] = 'vanilla'
-submit_description['executable'] = 'python3'  # Path to Python3
-submit_description['arguments'] = 'simple_update.py $(parameter) $(value)'
-# Choose only Ubuntu22 (otherwise no python/3.10!)
-submit_description['requirements']   = 'OpSysAndVer == "Ubuntu22"'
-# Pre-commands: Launch module load python/3.10 (available on Ubuntu 22.04 machines)
-submit_description['+PreCmd'] = 'pre_cmd.sh'
-# Results will be transfered back to these directories
-submit_description['initialdir'] = '$(results_dir)'
-# Needed files: comma separated absolute values (otherwise relative to initialdir if set)
-submit_description['transfer_input_files'] = '/scratch/<user>/simple_update.py, /scratch/<user>/parameters.ini'
-# If initialdir is set (which is) uncomment will create a output/error/log for each job under each directory
-#submit_description['output'] = '$(Cluster).$(Process).out'
-#submit_description['error'] = '$(Cluster).$(Process).err'
-#submit_description['log'] = '$(Cluster).log'
-# - instead of the above, merge output/error/log for all Processes, so absolute routes on sender system
-submit_description['output'] = '/scratch/<user>/results/$(Cluster).$(Process).out'
-submit_description['error'] = '/scratch/<user>/results/$(Cluster).$(Process).err'
-submit_description['log'] = '/scratch/<user>/results/$(Cluster).log'
-submit_description['should_transfer_files'] = 'YES'
-submit_description['when_to_transfer_output'] = 'ON_EXIT'
-
-
-# Iterate through job_parameters and add them to the itemdata
-itemdata = []
-for i, params in enumerate(job_parameters):
-    output_dir = results_dir+str(i)
-    itemdata.append({'parameter': params['keyword'], 'value': params['value'], 'results_dir': output_dir})
-    # Create the directories if they don't exist (they must exist before submitting!)
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-
-# Submit the jobs using the itemdata
-schedd = htcondor.Schedd()
-submit_result = schedd.submit(submit_description, itemdata = iter(itemdata))
-
-# Notify of the HTCondor job
-print(f"Jobs submitted with Cluster ID: {submit_result.cluster()}")
-
-#+end_example
-
-The =parameters.ini= input file is plain text with entries in the form:
-
-#+begin_example
-initial_gas_density =  3.200E+06 ! initial gas density [part/cm-3]
-initial_gas_temperature =  1.000E+01 ! initial gas temperature [K]
-#+end_example
 
 ** HTCondor and Kerberos
 
@@ -1807,7 +1722,7 @@ initial_gas_temperature =  1.000E+01 ! initial gas temperature [K]
 #+begin_warning
 You should only try to follow this recipe if you find no other way to avoid the
 use of Kerberos protected resources from within your HTCondor jobs, which in most
-cases you will be able to by using the [[https://htcondor.readthedocs.io/en/v10_0/users-manual/file-transfer.html][HTCondor's File Transfer Mechanism]]. 
+cases you will be able to by using the [[https://htcondor.readthedocs.io/en/latest/users-manual/file-transfer.html][HTCondor's File Transfer Mechanism]]. 
 #+end_warning
 #+end_mdframed
 
@@ -1872,6 +1787,55 @@ you wish):
   arguments specified in the =kerberos.submit= file.
 
 
+** HTCondor and Environment Modules 
+
+HTCondor jobs get executed in a "clean" environment, which means that many of
+the variables available in a regular shell session will not be available by
+default for HTCondor jobs. At the same time, the usage of Kerberos at the IAC
+makes it difficult to access (see section [[*HTCondor and Kerberos]]) your shell
+init files (=.bashrc=, =.bash_profile=, etc.). Thus, you will likely run into
+troubles with HTCondor if you are used to running [[../software/modules.html][Environment Modules]] (for
+example, by running =module load python/3.10=) to prepare the environment for
+your executions.
+
+In these cases the best option (let us know if you find a better one) is
+probably to manually specify the required changes to your environment variables
+in order to mimic the behaviour of the =module load ...= command. While this
+might sound as a daunting task, this is actually quite easy, as we only need to
+see the relevant changes introduced in the environment variables when a
+particular module is loaded, and once found we will use the same information for
+any future HTCondor jobs requiring this module.
+
+As an example, if we want to use the Python interpreter (and packages) provided
+by the module =python/3.10= available in all IAC burros with Ubuntu22, we can
+find the environment with and without the module loaded:
+
+#+begin_src bash
+$ module purge
+$ env > env_base.txt
+$ module load python/3.10
+$ env > env_python.txt
+#+end_src
+
+And if we then look at the differences (ignoring variables
+=__MODULES_LMALTNAME=, =__MODULES_LMREFRESH=, =__MODULES_LMCONFLICT=,
+=LOADEDMODULES=, and =_LMFILES_=, that are internal variables of Environment
+Modules) we can see that the only variables modified are =PYTHONPATH= and
+=PATH=): 
+
+#+begin_src bash
+$ diff env_base.txt env_python.txt 
+
+  > PYTHONPATH=/opt/python/python3.10/lib/python3.10/site-packages
+  < PATH=/usr/local/go/bin:[...]
+  ---
+  > PATH=/opt/python/python3.10/bin:/usr/local/go/bin:[...]
+#+end_src
+
+These environment changes can be added manually to the job description using the
+=environment= command (see section [[*Submit commands]]). For a worked-out example
+of this, see section [[*HTCondor from within Python]].
+
 * Acknowledging HTCondor in publications
 
 It is important that you acknowledge HTCondor in any publication of your work
@@ -1892,7 +1856,7 @@ Economy and Competitiveness with FEDER funds, code IACA13-3E-2493.
 * Further information and support
 
 This manual is only a brief introduction to all HTCondor has to offer. For
-detailed and complete information, check the official [[https://htcondor.readthedocs.io/en/v10_0/][HTCondor v10.0 Manual]].
+detailed and complete information, check the official [[https://htcondor.readthedocs.io/en/latest/][HTCondor Manual]].
 
 If you need help or you are having any kind of issues related to HTCondor,
 the [[http://research.iac.es/sieinvens/SINFIN/Main/index.php][SIE]] gives direct support to IAC's users who want to use HTCondor: we
