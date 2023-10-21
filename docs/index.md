@@ -112,7 +112,7 @@ available slots could be around 400 during office hours and around 700 at nights
 and weekends.
 
 You can see real-time **HTCondor@IAC statistics** (global and per user) [here](http://pasa/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false). Figure
-[8](#org09b133b) is an example showing the global usage where *Owner* represents
+[8](#org3ac744e) is an example showing the global usage where *Owner* represents
 *slots* that are being used outside of HTCondor. The remaining *slots* are
 available to HTCondor, but if there are no eligible jobs to run, those slots
 will be in *CPUsNotInUse* state. Those *slots* that are actually being used by
@@ -139,11 +139,11 @@ every machine (see the [software supported by the SIE](http://research.iac.es/si
 run almost every application in any machine.
 
 Detailed information about each machine can be obtained with the command
-`condor_status` (see Section [3.1](#Checking%20pool%20status)). 
+`condor_status` (see Section [Checking pool status](#Checking%20pool%20status)). 
 
 HTCondor provides a simple mechanism by which you can specify a set of
 requirements for the machines where you want your application to run, for
-example: memory per slot, OS version, etc. (see Section [2](#Submit%20files)).
+example: memory per slot, OS version, etc. (see Section [Submit files](#Submit%20files)).
 
 
 <a id="How%20can%20I%20use%20HTCondor%3F"></a>
@@ -155,7 +155,7 @@ If you have an account in the IAC network, then you can use HTCondor.
 HTCondor is a batch-processing system (i.e. non-interactive), so you submit jobs
 to the HTCondor queue with the `condor_submit` command, and providing a text
 submission file, where you specify the executable file, its arguments, inputs
-and outputs, etc. (see Section [3.2](#Submitting%20jobs)).
+and outputs, etc. (see Section [Submitting jobs](#Submitting%20jobs)).
 
 You do not need to prepare or compile your programs in any special way to run
 them, and almost all programming languages should be suitable (shell scripts,
@@ -393,7 +393,7 @@ to execute your application with HTCondor, by providing a number of parameters
 like the name of your executable, its arguments, inputs and outputs,
 requirements, etc. 
 
-In section [1.7](#Basic%20HTCondor%20workflow) we saw a very simple *submit
+In section [Basic HTCondor workflow](#Basic%20HTCondor%20workflow) we saw a very simple *submit
 file*. Depending on your needs, that might be enough, but HTCondor offers many
 options and a rich syntax for writing *submit files*, which will be useful in
 more advanced cases. In this section we will cover the features needed in some
@@ -577,8 +577,8 @@ the [HTCondor@IAC](https://github.com/angel-devicente/htcondor-iac) repository.
 ### HTCondor *Hello World!*
 
 This example (directory `hello_world`) was the basis for the introductory
-section [1.7](#Basic%20HTCondor%20workflow). The commands used were already introduced in
-section [2.2.3](#Submit%20commands). For convenience we repeat below the *submit file*
+section [Basic HTCondor workflow](#Basic%20HTCondor%20workflow). The commands used were already introduced in
+section [Submit commands](#Submit%20commands). For convenience we repeat below the *submit file*
 (`simple.submit`):
 
 <div class="mdframed">
@@ -609,7 +609,7 @@ This example simply defines:
 
 ### Similar jobs with one `Queue` command
 
-The example in the previous section [2.3.1](#HTCondor%20%2FHello%20World%21%2F) used the variable
+The example in the previous section [HTCondor Hello World!](#HTCondor%20%2FHello%20World%21%2F) used the variable
 `$(Process)` to identify the different jobs in a single run. Sometimes this is
 enough, but not always. Say you have 100 images to process and your executable
 takes the filename of the image as an argument. If you were going to use the
@@ -647,10 +647,8 @@ of jobs to submit. The *submit file* (`simple.submit`) is very simple:
 HTCondor provides around 100 commands (see the [Command Reference Manual)](https://htcondor.readthedocs.io/en/latest/man-pages/index.html), but
 you will only need a few of them for most of you work with HTCondor. In this
 section we introduce the most common ones, grouped according to the four common
-tasks introduced in section [1.7](#Basic%20HTCondor%20workflow): Checking pool status
-([3.1](#Checking%20pool%20status)), Submitting jobs ([3.2](#Submitting%20jobs)), Checking and
-managing submitted jobs ([3.3](#Checking%20and%20managing%20submitted%20jobs)) and Getting info
-from logs ([3.4](#Getting%20information%20from%20the%20logs)). For each command we also give a
+tasks introduced in section [Basic HTCondor workflow](#Basic%20HTCondor%20workflow): 
+[Checking pool status](#Checking%20pool%20status), [Submitting jobs](#Submitting%20jobs), [Checking and managing submitted jobs](#Checking%20and%20managing%20submitted%20jobs) and [Getting information from the logs](#Getting%20information%20from%20the%20logs). For each command we also give a
 list of some of their most useful options (but note that you can also get full
 details about each command by executing `man condor_<cmd>` in your shell).
 
@@ -883,7 +881,7 @@ with extra options to communicate with other machines.
 
 -   There is also a useful online tool to analyze your log files and get more
     information: `HTCondor Log Analyzer` (<http://condorlog.cse.nd.edu/>). Figure
-    [156](#org9313be8) shows an example of the output generated.
+    [156](#org6d28d9c) shows an example of the output generated.
     
     ![img](images/commands/condor_log_analyzer.png "Condor Log Analyzer sample output")
 
@@ -903,7 +901,7 @@ with extra options to communicate with other machines.
     with dependencies. See the section on [DAGMan Workflows](https://htcondor.readthedocs.io/en/latest/users-manual/dagman-workflows.html) for more information.
 -   **`condor_version`** Print the version of HTCondor.
 -   If you want some general information about the HTCondor Pool, where jobs have
-    been executed on, etc., as mentioned in section [1.3](#How%20%2Apowerful%2A%20is%20HTCondor%3F),
+    been executed on, etc., as mentioned in section [How powerful is HTCondor?](#How%20%2Apowerful%2A%20is%20HTCondor%3F),
     you can check real-time **HTCondor@IAC statistics** (global and per user) [here](http://pasa/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false).
 
 
@@ -974,7 +972,7 @@ A few things to note about this example are:
     argument by using the syntax `$(parameter)` (see call to `htcondor.Submit`).
 -   the description of a job is done via a `Submit` object. This is, in essence,
     the Pythonic equivalent of a submit file, so the same variables, macros and
-    commands can be used (see section [2](#Submit%20files)).
+    commands can be used (see section [Submit files](#Submit%20files)).
 -   when you use the `condor_submit` command, HTCondor will, by default, make sure
     that the jobs will be executed only in machines with the same operating system
     version as the machine from where you submit the jobs. When you use the Python
@@ -983,14 +981,14 @@ A few things to note about this example are:
 -   this example illustrates how to use Python to submit jobs, where each job is
     itself a Python code (here executed via the `job.sh` wrapper), but this
     doesn't have to be so. You could specify any other type of executable file
-    (for example a compiled code as in the examples in section [2.3](#Examples)).
+    (for example a compiled code as in the examples in section [Examples](#Examples)).
     -   at the same time we also show how we can use software not installed in
         default locations. In this example we want to use the Python 3.10
         interpreter which we would normally use in an interactive session by
         executing the command `module load python/3.10` (see the
         [Environment Modules](../software/modules.html) documentation). This is done by using the `job.sh`
         wrapper script, and it is further explained in 
-        section [4.2](#HTCondor%20and%20Environment%20Modules).
+        section [HTCondor and Environment Modules](#HTCondor%20and%20Environment%20Modules).
 
 <div class="mdframed">
 <div class="note">
@@ -1074,7 +1072,7 @@ you wish):
     directory.
 
 -   The job that we are submitting for this recipe uses the same **C** source file
-    as that described in section [1.7](#Basic%20HTCondor%20workflow), so you just have to
+    as that described in section [Basic HTCondor workflow](#Basic%20HTCondor%20workflow), so you just have to
     compile it as explained there.
 
 -   Submit the job with `condor_submit kerberos.submit`. If you inspect this
@@ -1103,7 +1101,7 @@ you wish):
 HTCondor jobs get executed in a "clean" environment, which means that many of
 the variables available in a regular shell session will not be available by
 default for HTCondor jobs. At the same time, the usage of Kerberos at the IAC
-makes it difficult to access (see section [4.1](#HTCondor%20and%20Kerberos)) your shell
+makes it difficult to access (see section [HTCondor and Kerberos](#HTCondor%20and%20Kerberos)) your shell
 init files (`.bashrc`, `.bash_profile`, etc.). Thus, you will likely run into
 troubles with HTCondor if you are used to running [Environment Modules](../software/modules.html) (for
 example, by running `module load python/3.10`) to prepare the environment for
@@ -1135,7 +1133,7 @@ script (`job.sh`) like the following:
 </div>
 
 and set the HTCondor `executable` command to `job.sh`, and its `arguments` to
-`job.py [args]`. For a worked-out example of this, see section [3.6](#HTCondor%20from%20Python). 
+`job.py [args]`. For a worked-out example of this, see section [HTCondor from Python](#HTCondor%20from%20Python).  
 
 
 <a id="Acknowledging%20HTCondor%20in%20publications"></a>
