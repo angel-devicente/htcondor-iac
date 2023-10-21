@@ -1,4 +1,4 @@
-# Time-stamp: <2023-10-20 11:07:39 angelv> 
+# Time-stamp: <2023-10-21 09:43:13 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -1690,17 +1690,26 @@ A few things to note about this example are:
   bindings this is not the case, so we use the =requirements= command to specify
   that in this case we only want to use execution machines with Ubuntu 22.
 + this example illustrates how to use Python to submit jobs, where each job is
-  itself a Python code, so the executable file is in this case the =python3=
-  interpreter itself, but it doesn't have to be so. You could specify any other
-  type of executable file (for example a compiled code or a shell script as in
-  the examples in section [[*Examples]].
+  itself a Python code (here executed via the =job.sh= wrapper), but this
+  doesn't have to be so. You could specify any other type of executable file
+  (for example a compiled code as in the examples in section [[*Examples]]).
   + at the same time we also show how we can use software not installed in
     default locations. In this example we want to use the Python 3.10
     interpreter which we would normally use in an interactive session by
     executing the command =module load python/3.10= (see the
-    [[../software/modules.html][Environment Modules]] documentation). This is further explained in section
-    [[*HTCondor and Environment Modules]]. 
+    [[../software/modules.html][Environment Modules]] documentation). This is done by using the =job.sh=
+    wrapper script, and it is further explained in 
+    section [[*HTCondor and Environment Modules]]. 
 
+#+begin_mdframed
+#+begin_note
+In the example above, if we wanted to use the default system python we could set
+the python interpreter itself (=/usr/bin/python3=) as the =executable=. But
+HTCondor will, by default, transfer this to the executing directory, which is
+most likely not what we want for system applications. To avoid this, we should
+also set =tranfer_executable= to =false=.
+#+end_note
+#+end_mdframed
 
 * How-to Recipes
 
@@ -1796,45 +1805,29 @@ makes it difficult to access (see section [[*HTCondor and Kerberos]]) your shell
 init files (=.bashrc=, =.bash_profile=, etc.). Thus, you will likely run into
 troubles with HTCondor if you are used to running [[../software/modules.html][Environment Modules]] (for
 example, by running =module load python/3.10=) to prepare the environment for
-your executions.
+your executions. In these cases the best option is to create a simple wrapper
+script that will take care of preparing the environment, loading the required
+modules and then launching the actual job.
 
-In these cases the best option (let us know if you find a better one) is
-probably to manually specify the required changes to your environment variables
-in order to mimic the behaviour of the =module load ...= command. While this
-might sound as a daunting task, this is actually quite easy, as we only need to
-see the relevant changes introduced in the environment variables when a
-particular module is loaded, and once found we will use the same information for
-any future HTCondor jobs requiring this module.
-
-As an example, if we want to use the Python interpreter (and packages) provided
-by the module =python/3.10= available in all IAC /burros/ with Ubuntu22, we can
-find the environment with and without the module loaded:
+For example, when using an interactive shell, if we want to use the Python
+interpreter (and packages) provided by the module =python/3.10= available in all
+IAC /burros/ with Ubuntu22, we would do:
 
 #+begin_src bash
-$ module purge
-$ env > env_base.txt
 $ module load python/3.10
-$ env > env_python.txt
+$ python3 job.py [args]
 #+end_src
 
-And if we then look at the differences (ignoring variables
-=__MODULES_LMALTNAME=, =__MODULES_LMREFRESH=, =__MODULES_LMCONFLICT=,
-=LOADEDMODULES=, and =_LMFILES_=, which are internal Environment Modules
-variables) we can see that the only variables modified are =PYTHONPATH= and
-=PATH=):
+Then, to do the same with HTCondor, we would simply need to create a wrapper
+script (=job.sh=) like the following:
 
-#+begin_src bash
-$ diff env_base.txt env_python.txt 
+#+begin_mdframed
+#+INCLUDE: "../examples/python_bindings/job.sh" src bash
+#+end_mdframed
 
-  > PYTHONPATH=/opt/python/python3.10/lib/python3.10/site-packages
-  < PATH=/usr/local/go/bin:[...]
-  ---
-  > PATH=/opt/python/python3.10/bin:/usr/local/go/bin:[...]
-#+end_src
-
-These environment changes can be added manually to the job description using the
-=environment= command (see section [[*Submit commands]]). For a worked-out example
-of this, see section [[*HTCondor from Python]].
+and set the HTCondor =executable= command to =job.sh=, and its =arguments= to
+=job.py [args]=. For a worked-out example of this, see section [[*HTCondor from
+Python]]. 
 
 * Acknowledging HTCondor in publications
 

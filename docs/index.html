@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-20 Fri 11:09 -->
+<!-- 2023-10-21 Sat 09:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTCondor@IAC User's Manual</title>
@@ -210,7 +210,7 @@ and weekends.
 
 <p>
 You can see real-time <b>HTCondor@IAC statistics</b> (global and per user) <a href="http://pasa/ganglia/?r=week&amp;cs=&amp;ce=&amp;m=load_one&amp;tab=v&amp;vn=pool_usage&amp;hide-hf=false">here</a>. Figure
-<a href="#org8a5ee2f">1</a> is an example showing the global usage where <i>Owner</i> represents
+<a href="#orgcf0b6a9">1</a> is an example showing the global usage where <i>Owner</i> represents
 <i>slots</i> that are being used outside of HTCondor. The remaining <i>slots</i> are
 available to HTCondor, but if there are no eligible jobs to run, those slots
 will be in <i>CPUsNotInUse</i> state. Those <i>slots</i> that are actually being used by
@@ -218,7 +218,7 @@ HTCondor are those in the <i>CPUsInUse</i> state.
 </p>
 
 
-<div id="org8a5ee2f" class="figure">
+<div id="orgcf0b6a9" class="figure">
 <p><img src="images/introduction/weekly_usage.png" alt="weekly_usage.png" />
 </p>
 <p><span class="figure-number">Figure 1: </span>Weekly global usage</p>
@@ -1156,11 +1156,11 @@ condor_history -constraint 'RemoveReason=!=UNDEFINED'
 <li><p>
 There is also a useful online tool to analyze your log files and get more
 information: <code>HTCondor Log Analyzer</code> (<a href="http://condorlog.cse.nd.edu/">http://condorlog.cse.nd.edu/</a>). Figure
-<a href="#orge5c89d0">2</a> shows an example of the output generated.
+<a href="#org0d3d80b">2</a> shows an example of the output generated.
 </p>
 
 
-<div id="orge5c89d0" class="figure">
+<div id="org0d3d80b" class="figure">
 <p><img src="images/commands/condor_log_analyzer.png" alt="condor_log_analyzer.png" />
 </p>
 <p><span class="figure-number">Figure 2: </span>Condor Log Analyzer sample output</p>
@@ -1232,9 +1232,7 @@ the <a href="https://github.com/angel-devicente/htcondor-iac">HTCondor@IAC</a> r
 <span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Create an HTCondor submit object</span>
 <span style="color: #eedd82;">submit_description</span> = htcondor.Submit({
    <span style="color: #ffa07a;">"requirements"</span>: <span style="color: #ffa07a;">'OpSysAndVer == "Ubuntu22"'</span>,
-    <span style="color: #ffa07a;">"executable"</span>: <span style="color: #ffa07a;">"/opt/python/python3.10/bin/python3"</span>,
-    <span style="color: #ffa07a;">"environment"</span>: <span style="color: #ffa07a;">"PYTHONPATH=/opt/python/python3.10/lib/python3.10/site-packages"</span>,
-    <span style="color: #ffa07a;">"transfer_executable"</span>: <span style="color: #ffa07a;">"false"</span>,
+    <span style="color: #ffa07a;">"executable"</span>: <span style="color: #ffa07a;">"job.sh"</span>,
     <span style="color: #ffa07a;">"arguments"</span>: <span style="color: #ffa07a;">"job.py $(ProcID) $(parameter) $(value)"</span>,
     <span style="color: #ffa07a;">"output"</span>: <span style="color: #ffa07a;">"outs/hostname.$(ProcID).out"</span>,       
     <span style="color: #ffa07a;">"error"</span>: <span style="color: #ffa07a;">"errors/hostname.$(ProcID).err"</span>,        
@@ -1278,23 +1276,36 @@ version as the machine from where you submit the jobs. When you use the Python
 bindings this is not the case, so we use the <code>requirements</code> command to specify
 that in this case we only want to use execution machines with Ubuntu 22.</li>
 <li>this example illustrates how to use Python to submit jobs, where each job is
-itself a Python code, so the executable file is in this case the <code>python3</code>
-interpreter itself, but it doesn't have to be so. You could specify any other
-type of executable file (for example a compiled code or a shell script as in
-the examples in section <a href="#Examples">2.3</a>.
+itself a Python code (here executed via the <code>job.sh</code> wrapper), but this
+doesn't have to be so. You could specify any other type of executable file
+(for example a compiled code as in the examples in section <a href="#Examples">2.3</a>).
 <ul class="org-ul">
 <li>at the same time we also show how we can use software not installed in
 default locations. In this example we want to use the Python 3.10
 interpreter which we would normally use in an interactive session by
 executing the command <code>module load python/3.10</code> (see the
-<a href="../software/modules.html">Environment Modules</a> documentation). This is further explained in section
-<a href="#HTCondor%20and%20Environment%20Modules">4.2</a>.</li>
+<a href="../software/modules.html">Environment Modules</a> documentation). This is done by using the <code>job.sh</code>
+wrapper script, and it is further explained in 
+section <a href="#HTCondor%20and%20Environment%20Modules">4.2</a>.</li>
 </ul></li>
 </ul>
-</div>
-</div>
+
+<div class="mdframed">
+<div class="note">
+<p>
+In the example above, if we wanted to use the default system python we could set
+the python interpreter itself (<code>/usr/bin/python3</code>) as the <code>executable</code>. But
+HTCondor will, by default, transfer this to the executing directory, which is
+most likely not what we want for system applications. To avoid this, we should
+also set <code>tranfer_executable</code> to <code>false</code>.
+</p>
+
 </div>
 
+</div>
+</div>
+</div>
+</div>
 
 <div id="outline-container-How-to%20Recipes" class="outline-2">
 <h2 id="How-to%20Recipes"><span class="section-number-2">4</span> How-to Recipes</h2>
@@ -1427,55 +1438,47 @@ makes it difficult to access (see section <a href="#HTCondor%20and%20Kerberos">4
 init files (<code>.bashrc</code>, <code>.bash_profile</code>, etc.). Thus, you will likely run into
 troubles with HTCondor if you are used to running <a href="../software/modules.html">Environment Modules</a> (for
 example, by running <code>module load python/3.10</code>) to prepare the environment for
-your executions.
+your executions. In these cases the best option is to create a simple wrapper
+script that will take care of preparing the environment, loading the required
+modules and then launching the actual job.
 </p>
 
 <p>
-In these cases the best option (let us know if you find a better one) is
-probably to manually specify the required changes to your environment variables
-in order to mimic the behaviour of the <code>module load ...</code> command. While this
-might sound as a daunting task, this is actually quite easy, as we only need to
-see the relevant changes introduced in the environment variables when a
-particular module is loaded, and once found we will use the same information for
-any future HTCondor jobs requiring this module.
-</p>
-
-<p>
-As an example, if we want to use the Python interpreter (and packages) provided
-by the module <code>python/3.10</code> available in all IAC <i>burros</i> with Ubuntu22, we can
-find the environment with and without the module loaded:
+For example, when using an interactive shell, if we want to use the Python
+interpreter (and packages) provided by the module <code>python/3.10</code> available in all
+IAC <i>burros</i> with Ubuntu22, we would do:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash">$ module purge
-$ env &gt; env_base.txt
-$ module load python/3.10
-$ env &gt; env_python.txt
+<pre class="src src-bash">$ module load python/3.10
+$ python3 job.py [args]
 </pre>
 </div>
 
 <p>
-And if we then look at the differences (ignoring variables
-<code>__MODULES_LMALTNAME</code>, <code>__MODULES_LMREFRESH</code>, <code>__MODULES_LMCONFLICT</code>,
-<code>LOADEDMODULES</code>, and <code>_LMFILES_</code>, which are internal Environment Modules
-variables) we can see that the only variables modified are <code>PYTHONPATH</code> and
-<code>PATH</code>):
+Then, to do the same with HTCondor, we would simply need to create a wrapper
+script (<code>job.sh</code>) like the following:
 </p>
 
+<div class="mdframed">
 <div class="org-src-container">
-<pre class="src src-bash">$ diff env_base.txt env_python.txt 
+<pre class="src src-bash"><span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">!/bin/</span><span style="color: #00ffff;">bash</span>
 
-  &gt; <span style="color: #eedd82;">PYTHONPATH</span>=/opt/python/python3.10/lib/python3.10/site-packages
-  &lt; <span style="color: #eedd82;">PATH</span>=/usr/local/go/bin:[...]
-  ---
-  &gt; <span style="color: #eedd82;">PATH</span>=/opt/python/python3.10/bin:/usr/local/go/bin:[...]
+<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Prepare the environment </span>
+<span style="color: #b0c4de;">source</span> /usr/local/glob/SIE/.bashrc_SIE
+<span style="color: #b0c4de;">export</span> <span style="color: #eedd82;">USER</span>=nouser
+
+module load python/3.10  <span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">load modules</span>
+
+python3 <span style="color: #ffa07a;">"$@"</span>             <span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">launch job </span>
 </pre>
 </div>
 
+</div>
+
 <p>
-These environment changes can be added manually to the job description using the
-<code>environment</code> command (see section <a href="#Submit%20commands">2.2.3</a>). For a worked-out example
-of this, see section <a href="#HTCondor%20from%20Python">3.6</a>.
+and set the HTCondor <code>executable</code> command to <code>job.sh</code>, and its <code>arguments</code> to
+<code>job.py [args]</code>. For a worked-out example of this, see section <a href="#HTCondor%20from%20Python">3.6</a>. 
 </p>
 </div>
 </div>
@@ -1533,7 +1536,7 @@ to the HTCondor@IAC <i>stream</i> (<b>#computing/htcondor</b>) in IAC-Zulip
 <div id="postamble" class="status">
 <p class="author">Author: Ángel de Vicente</p>
 <p class="email">Email: <a href="mailto:angel.de.vicente@iac.es">angel.de.vicente@iac.es</a></p>
-<p class="date">Created: 2023-10-20 Fri 11:09</p>
+<p class="date">Created: 2023-10-21 Sat 09:48</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

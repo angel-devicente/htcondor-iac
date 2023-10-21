@@ -10,9 +10,7 @@ job_parameters = [
 # Create an HTCondor submit object
 submit_description = htcondor.Submit({
    "requirements": 'OpSysAndVer == "Ubuntu22"',
-    "executable": "/opt/python/python3.10/bin/python3",
-    "environment": "PYTHONPATH=/opt/python/python3.10/lib/python3.10/site-packages",
-    "transfer_executable": "false",
+    "executable": "job.sh",
     "arguments": "job.py $(ProcID) $(parameter) $(value)",
     "output": "outs/hostname.$(ProcID).out",       
     "error": "errors/hostname.$(ProcID).err",        
