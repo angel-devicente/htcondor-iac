@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-21 Sat 11:46 -->
+<!-- 2023-10-22 Sun 06:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTCondor@IAC User's Manual</title>
@@ -210,7 +210,7 @@ and weekends.
 
 <p>
 You can see real-time <b>HTCondor@IAC statistics</b> (global and per user) <a href="http://pasa/ganglia/?r=week&amp;cs=&amp;ce=&amp;m=load_one&amp;tab=v&amp;vn=pool_usage&amp;hide-hf=false">here</a>. Figure
-<a href="#org23829a6">1</a> is an example showing the global usage where <i>Owner</i> represents
+<a href="#org1badd69">1</a> is an example showing the global usage where <i>Owner</i> represents
 <i>slots</i> that are being used outside of HTCondor. The remaining <i>slots</i> are
 available to HTCondor, but if there are no eligible jobs to run, those slots
 will be in <i>CPUsNotInUse</i> state. Those <i>slots</i> that are actually being used by
@@ -218,7 +218,7 @@ HTCondor are those in the <i>CPUsInUse</i> state.
 </p>
 
 
-<div id="org23829a6" class="figure">
+<div id="org1badd69" class="figure">
 <p><img src="images/introduction/weekly_usage.png" alt="weekly_usage.png" />
 </p>
 <p><span class="figure-number">Figure 1: </span>Weekly global usage</p>
@@ -1154,11 +1154,11 @@ condor_history -constraint 'RemoveReason=!=UNDEFINED'
 <li><p>
 There is also a useful online tool to analyze your log files and get more
 information: <code>HTCondor Log Analyzer</code> (<a href="http://condorlog.cse.nd.edu/">http://condorlog.cse.nd.edu/</a>). Figure
-<a href="#orgb4e049a">2</a> shows an example of the output generated.
+<a href="#org0332174">2</a> shows an example of the output generated.
 </p>
 
 
-<div id="orgb4e049a" class="figure">
+<div id="org0332174" class="figure">
 <p><img src="images/commands/condor_log_analyzer.png" alt="condor_log_analyzer.png" />
 </p>
 <p><span class="figure-number">Figure 2: </span>Condor Log Analyzer sample output</p>
@@ -1534,7 +1534,7 @@ to the HTCondor@IAC <i>stream</i> (<b>#computing/htcondor</b>) in IAC-Zulip
 <div id="postamble" class="status">
 <p class="author">Author: Ángel de Vicente</p>
 <p class="email">Email: <a href="mailto:angel.de.vicente@iac.es">angel.de.vicente@iac.es</a></p>
-<p class="date">Created: 2023-10-21 Sat 11:46</p>
+<p class="date">Created: 2023-10-22 Sun 06:43</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

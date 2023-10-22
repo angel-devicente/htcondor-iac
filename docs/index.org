@@ -1,4 +1,4 @@
-# Time-stamp: <2023-10-21 11:32:59 angelv> 
+# Time-stamp: <2023-10-22 07:16:25 angelv> 
 
 #+TITLE:   HTCondor@IAC User's Manual
 #+AUTHOR:  Ángel de Vicente
@@ -98,12 +98,12 @@ one were using their computers and all slots were idle, but the number of actual
 available slots could be around 400 during office hours and around 700 at nights
 and weekends.
 
-You can see real-time *HTCondor@IAC statistics* (global and per user) [[http://pasa/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false][here]]. Figure
-[[weekly_usage]] is an example showing the global usage where /Owner/ represents
-/slots/ that are being used outside of HTCondor. The remaining /slots/ are
-available to HTCondor, but if there are no eligible jobs to run, those slots
-will be in /CPUsNotInUse/ state. Those /slots/ that are actually being used by
-HTCondor are those in the /CPUsInUse/ state.
+You can see real-time *HTCondor@IAC statistics* (global and per user)
+[[http://pasa/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false][here]]. Figure [[weekly_usage]] is an example showing the global usage where /Owner/
+represents /slots/ that are being used outside of HTCondor. The remaining
+/slots/ are available to HTCondor, but if there are no eligible jobs to run,
+those slots will be in /CPUsNotInUse/ state. Those /slots/ that are actually
+being used by HTCondor are those in the /CPUsInUse/ state.
 
 #+name: weekly_usage
 #+caption: Weekly global usage
