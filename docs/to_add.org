@@ -1,4 +1,4 @@
-# Time-stamp: <2023-10-27 18:15:01 angelv> 
+# Time-stamp: <2023-10-27 18:20:09 angelv> 
 
 !!!!!!!!!!!!! DO NOT UPDATE
 !!!!!!!!!!!!!  all user documentation now goes to index.rst
@@ -3377,48 +3377,8 @@ with this control, more machine owners are happy to participate by joining a
 Condor pool. 
 
 
-** Condor Code of Conduct                                          :noexport:
-
-Condor is a terrific tool for performing parametric studies and other type of
-jobs that can run simultaneously and independently in a number of
-machines. Nevertheless, under certain circumstances, if you are not careful you
-can bring the network to a crawl. To avoid these situations, please stick to
-this simple code of conduct:
-
-+ Submit jobs only from your machine or from a machine whose owner you have
-  contacted and is aware of the extra load that you will put on it. No
-  submission from public machines, sorry! (For each Condor running job, there is
-  a process running in the submitting machine, plus lots of network connections,
-  so the submitting machine pays a big toll, which is not fair to pass it to
-  someone else unawares).
-
-+ If you plan to run I/O intensive code (i.e. code that reads or writes to disk
-  very large files, or small ones but very often), get in touch with me
-  first. Depending on how I/O intensive your code is, it might not be worth it
-  to use Condor, or I might be able to offer you counsel on how to best do
-  it. Hopefully your Condor submission will perform faster if we take this into
-  account.
-
-+ Test your submission. Don't go nuts and submit a 10000 jobs submission without
-  first making sure the whole thing will work with a smaller subset. Start
-  small, verify that things are going OK, check the logs to see that the jobs
-  can access all the necessary files, etc. and only when you are satisfied that
-  things are working go for the big submission.
-
-Please stick to these basic rules so that we can avoid Condor affecting other
-users' work.
 
 
 
 
-* TODO TO DOs [3/9]                                                :noexport:
-  + [X] Pre-introduction: date of FEDER funds?
-  + [ ] Write info about policies burros vs desktops
-  + [X] Note: if you want to submit jobs from your desktop, it has to belong to
-    the pool.
-  + [ ] point out that only background processes!
-  + [ ] HTCondor + IDL example
-  + [ ] HTCondor + Apptainer example
-  + [ ] Add more examples (see :noexport: sections)
-  + [ ] Go through all :noexport: sections, clean and add if deemed useful 
-  + [X] Point to the repository
+
