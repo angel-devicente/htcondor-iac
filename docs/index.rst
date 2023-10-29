@@ -842,8 +842,9 @@ Other commands
    jobs.
 -  ``condor_submit_dag <dag_file>`` Submit a DAG file, used to describe
    jobs with dependencies. See the section on `DAGMan
-   Workflows <https://htcondor.readthedocs.io/en/latest/users-manual/dagman-workflows.html>`__
-   for more information.
+   Workflows
+   <https://htcondor.readthedocs.io/en/latest/automated-workflows/index.html>`__
+   for more information. 
 -  ``condor_version`` Print the version of HTCondor.
 - If you want some general information about the HTCondor Pool, where jobs have
    been executed on, etc., as mentioned in section `How powerful is HTCondor?`_,

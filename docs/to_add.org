@@ -1,4 +1,4 @@
-# Time-stamp: <2023-10-27 18:20:09 angelv> 
+# Time-stamp: <2023-10-27 18:44:24 angelv> 
 
 !!!!!!!!!!!!! DO NOT UPDATE
 !!!!!!!!!!!!!  all user documentation now goes to index.rst
@@ -867,15 +867,6 @@ need further support, just contact us.
 
 * Submit files (HowTo)                                             :noexport:
 
-HTCondor has a huge set of commands that should cover most possible
-scenarios. It is impossible to describe here all of them, but you can read the
-official documentation to get further information (there are many of these
-commands at the *condor_submit page*. Just to
-complement *some of the previous examples*, we will
-mention here a few useful commands that can be added to the submit file when
-needed. You can also find more details about these and other commands at the
-*FAQs page*.
-
 ** How to ... add requirements on the target machines where my jobs will be run? 
 
 If your program has some limitations (memory, disk, libraries, etc.) and cannot
@@ -962,49 +953,6 @@ environment at the submitting time, then set variables called =working_dir= and
 If you want to run your python program using HTCondor, you might need to define
 some environment variables, please, read this FAQ
 *HOWTOs.CondorFAQs#python-fedora*.
-
-
-** How to ... control HTCondor notifications?  
-
-If you are submitting a large set of jobs, receiving notifications from all of
-them can be annoying. You can set the email address and the type of the
-notifications that you want to receive. For example, to send notifications to
-=someaddress@iac.es= only in case of errors, use following commands:
-
- =notify_user=   = someaddress@iac.es
- =notification=  = Error
-
-=notify_user= changes the email address used to send notifications, if you need
-to add more addresses, you can use =email_attributes= command. With
-=notification= command we tell HTCondor when it should send those notifications,
-it could be set to =Never=, =Complete=, =Error= or =Always=; we recommend you
-use =Error=.
-
-
-** How to ... run some shell commands/scripts/programs before/after our application?  
-
-If your application needs some pre- or post-processing, you can use =+PreCmd=
-and =+PostCmd= commands to run it before and after your main executable,
-respectively. For example, these commands may be useful if you need to rename or
-move input or output files before or after the execution. You can also use them
-for debugging purpose, for instance, use =tree= command to check where the
-input/output files are located:
-
- =+PreCmd=        = "tree"
- =+PreArguments=  = "-o tree_before.$(Cluster).$(Process).txt"
- =+PostCmd=       = "my_postscript.sh"
- =+PostArguments= = "-g"
-
- =should_transfer_files=  = YES
- =transfer_input_files=   = my_postscript.sh, /usr/bin/tree
- =transfer_output_files=  = tree_before.$(Cluster).$(Process).txt
-
-Remember that you have to add those scripts/programs to the list of files to be
-copied with =transfer_input_files= command, and also check that your submit file
-contains the following command: =should_transfer_files = YES=. When using a
-shell command (like =tree=), you can get its location using the command
-=which=. For instance, =which tree= will show =/usr/bin/tree=, this is the path
-you should add to =transfer_input_files= command.
 
 
 ** How to ... specify the priority of your jobs?  
@@ -1493,41 +1441,6 @@ HTCondor also allows you to use more powerful features, like specifying jobs
 that will be periodically executed at given times using the ''CronTab
 Scheduling'' functionality. Please, read the *Time Scheduling for a Job
 Execution* section in the official documentation to get more information.
-
-
-** How to ... run jobs that have dependencies among them?  
-
-If your jobs have dependencies related to inputs, outputs, execution order,
-etc., you can specify these dependencies using a ''directed acyclic graph
-(DAG)''. HTCondor has a manager (called
-http://research.cs.wisc.edu/htcondor/manual/v8.6/2_10DAGMan_Applications.html
-DAGMan) to deal with these jobs.
-
-First, you have to create a DAG input file, where you specify the jobs
-(including the respective HTCondor submit file for each one) and the
-dependencies. Then, you submit this DAG input file using =condor_submit_dag
-<dag_file>=. Next code describes a basic example of DAG file where job A depends
-on B and C, that depend on D (diamond shape).
-
- # File name: diamond.dag
- #
- JOB  A  condor_A.submit
- JOB  B  condor_B.submit 
- JOB  C  condor_C.submit	
- JOB  D  condor_D.submit
- PARENT A CHILD B C
- PARENT B C CHILD D
-
-
- [...]$ =*condor_submit_dag*= diamond.dag
-
-Examples about working with HTCondor DAGMan can be found in the
-http://research.cs.wisc.edu/htcondor/manual/v8.6/2_10DAGMan_Applications.html#SECTION003102000000000000000
-Official documentation mentioned above. You can also try the easy example
-located at the end of this page
-http://research.iac.es/sieinvens/SINFIN/Condor/curso/course/node7.php used in a
-course about HTCondor imparted by SIE some years ago (solution here
-http://research.iac.es/sieinvens/SINFIN/Condor/curso/course/node9.php#SECTION00095000000000000000).
 
 
 ** How to ... know the attributes of the machines where our jobs are run?  
