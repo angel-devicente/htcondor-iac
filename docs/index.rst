@@ -62,12 +62,12 @@ How **powerful** is HTCondor?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 HTCondor calls a *slot* the unit that executes a job, typically a CPU or a core
-if the CPU has several of them. Right now we have over 1000 slots that might
+if the CPU has several of them. Right now we have |SLOTS| slots that might
 execute applications submitted via HTCondor. It means that everyday more than
-24000 hours could be available to run HTCondor jobs, close to 3 years of
+|HOURS| hours could be available to run HTCondor jobs, close to |YEARS| years of
 computation in a single day! Obviously, this is the theoretical maximum if no
 one were using their computers and all slots were idle, but the number of actual
-available slots could be around 400 during office hours and around 700 at nights
+available slots could be around 600 during office hours and around 900 at nights
 and weekends.
 
 You can see real-time **HTCondor@IAC statistics** (global and per user) `here
@@ -1090,3 +1090,10 @@ IAC-Zulip
 .. raw:: html
 
    <a href="https://iac-es.zulipchat.com"><img src="https://img.shields.io/badge/zulip-join_chat-brightgreen.svg" /></a>
+
+
+.. |SLOTS| replace:: 1196
+.. |HOURS| replace:: 28700
+.. |YEARS| replace:: 3.3           
+.. |VERSION| replace:: 23.0.0
+                       

@@ -1,4 +1,4 @@
-# Time-stamp: <2023-10-27 18:44:24 angelv> 
+# Time-stamp: <2023-10-29 06:45:30 angelv> 
 
 !!!!!!!!!!!!! DO NOT UPDATE
 !!!!!!!!!!!!!  all user documentation now goes to index.rst
@@ -1466,18 +1466,6 @@ names similar to =$.slot3@xilofon.ll.iac.es.$=.
 
 ** General Information
 
-*** What is Condor? How can Condor help me? Who can use it? Who could help me if I have any problems? 
-
-Condor is a software that may help you to get your computational results in
-much less time. The underlying idea is to use idle computers to run your
-programs when they are not being used by their owners. When running your
-programs with Condor, you only need to specify the name of your program and its
-location, where to find the inputs and where to place your outputs, and that is
-almost all in most cases; everything else will be done by Condor. IAC
-researchers with access to a linux desktop PC should be able to use Condor; the
-SIE will give you support if you have any issue with it. Please, visit our
-*introduction page* for more general information about Condor.
-
 *** How does Condor work? My machine is in ''Owner/Unclaimed/Claimed'' state, what does it mean? 
 
 Condor has to deal with complex situations, but here we will just give some
@@ -1524,58 +1512,6 @@ is idle and queue is empty, so it can run some low priority jobs assigned by the
 administrators), etc. Visit the *Useful commands page* to get more information
 about commands in Condor.
 
-*** Sometimes Condor runs jobs on my computer when I am working on it, can I avoid that? 
-
-Condor should run jobs {+only+} on idle computers that are not being used
-by their owners. Idle computers are those where there has not been
-keyboard/mouse activity for more than 15 minutes, system load is low enough (to
-avoid interfering with owner's programs), there are no active remote ssh
-connections, there are no time restrictions, it has enough free space, etc.
-
-If Condor is running job(s) on your computer when you begin to use it, Condor
-will detect your activity and it will immediately suspend all running jobs. That
-process is usually quite fast, most users do not even notice it, but some jobs
-are heavy and complex and it could take a while to suspend them (it could take
-from several seconds to a few minutes). If that happens, your machine could get
-unresponsive for a few that moments, but you just need to wait a bit and it will
-be ready soon (this is a normal process, sorry for the inconvenience).
-
-Anyway, performance problems could be caused by a wide range of different
-situations, like an exceeded home or disk quota, heavy load (check that your
-browser is not consuming a lot of CPU time if you have a large number of open
-tabs), configuration problems, etc. Please, use =df -h= and =quota -s= commands
-to get information about your available space and =htop= command to find out
-what processes are using your CPU and memory, that may help a lot to solve a low
-performance problem.
-
-If you want to check whether Condor has been executing jobs on your machine at
-any time, you can use the Stats Web we have developed:
-*http://carlota:81/condor_stats/*. There you can get some stats about which
-machines have been used by Condor, when and for how long, etc. Anyway, if you
-still think that you are experiencing any kind of problems related to Condor,
-just contact us and we will find a solution.
-
-*** I am using Condor, should I add an acknowledgement text in my publications? 
-
-Yes, you should mention it in the acknowledgments of your papers or any
-other publications where you have used HTCondor. Although there is no standard
-format, we suggest the following:
-
-''"This paper made use of the IAC Supercomputing facility HTCondor
-(http://research.cs.wisc.edu/htcondor/)"''.
-
-If you have used any other IAC Supercomputing facilities (LaPalma, TeideHPC,
-etc.), please, add also them in the acknowledgments:
-
-*LaPalma*: ''"The author thankfully acknowledges the technical expertise and
-assistance provided by the Spanish Supercomputing Network (Red Española de
-Supercomputación), as well as the computer resources used: the LaPalma
-Supercomputer, located at the Instituto de Astrofísica de Canarias."''
-
-*TeideHPC*: ''"The author(s) wish to acknowledge the contribution of Teide
-High-Performance Computing facilities to the results of this research. TeideHPC
-facilities are provided by the Instituto Tecnológico y de Energías Renovables
-(ITER, SA). URL: http://teidehpc.iter.es/"''
 
 ** Preparing and submitting your jobs
 
@@ -2086,16 +2022,6 @@ after them):
   jobs.-]
 
 ** Having some troubles with your jobs
-
-*** I cannot submit jobs, what is wrong? 
-If you use =condor_submit <submit_file>= and your jobs do not appear in the
-list when using =condor_q=, there might be errors in your submit file. If so,
-Condor should print those errors and some related information when doing the
-submission (use =-debug= flag if you do not see that info). Most problems are
-easy to fix since they are related to wrong paths, lack of permissions, missing
-required commands, etc., but if you do not have an idea about how to fix any
-error, please contact us.
-
 
 *** How can I check that my program is running fine? Can I access to the input/output files in the remote machine? 
 
@@ -2802,18 +2728,6 @@ DAGMan*) to deal with these jobs, but you must use special commands, like
 submitting your jobs with =condor_submit_dag=. Please, visit *Condor submit file
 page -> CondorHowTo#howto_dagman* for more info and examples.
 
-** More info
-
-*** My question is not in this list or I need further information, where can I find it? 
-
-There are more *FAQs and How-to recipes ->
-https://htcondor-wiki.cs.wisc.edu/index.cgi/wiki?p=HowToAdminRecipes* available
-at Condor site and the *official Users' Manual ->
-http://research.cs.wisc.edu/htcondor/manual/v8.6/2_Users_Manual.html* is useful,
-too. Also you can visit other sections of Condor at the SIEpedia, like *useful
-commands -> CondorUsefulCommands* or *Submit files -> CondorSubmitFile*. If you
-need further information, please, contact us (you can find *here ->
-Condor#contact* our contact data).
 
 
 
@@ -3114,180 +3028,9 @@ fi
 * TO SORT OUT                                                      :noexport:
 
 
-** An Overview of the HTCondor System                              :noexport:
-
-*** On High-Throughput Computing
-
-For many scientists, the quality of their research is heavily dependent on
-computing throughput. It is not uncommon to find problems that require weeks or
-months of computation to solve. Scientists involved in this type of research
-need a computing environment that delivers large amounts of computational power
-over a long period of time. Such an environment is called a High-Throughput
-Computing (HTC) environment. In contrast, High-Performance Computing (HPC)
-environments deliver a tremendous amount of power over a short period of time.
-HPC environments are often measured in terms of FLoating point OPerations per
-Second (FLOPS). Many scientists today do not care about FLOPS; their problems
-are on a much larger scale. These people are concerned with floating point
-operations per month or per year. They are interested in how many jobs they can
-complete over a long period of time.
-
-A key to high throughput is the efficient use of available resources. Years
-ago, the scientific community relied on large mainframe computers to do
-computational work. A large number of individuals and groups would have to pool
-their financial resources to afford such a computer. It was not uncommon to
-find just one such machine at even the largest research institutions.
-Scientists would wait their turn for mainframe time, and they would be allocated
-a specific amount of time. Scientists limited the size and scope of their
-problems to ensure completion. While this environment was inconvenient for the
-users, it was very efficient, because the mainframe was busy nearly all the
-time.
-
-As computers became smaller, faster and less expensive, scientists moved
-away from mainframes and purchased personal computers or workstations. An
-individual or a small group could afford a computing resource that was available
-whenever they wanted it. The resource might be slower than the mainframe, but
-it provided exclusive access. Recently, instead of one large computer for an
-institution, there are many workstations. Each workstation is owned by its
-user. This is distributed ownership. While distributed ownership is more
-convenient for the users, it is also less efficient. Machines sit idle for long
-periods of time, often while their users are busy doing other things.
-*Condor takes this wasted computation time and puts it to good use.* The
-situation today matches that of yesterday, with the addition of clusters in the
-list of resources. These machines are often dedicated to tasks. Condor manages
-a cluster's effort efficiently, as well as handling other resources.
-
-To achieve the highest throughput, Condor provides two important functions.
-First, it makes available resources more efficient by putting idle machines to
-work. Second, it expands the resources available to users, by functioning well
-in an environment of distributed ownership.
-
-*** Why use Condor?
-
-Condor takes advantage of computing resources that would otherwise be wasted
-and puts them to good use. Condor streamlines the scientist's tasks by allowing
-the submission of many jobs at the same time. In this way, tremendous amounts
-of computation can be done with very little intervention from the user.
-Moreover, Condor allows users to take advantage of idle machines that they would
-not otherwise have access to.
-
-Condor provides other important features to its users. Source code does not
-have to be modified in any way to take advantage of these benefits. Code that
-can be re-linked with the Condor libraries gains two further abilities: the jobs
-can produce checkpoints and they can perform remote system calls.
-
-A checkpoint is the complete set of information that comprises a program's
-state. Given a checkpoint, a program can use the checkpoint to resume
-execution. For long-running computations, the ability to produce and use
-checkpoints can save days, or even weeks of accumulated computation time. If a
-machine crashes, or must be rebooted for an administrative task, a checkpoint
-preserves computation already completed. Condor makes checkpoints of jobs,
-doing so periodically, or when the machine on which a job is executing will
-shortly become unavailable. In this way, the job can be continued on another
-machine (of the same platform); this is known as process migration.
-
-A user submits a job to Condor. The job is executed on a remote machine
-within the pool of machines available to Condor. Minimal impact on and the
-security of the remote machine are preserved by Condor through remote system
-calls. When the job does a system call, for example to do an input or output
-function, the data is maintained on the machine where the job was submitted.
-The data is not on the remote machine, where it could be an imposition.
-
-By linking in a set of Condor libraries, system calls are caught and
-performed by Condor, instead of by the remote machine's operating system.
-Condor sends the system call from the remote machine to the machine where the
-jobs was submitted. The system call's function executes, and Condor sends the
-result back to the remote machine.
-
-This implementation has the added benefit that a user submitting jobs to
-Condor does not need an account on the remote machine.
-
-*** Small Businesses Like Condor
 
 
-Condor starts with the assumption that you have relatively long running tasks
-that do not require user interaction. While this is not common in small
-business environments, it does occur. To take examples from businesses that we
-know are using Condor, tasks involve rendering 3D scenes for a movie, performing
-a nightly build and regression test on software under development, simulating
-and analyzing stock market behavior, and simulating the effects of various
-political decisions. Modern video codecs often take a long time to encode, and
-any business generating video files could use Condor to manage the process. A
-small biotechnology company might want to use Condor to manage the long running
-pattern searches over the human genome. A small engineering company might have
-similar needs with long running simulations of stress on a building, wind tunnel
-simulations for cars, or circuit simulations for new electronics devices.
 
-Condor helps those businesses with long running tasks. Such businesses may be
-using some sort of batch system already, or operate by starting the program each
-evening, hoping that it finishes before they return in the morning. This is the
-sort of situation in which Condor excels. Condor also saves time and effort
-when the time it takes a user to get jobs executing is longer than a few
-moments, or when a large number of jobs (of any size) must be started.
-
-Condor allows almost any application that can run without user interaction to be
-managed. This is different from systems like SETI@Home and ProteinFolding@Home.
-These programs are custom written. Most small companies will not have the
-resources to custom build an opportunistic batch processing system.
-Fortunately, Condor provides a general solution.
-
-Condor can be useful on a range of network sizes, from small to large. On a
-single machine, Condor can act as a monitoring tool that pauses the job when the
-user uses the machine for other purposes, and it restarts the job if the machine
-reboots. On a small dedicated cluster, Condor functions well as a cluster
-submission tool. If you have long running jobs but can not afford to purchase
-dedicated machines to run the jobs, you can use Condor's opportunistic behavior
-to scavenge cycles from desktop machines when their users are not using the
-machines (for example, in the evening or during lunch).
-
-In a typical business these desktop machines are unused for twelve or more hours
-per day. This processing time is available at no extra cost under Condor. A
-long running job expected to require the exclusive use of a workstation for two
-days may be able to produce results overnight.
-
-Condor's functionality called DAGMan, manages the submission of a large number
-of jobs with simple or complex dependencies on each other. A simple example is
-that job A and B must complete before job C can start. A rendering example of
-this would be that job A renders a 3D special effect, job B renders the
-background, and job C superimposes the special effect onto the background.
-Condor DAGMan can also be used to run a series of jobs (linearly).
-
-If the small business is using Globus grid resources to gain access to more
-computing power than it has available in house, Condor-G provides reliability
-and job management to their jobs. Or, with Condor glidein, remote Globus grid
-resources can transparently become part of a virtual Condor cluster.
-
-*** Everyone Benefits
-
-As more machines join a Condor pools, the quantity of computational
-resources available to the users grows. While Condor can efficiently manage the
-queuing of jobs where the pool consists of a single machine, Condor works
-extremely well when the pool contains hundreds of machines.
-
-A contributor to Condor's success is its ClassAd mechanism. Jobs want to
-find machines upon which they can execute. A job will require a specific
-platform on which to execute. Machines have specific resources available, such
-as the platform and the amount of available memory. A separate ClassAd is
-produced for each job and machine, listing all attributes. Condor acts as a
-matchmaker between the jobs and the machines by pairing the ClassAd of a job
-with the ClassAd of a machine.
-
-This mechanism is much more flexible than the simple example of matching the
-platforms of jobs with those of machines. A job may also prefer to execute on a
-machine with better floating point facilities, or it may prefer to execute on a
-specific set of machines. These preferences are also expressed in the ClassAd.
-Further, a machine owner has great control over which jobs are executed under
-what circumstances on the machine. The owner writes a configuration file that
-specifies both requirements and preferences for the jobs. The owner may allow
-jobs to execute when the machine is idle (identified by low load and no keyboard
-activity), or allow jobs only on Tuesday evenings. There may be a requirement
-that only jobs from a specific group of users may execute. Alternatively, any
-of these may be expressed as a preference, for example where the machine prefers
-the jobs of a select group, but will accept the jobs of others if there are no
-jobs from the select group.
-
-In this way, machine owners have extensive control over their machine. And,
-with this control, more machine owners are happy to participate by joining a
-Condor pool. 
 
 
 
