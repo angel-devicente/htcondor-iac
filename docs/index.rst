@@ -41,7 +41,7 @@ an application that is installed in our PCs to make it possible to run a large
 number of yours and others' computations at a time in different machines when
 they are not being used, achieving a better utilization of our resources. A more
 detailed overview of HTCondor is available at the `official documentation
-<https://htcondor.readthedocs.io/en/latest/overview/index.html>`__.
+<https://htcondor.readthedocs.io/en/|URL|/overview/index.html>`__.
 
 How can HTCondor help me?
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -339,8 +339,8 @@ HTCondor *submit files* can include comments, variables, macros,
 commands, etc. Here we will describe the most important syntax
 components. For a more detailed description you can check the official
 documentation (`Submitting a
-Job <https://htcondor.readthedocs.io/en/latest/users-manual/submitting-a-job.html>`__,
-`condor_submit <https://htcondor.readthedocs.io/en/latest/man-pages/condor_submit.html>`__).
+Job <https://htcondor.readthedocs.io/en/|URL|/users-manual/submitting-a-job.html>`__,
+`condor_submit <https://htcondor.readthedocs.io/en/|URL|/man-pages/condor_submit.html>`__).
 
 Comments
 ^^^^^^^^
@@ -384,7 +384,7 @@ Submit commands
 
 The commands which can appear in the submit description file are
 numerous (see `submit description file
-commands <https://htcondor.readthedocs.io/en/latest/man-pages/condor_submit.html#submit-description-file-commands>`__),
+commands <https://htcondor.readthedocs.io/en/|URL|/man-pages/condor_submit.html#submit-description-file-commands>`__),
 but in most situations you will only need a few of them. Here we present
 the most common ones (*commands are case-insensitive*):
 
@@ -419,7 +419,7 @@ the most common ones (*commands are case-insensitive*):
       the simplest one (``vanilla``) will be chosen, but for more
       advanced users, other ``universe`` might be necessarey. See
       `Choosing an HTCondor
-      Universe <https://htcondor.readthedocs.io/en/latest/users-manual/choosing-an-htcondor-universe.html>`__.
+      Universe <https://htcondor.readthedocs.io/en/|URL|/users-manual/choosing-an-htcondor-universe.html>`__.
 
 -  **Useful commands for application Input/Output**
 
@@ -528,6 +528,19 @@ This example simply defines:
 -  the ``Queue`` command, specifying that we want to run 100 jobs (the
    variable ``$(Process)`` will have the range [0:99]
 
+                    
+Several ``Queue`` commands
+++++++++++++++++++++++++++
+
+Instead of the single ``Queue 100`` command above, sometimes it might be useful
+to specify different jobs by repeating the ``queue`` command. For example, we
+could instead submit ten jobs (five with arguments ``400 10`` and five with
+arguments ``200 20``) with a *submit file* (``several_queue_commands.submit``)
+like: 
+
+.. literalinclude:: examples/hello_world/several_queue_commands.submit
+
+   
 Similar jobs with one ``Queue`` command
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -543,7 +556,7 @@ each image with each of the possible values of ``$(Process)``.
 Luckily, the ``queue`` command has a powerful syntax that makes this
 unnecessary. Here we only present one example, but in the official
 HTCondor documentation you can check the `full syntax and further
-examples <https://htcondor.readthedocs.io/en/latest/users-manual/submitting-a-job.html#submitting-many-similar-jobs-with-one-queue-command>`__.
+examples <https://htcondor.readthedocs.io/en/|URL|/users-manual/submitting-a-job.html#submitting-many-similar-jobs-with-one-queue-command>`__.
 
 This example (directory ``queue_similar``) shows how to use
 ``queue [...] matching`` command to process a number of files having the
@@ -558,7 +571,7 @@ Main HTCondor commands
 ----------------------
 
 HTCondor provides around 100 commands (see the `Command Reference Manual)
-<https://htcondor.readthedocs.io/en/latest/man-pages/index.html>`__, but you
+<https://htcondor.readthedocs.io/en/|URL|/man-pages/index.html>`__, but you
 will only need a few of them for most of you work with HTCondor.  In this
 section we introduce the most common ones, grouped according to the four common
 tasks introduced in section `Basic HTCondor workflow`_: `Checking pool status`_,
@@ -843,7 +856,7 @@ Other commands
 -  ``condor_submit_dag <dag_file>`` Submit a DAG file, used to describe
    jobs with dependencies. See the section on `DAGMan
    Workflows
-   <https://htcondor.readthedocs.io/en/latest/automated-workflows/index.html>`__
+   <https://htcondor.readthedocs.io/en/|URL|/automated-workflows/index.html>`__
    for more information. 
 -  ``condor_version`` Print the version of HTCondor.
 - If you want some general information about the HTCondor Pool, where jobs have
@@ -856,14 +869,14 @@ HTCondor from Python
 ~~~~~~~~~~~~~~~~~~~~
 
 HTCondor comes with `Python
-Bindings <https://htcondor.readthedocs.io/en/latest/apis/python-bindings/tutorials/index.html>`__,
+Bindings <https://htcondor.readthedocs.io/en/|URL|/apis/python-bindings/tutorials/index.html>`__,
 which provide a powerful mechanism to interact with HTCondor from a
 Python program.
 
 Most users are probably just interested on how to use these bindings to
 submit and manage jobs all from within Python. A nice tutorial for this
 can be found
-`here <https://htcondor.readthedocs.io/en/latest/apis/python-bindings/tutorials/Submitting-and-Managing-Jobs.html>`__,
+`here <https://htcondor.readthedocs.io/en/|URL|/apis/python-bindings/tutorials/Submitting-and-Managing-Jobs.html>`__,
 but as a quick example, the following script illustrates how you can use
 Python to submit a number of jobs:
 
@@ -946,7 +959,7 @@ HTCondor and Kerberos
    to avoid the use of Kerberos protected resources from within your
    HTCondor jobs, which in most cases you will be able to by using
    the `HTCondor's File Transfer
-   Mechanism <https://htcondor.readthedocs.io/en/latest/users-manual/file-transfer.html>`__.
+   Mechanism <https://htcondor.readthedocs.io/en/|URL|/users-manual/file-transfer.html>`__.
 
 *The files for this recipe are in directory*
 `condor_kerberos <https://github.com/angel-devicente/htcondor-iac/tree/main/recipes/condor_kerberos>`__.
@@ -1074,7 +1087,7 @@ Further information and support
 
 This manual is only a brief introduction to all HTCondor has to offer.
 For detailed and complete information, check the official `HTCondor
-Manual <https://htcondor.readthedocs.io/en/latest/>`__.
+Manual <https://htcondor.readthedocs.io/en/|URL|/>`__.
 
 If you need help or you are having any kind of issues related to
 HTCondor, the
@@ -1096,4 +1109,4 @@ IAC-Zulip
 .. |HOURS| replace:: 28700
 .. |YEARS| replace:: 3.3           
 .. |VERSION| replace:: 23.0.0
-                       
+.. |URL| replace:: 23.0                       

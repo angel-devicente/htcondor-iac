@@ -1,4 +1,4 @@
-# Time-stamp: <2023-10-29 06:45:30 angelv> 
+# Time-stamp: <2023-11-01 12:37:04 angelv> 
 
 !!!!!!!!!!!!! DO NOT UPDATE
 !!!!!!!!!!!!!  all user documentation now goes to index.rst
@@ -1514,74 +1514,6 @@ about commands in Condor.
 
 
 ** Preparing and submitting your jobs
-
-*** I have developed a program, do I need to make any modification to run it with Condor? 
-
-For a basic execution in Condor, you do not need to compile your program
-with any special library or add calls to external functions to be executed by
-Condor, the program runs as is. According to our experience, in most cases you
-will not need to change anything in your program, or only a few minor
-modifications may be required:
-
-+ Your program should accept arguments, since changing arguments is the way used
-  to specify different jobs with the same executable. For instance, if your
-  program reads a file to make the same computations with the values of each
-  line, you can modify it to accept the number of the line as an argument, and
-  then Condor will launch a different job for each line. Arguments can be also
-  different data, paths to files or whatever your application use as input.
-+ Paths to your input/output files may change when executing with Condor, so you
-  should be able to change them in your application if needed.
-
-
-*** How do I run my application with Condor? (submitting jobs to queue) 
-
-All the information needed by Condor to run your program should be written
-in a *Condor submit file*. You must include in that file one (and only one)
-=executable= command to specify what your program is (the path can be either
-absolute or relative to the directory where the submission is
-done). Additionally, if your executable is not accessible from other machines,
-use =should_transfer_files = YES= command and Condor will copy it to the remote
-machines.  With the =arguments= command you can specify your parameters (they
-can be either fixed values or depend on a counter) and then use =queue <N>=
-command to launch =N= jobs. You can repeat =arguments= and =queue= commands as
-many times as needed. A very basic submit file could be the following one, that
-assumes your application is located in the same directory where you will use the
-=condor_submit= command. ''Please, visit *Condor submit file page* for more info
-and examples.'' 
-
-  ''# Condor submit file''
-  ''# Running myprogram with arguments "-v 235" and "-kf 'cgs' -v 6543"''
-  =universe= = vanilla
-  =should_transfer_files= = YES
-
-  =executable= = myprogram
-
-  =arguments=  = "-v 235"
-  =queue= 
-
-  =arguments=  = "-kf 'cgs' -v 6543"
-  =queue= 
-
-\\\
-
-Once the submit file is ready, you can submit your jobs to the Condor queue using next command in your shell console:
-  =*condor_submit*= submit_file
-
-To check your jobs, use next command: 
-  =*condor_q*=
-
-Visit the *Useful commands page* to get more information about commands in
-Condor.
-
-
-*Caution!*: Before submitting your real jobs, always sdo ome simple tests in
- order to make sure that both your submit file and program work in a proper way:
- if you are going to submit hundreds of jobs and each job takes several hours to
- finish, before doing that try with just a few jobs and change the input data in
- order to let them finish in minutes. Then check the results to see if
- everything went fine before submitting the actual jobs. Bear in mind that
- submitting untested files and/or jobs may cause a waste of time and resources
- if they fail, and also your priority will be worse in following submissions. 
 
 
 *** How do I check the Condor queue and my submitted jobs? 

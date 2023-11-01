@@ -1,0 +1,12 @@
+Executable = simple
+Log        = simple.log
+Output     = simple.$(Process).out
+Error      = simple.$(Process).error
+
+Arguments  = 400 10
+Queue 5
+
+Arguments  = 200 20
+Queue 5
+
+
