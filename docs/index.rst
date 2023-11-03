@@ -505,6 +505,20 @@ Examples
    `HTCondor@IAC <https://github.com/angel-devicente/htcondor-iac>`__
    repository.
 
+
+.. note::
+
+   Currently the IAC HTCondor Pool has both ``Ubuntu18`` and ``Ubuntu22``
+   machines. As explained in the `condor_submit
+   <https://htcondor.readthedocs.io/en/latest/man-pages/condor_submit.html>`__
+   documentation, HTCondor will schedule jobs to run in machines with the same
+   ``Arch`` and ``OpSys`` values of the submit machine. These values are not
+   sufficient to differentiate the ``Ubuntu18`` and the ``Ubuntu22`` machines
+   (``Arch`` is "X86_64" and ``OpSys`` is "LINUX" in all of them). If your code
+   can only run in a given version, you can specify the ``requirements`` with
+   something like: ``Requirements = (OpSysAndVer == "Ubuntu22")``.
+   
+   
 HTCondor *Hello World!*
 ^^^^^^^^^^^^^^^^^^^^^^^
 
