@@ -1105,8 +1105,12 @@ IAC-Zulip
    <a href="https://iac-es.zulipchat.com"><img src="https://img.shields.io/badge/zulip-join_chat-brightgreen.svg" /></a>
 
 
-.. |SLOTS| replace:: 1196
-.. |HOURS| replace:: 28700
-.. |YEARS| replace:: 3.3           
+.. |SLOTS| replace:: 1408
+.. |HOURS| replace:: 33790
+.. |YEARS| replace:: 3.9       
 .. |VERSION| replace:: 23.0.0
 .. |URL| replace:: 23.0                       
+
+..
+  Hours = slots*24 ; years= hours/24/365
+  
