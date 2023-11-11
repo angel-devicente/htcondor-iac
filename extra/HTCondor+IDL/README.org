@@ -1,0 +1,301 @@
+Several years ago I prepared some scripts and documentation to run IDL with
+HTCondor. This is not common at all anymore, so for the moment I don't bother to
+make sure this still works properly, but in case we need this in the future, all
+the relevant information follows:
+
+-----------------------------------
+
+* HTCondor and IDL                                                 
+
+A recurring question to us has been whether IDL jobs can be run with
+HTCondor. The *use of IDL with HTCondor is limited by the number of available
+licenses* at any given time (which meant that perhaps you could run 20-30 jobs
+simultaneously). However, we strongly recommend you use the *IDL Virtual Machine
+(IDL VM)* when possible since it lets you run an IDL "executable" file (=SAVE=
+file) *without the need for licenses*, so there will be no limits on the number
+of jobs you can concurrently run. Most of you probably know the necessary steps
+to create a =SAVE= file, but if in doubt see *
+http://www.exelisvis.com/docs/Creating_SAVE_Files_of_P.html | here* for an
+example on how to create such a file.
+
+The problem is that the IDL Virtual Machine is meant to be run interactively in
+a server with X running and HTCondor is not particularly well suited for
+this. But you can manage it with a little ingenuity. Ángel de Vicente developed
+a little program some years ago to take care of all the details and overall it
+works without any problems, and now we can submit hundreds of IDL jobs
+simultaneously to our HTCondor pool! Read on for all the details...
+
+*Note:* If for any reason you are *not able* to generate a =SAVE= file, please,
+*contact us -> Condor#contact* and we will help you to find other ways of
+executing IDL with HTCondor. Remember that running jobs in IDL with no Virtual
+Machine consumes licences and you must *limit the number of concurrent jobs ->
+CondorSubmitFile#howto_limit* using a command like =concurrency_limits = idl:40=
+
+
+** Submitting a job to HTCondor using the IDL Virtual Machine (for the impatient)
+
+All you will need to do in order to run your IDL jobs with the Virtual Machine is:
+
++ Modify your IDL program so that it will take an argument (from 0 to the number
+  of jobs you want to submit with HTCondor) and act according to that
+  argument. A sample IDL program to illustrate this could be the following one
+  (we will name it =subs.pro=):
+
+   =PRO= SUBS
+
+   args = *=command_line_args()=*
+
+   =print=, 'Original argument   ', args(0)
+   =print=, 'Modified   ', args(0)*2
+
+   =print=, 'Wasting ', args(0), ' seconds'
+   =wait=, args(0)
+
+   =print=, 'I (IDL) have finished...'
+   =END=
+
+
++ Create a =SAVE= file from it. Usually you just need to compile your program
+  and generate the =SAVE= file with your compiled routines. The name of the
+  =SAVE= file has to be the same as the routine you want to execute. If you have
+  any issue creating this file, please, check *
+  http://www.exelisvis.com/docs/Creating_SAVE_Files_of_P.html | more information
+  and examples*):
+
+   [...]$ =idl=
+   IDL> =.FULL_RESET_SESSION=
+   IDL> =.COMPILE= subs.pro
+   IDL> =RESOLVE_ALL= 
+   IDL> =SAVE, /ROUTINES, FILENAME=='subs.sav'
+   IDL> =exit=
+   [...]$ 
+
++ Verify that this works with the IDL Virtual Machine without HTCondor (the IDL
+  Virtual Machine will show you a Splash screen, where you will have to press
+  the button "Click to Continue", and which then will proceed with the execution
+  of the program).
+
+   [...]$ =idl -vm=subs.sav -args 10=
+   IDL Version 8.3 (linux x86_64 m64). (c) 2013, Exelis Visual Information Solutions, Inc.
+
+   Original argument   10
+   Modified         20
+   Wasting 10 seconds
+   I (IDL) have finished...
+   [...]$
+
++ Write the HTCondor submit file. If you are new to HTCondor, you might need to
+  look our * documentation about submit files ->
+  http://research.iac.es/sieinvens/siepedia/pmwiki.php?n=HOWTOs.CondorSubmitFile*
+  (check also other sections like *Introduction ->
+  http://research.iac.es/sieinvens/siepedia/pmwiki.php?n=HOWTOs.Condor*, *Useful
+  commands ->
+  http://research.iac.es/sieinvens/siepedia/pmwiki.php?n=HOWTOs.CondorUsefulCommands*
+  or *FAQs ->
+  http://research.iac.es/sieinvens/siepedia/pmwiki.php?n=HOWTOs.CondorFAQs*). In
+  the following example you will need to modify: 
+
+  + The arguments line, which has 4 items: the first one is the path to the =SAVE=
+    file; the second one is the argument to pass to it; the third one is 1 if you
+    use a left-handed mouse, and 0 otherwise; and the fourth one is 1 if you want
+    verbose messages for debugging, or 0 otherwise)
+
+  + NOTE: leave the line "=next_job_start_delay = 1="
+
+      N            = 20
+      ID           = $(Cluster).$(Process)
+      FNAME        = idl_vm
+      =Universe=     = vanilla                   
+      =Notification= = error
+      =should_transfer_files=   = YES 
+      =when_to_transfer_output= = ON_EXIT                                               
+
+      =output=       = $(FNAME).$(ID).out
+      =error=        = $(FNAME).$(ID).err
+      =Log=          = $(FNAME).$(Cluster).log    
+
+      =transfer_input_files=   = subs.sav
+      ''#Use next command when specific output files hast to be copied back to your machine:''
+      ''#=transfer_output_files=  = ''
+      =Executable=   = /home/condor/SIE/idlvm_with_condor.sh
+      =arguments=    = subs.sav $(Process) 0 1
+
+      =next_job_start_delay= = 1                                  
+      =queue= $(N)
+
+
++ Submit it to HTCondor and go for a cup of coffee while the programs are executed...
+
+
+
+[-*Note: Why some of my jobs get the ''on hold'' status?*-]
+
+[-When executing jobs with the IDL VM, it could happen that some jobs get the
+''on hold'' status. That means some problems occurred with your jobs and
+HTCondor is waiting that you solve them before continuing with the
+execution. You can use =condor_q -hold= command to get more info about the
+reason why they were held. If there is no apparent cause and you are sure that
+your jobs are correct, the problem might be related to the initialization of the
+IDL Virtual Machine: sometimes this process takes longer than usual on some
+specific machines, and if in the meanwhile more jobs try to initialize other IDL
+VM on the same machine, some of them could fail and your jobs will get the ''on
+hold'' status. This could randomly happen and there is not an easy way to avoid
+that.-]
+
+[-If you are 100% sure that your program runs fine and the problem is caused by
+IDL, then you can use =condor_release -all= command and all your held jobs will
+get the idle status again so they will hopefully run with no problems on other
+machines. If some of your jobs fail again, you may need to repeat the
+=condor_release= command several times till all the jobs are done. If that
+happens too many times, you can use some commands to perform recurring releases:
+for instance, you can add a =periodic_release= command in your submit file (see
+this *example -> CondorSubmitFile#howto_failing*) and HTCondor will periodically
+release your held jobs, or you can use a combination of =condor_release= and
+some shell commands like =crontab=, =watch=, etc.-]
+
+[-On the other hand, if after releasing jobs they get the ''on hold'' state
+again, then the problem might not be related to IDL and you should check your
+application to find the error (remember that you can get more information about
+held jobs using =condor_q -hold=).-]
+
+
+** How is it all done?
+
+All the real work to avoid having to press the "Click to continue" button in all
+the virtual machines is done by the alpha-version idlvm_with_condor.sh
+script. This script makes use of: *http://en.wikipedia.org/wiki/Xvfb | Xvfb* to
+create a virtual X11 server where the IDL splash screen will be created (but
+without showing anything in the screen); and
+*http://hoopajoo.net/projects/xautomation.html | xautomation* to automatically
+press the button for you. The script has to take care of two important things:
+how to create several virtual X servers on multicore machines without
+conflicting with each other; and how to cleanly kill all processes when HTCondor
+wants to reclaim the machine for its "owner" before the IDL code has
+finished. The script is still work in progress (since some things could be
+performed probably more efficiently), but in its present form seems to work
+pretty well (let me know if you have any trouble with it). The script is:
+
+ [@
+#!/bin/bash                                                                                                                                                  
+
+###### Script to run an IDL executable file (a SAVE file) in the IDL Virtual Machine 
+###### with HTCondor.     
+                                                                                                                                                   
+###### Written by Angel de Vicente - 2009/10/26     
+                                                                                                                                                  
+###### Usage:    
+###### /home/condor/SIE/idlvm_with_condor.sh idl_prog argument zurdo verbose       
+###### Example:                                                                                  
+###### /home/condor/SIE/idlvm_with_condor.sh /home/angelv/test.sav 10 0 1     
+######      will press button as a right-handed person, and will print messages 
+######      of its progress, and will also print debugging messages.  
+
+XVFB_BIN="/home/condor/SIE/Xvfb"
+XTE_BIN="/home/condor/SIE/xte"
+
+## This allows for job control inside the script                                                                                                             
+set -o monitor
+
+##                                                                                                                                                           
+if [ $3 -eq 1 ]; then
+mousebutton=3
+else
+mousebutton=1
+fi
+
+if [ $4 -eq 1 ]; then
+echo "Running on machine `uname -a`"
+fi
+
+## When we do a condor_rm or when the job is evicted, a SIGTERM to the executable file           
+## (i.e., this script is issued, so we make sure we catch that signal, and then kill the     
+## virtual X and the IDL Virtual Machine    
+trap cleanup SIGINT SIGTERM SIGTSTP
+
+function cleanup ()
+{
+kill %2
+if [ $4 -eq 1 ]; then
+echo "IDL Terminated"
+fi
+
+sleep 1
+
+kill %1
+if [ $4 -eq 1 ]; then
+echo "Xvfb killed"
+fi
+
+exit
+}
+
+
+## Find free server number           
+
+## A cheap way of avoiding two HTCondor processes in the same (multicore) machine to have a race condition   
+## and ending up with the same server number is to sleep a random number of seconds before trying to find    
+## which server number is free                                          
+## NOT ROBUST ENOUGH AND A BIT WASTEFUL. SHOULD FIND A BETTER WAY OF DOING THIS  
+##                                                                                                                                                           
+## We comment this out, assuming the submit HTCondor file has next_job_start_delay = 1     
+#RANGE=10                                                                            
+#number=$RANDOM                                                                           
+#let "number %= $RANGE"                                                                       
+#if [ $4 -eq 1 ]; then                 
+#echo "Sleeping $number seconds"                                         
+#fi                                                                              
+#sleep $number                                                                                
+
+## Find the free number    
+i=1
+while [ -f /tmp/.X$i-lock ]; do
+        i=$(($i + 1))
+
+if [ $i -eq 10 ]; then
+    i=1
+ if [ $4 -eq 1 ]; then
+ echo "No servers available under 10. Waiting 5 minutes..."
+ sleep 300
+ fi
+fi
+done
+
+
+$XVFB_BIN :$i -screen 0 487x299x16 &
+sleep 5
+export DISPLAY=":$i.0"
+if [ $4 -eq 1 ]; then
+echo "Virtual X Server $i created"
+fi
+
+idl -vm=$1 -args $2 &
+sleep 10
+if [ $4 -eq 1 ]; then
+echo "IDL Virtual Machine started"
+fi
+
+$XTE_BIN 'mousemove 394 235'
+$XTE_BIN "mouseclick $mousebutton"
+if [ $4 -eq 1 ]; then
+echo "Click to continue pressed"
+fi
+
+
+if [ $4 -eq 1 ]; then
+echo "Waiting for IDL"
+fi
+wait %2
+
+if [ $4 -eq 1 ]; then
+echo "IDL Finished"
+fi
+
+sleep 2
+
+kill %1
+if [ $4 -eq 1 ]; then
+echo "Xvfb killed"
+fi
+ @]
+
+
