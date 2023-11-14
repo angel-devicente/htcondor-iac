@@ -93,8 +93,8 @@ machines make up the HTCondor\@IAC pool at any given time in the `HTCondor
 Ganglia webpage
 <http://pasa/ganglia/?r=week&cs=&ce=&c=IAC+HTCondor&h=&tab=m&vn=&hide-hf=false&m=cpu_num&sh=1&z=small&hc=4&host_regex=&max_graphs=0&s=by+name>`__.
 
-Regarding their software specifications, at present all machines are running
-Ubuntu 18.04 and the installed software should be also more or less the same in
+Regarding their software specifications, at present most machines are running
+Ubuntu 22.04 and the installed software should be also more or less the same in
 every machine (see the `software supported by the SIE
 <http://research.iac.es/sieinvens/SINFIN/Main/software_sinfin.php>`__), which
 makes it easy to run almost every application in any machine.
@@ -162,16 +162,16 @@ Start** you.
 
    ::
 
-      [angelv@denso ~]$ condor_status -compact
+      [user@node ~]$ condor_status -compact
       Machine             Platform     Slots Cpus Gpus  TotalGb FreCpu  FreeGb  CpuLoad ST
 
-      cruise.dyn.iac.es   x64/Ubuntu18 _        4          7.64      1     1.91    0.00 Oi
-      dama.ll.iac.es      x64/Ubuntu18 _       40        754.54      1    18.86    0.00 Ui
+      machine1.domain     x64/Ubuntu18 _        4          7.64      1     1.91    0.00 Oi
+      machine2.domain     x64/Ubuntu18 _       40        754.54      1    18.86    0.00 Ui
 
       [...]
 
-      villa.dyn.iac.es    x64/Ubuntu18 _       16        187.58      1    11.72    0.00 Oi
-      virus.dyn.iac.es    x64/Ubuntu18 _        8         62.73      1     7.84    0.02 Oi
+      machine29.domain    x64/Ubuntu18 _       16        187.58      1    11.72    0.00 Oi
+      machine30.domain    x64/Ubuntu18 _        8         62.73      1     7.84    0.02 Oi
 
                      Total Owner Claimed Unclaimed Matched Preempting Backfill  Drain
 
@@ -215,7 +215,7 @@ Start** you.
 
       ::
 
-         [angelv@denso ~]$ condor_submit test.condor
+         [user@node ~]$ condor_submit test.condor
          Submitting job(s)...........................................................
          100 job(s) submitted to cluster 4.
 
@@ -227,14 +227,14 @@ Start** you.
 
    ::
 
-      [angelv@denso ~]$ condor_q
+      [user@node ~]$ condor_q
 
-      -- Schedd: denso.ll.iac.es : <161.72.216.13:9618?... @ 02/27/23 09:27:40
+      -- Schedd: node.ll.iac.es : <161.72.216.13:9618?... @ 02/27/23 09:27:40
       OWNER  BATCH_NAME    SUBMITTED   DONE   RUN    IDLE  TOTAL JOB_IDS
-      angelv ID: 4        2/27 09:24      _    100      _    100 4.0-99
+      user ID: 4        2/27 09:24      _    100      _    100 4.0-99
 
       Total for query: 100 jobs; 0 completed, 0 removed, 0 idle, 100 running, 0 held, 0 suspended 
-      Total for angelv: 100 jobs; 0 completed, 0 removed, 0 idle, 100 running, 0 held, 0 suspended 
+      Total for user: 100 jobs; 0 completed, 0 removed, 0 idle, 100 running, 0 held, 0 suspended 
       Total for all users: 100 jobs; 0 completed, 0 removed, 0 idle, 100 running, 0 held, 0 suspended
 
 -  **Getting information from the logs**
@@ -253,7 +253,7 @@ Start** you.
 
    ::
 
-      [angelv@denso ~]$ cat simple.0.out 
+      [user@node ~]$ cat simple.0.out 
       Thinking really hard for 400 seconds...
       We calculated: 20
 
@@ -265,26 +265,26 @@ Start** you.
 
    ::
 
-      [angelv@denso ~]$ cat simple.log 
-      000 (004.000.000) 2023-02-27 09:24:41 Job submitted from host: <161.72.216.13:9618?addrs=161.72.216.13-9618+[2001-720-1610-50d8--d]-9618&alias=denso.ll.iac.es&noUDP&sock=schedd_3008_d0f7>
+      [user@node ~]$ cat simple.log 
+      000 (004.000.000) 2023-02-27 09:24:41 Job submitted from host: <xxx.xxx.xxx.13:9618?addrs=xxx.xxx.xxx.13-9618+[xxxx-xxx-xxxx-xxxx--d]-9618&alias=node.domain&noUDP&sock=schedd_3008_d0f7>
       ...
-      000 (004.001.000) 2023-02-27 09:24:41 Job submitted from host: <161.72.216.13:9618?addrs=161.72.216.13-9618+[2001-720-1610-50d8--d]-9618&alias=denso.ll.iac.es&noUDP&sock=schedd_3008_d0f7>
+      000 (004.001.000) 2023-02-27 09:24:41 Job submitted from host: <xxx.xxx.xxx.13:9618?addrs=xxx.xxx.xxx.13-9618+[xxxx-xxx-xxxx-xxxx--d]-9618&alias=node.domain&noUDP&sock=schedd_3008_d0f7>
       ...
-      000 (004.002.000) 2023-02-27 09:24:41 Job submitted from host: <161.72.216.13:9618?addrs=161.72.216.13-9618+[2001-720-1610-50d8--d]-9618&alias=denso.ll.iac.es&noUDP&sock=schedd_3008_d0f7>
+      000 (004.002.000) 2023-02-27 09:24:41 Job submitted from host: <xxx.xxx.xxx.13:9618?addrs=xxx.xxx.xxx.13-9618+[xxxx-xxx-xxxx-xxxx--d]-9618&alias=node.domain&noUDP&sock=schedd_3008_d0f7>
 
       [...]
 
       040 (004.002.000) 2023-02-27 09:24:47 Started transferring input files
-              Transferring to host: <161.72.216.8:9618?addrs=161.72.216.8-9618+[2001-720-1610-50d8-21e-4fff-feba-8ff9]-9618&alias=delta.ll.iac.es&noUDP&sock=slot4_3147_1899_416>
+              Transferring to host: <xxx.xxx.xxx.8:9618?addrs=xxx.xxx.xxx.8-9618+[xxxx-xxx-xxxx-xxxx-21e-4fff-feba-8ff9]-9618&alias=machine1.domain&noUDP&sock=slot4_3147_1899_416>
       ...
       040 (004.003.000) 2023-02-27 09:24:47 Started transferring input files
-              Transferring to host: <161.72.216.8:9618?addrs=161.72.216.8-9618+[2001-720-1610-50d8-21e-4fff-feba-8ff9]-9618&alias=delta.ll.iac.es&noUDP&sock=slot5_3147_1899_414>
+              Transferring to host: <xxx.xxx.xxx.8:9618?addrs=xxx.xxx.xxx.8-9618+[xxxx-xxx-xxxx-xxxx-21e-4fff-feba-8ff9]-9618&alias=machine1.domain&noUDP&sock=slot5_3147_1899_414>
 
       [...]
 
-      001 (004.002.000) 2023-02-27 09:24:48 Job executing on host: <161.72.216.8:9618?addrs=161.72.216.8-9618+[2001-720-1610-50d8-21e-4fff-feba-8ff9]-9618&alias=delta.ll.iac.es&noUDP&sock=startd_2745_6b8f>
+      001 (004.002.000) 2023-02-27 09:24:48 Job executing on host: <xxx.xxx.xxx.8:9618?addrs=xxx.xxx.xxx.8-9618+[xxxx-xxx-xxxx-xxxx-21e-4fff-feba-8ff9]-9618&alias=machine1.domain&noUDP&sock=startd_2745_6b8f>
       ...
-      001 (004.003.000) 2023-02-27 09:24:48 Job executing on host: <161.72.216.8:9618?addrs=161.72.216.8-9618+[2001-720-1610-50d8-21e-4fff-feba-8ff9]-9618&alias=delta.ll.iac.es&noUDP&sock=startd_2745_6b8f>
+      001 (004.003.000) 2023-02-27 09:24:48 Job executing on host: <xxx.xxx.xxx.8:9618?addrs=xxx.xxx.xxx.8-9618+[xxxx-xxx-xxxx-xxxx-21e-4fff-feba-8ff9]-9618&alias=machine1.domain&noUDP&sock=startd_2745_6b8f>
 
       [...]
 
@@ -464,8 +464,9 @@ the most common ones (*commands are case-insensitive*):
    -  ``request_memory``, ``request_disk`` to request machines with at
       least a certain amount of total RAM memory or fee disk space
    -  ``requirements`` a very useful command to register any special
-      needs for a job (for example, if you need to avoid certain
-      machines, or you need machines with a given OS, etc.)
+      needs for a job. For example: to avoid a malfunctioning machine (``Requirements =
+      (Machine != "node.domain")``; to request machines with a given OS
+      version (see note below), etc.
    -  ``rank`` you can specify some values or combination of them (total
       memory, free disk space, MIPS, etc.) and HTCondor will choose the
       best machines for your jobs according to your specifications,
@@ -508,9 +509,9 @@ Examples
 
 .. note::
 
-   Currently the IAC HTCondor Pool has both ``Ubuntu18`` and ``Ubuntu22``
-   machines. As explained in the `condor_submit
-   <https://htcondor.readthedocs.io/en/latest/man-pages/condor_submit.html>`__
+   Currently the IAC HTCondor Pool has mostly ``Ubuntu22`` machines but also a
+   few ``Ubuntu18`` ones. As explained in the `condor_submit
+   <https://htcondor.readthedocs.io/en/23.0/man-pages/condor_submit.html>`__
    documentation, HTCondor will schedule jobs to run in machines with the same
    ``Arch`` and ``OpSys`` values of the submit machine. These values are not
    sufficient to differentiate the ``Ubuntu18`` and the ``Ubuntu22`` machines
@@ -648,6 +649,22 @@ Submitting jobs
    and/or jobs may cause a waste of time and resources if they fail, and
    also your priority will be lower in following submissions.
 
+.. important::
+
+   HTCondor\@IAC is installed in a number of *burros* and in some desktop
+   PCs. As explained in the `Burros <../burros/index.html>`__ section, these
+   machines have a queue system installed, and if not using it, only the
+   equivalent of a very small system will be available to you. This is important
+   to remember when submitting jobs, because if we are submitting many jobs,
+   ``condor_submit`` might need to have access to more resources or the progress
+   might be quite slow. Thus, it is recommended that if using one of the
+   *burros* to submit jobs to HTCondor you do it from a `Slurm interactive
+   session <../burros/index.html#getting-an-interactive-session>`__ (the
+   interactive session is only needed when running the ``condor_submit``
+   command. Once the command returns, the jobs are in the HTCondor Pool and you
+   can safely exit the interactive session).  
+
+   
 -  ``condor_submit <submit_file>`` Submit jobs to the HTCondor queue
    according to the information specified in ``submit_file``. Visit the
    **submit file page** to see some examples of these files. There are
@@ -1127,4 +1144,8 @@ IAC-Zulip
 
 ..
   Hours = slots*24 ; years= hours/24/365
+  
+..
+  |URL| substitution inside URLs does not work, so in URLs I put the value
+  explicitly. 
   
