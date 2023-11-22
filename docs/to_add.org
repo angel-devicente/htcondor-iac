@@ -1,4 +1,4 @@
-# Time-stamp: <2023-11-11 17:00:50 angelv> 
+# Time-stamp: <2023-11-21 15:58:48 angelv> 
 
 !!!!!!!!!!!!! DO NOT UPDATE
 !!!!!!!!!!!!!  all user documentation now goes to index.rst
@@ -1433,65 +1433,6 @@ about commands in Condor.
 
 ** Preparing and submitting your jobs
 
-
-*** How do I check the Condor queue and my submitted jobs? 
-
-You can check the general status of the queue using =*condor_status*=, then
-you will see how many slots are used by their owners (state will be =Onwer=),
-how many are free to be used by Condor (=Unclaimed= state) and how many are
-already executing Condor jobs (=Claimed= state); these states are explained in
-this FAQ *states* . If you use =condor_status -submitters=, you will get a
-summary of who has jobs in the queue and their status; there are many other
-*useful commands and options*, please, check them. To see
-some graphs and stats about Condor, you can visit *nectarino -> http://nectarino/*
-(there you can also find information about Condor queue and machines states) and
-also *http://carlota:81/condor_stats/*.
-
-If you want to check only your submitted jobs, then use =*condor_q*=. It will
-show the info related to your jobs, like the cluster and process ID, owner,
-submission date, time they have been running, state, priority, Size, Command,
-etc. For instance, following lines show a possible output of this command:
-
-  [...]$ =*condor_q*=
-
-  *ID*      OWNER     SUBMITTED    RUN_TIME    *ST*  PRI SIZE   CMD             
-  *418.0*   jsmith    3/13 17:00   0+00:37:32  *I*   0   317.4  myprogram -c 7
-  418.*1*   jsmith    3/13 17:00   0+00:30:25  *<*   0   488.3  myprogram -c 14
-  418.*2*   jsmith    3/13 17:00   0+01:12:10  *R*   0   231.4  myprogram -c 21
-  418.*3*   jsmith    3/13 17:00   0+02:15:52  *S*   0   423.5  myprogram -c 62
-  418.*4*   jsmith    3/13 17:00   0+06:31:34  *>*   0   623.1  myprogram -c 28
-  418.*5*   jsmith    3/13 17:00   0+03:41:52  *H*   0   432.6  myprogram -c 35
-
-The first value is the *Job ID*, it is composed by two numbers, the first one is
-the ''Cluster ID'' that identifies the submission, all jobs submitted with the
-same submit file will share this Cluster ID (in this example Cluster ID is
-=418=). The second number is the ''Process ID'' and it is a consecutive number,
-from =0= for the first job to =N-1= for last job when =N= jobs are submitted. To
-understand what is happening to your jobs, check ''State'' column (=ST=), the
-common values are:
-
-+ =*I=* ''idle'' job, waiting for a slot to be executed on (it can take a while
-  before your jobs are executed, but if they are always in this state, check
-  *this FAQ -> #idle*)
-+ =*<=* your job is about to be executed, executable and input files are being
-  transferred to the remote machine
-+ =*R=* ''running'', your job is being executed at this moment
-+ =*S=* ''suspended'', the machine that was running this job is being used,
-  jobs are suspended while waiting for the machine gets idle again
-+ =*>=* execution is finished, output files are being transferred
-+ =*H=* ''on hold'', there are problems with your job that have to be solved
-  (check *this FAQ -> #hel*)
-+ =*<q*= or =*>q=* if you see those symbols, your transfers are waiting for the
-  completion of other active transfers. This is done to avoid an excessive use
-  of the available bandwidth.
-
-Once your jobs are finished, they will leave the queue so they will be not
-listed when using =condor_q= (use =condor_history= command instead). There are
-other states that normally do not appear in basic executions, like =C=
-(completed) or =X= (removed). If you have a special need and want that your jobs
-stay in the queue after completion with these or other states, you can force
-that by using some commands in your submit files (check *this FAQ -> #lesstime* or
-*this one -> #bad_inputs*).
 
 *** Where should I put my input files so that Condor will be able to find them? 
 
