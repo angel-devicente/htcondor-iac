@@ -165,19 +165,17 @@ Start** you.
       [user@node ~]$ condor_status -compact
       Machine             Platform     Slots Cpus Gpus  TotalGb FreCpu  FreeGb  CpuLoad ST
 
-      machine1.domain     x64/Ubuntu18 _        4          7.64      1     1.91    0.00 Oi
-      machine2.domain     x64/Ubuntu18 _       40        754.54      1    18.86    0.00 Ui
+      machine1.domain     x64/Ubuntu22  128S    1          3.93    128  503.38     1.24 Oi
+      machine2.domain     x64/Ubuntu22   32S    1          3.93     64  251.50     0.00 Ui 
 
       [...]
 
-      machine29.domain    x64/Ubuntu18 _       16        187.58      1    11.72    0.00 Oi
-      machine30.domain    x64/Ubuntu18 _        8         62.73      1     7.84    0.02 Oi
+                     Total Owner Claimed Unclaimed Matched Preempting  Drain Backfill BkIdle
 
-                     Total Owner Claimed Unclaimed Matched Preempting Backfill  Drain
+        x64/Ubuntu18   128    48       0        80       0          0      0        0      0
+        x64/Ubuntu22  1268   763      47       458       0          0      0        0      0
 
-        x64/Ubuntu18   868   318       2       548       0          0        0      0
-
-               Total   868   318       2       548       0          0        0      0
+               Total  1396   811      47       538       0          0      0        0      0
 
 -  **Submitting a job**
 
@@ -229,7 +227,7 @@ Start** you.
 
       [user@node ~]$ condor_q
 
-      -- Schedd: node.ll.iac.es : <161.72.216.13:9618?... @ 02/27/23 09:27:40
+      -- Schedd: node.ll.iac.es : <xxx.xx.xxx.13:9618?... @ 02/27/23 09:27:40
       OWNER  BATCH_NAME    SUBMITTED   DONE   RUN    IDLE  TOTAL JOB_IDS
       user ID: 4        2/27 09:24      _    100      _    100 4.0-99
 
