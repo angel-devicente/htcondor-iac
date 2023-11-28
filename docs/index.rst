@@ -71,7 +71,7 @@ available slots could be around 600 during office hours and around 900 at nights
 and weekends.
 
 You can see real-time **HTCondor@IAC statistics** (global and per user) `here
-<http://pasa/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false>`__.
+<https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false>`__.
 The figure below is an example showing the global usage where *Owner* represents
 *slots* that are being used outside of HTCondor. The remaining *slots* are
 available to HTCondor, but if there are no eligible jobs to run, those slots
@@ -91,7 +91,7 @@ Regarding their hardware specificatons, they are rather heterogeneous and their
 availability and specifications change from time to time. You can check which
 machines make up the HTCondor\@IAC pool at any given time in the `HTCondor
 Ganglia webpage
-<http://pasa/ganglia/?r=week&cs=&ce=&c=IAC+HTCondor&h=&tab=m&vn=&hide-hf=false&m=cpu_num&sh=1&z=small&hc=4&host_regex=&max_graphs=0&s=by+name>`__.
+<https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&c=IAC+HTCondor&h=&tab=m&vn=&hide-hf=false&m=cpu_num&sh=1&z=small&hc=4&host_regex=&max_graphs=0&s=by+name>`__.
 
 Regarding their software specifications, at present most machines are running
 Ubuntu 22.04 and the installed software should be also more or less the same in
@@ -892,7 +892,7 @@ Other commands
    been executed on, etc., as mentioned in section `How powerful is HTCondor?`_,
    you can check real-time **HTCondor@IAC statistics** (global and per user)
    `here
-   <http://pasa/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false>`__.
+   <https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false>`__.
 
 HTCondor from Python
 ~~~~~~~~~~~~~~~~~~~~
