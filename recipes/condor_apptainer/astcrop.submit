@@ -1,0 +1,16 @@
+container_image         = ./custom.sif
+
+output                  = out.$(Process)
+error                   = err.$(Process)
+log                     = custom.log
+
+should_transfer_files   = YES
+when_to_transfer_output = ON_EXIT
+
+transfer_input_files = $(fitsfile)
+transfer_output_remaps = "$Fn(fitsfile) = flat-ir/$Fn(fitsfile).fits"
+
+executable = /usr/bin/astcrop
+arguments  = "--mode=wcs -h0 --output=$Fn(fitsfile) --polygon='53.187414,-27.779152 : 53.159507,-27.759633 : 53.134517,-27.787144 : 53.161906,-27.807208' $BASENAME(fitsfile)"
+
+queue fitsfile matching files download/*.fits

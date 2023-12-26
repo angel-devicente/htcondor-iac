@@ -1099,8 +1099,13 @@ HTCondor and Apptainer
 
 TO DO:
  + point to apptainer documentation in HPC_docs
- + create example of use
+ + (see astcrop.submit file in recipes/condor_apptainer). Tested from deimos. No
+   need to worry about sinter, condor does not work as a regular user, so
+   /dev/fuse permissions is not a problem
 
+The example takes all .fits files in directory download, applies the astcrop
+command to them and saves the results to flat-ir.
+   
    
 Acknowledging HTCondor in publications
 --------------------------------------
