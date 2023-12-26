@@ -894,91 +894,19 @@ Other commands
    `here
    <https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false>`__.
 
-HTCondor from Python
-~~~~~~~~~~~~~~~~~~~~
-
-HTCondor comes with `Python
-Bindings <https://htcondor.readthedocs.io/en/23.0/apis/python-bindings/tutorials/index.html>`__,
-which provide a powerful mechanism to interact with HTCondor from a
-Python program.
-
-Most users are probably just interested on how to use these bindings to
-submit and manage jobs all from within Python. A nice tutorial for this
-can be found
-`here <https://htcondor.readthedocs.io/en/23.0/apis/python-bindings/tutorials/Submitting-and-Managing-Jobs.html>`__,
-but as a quick example, the following script illustrates how you can use
-Python to submit a number of jobs:
-
-.. note::
-
-   The complete example can be found in the
-   ``examples/python_bindings`` directory of the
-   `HTCondor@IAC <https://github.com/angel-devicente/htcondor-iac>`__
-   repository.
-
-   
-.. literalinclude:: examples/python_bindings/submit.py
-   :language: python
-
-
-A few things to note about this example are:
-
--  ``itemdata`` is the mechanim used at submission (see call to
-   ``schedd.submit``) to specify how many jobs will be submitted. In
-   this case we build ``itemdata`` out of the ``job_parameters`` list,
-   so there will be three jobs. Each member of ``itemdata`` is a
-   dictionary, that specifies the values of the variables to use for
-   each job. For example, the ``parameter`` key is passed to each job as
-   an argument by using the syntax ``$(parameter)`` (see call to
-   ``htcondor.Submit``).
--  the description of a job is done via a ``Submit`` object. This is, in
-   essence, the Pythonic equivalent of a submit file, so the same
-   variables, macros and commands can be used (see section `Submit files`_).
--  when you use the ``condor_submit`` command, HTCondor will, by
-   default, make sure that the jobs will be executed only in machines
-   with the same operating system version as the machine from where you
-   submit the jobs. When you use the Python bindings this is not the
-   case, so we use the ``requirements`` command to specify that in this
-   case we only want to use execution machines with Ubuntu 22.
--  this example illustrates how to use Python to submit jobs, where each
-   job is itself a Python code (here executed via the ``job.sh``
-   wrapper), but this doesn't have to be so. You could specify any other
-   type of executable file (for example a compiled code as in the
-   examples in section `Examples`_).
-
-   -  at the same time we also show how we can use software not
-      installed in default locations. In this example we want to use the
-      Python 3.10 interpreter which we would normally use in an
-      interactive session by executing the command
-      ``module load python/3.10`` (see the `Environment
-      Modules <../software/modules.html>`__ documentation). This is done
-      by using the ``job.sh`` wrapper script, and it is further
-      explained in section `HTCondor and Environment Modules`_.
-
-.. note::
-
-   In the example above, if we wanted to use the default system
-   python we could set the python interpreter itself
-   (``/usr/bin/python3``) as the ``executable``. But HTCondor will,
-   by default, transfer this to the executing directory, which is
-   most likely not what we want for system applications. To avoid
-   this, we should also set ``tranfer_executable`` to ``false``.
 
 How-to Recipes
 --------------
 
 .. note::
 
-   All the files necessary for the recipes in this section can be
-   found in the ``recipes`` directory of the
-   `HTCondor@IAC <https://github.com/angel-devicente/htcondor-iac>`__
-   repository. Bear in mind that these recipes point to the best
-   solution we have found to solve common problems that you might
-   encounter with the HTCondor facility at the IAC, but they are not
-   foolproof, so if you find a better solution or any problems with
-   any of the recipes, please let us know so we can try to fix them
-   or find some other way around the problem.
+   These recipes point to the best solution we have found to solve common
+   scenarios that you might encounter when using HTCondor at the IAC, but they
+   are not foolproof, so if you find a better solution or any problems with any
+   of the recipes, please let us know.
 
+
+   
 HTCondor and Kerberos
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -1094,6 +1022,86 @@ and set the HTCondor ``executable`` command to ``job.sh``, and its
 ``arguments`` to ``job.py [args]``. For a worked-out example of this,
 see section `HTCondor from Python`_.
 
+
+HTCondor from Python
+~~~~~~~~~~~~~~~~~~~~
+
+HTCondor comes with `Python
+Bindings <https://htcondor.readthedocs.io/en/23.0/apis/python-bindings/tutorials/index.html>`__,
+which provide a powerful mechanism to interact with HTCondor from a
+Python program.
+
+Most users are probably just interested on how to use these bindings to
+submit and manage jobs all from within Python. A nice tutorial for this
+can be found
+`here <https://htcondor.readthedocs.io/en/23.0/apis/python-bindings/tutorials/Submitting-and-Managing-Jobs.html>`__,
+but as a quick example, the following script illustrates how you can use
+Python to submit a number of jobs:
+
+.. note::
+
+   The complete example can be found in the
+   ``examples/python_bindings`` directory of the
+   `HTCondor@IAC <https://github.com/angel-devicente/htcondor-iac>`__
+   repository.
+
+   
+.. literalinclude:: examples/python_bindings/submit.py
+   :language: python
+
+
+A few things to note about this example are:
+
+-  ``itemdata`` is the mechanim used at submission (see call to
+   ``schedd.submit``) to specify how many jobs will be submitted. In
+   this case we build ``itemdata`` out of the ``job_parameters`` list,
+   so there will be three jobs. Each member of ``itemdata`` is a
+   dictionary, that specifies the values of the variables to use for
+   each job. For example, the ``parameter`` key is passed to each job as
+   an argument by using the syntax ``$(parameter)`` (see call to
+   ``htcondor.Submit``).
+-  the description of a job is done via a ``Submit`` object. This is, in
+   essence, the Pythonic equivalent of a submit file, so the same
+   variables, macros and commands can be used (see section `Submit files`_).
+-  when you use the ``condor_submit`` command, HTCondor will, by
+   default, make sure that the jobs will be executed only in machines
+   with the same operating system version as the machine from where you
+   submit the jobs. When you use the Python bindings this is not the
+   case, so we use the ``requirements`` command to specify that in this
+   case we only want to use execution machines with Ubuntu 22.
+-  this example illustrates how to use Python to submit jobs, where each
+   job is itself a Python code (here executed via the ``job.sh``
+   wrapper), but this doesn't have to be so. You could specify any other
+   type of executable file (for example a compiled code as in the
+   examples in section `Examples`_).
+
+   -  at the same time we also show how we can use software not
+      installed in default locations. In this example we want to use the
+      Python 3.10 interpreter which we would normally use in an
+      interactive session by executing the command
+      ``module load python/3.10`` (see the `Environment
+      Modules <../software/modules.html>`__ documentation). This is done
+      by using the ``job.sh`` wrapper script, and it is further
+      explained in section `HTCondor and Environment Modules`_.
+
+.. note::
+
+   In the example above, if we wanted to use the default system
+   python we could set the python interpreter itself
+   (``/usr/bin/python3``) as the ``executable``. But HTCondor will,
+   by default, transfer this to the executing directory, which is
+   most likely not what we want for system applications. To avoid
+   this, we should also set ``tranfer_executable`` to ``false``.
+
+
+HTCondor and Apptainer
+~~~~~~~~~~~~~~~~~~~~~~
+
+TO DO:
+ + point to apptainer documentation in HPC_docs
+ + create example of use
+
+   
 Acknowledging HTCondor in publications
 --------------------------------------
 
