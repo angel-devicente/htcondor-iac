@@ -598,7 +598,9 @@ Checking pool status
 
 -  ``condor_status`` List slots in the HTCondor pool and their status:
    ``Owner`` (used by owner), ``Claimed`` (used by HTCondor),
-   ``Unclaimed`` (available to be used by HTCondor), etc.
+   ``Unclaimed`` (available to be used by HTCondor), etc. (Check the official
+   documentation for the list of all possible `machine states
+   <https://htcondor.readthedocs.io/en/23.0/admin-manual/policy-configuration.html#machine-states>`__). 
 
    -  ``-avail`` List those slots that are not busy and could run
       HTCondor jobs at this moment
