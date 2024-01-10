@@ -1099,14 +1099,57 @@ A few things to note about this example are:
 HTCondor and Apptainer
 ~~~~~~~~~~~~~~~~~~~~~~
 
-TO DO:
- + point to apptainer documentation in HPC_docs
- + (see astcrop.submit file in recipes/condor_apptainer). Tested from deimos. No
-   need to worry about sinter, condor does not work as a regular user, so
-   /dev/fuse permissions is not a problem
+*The files for this recipe are in directory*
+`condor_apptainer <https://github.com/angel-devicente/htcondor-iac/tree/main/recipes/condor_apptainer>`__.
 
-The example takes all .fits files in directory download, applies the astcrop
-command to them and saves the results to flat-ir.
+Containers are very useful to package up pieces of software in a way that is
+portable and reproducible. Apptainer (a.k.a Singularity) is a container
+technology especially tailored to HPC and scientific software, and which plays
+very nicely with HTCondor.
+
+Here we just briefly describe how to use Apptainer containers with
+HTCondor. This assumes that you have already prepared a ".sif" container
+file. If you are new to Apptainer, you can follow our `"Quick Start" tutorial
+<../software/apptainer.html#quick-start>`__.
+
+Once you have your container as a single ".sif" file (for example, named
+"custom.sif" if you followed the tutorial mentioned in the previous paragraph),
+submitting HTCondor jobs that use this container is very easy. You can read the
+official documentation for further `details
+<https://htcondor.readthedocs.io/en/23.0/users-manual/container-universe-jobs.html>`__,
+but the following sample submit file should be sufficient to get you started:
+
+::
+
+   container_image         = ./custom.sif
+
+   output                  = out.$(Process)
+   error                   = err.$(Process)
+   log                     = custom.log
+
+   should_transfer_files   = YES
+   when_to_transfer_output = ON_EXIT
+
+   transfer_input_files = $(fitsfile)
+   transfer_output_remaps = "$Fn(fitsfile) = flat-ir/$Fn(fitsfile).fits"
+
+   executable = /usr/bin/astcrop
+   arguments  = "--mode=wcs -h0 --output=$Fn(fitsfile) --polygon='53.187414,-27.779152 : 53.159507,-27.759633 : 53.134517,-27.787144 : 53.161906,-27.807208' $BASENAME(fitsfile)"
+
+   queue fitsfile matching files download/*.fits
+   
+
+This assumes that we want to take all ``.fits`` files in the
+``download`` directory, run the ``astcrop`` tool for each of them, and save the
+results to the ``flat-ir`` directory.
+
+By using this submit file we are telling HTCondor that our container is the
+``custom.sif`` file, and that the executable is the ``/usr/bin/astcrop`` command
+inside it. The other commands in the submit file are not specific to container
+jobs (in particular, the syntax used for the ``queue`` command is useful to run
+the above specified executable for each file matching a certain pattern, in this
+case ``.fits`` files. This was explained above in section `Several \`\`Queue\`\`
+commands`_).
    
    
 Acknowledging HTCondor in publications
@@ -1149,9 +1192,9 @@ IAC-Zulip
    <a href="https://iac-es.zulipchat.com"><img src="https://img.shields.io/badge/zulip-join_chat-brightgreen.svg" /></a>
 
 
-.. |SLOTS| replace:: 1408
-.. |HOURS| replace:: 33790
-.. |YEARS| replace:: 3.9       
+.. |SLOTS| replace:: 1628
+.. |HOURS| replace:: 39072
+.. |YEARS| replace:: 4.46       
 .. |VERSION| replace:: 23.0.0
 .. |URL| replace:: 23.0                       
 
