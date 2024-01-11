@@ -811,7 +811,7 @@ Checking and managing submitted jobs
       constraint
    -  ``-all`` Hold all my jobs from the queue
 
--  ``condor_rm <option>`` Remove jobs from the queue Jobs will be
+-  ``condor_rm <option>`` Remove jobs from the queue. Jobs will be
    removed from the queue even it they are running. But note that only
    jobs submitted from the current machine will be removed, so if you
    submitted jobs from different machines, you need to remove your jobs
