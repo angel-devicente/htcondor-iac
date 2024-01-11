@@ -542,7 +542,7 @@ This example simply defines:
    variable ``$(Process)`` will have the range [0:99]
 
                     
-Several ``Queue`` commands
+Several Queue commands
 ++++++++++++++++++++++++++
 
 Instead of the single ``Queue 100`` command above, sometimes it might be useful
@@ -1148,8 +1148,8 @@ By using this submit file we are telling HTCondor that our container is the
 inside it. The other commands in the submit file are not specific to container
 jobs (in particular, the syntax used for the ``queue`` command is useful to run
 the above specified executable for each file matching a certain pattern, in this
-case ``.fits`` files. This was explained above in section `Several \`\`Queue\`\`
-commands`_).
+case ``.fits`` files. This was explained above in section `Several Queue
+commands`_). 
    
    
 Acknowledging HTCondor in publications
