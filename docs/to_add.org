@@ -1,4 +1,4 @@
-# Time-stamp: <2024-01-09 09:59:52 angelv> 
+# Time-stamp: <2024-01-25 10:48:58 angelv> 
 
 !!!!!!!!!!!!! DO NOT UPDATE
 !!!!!!!!!!!!!  all user documentation now goes to index.rst
@@ -2293,33 +2293,9 @@ again), adding a reason and/or subcode if you want to do that. Please, visit
 *Condor submit file section -> CondorHowTo#howto_failing* to get detailed info
 and examples about this feature.
 
-*** I have a fault tolerant application, can I save the state and restore it when executing with Condor?
 
-Yes, Condor allows you to use your fault tolerant programs. You only need
-to use next command to specify that Condor has to save files when your program
-fails or Condor needs to evict it:
 
- =when_to_transfer_output= = ON_EXIT_OR_EVICT
 
-You have more information in the Condor manual: ''The =ON_EXIT_OR_EVICT= option
-is intended for fault tolerant jobs which periodically save their own state and
-can restart where they left off. In this case, files are spooled to the submit
-machine any time the job leaves a remote site, either because it exited on its
-own, or was evicted by the HTCondor system for any reason prior to job
-completion. The files spooled back are placed in a directory defined by the
-value of the SPOOL configuration variable. Any output files transferred back to
-the submit machine are automatically sent back out again as input files if the
-job restarts.''
-
-*** My jobs have some dependencies, is it possible to specify that? 
-
-Yes, if you have some dependencies in your inputs, outputs or execution
-order, you can specify it using a ''directed acyclic graph (DAG)''. Condor has a
-manager (called
-*http://research.cs.wisc.edu/htcondor/manual/v8.6/2_10DAGMan_Applications.html |
-DAGMan*) to deal with these jobs, but you must use special commands, like
-submitting your jobs with =condor_submit_dag=. Please, visit *Condor submit file
-page -> CondorHowTo#howto_dagman* for more info and examples.
 
 
 

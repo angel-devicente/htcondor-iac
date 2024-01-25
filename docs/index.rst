@@ -1151,7 +1151,29 @@ the above specified executable for each file matching a certain pattern, in this
 case ``.fits`` files. This was explained above in section `Several Queue
 commands`_). 
    
-   
+
+Advanced Topics
+---------------
+
+Self-checkpointing applications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you need to run an application for a very long time you will quickly realize
+that HTCondor is not, by default, the best environment to use. The reason for
+this is that your job is likely to be evicted many times (by other HTCondor jobs
+with higher priority or just because the executing host gets busy with
+non-HTCondor load), and every time the job is evicted it will have to start all
+over again from the beginning.
+
+To avoid this problem, HTCondor can be instructed to restart your job from the
+latest available checkpoint after it gets evicted (assuming that your software
+is able to create checkpoints at regular intervals). To understand how to go
+about it (the requirements that your code must meet, the available command to be
+used in your submit files, etc.), check the official
+`Self-Checkpointing Applications <https://htcondor.readthedocs.io/en/23.0/users-manual/self-checkpointing-applications.html>`__ 
+section of the HTCondor Manual.
+
+
 Acknowledging HTCondor in publications
 --------------------------------------
 
