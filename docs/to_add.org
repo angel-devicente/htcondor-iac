@@ -1,4 +1,4 @@
-# Time-stamp: <2024-01-25 10:48:58 angelv> 
+# Time-stamp: <2024-01-25 11:24:48 angelv> 
 
 !!!!!!!!!!!!! DO NOT UPDATE
 !!!!!!!!!!!!!  all user documentation now goes to index.rst
@@ -2209,89 +2209,17 @@ possible for you to create Matlab executables using the *Matlab Compiler ->
 http://www.mathworks.es/products/compiler/*. You have more info about this topic
 *here -> https://htcondor-wiki.cs.wisc.edu/index.cgi/wiki?p=HowToRunMatlab*.
 
-*** I need to run some commands or scripts before/after my executable, is that possible? 
-
-Yes, it is possible adding the =+PreCmd= and =+PostCmd= commands to your
-submit file, respectively. Running scripts before/after jobs could be useful if
-you need to do some operations in your input or output files, like changing
-their names, moving or copying them to other locations, etc. Also you can use
-these commands for debugging purposes, like using the shell command =tree= to
-check where your input/output are placed:
-
- =+PreCmd=        = "preScript.sh"
- =+PreArguments=  = "-iv"
- =+PostCmd=       = "tree"
- =+PostArguments= = "-o tree.out"
-
- =should_transfer_files= = YES
- =transfer_input_files=  = preScript.sh, /usr/bin/tree
-
-Generally, you also have to add or update the =transfer_input_files= command to
-include your scripts in the list of files to be copied to the remote machines
-(make sure that command =should_transfer_files = YES= is present, too). These
-commands are intended to be used with user's scripts. If you want to run shell
-commands (like =tree= in the example), you have to transfer that command (use
-=which <cmd>= to know its location).
 
 
-*** Is it possible to limit the maximum number of concurrent running jobs? 
 
-There are some situations where it could be interesting to limit the number
-of jobs that can concurrently run. For instance, when your application needs
-licences to run and few of them are available, or when your jobs access a shared
-resource (like directly reading/writing files located at =/scratch=, too many
-concurrent access could produce locks and a considerable slowdown in your and
-others' computer performance). Please, visit *Condor submit file page ->
-CondorHowTo#howto_limit* to see details and example about how you can add these
-limits.
 
-*** I need to do some complex operations in my submit file, is that possible? 
 
-Yes, Condor has some *predefined functions* and some *special macros* that
-you can use in your submit file:
 
-+ evaluate expressions: =eval()=, ... 
-+ flow control: = ifThenElse()=, ...
-+ manipulate strings : =size()=, =strcat()=, =substr()=, =strcmp()=, ... 
-+ manipulate lists: =stringListSize()=, =stringListSum()=, =stringListMember()=, ...
-+ manipulate numbers: =round()=, =floor()=, =ceiling()=, =pow()=, ...
-+ check and modify types: =isReal()=, =isError()=, =int()=, =real()=...
-+ work with times: =time()=, =formatTime()=, =interval()=, ...
-+ random: =random()=, =$RANDOM_CHOICE()=, =$RANDOM_INTEGER()=, ...
-+ etc. 
 
-Check documentation to see the complete list of *predefined functions ->
-http://research.cs.wisc.edu/htcondor/manual/v8.6/4_1HTCondor_s_ClassAd.html#SECTION00512400000000000000*,
-and also the *function and pre-defined macros ->
-http://research.cs.wisc.edu/htcondor/manual/v8.6/3_5Configuration_Macros.html#SECTION00451800000000000000*.
 
-*** I would like to submit my jobs now, but they should run at a programmed time, can I do that? 
 
-Sometimes it might be interesting to run your jobs at a specific time,
-maybe your application depends on some data that are automatically generated at
-a given time and you want to run your jobs after that moment. Or you want to
-submit your jobs now, but for any reason they have to run in X hours from the
-submission time, or you want to regularly run the some jobs several times every
-day, or every week... Condor has several commands to deal with these situations,
-please, visit *Condor submit file page -> CondorHowTo#howto_runintime* to see
-details and examples about how you can specify that jobs begin at a programmed
-time, and also how to program periodical programmed executions.
 
-*** Jobs leave the queue after finishing. If something went wrong... could they be held or automatically re-executed instead? 
 
-By default all your jobs will leave the queue after completion. But it
-could happen that some of your jobs get ''complete'' status because they failed
-(for instance, they could fail due to bad inputs, or there is a missing software
-package in an specific machine, etc., see also *#blackholes | this FAQ*). If
-that happens and you are able to detect it, you can force that they stay in the
-queue with 'on hold' status or get the 'Idle' status so they will be executed
-again. You can control which jobs you want to change the status according to
-their execution time (if it is abnormally short or long), their exit code,
-etc. Use =on_exit_hold= command to change its state to "''on hold''"; or
-=on_exit_remove= command to re-execute the job (it will get the ''Idle'' status
-again), adding a reason and/or subcode if you want to do that. Please, visit
-*Condor submit file section -> CondorHowTo#howto_failing* to get detailed info
-and examples about this feature.
 
 
 
