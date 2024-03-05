@@ -890,11 +890,11 @@ Other commands
    <https://htcondor.readthedocs.io/en/23.0/automated-workflows/index.html>`__
    for more information. 
 -  ``condor_version`` Print the version of HTCondor.
-- If you want some general information about the HTCondor Pool, where jobs have
+-  If you want some general information about the HTCondor Pool, where jobs have
    been executed on, etc., as mentioned in section `How powerful is HTCondor?`_,
    you can check real-time **HTCondor@IAC statistics** (global and per user)
    `here
-   <https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false>`__.
+   <https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false>`__. 
 
 
 How-to Recipes
