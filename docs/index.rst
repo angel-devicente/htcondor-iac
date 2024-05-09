@@ -61,23 +61,33 @@ your machine when they are complete.
 How **powerful** is HTCondor?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-HTCondor calls a *slot* the unit that executes a job, typically a CPU or a core
-if the CPU has several of them. Right now we have |SLOTS| slots that might
-execute applications submitted via HTCondor. It means that everyday more than
-|HOURS| hours could be available to run HTCondor jobs, close to |YEARS| years of
-computation in a single day! Obviously, this is the theoretical maximum if no
-one were using their computers and all slots were idle, but the number of actual
-available slots could be around 600 during office hours and around 900 at nights
-and weekends.
+At present we have |SERVERS| servers (with a total of |CORES| CPU cores) that might
+execute applications submitted via HTCondor. It means that every day more than
+|HOURS| core-hours could be available to run HTCondor jobs, close to |YEARS|
+years of computation in a single day! Obviously, this is the theoretical maximum
+if no one were using their computers and all servers were idle, but the number
+of actual available cores could be around 600 during office hours and around 900
+at nights and weekends.
 
 You can see real-time **HTCondor@IAC statistics** (global and per user) `here
 <https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false>`__.
 The figure below is an example showing the global usage where *Owner* represents
 *slots* that are being used outside of HTCondor. The remaining *slots* are
 available to HTCondor, but if there are no eligible jobs to run, those slots
-will be in *CPUsNotInUse* state. Those *slots* that are actually being used by
-HTCondor are those in the *CPUsInUse* state.
+will be in *SLOTsNotInUse* state. Those *slots* that are actually being used by
+HTCondor are those in the *SLOTsInUse* state.
 
+.. note::
+
+   These statistics figures show *SLOT* usage, not *CORE* (or *CPU*) usage. In
+   HTCondor@IAC we use `Partitionable Slots
+   <https://htcondor.readthedocs.io/en/23.0/admin-manual/policy-configuration.html#dynamic-provisioning-partitionable-and-dynamic-slots>`__,
+   so the number of *slots* can vary from as low as |SERVERS| (where each server
+   is a *slot*) to |CORES| (where each CPU Core is a *slot*). Check section
+   `Partitionable Slots`_ to get a basic understanding of what Partitionable
+   Slots are and how to use them.
+
+   
 .. figure:: images/introduction/weekly_usage.png
    :alt: weekly_usage
 
@@ -93,8 +103,8 @@ machines make up the HTCondor\@IAC pool at any given time in the `HTCondor
 Ganglia webpage
 <https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&c=IAC+HTCondor&h=&tab=m&vn=&hide-hf=false&m=cpu_num&sh=1&z=small&hc=4&host_regex=&max_graphs=0&s=by+name>`__.
 
-Regarding their software specifications, at present most machines are running
-Ubuntu 22.04 and the installed software should be also more or less the same in
+Regarding their software specifications, at present all machines are running
+Ubuntu 22.04 and the installed software should be basically the same in
 every machine (see the `software supported by the SIE
 <http://research.iac.es/sieinvens/SINFIN/Main/software_sinfin.php>`__), which
 makes it easy to run almost every application in any machine.
@@ -113,7 +123,7 @@ If you have an account in the IAC network, then you can use HTCondor.
 
 HTCondor is a batch-processing system (i.e. non-interactive), so you
 submit jobs to the HTCondor queue with the ``condor_submit`` command,
-and providing a text submission file, where you specify the executable
+and by providing a text submission file where you specify the executable
 file, its arguments, inputs and outputs, etc. (see Section `Submitting jobs`_).
 
 You do not need to prepare or compile your programs in any special way
@@ -144,6 +154,30 @@ HTCondor will repeat this process untill all jobs are done, optionally
 sending notifications via email when they are finished or if any errors
 show up.
 
+Partitionable Slots
+~~~~~~~~~~~~~~~~~~~
+
+For a long time HTCondor@IAC was configured with "one CPU-core" Static
+Slots. This means that the execution unit for a HTCondor job was always a
+CPU-core. This was very simple to understand (the number of slots in our
+HTCondor Pool was always the same, and each job would always get assigned a
+single cpu-core), and it was perfect for single-core codes, but not for
+multi-core jobs. 
+
+Recently (May'24) we have modified the HTCondor configuration to make use of
+`Partitionable Slots
+<https://htcondor.readthedocs.io/en/23.0/admin-manual/policy-configuration.html#dynamic-provisioning-partitionable-and-dynamic-slots>`__. With
+**Partitionable Slots** each machine can create dynamic slots (each with varying
+number of cores), depending on the jobs that you want to submit. Thus, you have
+a much greater flexibility than with Static Slots, and you can submit jobs that
+require a single CPU core but also multi-core or multi-threaded jobs that need a
+larger number of CPU cores.
+
+See the sections below for examples on getting information about the current
+existing dynamic slots as well as examples on requesting specific resources for
+each slot.
+
+
 Basic HTCondor workflow
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -163,20 +197,49 @@ Start** you.
    ::
 
       [user@node ~]$ condor_status -compact
-      Machine             Platform     Slots Cpus Gpus  TotalGb FreCpu  FreeGb  CpuLoad ST
+      Machine            Platform     Slots Cpus Gpus  TotalGb FreCpu  FreeGb  CpuLoad ST
 
-      machine1.domain     x64/Ubuntu22  128S    1          3.93    128  503.38     1.24 Oi
-      machine2.domain     x64/Ubuntu22   32S    1          3.93     64  251.50     0.00 Ui 
+      machine1.domain    x64/Ubuntu22    0   128        503.43    128   503.43    5.24 Oi
+      machine2.domain    x64/Ubuntu22    7    64        251.46     22   244.46    0.75 **
 
       [...]
 
                      Total Owner Claimed Unclaimed Matched Preempting  Drain Backfill BkIdle
 
-        x64/Ubuntu18   128    48       0        80       0          0      0        0      0
-        x64/Ubuntu22  1268   763      47       458       0          0      0        0      0
+        x64/Ubuntu22   179    12     148        19       0          0      0        0      0
 
-               Total  1396   811      47       538       0          0      0        0      0
+               Total   179    12     148        19       0          0      0        0      0
 
+
+   
+   In the example above, ``machine1.domain`` has 128 CPU cores, but no *slots*
+   have been created, which means that it is not running any HTCondor jobs. On
+   the other hand, ``machine2.domain`` has 64 CPU cores, and HTCondor has
+   created 7 slots to run 7 jobs (though each job could have requested
+   any number of CPU-cores, as we will see below). While a user would not
+   normally require this information, you could see the details of the created
+   slots in ``machine2.domain`` as follows:
+
+   ::
+      
+      $ condor_status machine2.domain -af:h name cpus state activity memory 
+      name                    cpus state     activity memory
+      slot1@machine2.domain   22   Unclaimed Idle     250327
+      slot1_1@machine2.domain 6    Claimed   Busy     1024  
+      slot1_2@machine2.domain 6    Claimed   Busy     1024  
+      slot1_3@machine2.domain 6    Claimed   Busy     1024  
+      slot1_4@machine2.domain 6    Claimed   Busy     1024  
+      slot1_5@machine2.domain 6    Claimed   Busy     1024  
+      slot1_6@machine2.domain 6    Claimed   Busy     1024  
+      slot1_7@machine2.domain 6    Claimed   Busy     1024     
+
+
+   Here, we can see that out of the existing 64 cores, 22 are still unclaimed
+   (i.e. available to run further HTCondor jobs), while each of the 7 slots
+   (each running a HTCondor job) is using 6 CPU cores (see the commands
+   ``request_memory`` and ``request_cpus`` below).
+      
+               
 -  **Submitting a job**
 
    In order to ask HTCondor to run you application you will need:
@@ -459,17 +522,25 @@ the most common ones (*commands are case-insensitive*):
 
 -  **Other useful commands**
 
-   -  ``request_memory``, ``request_disk`` to request machines with at
-      least a certain amount of total RAM memory or fee disk space
-   -  ``requirements`` a very useful command to register any special
-      needs for a job. For example: to avoid a malfunctioning machine (``Requirements =
-      (Machine != "node.domain")``; to request machines with a given OS
-      version (see note below), etc.
-   -  ``rank`` you can specify some values or combination of them (total
-      memory, free disk space, MIPS, etc.) and HTCondor will choose the
-      best machines for your jobs according to your specifications,
-      where the higher the value, the better (this command is used to
-      specify preferences, not requirements)
+   -  ``request_memory``, ``request_cpus`` to request slots with a number of CPU
+      cores and at least a certain amount of RAM memory. As mentioned above,
+      with **Partitionable Slots** you can request jobs that take up an
+      arbitrary "part" of a machine. By default, ``request_memory=1024`` and
+      ``request_cpus=1``, meaning that each job is requesting a single CPU core
+      and 1GB of RAM. If your job is multi-threaded, you could request, for
+      example, 4 cores and 10GB per job by specifying in the submit file:
+      ``request_cpus = 4`` and ``request_memory=10000``.
+   -  ``request_disk`` to request machines with at
+      least a certain amount of total RAM memory or free disk space.   
+   -  ``requirements`` a very useful command to register any special needs for a
+      job. For example: to avoid a malfunctioning machine (``Requirements =
+      (Machine != "node.domain")``; to request machines with a given OS version
+      (see note below), etc.
+   -  ``rank`` you can specify some values or combination of them (total memory,
+      free disk space, MIPS, etc.) and HTCondor will choose the best machines
+      for your jobs according to your specifications, where the higher the
+      value, the better (this command is used to specify preferences, not
+      requirements).
    -  ``getenv`` (*default*: ``False``) if set to ``True``, the job will
       run with the same environment variables as when the job was
       submitted. If ``False`` the jobs will have no preset environment
@@ -490,9 +561,9 @@ the most common ones (*commands are case-insensitive*):
    -  ``+PreCmd``, ``+PreArguments``, ``+PostCmd``, ``+PostArguments``
       commands to specify scripts to run before and/or after your
       executable (to convert, decompress, etc. your inputs and outputs
-      if needed, or for debugging)
+      if needed, or for debugging).
    -  ``notify_user``, ``notification`` commands to request a
-      notification (an email) when your jobs begin, fail and/or finish
+      notification (an email) when your jobs begin, fail and/or finish.
 
 Examples
 ~~~~~~~~
@@ -505,19 +576,6 @@ Examples
    repository.
 
 
-.. note::
-
-   Currently the IAC HTCondor Pool has mostly ``Ubuntu22`` machines but also a
-   few ``Ubuntu18`` ones. As explained in the `condor_submit
-   <https://htcondor.readthedocs.io/en/23.0/man-pages/condor_submit.html>`__
-   documentation, HTCondor will schedule jobs to run in machines with the same
-   ``Arch`` and ``OpSys`` values of the submit machine. These values are not
-   sufficient to differentiate the ``Ubuntu18`` and the ``Ubuntu22`` machines
-   (``Arch`` is "X86_64" and ``OpSys`` is "LINUX" in all of them). If your code
-   can only run in a given version, you can specify the ``requirements`` with
-   something like: ``Requirements = (OpSysAndVer == "Ubuntu22")``.
-   
-   
 HTCondor *Hello World!*
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1214,16 +1272,24 @@ IAC-Zulip
    <a href="https://iac-es.zulipchat.com"><img src="https://img.shields.io/badge/zulip-join_chat-brightgreen.svg" /></a>
 
 
-.. |SLOTS| replace:: 1628
-.. |HOURS| replace:: 39072
-.. |YEARS| replace:: 4.46       
+.. |SERVERS| replace:: 31
+.. |CORES| replace:: 1560
+.. |HOURS| replace:: 37440
+.. |YEARS| replace:: 4.27      
 .. |VERSION| replace:: 23.0.0
 .. |URL| replace:: 23.0                       
 
 ..
-  Hours = slots*24 ; years= hours/24/365
+  Hours = cores*24 ; years= hours/24/365
   
 ..
   |URL| substitution inside URLs does not work, so in URLs I put the value
   explicitly. 
   
+
+
+
+
+
+
+
