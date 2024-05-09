@@ -157,7 +157,7 @@ show up.
 Partitionable Slots
 ~~~~~~~~~~~~~~~~~~~
 
-For a long time HTCondor@IAC was configured with "one CPU-core" Static
+For a long time HTCondor\@IAC was configured with "one CPU-core" Static
 Slots. This means that the execution unit for a HTCondor job was always a
 CPU-core. This was very simple to understand (the number of slots in our
 HTCondor Pool was always the same, and each job would always get assigned a
