@@ -80,7 +80,7 @@ HTCondor are those in the *SLOTsInUse* state.
 .. note::
 
    These statistics figures show *SLOT* usage, not *CORE* (or *CPU*) usage. In
-   HTCondor@IAC we use `Partitionable Slots
+   HTCondor\@IAC we use `Partitionable Slots
    <https://htcondor.readthedocs.io/en/23.0/admin-manual/policy-configuration.html#dynamic-provisioning-partitionable-and-dynamic-slots>`__,
    so the number of *slots* can vary from as low as |SERVERS| (where each server
    is a *slot*) to |CORES| (where each CPU Core is a *slot*). Check section
