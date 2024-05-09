@@ -88,8 +88,8 @@ HTCondor are those in the *SLOTsInUse* state.
    Slots are and how to use them.
 
    
-.. figure:: images/introduction/weekly_usage.png
-   :alt: weekly_usage
+.. figure:: images/introduction/hourly_usage.png
+   :alt: hourly_usage
 
 Which machines are part of HTCondor?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
