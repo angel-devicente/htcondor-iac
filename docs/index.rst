@@ -70,23 +70,25 @@ of actual available cores could be around 600 during office hours and around 900
 at nights and weekends.
 
 You can see real-time **HTCondor@IAC statistics** (global and per user) `here
-<https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false>`__.
+<https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=CPU_usage&hide-hf=false>`__.
 The figure below is an example showing the global usage where *Owner* represents
-*slots* that are being used outside of HTCondor. The remaining *slots* are
+*cores* that are being used outside of HTCondor. The remaining *cores* are
 available to HTCondor, but if there are no eligible jobs to run, those slots
-will be in *SLOTsNotInUse* state. Those *slots* that are actually being used by
-HTCondor are those in the *SLOTsInUse* state.
+will be in *CPUsNotInUse* state. Those *cores* that are actually being used by
+HTCondor are those in the *CPUsInUse* state.
 
 .. note::
 
-   These statistics figures show *SLOT* usage, not *CORE* (or *CPU*) usage. In
+   These statistics figures show *CORE* usage, which is the most interesting
+   metric. Nevertheless, in
    HTCondor\@IAC we use `Partitionable Slots
    <https://htcondor.readthedocs.io/en/23.0/admin-manual/policy-configuration.html#dynamic-provisioning-partitionable-and-dynamic-slots>`__,
    so the number of *slots* can vary from as low as |SERVERS| (where each server
    is a *slot*) to |CORES| (where each CPU Core is a *slot*). Check section
    `Partitionable Slots`_ to get a basic understanding of what Partitionable
-   Slots are and how to use them.
-
+   Slots are and how to use them. And if you want, you can check the
+   **HTCondor@IAC statistics** (global and per user) for *slots* `here
+   <https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=SLOT_usage&hide-hf=false>`__.
    
 .. figure:: images/introduction/hourly_usage.png
    :alt: hourly_usage
