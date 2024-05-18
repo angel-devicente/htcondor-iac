@@ -66,14 +66,14 @@ execute applications submitted via HTCondor. It means that every day more than
 |HOURS| core-hours could be available to run HTCondor jobs, close to |YEARS|
 years of computation in a single day! Obviously, this is the theoretical maximum
 if no one were using their computers and all servers were idle, but the number
-of actual available cores could be around 600 during office hours and around 900
+of actual available cores could be around 600 during office hours and around 1000
 at nights and weekends.
 
 You can see real-time **HTCondor@IAC statistics** (global and per user) `here
 <https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=CPU_usage&hide-hf=false>`__.
 The figure below is an example showing the global usage where *Owner* represents
 *cores* that are being used outside of HTCondor. The remaining *cores* are
-available to HTCondor, but if there are no eligible jobs to run, those slots
+available to HTCondor, but if there are no eligible jobs to run, those *cores*
 will be in *CPUsNotInUse* state. Those *cores* that are actually being used by
 HTCondor are those in the *CPUsInUse* state.
 
@@ -90,8 +90,8 @@ HTCondor are those in the *CPUsInUse* state.
    **HTCondor@IAC statistics** (global and per user) for *slots* `here
    <https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=SLOT_usage&hide-hf=false>`__.
    
-.. figure:: images/introduction/hourly_usage.png
-   :alt: hourly_usage
+.. figure:: images/introduction/weekly_usage.png
+   :alt: weekly_usage
 
 Which machines are part of HTCondor?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
