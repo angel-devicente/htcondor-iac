@@ -1004,7 +1004,7 @@ many times as you wish):
    ::
 
       $ ktutil  
-      ktutil:  addent -password -p <username>@IAC.ES -k 1 -e AES256-CTS
+      ktutil:  addent -password -p <username>@IAC.ES -k 1 -e rc4-hmac
       Password for <username>@IAC.ES: 
       ktutil:  wkt krb_keytab
       ktutil:  q 
