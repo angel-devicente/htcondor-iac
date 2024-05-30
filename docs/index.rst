@@ -1085,6 +1085,53 @@ and set the HTCondor ``executable`` command to ``job.sh``, and its
 see section `HTCondor from Python`_.
 
 
+Long-running applications
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Due to the HTCondor nature, the environment is best suited for applications that
+don't take long to execute. This is so because applications running under
+HTCondor can be evicted before completion if the local load of the executing
+machine becomes high or if jobs with higher priority enter the HTCondor pool
+queue. After eviction, HTCondor will (at a later time) restart the job in
+another execution machine and, by default, the job will start afresh discarding
+any previously generated partial results.
+
+While there is no hard rule about the required duration of jobs to avoid
+evictions (this is highly dependent on the local load of the execution machines
+and the HTCondor queue load), jobs that complete in about an hour have a very
+high probability of avoiding evictions. But as the duration of a job increases
+so does the probability of eviction, which implies a restart of the job, meaning
+longer time for you to obtain the results and wasted computation.
+
+While checkpointing can be tricky sometimes to do right and more sophisticated
+approaches exist (see Section `Self-checkpointing applications`_), in most cases
+one can avoid unnecessary computation by simply saving the necessary code state
+and generated output, and making sure that these are saved regularly in case an
+eviction occurs, so that they can be transferred to the new execution machine to
+start computation from the last saved state and not from the beginning.
+
+Saving the necessary code state obviously depends on the code itself but, as a
+toy example, the following Python script uses the "pickle" module to save the
+state (the "counter" variable) to a file, which the code can later use to
+restart the computation.
+
+.. literalinclude:: examples/checkpointing/pkl_checkp.py
+   :language: python
+
+              
+The trick to avoid wasted computation due to restarts is to be able to save this
+saved state file (and probably any other generated output so far), to be used in
+subsequent job restarts. This is accomplished by using "when_to_transfer_output
+= ON_EXIT_OR_EVICT" (see the documentation `File Transfer
+<https://htcondor.readthedocs.io/en/23.0/users-manual/file-transfer.html#specifying-if-and-when-to-transfer-files>`__
+section). 
+
+.. note::
+
+   The complete example can be found in the directory
+   `examples/checkpointing <https://github.com/angel-devicente/htcondor-iac/tree/main/examples/checkpointing>`__.
+
+
 HTCondor from Python
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -1102,10 +1149,8 @@ Python to submit a number of jobs:
 
 .. note::
 
-   The complete example can be found in the
-   ``examples/python_bindings`` directory of the
-   `HTCondor@IAC <https://github.com/angel-devicente/htcondor-iac>`__
-   repository.
+   The complete example can be found in the directory
+   `examples/python_bindings <https://github.com/angel-devicente/htcondor-iac/tree/main/examples/python_bindings>`__.
 
    
 .. literalinclude:: examples/python_bindings/submit.py
@@ -1227,11 +1272,29 @@ over again from the beginning.
 
 To avoid this problem, HTCondor can be instructed to restart your job from the
 latest available checkpoint after it gets evicted (assuming that your software
-is able to create checkpoints at regular intervals). To understand how to go
-about it (the requirements that your code must meet, the available command to be
-used in your submit files, etc.), check the official
+is able to create checkpoints at regular intervals). A simple way (with a
+worked-out example) to perform this was already explained above in section
+`Long-running applications`_, but there are more advanced ways of carrying out
+checkpointing.
+
+To better understand how to go about it (the requirements that your code must
+meet, the available commands to be used in your submit files, etc.), check the
+official 
 `Self-Checkpointing Applications <https://htcondor.readthedocs.io/en/23.0/users-manual/self-checkpointing-applications.html>`__ 
-section of the HTCondor Manual.
+section of the HTCondor Manual, where among other things you can see how to use
+different exit codes in your application to indicate that a checkpoint was
+created and avoid some of the possible problems that you might face with the
+simple approach presented in section `Long-running applications`_.
+
+Another interesting approach to consider is to prepare your application as a
+container (see section `HTCondor and Apptainer`_), and leverage the
+`Apptainer checkpointing mechanism <https://apptainer.org/docs/user/1.3/checkpoint.html>`__.
+While this might be more difficult to set up if your application is not
+"containerized", it has the advantage of providing all the benefits of getting
+your application in a portable and reproducible container while at the same time
+simplifying the application checkpointing itself, since the code does not have
+to be changed, since the container itself (and all its running state) is
+checkpointed by Apptainer.
 
 
 Acknowledging HTCondor in publications
