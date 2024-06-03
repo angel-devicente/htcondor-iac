@@ -2,7 +2,7 @@
 
 # Prepare the environment 
 source /usr/local/glob/SIE/.bashrc_SIE
-export USER=nouser
+export USER=<username>
 
 module load python/3.10  # load modules
 

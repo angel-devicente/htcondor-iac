@@ -17,6 +17,6 @@ job number ID.
 Running
 -------
 
-Just run as:
-"python3 submit.py"
+Substitute "<username>" in the file "job.sh" with your username and just run as:
+"python3 submit.py" 
 
