@@ -1048,6 +1048,15 @@ many times as you wish):
    arguments the two arguments specified in the ``kerberos.submit``
    file.
 
+.. note::
+
+   All the above files (the submission script, the executable file, etc.) should
+   not be placed in a Kerberos protected resource. Instead, you should put them
+   in a partition like ``/scratch`` or similar, to make sure that HTCondor will
+   have access to them even if you log out of the submit machine (and even if
+   your Kerberos ticket expires).
+   
+   
 HTCondor and Environment Modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
