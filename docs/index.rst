@@ -1323,6 +1323,11 @@ standard acknowledgment format, we suggest the following:
    Ministry of Economy and Competitiveness with FEDER funds, code
    IACA13-3E-2493.
 
+The use of HTCondor should also be acknowledged when filling the "Informe
+Anual" of the projects. When introducing a refereed publications in the section
+"Produccion Cientifica", add as a used resource the following: "Supercomputing:
+HTCondor".
+
 Further information and support
 -------------------------------
 
