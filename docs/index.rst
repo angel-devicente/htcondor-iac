@@ -1306,22 +1306,34 @@ to be changed, since the container itself (and all its running state) is
 checkpointed by Apptainer.
 
 
-Acknowledging HTCondor in publications
---------------------------------------
-
-It is important that you acknowledge HTCondor in any publication of your
-work where you have used HTCondor (and we would be grateful if you could
-send us the details of the published paper). This will help us to
-improve the visibility of the HTCondor\@IAC facility and ensure that it
-is available at the IAC for the foreseable future. Although there is no
-standard acknowledgment format, we suggest the following:
+Acknowledging HTCondor in your work
+-----------------------------------
 
 .. important::
+   
+   It is important that you acknowledge the use of the IAC HTCondor. This will
+   help us improve the visibility of the HTCondor\@IAC facility and ensure
+   that it is available at the IAC for the foreseeable future. 
 
+
+Publications
+~~~~~~~~~~~~
+
+Please acknowledge the use of the IAC HTCondor in any publication of your work
+where you have used HTCondor (and we would be grateful if you could send
+us the details of the published paper). Although there is
+no standard acknowledgment format, we suggest the following:
+
+::
+   
    This paper made use of the IAC HTCondor facility
    (http://research.cs.wisc.edu/htcondor/), partly financed by the
    Ministry of Economy and Competitiveness with FEDER funds, code
    IACA13-3E-2493.
+
+
+Informe anual
+~~~~~~~~~~~~~
 
 The use of HTCondor should also be acknowledged when filling the "Informe
 Anual" of the projects. When introducing a refereed publication in the
@@ -1343,14 +1355,16 @@ direct support to IAC's users who want to use HTCondor: we will not code
 your whole application, but we will help and advise you on how to get
 the most out of HTCondor.
 
-If you want to stay informed about HTCondor\@IAC updates, tips, etc.,
-subscribe to the HTCondor\@IAC *stream* (**#computing/htcondor**) in
-IAC-Zulip
+To stay informed about updates to the HTCondor\@IAC updates, tips, etc., or to ask any
+questions regarding its use, please use the **#computing/htcondor** channel
+in IAC-Zulip.
 
 .. raw:: html
 
-   <a href="https://iac-es.zulipchat.com"><img src="https://img.shields.io/badge/zulip-join_chat-brightgreen.svg" /></a>
-
+   <a href="https://iac-es.zulipchat.com"><img
+   src="https://img.shields.io/badge/zulip-join_chat-brightgreen.svg"
+   style="display: block; margin-right: auto; margin-left: auto;" /></a> 
+   
 
 .. |SERVERS| replace:: 31
 .. |CORES| replace:: 1560
