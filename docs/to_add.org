@@ -1,4 +1,4 @@
-# Time-stamp: <2024-09-15 07:31:04 angelv> 
+# Time-stamp: <2025-03-22 13:09:52 angelv> 
 
 !!!!!!!!!!!!! DO NOT UPDATE
 !!!!!!!!!!!!!  all user documentation now goes to index.rst
@@ -6,72 +6,6 @@
 !!!!!!!!!!!!!  and incorporate them in index.rst
 
 * Submit files (HowTo)                                             :noexport:
-
-** How to ... add requirements on the target machines where my jobs will be run? 
-
-If your program has some limitations (memory, disk, libraries, etc.) and cannot
-run in all machines, you can use =requirements= command to tell HTCondor what
-those limitations are so it can execute your jobs only on machines that satisfy
-those requirements. If you try next command =condor_status -long <your_machine>=
-in your shell, it will list all the parameters that HTCondor has about each slot
-of your machine, and most of those parameters can be used to add
-requirements. Conditions and expressions could be as complex as needed, there is
-a number of *operators, predefined functions, etc.* that can be used. For
-memory, disk and CPUs you can also use =request_memory=, =request_disk= and
-=request_cpus=, respectively.
-
-For example, if your program needs at least 1.5 GB of RAM and 5 GB of free space
-in disk, and due to library dependencies it can only run on machines with Linux
-Fedora17 or above, add next commands in your submit file:
-
- =request_disk=   = 5 GB
- =request_memory= = 1.5 GB
- =requirements=   = (UtsnameSysname == "Linux") && (OpSysName == "Fedora") && (OpSysMajorVer >= 17)
-
-Be careful when specifying the values since the default unit for =request_disk=
-is KB and MB for =request_memory=. It is much better to always specify the unit
-(=KB= or =K=, =MB= or =M=, =GB= or =G=, =TB= or =T=).
-
-
-*Caution!*: Be careful when choosing your restrictions, using them will reduce
-the amount of available slots for your jobs so it will be more difficult to
-execute them. Also check that you are asking for restrictions that can be
-satisfied by our current machines, or your jobs will stay always in idle status
-(you can check the reasons why a job is idle using =condor_q -analyze
-<job.id>=). Before adding a requirement, always check if there are enough slots
-that satisfy it. For instance, to see which slots satisfy the requirements of
-this example, use next command (you can add flag =-avail= to see only the slots
-that could execute your job at this moment):
-
- [...]$ =condor_status= -constraint '(UtsnameSysname == "Linux") && (OpSysName == "Fedora")  
-                    && (OpSysMajorVer >= 17) && (Memory > 1536)  && (Disk >= 5120000)'
-
-If you already know which machines are not able to run your application, you can
-force HTCondor to avoid them... or the opposite: run your application only on
-some machines (see *HOWTOs.#howto_failing* where this is explained).
-
-** How to ... add preferences on the target machines where my jobs will be run?  
-
-Preferences are similar to requirements, but they do not limit the machines (you
-can use both preferences and requirements in the same submit file). HTCondor
-will try to satisfy your preferences when possible, assigning a rank to the
-available machines and choosing those with higher value. For example, we would
-like to use slots with at least 4GB of RAM if they are available and the more
-available disk space, the better. Then commands to add should be the following
-ones:
-
- =Rank=  = Disk && (Memory >= 4096)
-
-Rank is evaluated as a float point expression, and always higher values are the
-better ones. Then, you can do arithmetic operations to emphasize some
-parameters. For example, the first expression will consider the floating point
-speed but will give more importance to run on machines with my same Operating
-System, while the second expression will choose machines with higher values of
-RAM, and those with also more than 100GB of disk will have 200 extra ''points'':
-
- =Rank=  = kflops + (1000000 * (TARGET.OpSysAndVer == MY.OpSysAndVer))
- =Rank=  = Memory + (200 * (Disk >= 102400))   
-
 
 ** How to ... get/set environment variables?  
 
@@ -93,86 +27,6 @@ environment at the submitting time, then set variables called =working_dir= and
 If you want to run your python program using HTCondor, you might need to define
 some environment variables, please, read this FAQ
 *HOWTOs.CondorFAQs#python-fedora*.
-
-
-** How to ... specify the priority of your jobs?  
-
-HTCondor uses two different types of priorities: *job priority* (which of your
-jobs will run first) and *users priority* (which users will run their jobs and
-how many of them).
-
-[+*Job priority*+]
-
-If some of your jobs/clusters are more important than others and you want to
- execute them first, you can use the =priority= command to assign them a
- priority (the higher the value, the higher priority). For instance, if you want
- to execute first the last jobs of a cluster (reverse order), you can use next
-
- command: =priority= = $(Process)
-
-Remember that after submitting your jobs, you can set or change their priority
-using the shell command =condor_prio=.
-
-[+*Users priority*+]
-
-Whenever your jobs are being executed, your user priority is decreased (the more
-jobs are executed, the faster you lose priority). Users with best priority will
-run more jobs and they will begin sooner, so if your jobs are not so important
-or the queue is empty, you can use =nice_user= command to run them without
-wasting your priority. If you set this command to =True=, your jobs will be
-executed by a ''fake user'' with very low priority, so you will save your real
-priority (but it is likely your jobs will not be executed unless the queue is
-almost empty).
-
- =nice_user=     = True
-
-Those jobs will be run with user =nice-user.<your_user>= and they will not
-change your user's priority (you can use shell command =condor_userprio
--allusers= to see your and other users' priority).  
-
-Remember that using =condor_qedit= command you can change the attributes of your
-jobs after submitting them (see this FAQ *HOWTOs.CondorFAQs#ch_submit*). We can
-use this command to change the status of =NiceUser= attribute depending on how
-many slots are free (if there are many free slots, then we can set our jobs as
-''nice'' to run them without affecting our priority, or the opposite, setting
-=NiceUser= to =false= when there are no free slots). For instance, use next
-commands to set all jobs belonging to Cluster ID =1234=:
-
-  =[...]$ condor_q 1234 -af ProcId NiceUser=  ''#Check current status''
-         0 false
-         1 false
-         ...
-
-  =[...]$ condor_qedit 1234 NiceUser True=
-         Set attribute "NiceUser".
-
-  =[...]$ condor_q 1234 -af ProcId NiceUser=  ''#Check current status''
-         0 true
-         1 true
-         ...
-
-If user priority is a critical factor to you, you may want to periodically check
-the queue to change the =NiceUser= attribute according to the current status,
-setting it to =True= when you are the only active user or there is a large
-number of available slots, and set it to =False= when there are more active
-users or a few available slots. In order to simplify this process, we have
-developed a script that automatically performs those operations, you only need
-to specify your username or a particular =clusterID= (and optionally a minimum
-number of available slots) and it will change the =NiceUser= attribute to save
-your real priority as much as possible. You can copy the script from
-=/net/vial/scratch/adorta/htcondor_files/htcondor_niceuser.sh= and use it (or
-modify it) whenever you want. You can even periodically execute it using
-=crontab= (but please, do NOT run it too often to avoid overloading the system,
-every 30 or 60 minutes is fine). Run it with no arguments to get the description
-and syntax.
-
-*Notes*: 
-
-+ You can use =condor_qedit *-constraint* ...= to change the attributes of only
-  some of your jobs.
-+ Condor can evaluate the attributes only when jobs begin to run, so new values
-  may not affect the currently running jobs at the time of using =condor_qedit=,
-  but they will be valid in jobs that begin to run after using the command.
 
 
 ** How to ... deal with jobs that fail?  
@@ -437,68 +291,6 @@ then you can use the following expressions:
  =executable= = myprogram
  =arguments=  = "-var1 $=INT=(I) -var2 $=INT=(J) -var3 $=INT=(K)" ...
  =queue= $(N)
-
-** How to ... program my jobs to begin at a predefined time?  
-
-Sometimes you may want to submit your jobs, but those jobs should not begin at
-that moment (maybe because they depend on some input data that is automatically
-generated at any other time). You can use =deferral_time= command in your submit
-file to specify when your jobs should be executed. Time has to be specified in
-''Unix epoch time'' (the number of seconds elapsed since 00:00:00 on January 1,
-1970, Coordinated Universal Time), but, do not worry, there is a linux command
-to get this value:
-
-  =date= --date "MM/DD/YYYY HH:MM:SS" +%s
-
-For instance, we want to run a job on April 23rd, 2016 at 19:25. Then, the first
-step is to get the epoch time:
-
-  [...]$ =date= --date "04/23/2016 19:25:00" +%s
-
-Our value is =1461435900=, so we only need to add next command to the submit
-file:
-
-  =deferral_time= = 1461435900
-
-Bear in mind that HTCondor will run jobs at that time according to remote
-machines, not yours. If there are wrong dates or times in remote machines, then
-your jobs could begin at other dates and/or times.
-
-Also you can add expressions, like the next one to run your jobs one hour after
-the submission:
-
-  =deferral_time= = (CurrentTime + 3600)
-
-It may happen that your job could not begin exactly at that time (maybe it needs
-that some files are transferred and they are not ready yet), and in that case
-HTCondor may kill your job because the programmed time has expired and your job
-is not already running. To avoid that, you can specify a ''time window'' to
-begin the execution, a few minutes should be enough. For instance, add next
-command to tell HTCondor that your job could begin up to 3 minutes (180 seconds)
-after the programmed time:
-
-  =deferral_window= = 180
-
-*Important:* When you submit your programmed jobs, HTCondor will check which
-machines are able to run them and once the match is done, those machines will
-wait for the programmed time and will not accept any other jobs (actually, it
-will show ''Running'' status while waiting for the programmed time). That means
-a considerable loss of resources that should be always avoided. Using
-=deferral_prep_time= command we can specify that HTCondor could use those
-matched machines till some time before really running your jobs.
-
-Then, add next lines to begin your jobs on April 23rd, 2016 at 19:25, specifying
-that they can begin up to 3 minutes after that date and that HTCondor could run
-other jobs on the matched machines till one minute before the programmed time:
-
-  =deferral_time=      = 1461435900
-  =deferral_window=    = 180
-  =deferral_prep_time= = 60
-
-HTCondor also allows you to use more powerful features, like specifying jobs
-that will be periodically executed at given times using the ''CronTab
-Scheduling'' functionality. Please, read the *Time Scheduling for a Job
-Execution* section in the official documentation to get more information.
 
 
 ** How to ... know the attributes of the machines where our jobs are run?  
