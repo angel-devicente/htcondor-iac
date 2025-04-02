@@ -998,6 +998,12 @@ many times as you wish):
 
 -  Create a Kerberos *keytab* file, compatible with Active Directory
 
+   .. warning::
+
+      If you are trying to recreate your *keytab* file because your IAC
+      credentials have changed, make sure that you delete the existing
+      ``krb_keytab`` file before running the ``ktutil`` command below.
+   
    The following information was taken from
    `here <https://www.itadmintools.com/2011/07/creating-kerberos-keytab-files.html>`__:
 
