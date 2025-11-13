@@ -1072,7 +1072,7 @@ default for HTCondor jobs. At the same time, the usage of Kerberos at the IAC
 makes it difficult to access (see section `HTCondor and Kerberos`_) your shell
 init files (``.bashrc``, ``.bash_profile``, etc.). Thus, you will likely run
 into troubles with HTCondor if you are used to running `Environment Modules
-<../software/modules.html>`__ (for example, by running ``module load
+<../../software/modules.html>`__ (for example, by running ``module load
 python/3.10``) to prepare the environment for your executions. In these cases
 the best option is to create a simple wrapper script that will take care of
 preparing the environment, loading the required modules and then launching the
@@ -1202,7 +1202,7 @@ A few things to note about this example are:
       Python 3.10 interpreter which we would normally use in an
       interactive session by executing the command
       ``module load python/3.10`` (see the `Environment
-      Modules <../software/modules.html>`__ documentation). This is done
+      Modules <../../software/modules.html>`__ documentation). This is done
       by using the ``job.sh`` wrapper script, and it is further
       explained in section `HTCondor and Environment Modules`_.
 
@@ -1230,7 +1230,7 @@ very nicely with HTCondor.
 Here we just briefly describe how to use Apptainer containers with
 HTCondor. This assumes that you have already prepared a ".sif" container
 file. If you are new to Apptainer, you can follow our `"Quick Start" tutorial
-<../software/apptainer.html#quick-start>`__.
+<../../software/apptainer.html#quick-start>`__.
 
 Once you have your container as a single ".sif" file (for example, named
 "custom.sif" if you followed the tutorial mentioned in the previous paragraph),
