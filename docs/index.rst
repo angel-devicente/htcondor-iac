@@ -30,11 +30,11 @@ What is HTCondor?
 ~~~~~~~~~~~~~~~~~
 
 At the IAC we have several `Supercomputing
-<http://research.iac.es/sieinvens/SINFIN/Main/supercomputing.php>`__ resources
+<https://research.iac.es/sieinvens/SINFIN/Main/supercomputing.php>`__ resources
 that allow you to obtain your computational results in much less time and/or
 work with much more complex problems. One of them is `HTCondor
-<http://research.cs.wisc.edu/htcondor/>`__, a High Throughput Computing (`HTC
-<http://en.wikipedia.org/wiki/High-throughput_computing>`__) system. The
+<https://research.cs.wisc.edu/htcondor/>`__, a High Throughput Computing (`HTC
+<https://en.wikipedia.org/wiki/High-throughput_computing>`__) system. The
 underlying idea is quite simple (and powerful): let's use idle machines to
 perform computations while their owners are away. So, in a nutshell, HTCondor is
 an application that is installed in our PCs to make it possible to run a large
@@ -108,7 +108,7 @@ Ganglia webpage
 Regarding their software specifications, at present all machines are running
 Ubuntu 22.04 and the installed software should be basically the same in
 every machine (see the `software supported by the SIE
-<http://research.iac.es/sieinvens/SINFIN/Main/software_sinfin.php>`__), which
+<https://research.iac.es/sieinvens/SINFIN/Main/software_sinfin.php>`__), which
 makes it easy to run almost every application in any machine.
 
 Detailed information about each machine can be obtained with the command
@@ -925,7 +925,7 @@ Getting information from the logs
 
 -  There is also a useful online tool to analyze your log files and get
    more information: ``HTCondor Log Analyzer``
-   (http://condorlog.cse.nd.edu/). The figure below shows an
+   (https://condorlog.cse.nd.edu/). The figure below shows an
    example of the output generated.
 
    .. figure:: images/commands/condor_log_analyzer.png
@@ -1333,7 +1333,7 @@ no standard acknowledgment format, we suggest the following:
 ::
    
    This paper made use of the IAC HTCondor facility
-   (http://research.cs.wisc.edu/htcondor/), partly financed by the
+   (https://research.cs.wisc.edu/htcondor/), partly financed by the
    Ministry of Economy and Competitiveness with FEDER funds, code
    IACA13-3E-2493.
 
@@ -1356,7 +1356,7 @@ Manual <https://htcondor.readthedocs.io/en/23.0/>`__.
 
 If you need help or you are having any kind of issues related to
 HTCondor, the
-`SIE <http://research.iac.es/sieinvens/SINFIN/Main/index.php>`__ gives
+`SIE <https://research.iac.es/sieinvens/SINFIN/Main/index.php>`__ gives
 direct support to IAC's users who want to use HTCondor: we will not code
 your whole application, but we will help and advise you on how to get
 the most out of HTCondor.
