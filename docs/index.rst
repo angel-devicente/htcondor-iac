@@ -70,7 +70,7 @@ of actual available cores could be around 600 during office hours and around 100
 at nights and weekends.
 
 You can see real-time **HTCondor@IAC statistics** (global and per user) `here
-<https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=CPU_usage&hide-hf=false>`__.
+<https://orejon.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=CPU_usage&tz=&hide-hf=false&views_menu_button_group=on>`__.
 The figure below is an example showing the global usage where *Owner* represents
 *cores* that are being used outside of HTCondor. The remaining *cores* are
 available to HTCondor, but if there are no eligible jobs to run, those *cores*
@@ -88,7 +88,7 @@ HTCondor are those in the *CPUsInUse* state.
    `Partitionable Slots`_ to get a basic understanding of what Partitionable
    Slots are and how to use them. And if you want, you can check the
    **HTCondor@IAC statistics** (global and per user) for *slots* `here
-   <https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=SLOT_usage&hide-hf=false>`__.
+   <https://orejon.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=SLOT_usage&hide-hf=false>`__.
    
 .. figure:: images/introduction/weekly_usage.png
    :alt: weekly_usage
@@ -103,7 +103,7 @@ Regarding their hardware specificatons, they are rather heterogeneous and their
 availability and specifications change from time to time. You can check which
 machines make up the HTCondor\@IAC pool at any given time in the `HTCondor
 Ganglia webpage
-<https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&c=IAC+HTCondor&h=&tab=m&vn=&hide-hf=false&m=cpu_num&sh=1&z=small&hc=4&host_regex=&max_graphs=0&s=by+name>`__.
+<https://orejon.ll.iac.es/ganglia/?r=week&cs=&ce=&c=IAC+HTCondor&h=&tab=m&vn=&hide-hf=false&m=cpu_num&sh=1&z=small&hc=4&host_regex=&max_graphs=0&s=by+name>`__.
 
 Regarding their software specifications, at present all machines are running
 Ubuntu 22.04 and the installed software should be basically the same in
@@ -923,12 +923,12 @@ Getting information from the logs
 
          condor_history -constraint 'RemoveReason=!=UNDEFINED'
 
--  There is also a useful online tool to analyze your log files and get
+- At the IAC we have developed an online tool to analyze your log files and get
    more information: ``HTCondor Log Analyzer``
-   (https://condorlog.cse.nd.edu/). The figure below shows an
-   example of the output generated.
+   (https://orejon.ll.iac.es/sieapps/condor-log-analizer/). The figure below
+   shows an example of the output generated.
 
-   .. figure:: images/commands/condor_log_analyzer.png
+   .. figure:: images/commands/htcondor_log_analyzer.png
       :alt: condor_log_analyzer
 
 
@@ -954,7 +954,7 @@ Other commands
    been executed on, etc., as mentioned in section `How powerful is HTCondor?`_,
    you can check real-time **HTCondor@IAC statistics** (global and per user)
    `here
-   <https://pasa.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&tab=v&vn=pool_usage&hide-hf=false>`__. 
+   <https://orejon.ll.iac.es/ganglia/?r=week&cs=&ce=&m=load_one&s=by+name&c=&tab=v&vn=pool_usage&tz=&hide-hf=false>`__. 
 
 
 How-to Recipes
