@@ -923,12 +923,12 @@ Getting information from the logs
 
          condor_history -constraint 'RemoveReason=!=UNDEFINED'
 
-- At the IAC we have developed an online tool to analyze your log files and get
+-  At the IAC we have developed an online tool to analyze your log files and get
    more information: ``HTCondor Log Analyzer``
    (https://orejon.ll.iac.es/sieapps/condor-log-analizer/). The figure below
-   shows an example of the output generated.
+   shows an example of part of the output generated.
 
-   .. figure:: images/commands/htcondor_log_analyzer.png
+   .. figure:: images/commands/htcondor_log_analyzer_part.png
       :alt: condor_log_analyzer
 
 
